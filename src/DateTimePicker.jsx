@@ -52,7 +52,10 @@ export default class DateTimePicker extends Component {
   }
 
   closeWidgets = () => {
-    this.setState({ isClockOpen: false });
+    this.setState({
+      isCalendarOpen: false,
+      isClockOpen: false,
+    });
   }
 
   toggleClock = () => {
@@ -87,15 +90,18 @@ export default class DateTimePicker extends Component {
   }
 
   onFocus = (event) => {
-    switch(event.target.name) {
+    switch (event.target.name) {
       case 'day':
       case 'month':
       case 'year':
-        return this.openCalendar();
+        this.openCalendar();
+        break;
       case 'hour':
       case 'minute':
       case 'second':
-        return this.openClock();
+        this.openClock();
+        break;
+      default:
     }
   }
 
