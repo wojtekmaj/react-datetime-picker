@@ -168,7 +168,7 @@ export default class DateTimeInput extends Component {
         .replace('9', 'hour-12')
         .replace('13', 'minute')
         .replace('14', 'second')
-        .replace(/AM|PM/, `${this.divider}ampm`)
+        .replace(/AM|PM/, `${this.timeDivider}ampm`)
     );
   }
 
