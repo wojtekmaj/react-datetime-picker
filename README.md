@@ -7,8 +7,8 @@ An input component for picking date and time for your React application.
 
 ## tl;dr
 * Install by executing `npm install react-datetime-picker` or `yarn add react-datetime-picker`.
-* Import by adding `import TimePicker from 'react-datetime-picker'`.
-* Use by adding `<TimePicker />`. Use `onChange` prop for getting new values.
+* Import by adding `import DateTimePicker from 'react-datetime-picker'`.
+* Use by adding `<DateTimePicker />`. Use `onChange` prop for getting new values.
 
 ## Demo
 
