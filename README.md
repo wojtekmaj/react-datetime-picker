@@ -93,7 +93,8 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 |calendarType|Defines which type of calendar should be used. Can be "US" or "ISO 8601". Defaults to "US" for "en-US" locale, "ISO 8601" to all the others.|`"ISO 8601"`|
 |className|Defines class name(s) that will be added along with "react-datetime-picker" to the main React-DateTime-Picker `<div>` element.|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
 |clearIcon|Defines the content of the clear button.|<ul><li>String: `"Clear"`</li><li>React element: `<ClearIcon />`</li></ul>|
-|isOpen|Defines whether the calendar should be opened. Defaults to false.|`true`|
+|isCalendarOpen|Defines whether the calendar should be opened. Defaults to false.|`true`|
+|isClockOpen|Defines whether the clock should be opened. Defaults to false.|`true`|
 |locale|Defines which locale should be used by the calendar. Can be any [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag). Defaults to user's browser settings.|`"hu-HU"`|
 |maxDate|Defines maximum date that the user can select. Periods partially overlapped by maxDate will also be selectable, although react-datetime-picker will ensure that no later date is selected.|Date: `new Date()`|
 |maxDetail|Defines how detailed time picking shall be. Can be "hour", "minute" or "second". Defaults to "minute".|`"second"`|
