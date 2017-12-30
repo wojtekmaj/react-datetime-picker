@@ -1,0 +1,99 @@
+.react-datetime-picker {
+  display: inline-flex;
+  position: relative;
+
+  &, & *, & *:before, & *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  &__button {
+    display: flex;
+    border: thin solid gray;
+
+    &__input {
+      @digit-width: .54em;
+      @colon-width: .217em;
+      // own padding + inputs padding + digits width + dots width
+      min-width: calc(~"4px + (4px * 3) + " @digit-width * 6 ~" + " @colon-width * 2);
+      flex-grow: 1;
+      display: flex;
+      padding: 0 2px;
+      align-items: baseline;
+
+      &__divider {
+        padding: 1px 0;
+      }
+
+      input {
+        min-width: calc(~"4px + " @digit-width);
+        height: 100%;
+        padding: 1px;
+        border: 0;
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &:invalid {
+          background: fade(red, 10%);
+        }
+      }
+    }
+
+    &__icon {
+      border: 0;
+      background: transparent;
+      padding: 4px 6px;
+      cursor: pointer;
+
+      &:hover, &:focus {
+        svg {
+          g {
+            stroke: rgb(0, 120, 215);
+          }
+        }
+      }
+
+      svg {
+        display: inherit;
+      }
+    }
+  }
+
+  &__calendar,
+  &__clock {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    &--closed {
+      display: none;
+    }
+  }
+
+  &__calendar {
+    width: 350px;
+    max-width: 100vw;
+
+    .react-calendar {
+      border-width: thin;
+    }
+  }
+
+  &__clock {
+    width: 200px;
+    height: 200px;
+    max-width: 100vw;
+    padding: 25px;
+    background-color: white;
+    border: thin solid rgb(160, 160, 150);
+
+    .react-clock {
+    }
+  }
+}

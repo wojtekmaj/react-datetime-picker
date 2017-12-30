@@ -1,0 +1,86 @@
+{
+  "name": "react-datetime-picker",
+  "version": "1.0.0",
+  "description": "An input component for picking date and time for your React application.",
+  "main": "dist/entry.js",
+  "es6": "src/entry.js",
+  "scripts": {
+    "build": "npm run build-js && npm run build-styles && npm run copy-styles",
+    "build-js": "babel src -d dist --ignore **/__tests__",
+    "build-styles": "lessc ./src/DateTimePicker.less ./src/DateTimePicker.css",
+    "copy-styles": "node ./copy-styles.js",
+    "prepublishOnly": "npm run build",
+    "test": "npm run test-eslint && npm run test-jest",
+    "test-eslint": "eslint ./src",
+    "test-jest": "jest",
+    "test-jest-coverage": "jest --coverage"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "collectCoverageFrom": [
+      "**/src/**.{js,jsx}",
+      "!**/src/entry.js"
+    ]
+  },
+  "keywords": [
+    "date-picker",
+    "date",
+    "datetime-picker",
+    "datetime",
+    "time-picker",
+    "time",
+    "react"
+  ],
+  "author": {
+    "name": "Wojciech Maj",
+    "email": "kontakt@wojtekmaj.pl"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "detect-element-overflow": "^1.1.1",
+    "lodash.once": "^4.1.1",
+    "merge-class-names": "^1.1.1",
+    "prop-types": "^15.6.0",
+    "react": ">=15.5",
+    "react-calendar": "^2.9.0",
+    "react-clock": "^2.2.0",
+    "react-date-picker": "^6.6.1",
+    "react-dom": ">=15.5",
+    "react-time-picker": "^2.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-class-property": "^1.0.6",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "jest": "^22.0.4",
+    "jest-cli": "^22.0.4",
+    "less": "^2.7.3",
+    "react-test-renderer": "^16.2.0"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.d.ts",
+    "dist/",
+    "src/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wojtekmaj/react-datetime-picker.git"
+  }
+}
