@@ -23,10 +23,10 @@ import { isMaxDate, isMinDate } from './shared/propTypes';
 
 const allViews = ['hour', 'minute', 'second'];
 
-const hoursAreDifferent = (date1, date2) => (
+const datesAreDifferent = (date1, date2) => (
   (date1 && !date2) ||
   (!date1 && date2) ||
-  (date1 && date2 && date1 !== date2) // TODO: Compare 11:22:00 and 11:22 properly
+  (date1 && date2 && date1.getTime() !== date2.getTime())
 );
 
 const findPreviousInput = (element) => {
@@ -87,7 +87,7 @@ export default class DateTimeInput extends Component {
     if (
       // Toggling clock visibility resets values
       (nextProps.isCalendarOpen !== props.isCalendarOpen) ||
-      hoursAreDifferent(nextValue, value)
+      datesAreDifferent(nextValue, value)
     ) {
       this.updateValues(nextProps);
     }
