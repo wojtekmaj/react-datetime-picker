@@ -3696,9 +3696,9 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-time-picker@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.1.1.tgz#63899fb5204dfb1423c40f2bcd4c41c5a6ec9a97"
+react-time-picker@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.1.2.tgz#1fb7c1e012de309a480bc023ed5fbb4499a0c689"
   dependencies:
     detect-element-overflow "^1.1.1"
     lodash.once "^4.1.1"
