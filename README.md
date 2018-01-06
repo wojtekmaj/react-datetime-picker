@@ -100,6 +100,7 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 |maxDetail|Defines how detailed time picking shall be. Can be "hour", "minute" or "second". Defaults to "minute".|`"second"`|
 |minDate|Defines minimum date that the user can select. Periods partially overlapped by minDate will also be selectable, although react-datetime-picker will ensure that no earlier date is selected.|Date: `new Date()`|
 |minDetail|Defines the least detailed view that the user shall see. Can be "month", "year", "decade" or "century". Defaults to "century".|`"century"`|
+|name|Defines input name. Defaults to "datetime".|`"myCustomName"`|
 |nextLabel|Defines the content of the "next" button on the navigation pane. Defaults to "›".|<ul><li>String: `"›"`</li><li>React element: `<NextIcon />`</li></ul>|
 |next2Label|Defines the content of the "next on higher level" button on the navigation pane. Defaults to "»". |<ul><li>String: `"»"`</li><li>React element: `<DoubleNextIcon />`</li></ul>|
 |onChange|Function called when the user clicks an item on the most detailed view available.|`(value) => alert('New date is: ', value)`|
