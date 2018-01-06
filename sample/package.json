@@ -1,6 +1,6 @@
 {
   "name": "react-datetime-picker-sample-page",
-  "version": "2.1.1",
+  "version": "1.0.1",
   "description": "A sample page for React-DateTime-Picker.",
   "private": true,
   "scripts": {
