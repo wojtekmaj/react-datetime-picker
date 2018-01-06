@@ -117,6 +117,7 @@ export default class DateTimePicker extends Component {
       maxDetail,
       maxDate,
       minDate,
+      name,
       required,
       value,
     } = this.props;
@@ -131,6 +132,7 @@ export default class DateTimePicker extends Component {
           maxDetail={maxDetail}
           maxDate={maxDate}
           minDate={minDate}
+          name={name}
           onChange={this.onChange}
           placeholder={this.placeholder}
           required={required}
@@ -321,6 +323,7 @@ DateTimePicker.propTypes = {
   maxDetail: PropTypes.oneOf(allViews),
   maxDate: isMaxDate,
   minDate: isMinDate,
+  name: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.oneOfType([

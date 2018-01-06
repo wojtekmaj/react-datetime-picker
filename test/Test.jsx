@@ -78,6 +78,7 @@ export default class Test extends Component {
                 maxDetail={maxDetail}
                 maxDate={maxDate}
                 minDate={minDate}
+                name="myCustomName"
                 onChange={this.onChange}
                 required={required}
                 value={value}

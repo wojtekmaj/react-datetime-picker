@@ -430,6 +430,7 @@ export default class DateTimeInput extends Component {
         key="time"
         maxDate={this.props.maxDate}
         minDate={this.props.minDate}
+        name={this.props.name}
         onChange={this.onChangeNative}
         required={this.props.required}
         value={this.props.value}
@@ -452,6 +453,7 @@ export default class DateTimeInput extends Component {
 
 DateTimeInput.defaultProps = {
   maxDetail: 'minute',
+  name: 'datetime',
 };
 
 DateTimeInput.propTypes = {
@@ -460,6 +462,7 @@ DateTimeInput.propTypes = {
   maxDetail: PropTypes.oneOf(allViews),
   maxDate: isMaxDate,
   minDate: isMinDate,
+  name: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.oneOfType([
