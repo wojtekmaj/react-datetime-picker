@@ -58,10 +58,6 @@ export default class DateTimePicker extends Component {
     });
   }
 
-  toggleClock = () => {
-    this.setState(prevState => ({ isClockOpen: !prevState.isClockOpen }));
-  }
-
   openCalendar = () => {
     this.setState({
       isCalendarOpen: true,
