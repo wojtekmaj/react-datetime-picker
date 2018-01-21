@@ -5,6 +5,22 @@ import DateTimePicker from '../DateTimePicker';
 
 /* eslint-disable comma-dangle */
 
+const mockDocumentListeners = () => {
+  const eventMap = {};
+  document.addEventListener = jest.fn((method, cb) => {
+    if (!eventMap[method]) {
+      eventMap[method] = [];
+    }
+    eventMap[method].push(cb);
+  });
+
+  return {
+    simulate: (method, args) => {
+      eventMap[method].forEach(cb => cb(args));
+    },
+  };
+};
+
 describe('DateTimePicker', () => {
   it('applies className to its wrapper when given a string', () => {
     const className = 'testClassName';
@@ -190,5 +206,37 @@ describe('DateTimePicker', () => {
     const clock2 = component.find('Clock');
 
     expect(clock2).toHaveLength(1);
+  });
+
+  it('closes Calendar and Clock component when clicked outside', () => {
+    const { simulate } = mockDocumentListeners();
+
+    const component = mount(
+      <DateTimePicker isCalendarOpen isClockOpen />
+    );
+
+    simulate('mousedown', {
+      target: document,
+    });
+    component.update();
+
+    expect(component.state('isCalendarOpen')).toBe(false);
+    expect(component.state('isClockOpen')).toBe(false);
+  });
+
+  it('does not close Calendar and Clock component when clicked inside', () => {
+    const { simulate } = mockDocumentListeners();
+
+    const component = mount(
+      <DateTimePicker isCalendarOpen isClockOpen />
+    );
+
+    simulate('mousedown', {
+      target: component.getDOMNode(),
+    });
+    component.update();
+
+    expect(component.state('isCalendarOpen')).toBe(true);
+    expect(component.state('isClockOpen')).toBe(true);
   });
 });
