@@ -7,6 +7,7 @@ import YearInput from 'react-date-picker/dist/DateInput/YearInput';
 import HourInput from 'react-time-picker/dist/TimeInput/HourInput';
 import MinuteInput from 'react-time-picker/dist/TimeInput/MinuteInput';
 import SecondInput from 'react-time-picker/dist/TimeInput/SecondInput';
+import Divider from './Divider';
 import NativeInput from './DateTimeInput/NativeInput';
 
 import { formatDate, formatTime } from './shared/dateFormatter';
@@ -111,14 +112,6 @@ export default class DateTimeInput extends Component {
     );
   }
 
-  get dateDividerElement() {
-    return (
-      <span className="react-datetime-picker__button__input__divider">
-        {this.dateDivider}
-      </span>
-    );
-  }
-
   // eslint-disable-next-line class-methods-use-this
   get timeDivider() {
     const date = new Date(2017, 0, 1, 21, 12, 13);
@@ -126,23 +119,6 @@ export default class DateTimeInput extends Component {
     return (
       removeUnwantedCharacters(formatTime(date))
         .match(/[^0-9]/)[0]
-    );
-  }
-
-  get timeDividerElement() {
-    return (
-      <span className="react-datetime-picker__button__input__divider">
-        {this.timeDivider}
-      </span>
-    );
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  get dividerElement() {
-    return (
-      <span className="react-datetime-picker__button__input__divider">
-        {' '}
-      </span>
     );
   }
 
@@ -369,7 +345,7 @@ export default class DateTimeInput extends Component {
   }
 
   renderCustomDateInputs() {
-    const { dateDivider, dateDividerElement, datePlaceholder } = this;
+    const { dateDivider, datePlaceholder } = this;
 
     return (
       datePlaceholder
@@ -387,8 +363,12 @@ export default class DateTimeInput extends Component {
           result.push(element);
 
           if (index + 1 < array.length) {
-            // eslint-disable-next-line react/no-array-index-key
-            result.push(React.cloneElement(dateDividerElement, { key: `separator_${index}` }));
+            result.push(
+              // eslint-disable-next-line react/no-array-index-key
+              <Divider key={`separator_${index}`}>
+                {dateDivider}
+              </Divider>,
+            );
           }
 
           return result;
@@ -397,7 +377,7 @@ export default class DateTimeInput extends Component {
   }
 
   renderCustomTimeInputs() {
-    const { timeDivider, timeDividerElement, timePlaceholder } = this;
+    const { timeDivider, timePlaceholder } = this;
 
     return (
       timePlaceholder
@@ -417,8 +397,12 @@ export default class DateTimeInput extends Component {
           result.push(element);
 
           if (index + 1 < array.length) {
-            // eslint-disable-next-line react/no-array-index-key
-            result.push(React.cloneElement(timeDividerElement, { key: `separator_${index}` }));
+            result.push(
+              // eslint-disable-next-line react/no-array-index-key
+              <Divider key={`separator_${index}`}>
+                {timeDivider}
+              </Divider>,
+            );
           }
 
           return result;
@@ -446,7 +430,9 @@ export default class DateTimeInput extends Component {
       <div className="react-datetime-picker__button__input">
         {this.renderNativeInput()}
         {this.renderCustomDateInputs()}
-        {this.dividerElement}
+        <Divider>
+          {'\u00a0'}
+        </Divider>
         {this.renderCustomTimeInputs()}
       </div>
     );

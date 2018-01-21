@@ -131,7 +131,7 @@ describe('DateTimeInput', () => {
 
     expect(separators).toHaveLength(4);
     expect(separators.at(0).text()).toBe('/');
-    expect(separators.at(2).text()).toBe(' ');
+    expect(separators.at(2).text()).toBe('\u00a0'); // Non-breaking space
     expect(separators.at(3).text()).toBe(':');
   });
 
