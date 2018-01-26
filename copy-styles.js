@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-fs.copyFile('./src/DateTimePicker.less', 'dist/DateTimePicker.less', (error) => {
+fs.copyFile('src/DateTimePicker.less', 'dist/DateTimePicker.less', (error) => {
   if (error) {
     throw error;
   }
@@ -8,7 +8,7 @@ fs.copyFile('./src/DateTimePicker.less', 'dist/DateTimePicker.less', (error) => 
   console.log('DateTimePicker.less copied successfully.');
 });
 
-fs.copyFile('./src/DateTimePicker.css', 'dist/DateTimePicker.css', (error) => {
+fs.copyFile('src/DateTimePicker.css', 'dist/DateTimePicker.css', (error) => {
   if (error) {
     throw error;
   }
