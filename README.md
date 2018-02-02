@@ -109,6 +109,10 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 
 DateTimePicker component passes all props to React-Calendar, with the exception of `className` (you can use `calendarClassName` for that instead). There are tons of customizations you can do! For more information, see [Calendar component props](https://github.com/wojtekmaj/react-calendar#props).
 
+### Clock
+
+DateTimePicker component passes all props to React-Clock, with the exception of `className` (you can use `clockClassName` for that instead). There are tons of customizations you can do! For more information, see [Clock component props](https://github.com/wojtekmaj/react-clock#props).
+
 ## License
 
 The MIT License.
