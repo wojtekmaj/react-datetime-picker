@@ -1,7 +1,7 @@
 {
   "name": "react-datetime-picker",
   "version": "1.0.1",
-  "description": "An input component for picking date and time for your React application.",
+  "description": "A date range picker for your React app.",
   "main": "dist/entry.js",
   "es6": "src/entry.js",
   "scripts": {
