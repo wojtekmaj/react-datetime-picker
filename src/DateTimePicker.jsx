@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import mergeClassNames from 'merge-class-names';
 import detectElementOverflow from 'detect-element-overflow';
@@ -12,7 +12,7 @@ import { isMaxDate, isMinDate } from './shared/propTypes';
 
 const allViews = ['hour', 'minute', 'second'];
 
-export default class DateTimePicker extends Component {
+export default class DateTimePicker extends PureComponent {
   state = {
     isCalendarOpen: this.props.isCalendarOpen,
     isClockOpen: this.props.isClockOpen,
