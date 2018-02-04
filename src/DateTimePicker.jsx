@@ -191,6 +191,7 @@ export default class DateTimePicker extends PureComponent {
       maxDetail: dateTimePickerMaxDetail, // Unused, here to exclude it from calendarProps
       className: dateTimePickerClassName, // Unused, here to exclude it from calendarProps
       onChange,
+      value,
       ...calendarProps
     } = this.props;
 
@@ -219,6 +220,7 @@ export default class DateTimePicker extends PureComponent {
         <Calendar
           className={calendarClassName}
           onChange={this.onDateChange}
+          value={value || null}
           {...calendarProps}
         />
       </div>
