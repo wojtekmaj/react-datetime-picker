@@ -9,7 +9,7 @@ export default class ValueOptions extends Component {
   onChange = (event) => {
     const { value } = event.target;
 
-    this.setValue(value);
+    this.setValue(value ? new Date(value) : value);
   }
 
   render() {
