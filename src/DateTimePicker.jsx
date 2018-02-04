@@ -115,6 +115,7 @@ export default class DateTimePicker extends PureComponent {
       minDate,
       name,
       required,
+      showLeadingZeros,
       value,
     } = this.props;
 
@@ -132,6 +133,7 @@ export default class DateTimePicker extends PureComponent {
           onChange={this.onChange}
           placeholder={this.placeholder}
           required={required}
+          showLeadingZeros={showLeadingZeros}
           value={value}
         />
         <button
@@ -322,6 +324,7 @@ DateTimePicker.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  showLeadingZeros: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Date),

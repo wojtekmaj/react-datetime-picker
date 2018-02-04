@@ -22,6 +22,7 @@ import {
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
 const allViews = ['hour', 'minute', 'second'];
+const className = 'react-datetime-picker__button__input';
 
 const datesAreDifferent = (date1, date2) => (
   (date1 && !date2) ||
@@ -263,8 +264,10 @@ export default class DateTimeInput extends Component {
     return (
       <DayInput
         key="day"
+        className={className}
         maxDetail={this.props.maxDetail}
         month={this.state.month}
+        showLeadingZeros={this.props.showLeadingZeros}
         year={this.state.year}
         value={this.state.day}
         {...this.commonInputProps}
@@ -276,8 +279,10 @@ export default class DateTimeInput extends Component {
     return (
       <MonthInput
         key="month"
+        className={className}
         maxDetail={this.props.maxDetail}
         minDate={this.props.minDate}
+        showLeadingZeros={this.props.showLeadingZeros}
         value={this.state.month}
         {...this.commonInputProps}
       />
@@ -288,6 +293,7 @@ export default class DateTimeInput extends Component {
     return (
       <YearInput
         key="year"
+        className={className}
         value={this.state.year}
         valueType="day"
         {...this.commonInputProps}
@@ -299,6 +305,7 @@ export default class DateTimeInput extends Component {
     return (
       <HourInput
         key="hour"
+        className={className}
         value={this.state.hour}
         {...this.commonInputProps}
       />
@@ -316,6 +323,7 @@ export default class DateTimeInput extends Component {
     return (
       <MinuteInput
         key="minute"
+        className={className}
         maxDetail={this.props.maxDetail}
         value={this.state.minute}
         {...this.commonInputProps}
@@ -334,6 +342,7 @@ export default class DateTimeInput extends Component {
     return (
       <SecondInput
         key="second"
+        className={className}
         maxDetail={this.props.maxDetail}
         value={this.state.second}
         {...this.commonInputProps}
@@ -424,7 +433,7 @@ export default class DateTimeInput extends Component {
 
   render() {
     return (
-      <div className="react-datetime-picker__button__input">
+      <div className={className}>
         {this.renderNativeInput()}
         {this.renderCustomDateInputs()}
         <Divider>
@@ -450,6 +459,7 @@ DateTimeInput.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  showLeadingZeros: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Date),
