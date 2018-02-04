@@ -73,6 +73,28 @@ export default class DateTimePicker extends PureComponent {
     this.setState(prevState => ({ isCalendarOpen: !prevState.isCalendarOpen }));
   }
 
+  onDateChange = (value, closeWidgets = true) => {
+    const { value: prevValue } = this.props;
+
+    if (prevValue) {
+      const valueWithHour = new Date(value);
+      valueWithHour.setHours(
+        prevValue.getHours(),
+        prevValue.getMinutes(),
+        prevValue.getSeconds(),
+        prevValue.getMilliseconds(),
+      );
+
+      this.onChange(valueWithHour, closeWidgets);
+    } else {
+      this.onChange(value, closeWidgets);
+    }
+  }
+
+  onTimeChange = (value, closeWidgets = true) => {
+    this.onChange(value, closeWidgets);
+  }
+
   onChange = (value, closeWidgets = true) => {
     this.setState(prevState => ({
       isCalendarOpen: prevState.isCalendarOpen && !closeWidgets,
@@ -130,7 +152,7 @@ export default class DateTimePicker extends PureComponent {
           maxDate={maxDate}
           minDate={minDate}
           name={name}
-          onChange={this.onChange}
+          onChange={this.onTimeChange}
           placeholder={this.placeholder}
           required={required}
           showLeadingZeros={showLeadingZeros}
@@ -196,7 +218,7 @@ export default class DateTimePicker extends PureComponent {
       >
         <Calendar
           className={calendarClassName}
-          onChange={this.onChange}
+          onChange={this.onDateChange}
           {...calendarProps}
         />
       </div>
