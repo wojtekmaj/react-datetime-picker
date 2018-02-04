@@ -5,6 +5,7 @@ import ValidityOptions from './ValidityOptions';
 import MaxDetailOptions from './MaxDetailOptions';
 import LocaleOptions from './LocaleOptions';
 import ValueOptions from './ValueOptions';
+import ViewOptions from './ViewOptions';
 
 import './Test.less';
 
@@ -17,6 +18,9 @@ export default class Test extends Component {
     maxDetail: 'minute',
     minDate: null,
     required: true,
+    showLeadingZeros: true,
+    showNeighboringMonth: false,
+    showWeekNumbers: false,
     value: now,
   }
 
@@ -29,6 +33,9 @@ export default class Test extends Component {
       maxDetail,
       minDate,
       required,
+      showLeadingZeros,
+      showNeighboringMonth,
+      showWeekNumbers,
       value,
     } = this.state;
 
@@ -59,6 +66,12 @@ export default class Test extends Component {
               setState={setState}
               value={value}
             />
+            <ViewOptions
+              setState={setState}
+              showLeadingZeros={showLeadingZeros}
+              showNeighboringMonth={showNeighboringMonth}
+              showWeekNumbers={showWeekNumbers}
+            />
           </aside>
           <main className="Test__container__content">
             <form
@@ -81,6 +94,9 @@ export default class Test extends Component {
                 name="myCustomName"
                 onChange={this.onChange}
                 required={required}
+                showLeadingZeros={showLeadingZeros}
+                showNeighboringMonth={showNeighboringMonth}
+                showWeekNumbers={showWeekNumbers}
                 value={value}
               />
               <br />
