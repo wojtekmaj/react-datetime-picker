@@ -66,6 +66,9 @@ const removeUnwantedCharacters = str => str
 
 export default class DateTimeInput extends Component {
   state = {
+    year: null,
+    month: null,
+    day: null,
     hour: null,
     minute: null,
     second: null,
