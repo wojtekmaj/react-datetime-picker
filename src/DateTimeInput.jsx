@@ -84,7 +84,7 @@ export default class DateTimeInput extends Component {
 
     if (
       // Toggling clock visibility resets values
-      (nextProps.isCalendarOpen !== this.props.isCalendarOpen) ||
+      (nextProps.isWidgetOpen !== this.props.isWidgetOpen) ||
       datesAreDifferent(nextValue, value)
     ) {
       this.updateValues(nextProps);
@@ -157,7 +157,7 @@ export default class DateTimeInput extends Component {
       onKeyDown: this.onKeyDown,
       placeholder: '--',
       // This is only for showing validity when editing
-      required: this.props.required || this.props.isCalendarOpen,
+      required: this.props.required || this.props.isWidgetOpen,
       itemRef: (ref) => {
         if (!ref) return;
 
@@ -454,7 +454,7 @@ DateTimeInput.defaultProps = {
 };
 
 DateTimeInput.propTypes = {
-  isCalendarOpen: PropTypes.bool,
+  isWidgetOpen: PropTypes.bool,
   locale: PropTypes.string,
   maxDate: isMaxDate,
   maxDetail: PropTypes.oneOf(allViews),

@@ -141,13 +141,13 @@ export default class DateTimePicker extends PureComponent {
       value,
     } = this.props;
 
-    const { isCalendarOpen } = this.state;
+    const { isCalendarOpen, isClockOpen } = this.state;
 
     return (
       <div className="react-datetime-picker__button">
         <DateTimeInput
           locale={locale}
-          isCalendarOpen={isCalendarOpen}
+          isWidgetOpen={isCalendarOpen || isClockOpen}
           maxDetail={maxDetail}
           maxDate={maxDate}
           minDate={minDate}
