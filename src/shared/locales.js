@@ -1,4 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export {
-  getLocale,
-  setLocale,
+  getDefaultLocale,
 } from 'react-date-picker/dist/shared/locales';

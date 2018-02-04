@@ -19,7 +19,6 @@ import {
   getMinutes,
   getSeconds,
 } from './shared/dates';
-import { setLocale } from './shared/locales';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
 const allViews = ['hour', 'minute', 'second'];
@@ -72,22 +71,16 @@ export default class DateTimeInput extends Component {
   }
 
   componentWillMount() {
-    setLocale(this.props.locale);
     this.updateValues();
   }
 
   componentWillReceiveProps(nextProps) {
-    const { props } = this;
     const { value: nextValue } = nextProps;
     const { value } = this.props;
 
-    if (nextProps.locale !== props.locale) {
-      setLocale(nextProps.locale);
-    }
-
     if (
       // Toggling clock visibility resets values
-      (nextProps.isCalendarOpen !== props.isCalendarOpen) ||
+      (nextProps.isCalendarOpen !== this.props.isCalendarOpen) ||
       datesAreDifferent(nextValue, value)
     ) {
       this.updateValues(nextProps);
@@ -104,30 +97,33 @@ export default class DateTimeInput extends Component {
 
   // eslint-disable-next-line class-methods-use-this
   get dateDivider() {
+    const { locale } = this.props;
     const date = new Date(2017, 11, 11);
 
     return (
-      removeUnwantedCharacters(formatDate(date))
+      removeUnwantedCharacters(formatDate(date, locale))
         .match(/[^0-9]/)[0]
     );
   }
 
   // eslint-disable-next-line class-methods-use-this
   get timeDivider() {
+    const { locale } = this.props;
     const date = new Date(2017, 0, 1, 21, 12, 13);
 
     return (
-      removeUnwantedCharacters(formatTime(date))
+      removeUnwantedCharacters(formatTime(date, locale))
         .match(/[^0-9]/)[0]
     );
   }
 
   // eslint-disable-next-line class-methods-use-this
   get datePlaceholder() {
+    const { locale } = this.props;
     const date = new Date(2017, 11, 11);
 
     return (
-      removeUnwantedCharacters(formatDate(date))
+      removeUnwantedCharacters(formatDate(date, locale))
         .replace('2017', 'year')
         .replace('12', 'month')
         .replace('11', 'day')
@@ -136,10 +132,11 @@ export default class DateTimeInput extends Component {
 
   // eslint-disable-next-line class-methods-use-this
   get timePlaceholder() {
+    const { locale } = this.props;
     const date = new Date(2017, 0, 1, 21, 13, 14);
 
     return (
-      removeUnwantedCharacters(formatTime(date))
+      removeUnwantedCharacters(formatTime(date, locale))
         .replace('21', 'hour-24')
         .replace('9', 'hour-12')
         .replace('13', 'minute')
@@ -447,8 +444,8 @@ DateTimeInput.defaultProps = {
 DateTimeInput.propTypes = {
   isCalendarOpen: PropTypes.bool,
   locale: PropTypes.string,
-  maxDetail: PropTypes.oneOf(allViews),
   maxDate: isMaxDate,
+  maxDetail: PropTypes.oneOf(allViews),
   minDate: isMinDate,
   name: PropTypes.string,
   onChange: PropTypes.func,
