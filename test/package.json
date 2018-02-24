@@ -15,7 +15,7 @@
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-datetime-picker": "../",
+    "react-datetime-picker": "latest",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
