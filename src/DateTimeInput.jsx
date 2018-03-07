@@ -151,6 +151,7 @@ export default class DateTimeInput extends Component {
 
   get commonInputProps() {
     return {
+      disabled: this.props.disabled,
       maxDate: this.props.maxDate,
       minDate: this.props.minDate,
       onChange: this.onChange,
@@ -423,6 +424,7 @@ export default class DateTimeInput extends Component {
     return (
       <NativeInput
         key="time"
+        disabled={this.props.disabled}
         maxDate={this.props.maxDate}
         minDate={this.props.minDate}
         name={this.props.name}
@@ -454,6 +456,7 @@ DateTimeInput.defaultProps = {
 };
 
 DateTimeInput.propTypes = {
+  disabled: PropTypes.bool,
   isWidgetOpen: PropTypes.bool,
   locale: PropTypes.string,
   maxDate: isMaxDate,

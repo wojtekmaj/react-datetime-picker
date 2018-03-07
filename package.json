@@ -47,9 +47,9 @@
     "react": ">=15.5",
     "react-calendar": "^2.13.0",
     "react-clock": "^2.2.0",
-    "react-date-picker": "^6.8.1",
+    "react-date-picker": "^6.9.0",
     "react-dom": ">=15.5",
-    "react-time-picker": "^2.2.0"
+    "react-time-picker": "^2.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -87,6 +87,7 @@ export default class Test extends Component {
                 className="myCustomTimePickerClassName"
                 calendarClassName="myCustomCalendarClassName"
                 clockClassName="myCustomClockClassName"
+                disabled={false}
                 locale={locale}
                 maxDetail={maxDetail}
                 maxDate={maxDate}

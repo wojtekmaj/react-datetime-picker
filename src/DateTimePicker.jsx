@@ -128,52 +128,44 @@ export default class DateTimePicker extends PureComponent {
   clear = () => this.onChange(null);
 
   renderInputs() {
-    const {
-      clearIcon,
-      calendarIcon,
-      locale,
-      maxDetail,
-      maxDate,
-      minDate,
-      name,
-      required,
-      showLeadingZeros,
-      value,
-    } = this.props;
+    const { disabled } = this.props;
 
     const { isCalendarOpen, isClockOpen } = this.state;
 
     return (
       <div className="react-datetime-picker__button">
         <DateTimeInput
-          locale={locale}
+          disabled={disabled}
+          locale={this.props.locale}
           isWidgetOpen={isCalendarOpen || isClockOpen}
-          maxDetail={maxDetail}
-          maxDate={maxDate}
-          minDate={minDate}
-          name={name}
+          maxDetail={this.props.maxDetail}
+          maxDate={this.props.maxDate}
+          minDate={this.props.minDate}
+          name={this.props.name}
           onChange={this.onTimeChange}
           placeholder={this.placeholder}
-          required={required}
-          showLeadingZeros={showLeadingZeros}
-          value={value}
+          required={this.props.required}
+          showLeadingZeros={this.props.showLeadingZeros}
+          value={this.props.value}
         />
         <button
           className="react-datetime-picker__clear-button react-datetime-picker__button__icon"
+          disabled={disabled}
           onClick={this.clear}
           onFocus={this.stopPropagation}
           type="button"
         >
-          {clearIcon}
+          {this.props.clearIcon}
         </button>
         <button
           className="react-datetime-picker__calendar-button react-datetime-picker__button__icon"
+          disabled={disabled}
           onClick={this.toggleCalendar}
           onFocus={this.stopPropagation}
           onBlur={this.resetValue}
           type="button"
         >
-          {calendarIcon}
+          {this.props.calendarIcon}
         </button>
       </div>
     );
@@ -284,6 +276,7 @@ export default class DateTimePicker extends PureComponent {
         className={mergeClassNames(
           className,
           `${className}--${this.state.isCalendarOpen || this.state.isClockOpen ? 'open' : 'closed'}`,
+          `${className}--${this.props.disabled ? 'disabled' : 'enabled'}`,
           this.props.className,
         )}
         onFocus={this.onFocus}
@@ -339,6 +332,7 @@ DateTimePicker.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
   clearIcon: PropTypes.node,
+  disabled: PropTypes.bool,
   isCalendarOpen: PropTypes.bool,
   isClockOpen: PropTypes.bool,
   locale: PropTypes.string,
