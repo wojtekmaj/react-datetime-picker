@@ -35,15 +35,3 @@ export const formatTime = (date, locale) => getFormatter(
   { hour: 'numeric', minute: 'numeric', second: 'numeric' },
   locale,
 )(date);
-
-export const formatDateTime = (date, locale) => getFormatter(
-  {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  },
-  locale,
-)(date);
