@@ -318,6 +318,8 @@ DateTimePicker.defaultProps = {
 };
 
 DateTimePicker.propTypes = {
+  ...Calendar.propTypes,
+  ...Clock.propTypes,
   calendarClassName: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
