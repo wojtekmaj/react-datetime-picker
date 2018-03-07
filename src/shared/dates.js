@@ -21,7 +21,7 @@ export const getISOLocalDateTime = (value) => {
 
   const date = new Date(value);
 
-  if (Number.isNaN(date.getTime())) {
+  if (isNaN(date.getTime())) {
     throw new Error(`Invalid date: ${value}`);
   }
 
