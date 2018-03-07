@@ -34,7 +34,7 @@ export default class ViewOptions extends Component {
             checked={showLeadingZeros}
             onChange={this.onShowLeadingZerosChange}
           />
-          <label htmlFor="renderTextLayer">Show leading zeros</label>
+          <label htmlFor="showWeekNumbers">Show leading zeros</label>
         </div>
 
         <div>
@@ -44,7 +44,7 @@ export default class ViewOptions extends Component {
             checked={showWeekNumbers}
             onChange={this.onShowWeekNumbersChange}
           />
-          <label htmlFor="renderTextLayer">Show week numbers</label>
+          <label htmlFor="showWeekNumbers">Show week numbers</label>
         </div>
 
         <div>
@@ -54,7 +54,7 @@ export default class ViewOptions extends Component {
             checked={showNeighboringMonth}
             onChange={this.onshowNeighboringMonthChange}
           />
-          <label htmlFor="renderTextLayer">{'Show neighboring month\'s days'}</label>
+          <label htmlFor="showNeighboringMonth">{'Show neighboring month\'s days'}</label>
         </div>
       </fieldset>
     );
