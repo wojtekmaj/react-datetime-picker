@@ -337,7 +337,6 @@ DateTimePicker.propTypes = {
   disabled: PropTypes.bool,
   isCalendarOpen: PropTypes.bool,
   isClockOpen: PropTypes.bool,
-  locale: PropTypes.string,
   maxDetail: PropTypes.oneOf(allViews),
   maxDate: isMaxDate,
   minDate: isMinDate,
