@@ -109,7 +109,14 @@ export default class DateTimeInput extends PureComponent {
     return nextState;
   }
 
-  state = {};
+  state = {
+    year: null,
+    month: null,
+    day: null,
+    hour: null,
+    minute: null,
+    second: null,
+  };
 
   // eslint-disable-next-line class-methods-use-this
   get dateDivider() {
