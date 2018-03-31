@@ -124,7 +124,7 @@ export default class DateTimePicker extends PureComponent {
     this.setState(prevState => ({ isCalendarOpen: !prevState.isCalendarOpen }));
   }
 
-  stopPropagation = event => event.stopPropagation()
+  stopPropagation = event => event.stopPropagation();
 
   clear = () => this.onChange(null);
 

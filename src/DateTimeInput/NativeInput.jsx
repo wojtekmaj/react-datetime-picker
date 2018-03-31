@@ -7,7 +7,7 @@ import { isMaxDate, isMinDate } from '../shared/propTypes';
 const nativeValueParser = getISOLocalDateTime;
 
 export default class NativeInput extends PureComponent {
-  stopPropagation = event => event.stopPropagation()
+  stopPropagation = event => event.stopPropagation();
 
   render() {
     const {
