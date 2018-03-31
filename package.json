@@ -44,11 +44,11 @@
     "lodash.once": "^4.1.1",
     "merge-class-names": "^1.1.1",
     "prop-types": "^15.6.0",
-    "react-calendar": "^2.13.4",
+    "react-calendar": "^2.14.0",
     "react-clock": "^2.2.1",
-    "react-date-picker": "^6.9.1",
+    "react-date-picker": "^6.10.0",
     "react-lifecycles-compat": "^1.1.0",
-    "react-time-picker": "^2.3.1"
+    "react-time-picker": "^2.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
