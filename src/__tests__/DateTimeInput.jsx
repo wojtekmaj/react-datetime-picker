@@ -102,6 +102,30 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(5).getDOMNode().value).toBe('0');
   });
 
+  it('clears the value correctly', () => {
+    const date = new Date(2017, 8, 30, 22, 17, 0);
+
+    const component = mount(
+      <DateTimeInput
+        maxDetail="second"
+        value={date}
+      />
+    );
+
+    component.setProps({ value: null });
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+    const customInputs = component.find('input[type="number"]');
+
+    expect(nativeInput.getDOMNode().value).toBe('');
+    expect(customInputs.at(0).getDOMNode().value).toBe('');
+    expect(customInputs.at(1).getDOMNode().value).toBe('');
+    expect(customInputs.at(2).getDOMNode().value).toBe('');
+    expect(customInputs.at(3).getDOMNode().value).toBe('');
+    expect(customInputs.at(4).getDOMNode().value).toBe('');
+    expect(customInputs.at(5).getDOMNode().value).toBe('');
+  });
+
   it('renders custom inputs in a proper order (en-US)', () => {
     const component = mount(
       <DateTimeInput

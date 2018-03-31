@@ -3683,13 +3683,14 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-calendar@^2.13.4:
-  version "2.13.4"
-  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.13.4.tgz#8bda746ed6d1fbe29c539bc875adbd103871665f"
+react-calendar@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.14.0.tgz#03ffce0d6e64052e552aaafdd142d1764ed88b45"
   dependencies:
     lodash.once "^4.1.1"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
+    react-lifecycles-compat "^1.1.0"
 
 react-clock@^2.2.1:
   version "2.2.1"
@@ -3698,15 +3699,16 @@ react-clock@^2.2.1:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^6.9.1:
-  version "6.9.1"
-  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-6.9.1.tgz#99b3e9b4d2ea28074c39cf9cd9d5fefe0568044b"
+react-date-picker@^6.10.0:
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-6.10.0.tgz#2108e34a11f0b1f6b641fe7772d07de12039fcc2"
   dependencies:
     detect-element-overflow "^1.1.1"
     lodash.once "^4.1.1"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
-    react-calendar "^2.13.4"
+    react-calendar "^2.14.0"
+    react-lifecycles-compat "^1.1.0"
 
 react-dom@^16.3.0:
   version "16.3.0"
@@ -3716,6 +3718,10 @@ react-dom@^16.3.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react-lifecycles-compat@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-1.1.0.tgz#6641d0709bd5505329b5c90322147ef2d343485c"
 
 react-reconciler@^0.7.0:
   version "0.7.0"
@@ -3734,15 +3740,16 @@ react-test-renderer@^16.0.0-0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-time-picker@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.3.1.tgz#4d09f6e860b108f68bde4679cb2fc3e33d475d3a"
+react-time-picker@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.4.0.tgz#66c66848713c0a385484da560334de2b5708ff58"
   dependencies:
     detect-element-overflow "^1.1.1"
     lodash.once "^4.1.1"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
     react-clock "^2.2.1"
+    react-lifecycles-compat "^1.1.0"
 
 react@^16.3.0:
   version "16.3.0"

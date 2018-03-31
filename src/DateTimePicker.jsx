@@ -13,10 +13,23 @@ import { isMaxDate, isMinDate } from './shared/propTypes';
 const allViews = ['hour', 'minute', 'second'];
 
 export default class DateTimePicker extends PureComponent {
-  state = {
-    isCalendarOpen: this.props.isCalendarOpen,
-    isClockOpen: this.props.isClockOpen,
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const nextState = {};
+
+    if (nextProps.isCalendarOpen !== prevState.propsIsCalendarOpen) {
+      nextState.isCalendarOpen = nextProps.isCalendarOpen;
+      nextState.propsIsCalendarOpen = nextProps.isCalendarOpen;
+    }
+
+    if (nextProps.isClockOpen !== prevState.propsIsClockOpen) {
+      nextState.isClockOpen = nextProps.isClockOpen;
+      nextState.propsIsClockOpen = nextProps.isClockOpen;
+    }
+
+    return nextState;
   }
+
+  state = {};
 
   componentDidMount() {
     document.addEventListener('mousedown', this.onClick);
@@ -26,51 +39,10 @@ export default class DateTimePicker extends PureComponent {
     document.removeEventListener('mousedown', this.onClick);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { props } = this;
-
-    if (nextProps.isCalendarOpen !== props.isCalendarOpen) {
-      this.setState({ isCalendarOpen: nextProps.isCalendarOpen });
-    }
-
-    if (nextProps.isClockOpen !== props.isClockOpen) {
-      this.setState({ isClockOpen: nextProps.isClockOpen });
-    }
-  }
-
   onClick = (event) => {
     if (this.wrapper && !this.wrapper.contains(event.target)) {
       this.closeWidgets();
     }
-  }
-
-  openClock = () => {
-    this.setState({
-      isCalendarOpen: false,
-      isClockOpen: true,
-    });
-  }
-
-  closeWidgets = () => {
-    this.setState({
-      isCalendarOpen: false,
-      isClockOpen: false,
-    });
-  }
-
-  openCalendar = () => {
-    this.setState({
-      isCalendarOpen: true,
-      isClockOpen: false,
-    });
-  }
-
-  closeCalendar = () => {
-    this.setState({ isCalendarOpen: false });
-  }
-
-  toggleCalendar = () => {
-    this.setState(prevState => ({ isCalendarOpen: !prevState.isCalendarOpen }));
   }
 
   onDateChange = (value, closeWidgets = true) => {
@@ -121,6 +93,35 @@ export default class DateTimePicker extends PureComponent {
         break;
       default:
     }
+  }
+
+  openClock = () => {
+    this.setState({
+      isCalendarOpen: false,
+      isClockOpen: true,
+    });
+  }
+
+  closeWidgets = () => {
+    this.setState({
+      isCalendarOpen: false,
+      isClockOpen: false,
+    });
+  }
+
+  openCalendar = () => {
+    this.setState({
+      isCalendarOpen: true,
+      isClockOpen: false,
+    });
+  }
+
+  closeCalendar = () => {
+    this.setState({ isCalendarOpen: false });
+  }
+
+  toggleCalendar = () => {
+    this.setState(prevState => ({ isCalendarOpen: !prevState.isCalendarOpen }));
   }
 
   stopPropagation = event => event.stopPropagation()
