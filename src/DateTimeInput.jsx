@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import polyfill from 'react-lifecycles-compat';
 
 import DayInput from 'react-date-picker/dist/DateInput/DayInput';
 import MonthInput from 'react-date-picker/dist/DateInput/MonthInput';
@@ -13,11 +14,11 @@ import NativeInput from './DateTimeInput/NativeInput';
 import { formatDate, formatTime } from './shared/dateFormatter';
 import {
   getDay,
-  getMonth,
-  getYear,
   getHours,
   getMinutes,
+  getMonth,
   getSeconds,
+  getYear,
 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
@@ -64,40 +65,51 @@ const removeUnwantedCharacters = str => str
   ))
   .join('');
 
-export default class DateTimeInput extends Component {
-  state = {
-    year: null,
-    month: null,
-    day: null,
-    hour: null,
-    minute: null,
-    second: null,
-  }
+export default class DateTimeInput extends PureComponent {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const nextState = {};
 
-  componentWillMount() {
-    this.updateValues();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { value: nextValue } = nextProps;
-    const { value } = this.props;
-
-    if (
-      // Toggling clock visibility resets values
-      (nextProps.isWidgetOpen !== this.props.isWidgetOpen) ||
-      datesAreDifferent(nextValue, value)
-    ) {
-      this.updateValues(nextProps);
+    /**
+     * If isWidgetOpen flag has changed, we have to update it.
+     * It's saved in state purely for use in getDerivedStateFromProps.
+     */
+    if (nextProps.isWidgetOpen !== prevState.isWidgetOpen) {
+      nextState.isWidgetOpen = nextProps.isWidgetOpen;
     }
+
+    /**
+     * If the next value is different from the current one  (with an exception of situation in
+     * which values provided are limited by minDate and maxDate so that the dates are the same),
+     * get a new one.
+     */
+    const nextValue = nextProps.value;
+    if (
+      // Toggling calendar visibility resets values
+      nextState.isCalendarOpen || // Flag was toggled
+      datesAreDifferent(nextValue, prevState.value)
+    ) {
+      if (nextValue) {
+        nextState.year = getYear(nextValue);
+        nextState.month = getMonth(nextValue);
+        nextState.day = getDay(nextValue);
+        nextState.hour = getHours(nextValue);
+        nextState.minute = getMinutes(nextValue);
+        nextState.second = getSeconds(nextValue);
+      } else {
+        nextState.year = null;
+        nextState.month = null;
+        nextState.day = null;
+        nextState.hour = null;
+        nextState.minute = null;
+        nextState.second = null;
+      }
+      nextState.value = nextValue;
+    }
+
+    return nextState;
   }
 
-  /**
-   * Returns value type that can be returned with currently applied settings.
-   */
-  get valueType() {
-    const { maxDetail } = this.props;
-    return maxDetail;
-  }
+  state = {};
 
   // eslint-disable-next-line class-methods-use-this
   get dateDivider() {
@@ -168,17 +180,11 @@ export default class DateTimeInput extends Component {
     };
   }
 
-  updateValues(props = this.props) {
-    const { value } = props;
-
-    this.setState({
-      year: value ? getYear(value) : null,
-      month: value ? getMonth(value) : null,
-      day: value ? getDay(value) : null,
-      hour: value ? getHours(value) : null,
-      minute: value ? getMinutes(value) : null,
-      second: value ? getSeconds(value) : null,
-    });
+  /**
+   * Returns value type that can be returned with currently applied settings.
+   */
+  get valueType() {
+    return this.props.maxDetail;
   }
 
   onKeyDown = (event) => {
@@ -471,3 +477,5 @@ DateTimeInput.propTypes = {
     PropTypes.instanceOf(Date),
   ]),
 };
+
+polyfill(DateTimeInput);

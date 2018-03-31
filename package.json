@@ -47,6 +47,7 @@
     "react-calendar": "^2.13.4",
     "react-clock": "^2.2.1",
     "react-date-picker": "^6.9.1",
+    "react-lifecycles-compat": "^1.1.0",
     "react-time-picker": "^2.3.1"
   },
   "devDependencies": {
