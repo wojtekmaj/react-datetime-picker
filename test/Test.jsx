@@ -1,5 +1,10 @@
 import React, { PureComponent } from 'react';
-import DateTimePicker from 'react-datetime-picker/src/entry';
+import DateTimePicker from 'react-datetime-picker/src/entry.nostyle';
+import 'react-datetime-picker/src/DateTimePicker.less';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'react-calendar/src/Calendar.less';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'react-clock/src/Clock.less';
 
 import ValidityOptions from './ValidityOptions';
 import MaxDetailOptions from './MaxDetailOptions';
