@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import DateTimePicker from 'react-datetime-picker/src/entry';
 
 import ValidityOptions from './ValidityOptions';
@@ -11,7 +11,7 @@ import './Test.less';
 
 const now = new Date();
 
-export default class Test extends Component {
+export default class Test extends PureComponent {
   state = {
     locale: null,
     maxDate: null,

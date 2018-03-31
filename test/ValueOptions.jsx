@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { getISOLocalDateTime } from '../src/shared/dates';
 
-export default class ValueOptions extends Component {
-  setValue = value => this.props.setState({ value });
-
+export default class ValueOptions extends PureComponent {
   onChange = (event) => {
     const { value } = event.target;
 
     this.setValue(value ? new Date(value) : value);
   }
+
+  setValue = value => this.props.setState({ value });
 
   render() {
     const { value } = this.props;

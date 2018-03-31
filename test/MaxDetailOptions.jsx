@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 const allViews = ['hour', 'minute', 'second'];
 
-export default class MaxDetailOptions extends Component {
+export default class MaxDetailOptions extends PureComponent {
   onChange = (event) => {
     const { value } = event.target;
 
