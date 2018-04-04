@@ -80,6 +80,10 @@ export default class DateTimePicker extends PureComponent {
   }
 
   onFocus = (event) => {
+    // Internet Explorer still fires onFocus on disabled elements
+    if (this.props.disabled) {
+      return;
+    }
     switch (event.target.name) {
       case 'day':
       case 'month':
