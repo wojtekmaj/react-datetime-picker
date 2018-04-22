@@ -164,16 +164,18 @@ export default class DateTimePicker extends PureComponent {
             {this.props.clearIcon}
           </button>
         )}
-        <button
-          className="react-datetime-picker__calendar-button react-datetime-picker__button__icon"
-          disabled={disabled}
-          onClick={this.toggleCalendar}
-          onFocus={this.stopPropagation}
-          onBlur={this.resetValue}
-          type="button"
-        >
-          {this.props.calendarIcon}
-        </button>
+        {this.props.calendarIcon !== null && (
+          <button
+            className="react-datetime-picker__calendar-button react-datetime-picker__button__icon"
+            disabled={disabled}
+            onClick={this.toggleCalendar}
+            onFocus={this.stopPropagation}
+            onBlur={this.resetValue}
+            type="button"
+          >
+            {this.props.calendarIcon}
+          </button>
+        )}
       </div>
     );
   }
