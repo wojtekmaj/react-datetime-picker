@@ -3692,6 +3692,15 @@ react-calendar@^2.14.0:
     prop-types "^15.6.0"
     react-lifecycles-compat "^1.1.0"
 
+react-calendar@^2.15.1:
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.15.1.tgz#b390d22941a645e512035dbbe5201739ec5e8ed9"
+  dependencies:
+    lodash.once "^4.1.1"
+    merge-class-names "^1.1.1"
+    prop-types "^15.6.0"
+    react-lifecycles-compat "^1.1.0"
+
 react-clock@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-clock/-/react-clock-2.2.1.tgz#7dbc6289d39be0806c3f2cbd3adb5e3d66527b60"
