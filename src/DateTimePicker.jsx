@@ -16,14 +16,14 @@ export default class DateTimePicker extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
     const nextState = {};
 
-    if (nextProps.isCalendarOpen !== prevState.propsIsCalendarOpen) {
+    if (nextProps.isCalendarOpen !== prevState.isCalendarOpenProps) {
       nextState.isCalendarOpen = nextProps.isCalendarOpen;
-      nextState.propsIsCalendarOpen = nextProps.isCalendarOpen;
+      nextState.isCalendarOpenProps = nextProps.isCalendarOpen;
     }
 
-    if (nextProps.isClockOpen !== prevState.propsIsClockOpen) {
+    if (nextProps.isClockOpen !== prevState.isClockOpenProps) {
       nextState.isClockOpen = nextProps.isClockOpen;
-      nextState.propsIsClockOpen = nextProps.isClockOpen;
+      nextState.isClockOpenProps = nextProps.isClockOpen;
     }
 
     return nextState;
