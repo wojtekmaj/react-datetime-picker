@@ -46,7 +46,7 @@
     "prop-types": "^15.6.0",
     "react-calendar": "^2.15.1",
     "react-clock": "^2.2.1",
-    "react-date-picker": "^6.10.0",
+    "react-date-picker": "^6.10.2",
     "react-lifecycles-compat": "^1.1.0",
     "react-time-picker": "^2.4.0"
   },
