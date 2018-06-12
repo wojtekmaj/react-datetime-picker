@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import polyfill from 'react-lifecycles-compat';
+import { polyfill } from 'react-lifecycles-compat';
 
 import DayInput from 'react-date-picker/dist/DateInput/DayInput';
 import MonthInput from 'react-date-picker/dist/DateInput/MonthInput';
