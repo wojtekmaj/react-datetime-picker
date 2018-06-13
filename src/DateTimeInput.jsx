@@ -298,7 +298,6 @@ export default class DateTimeInput extends PureComponent {
         key="month"
         className={className}
         maxDetail={this.props.maxDetail}
-        minDate={this.props.minDate}
         showLeadingZeros={this.props.showLeadingZeros}
         value={this.state.month}
         {...this.commonInputProps}
