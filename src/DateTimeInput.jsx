@@ -22,6 +22,8 @@ import {
 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
+const defaultMinDate = new Date(-8.64e15);
+const defaultMaxDate = new Date(8.64e15);
 const allViews = ['hour', 'minute', 'second'];
 const className = 'react-datetime-picker__button__input';
 
@@ -171,8 +173,8 @@ export default class DateTimeInput extends PureComponent {
   get commonInputProps() {
     return {
       disabled: this.props.disabled,
-      maxDate: this.props.maxDate,
-      minDate: this.props.minDate,
+      maxDate: this.props.maxDate || defaultMaxDate,
+      minDate: this.props.minDate || defaultMinDate,
       onChange: this.onChange,
       onKeyDown: this.onKeyDown,
       placeholder: '--',
@@ -437,8 +439,8 @@ export default class DateTimeInput extends PureComponent {
       <NativeInput
         key="time"
         disabled={this.props.disabled}
-        maxDate={this.props.maxDate}
-        minDate={this.props.minDate}
+        maxDate={this.props.maxDate || defaultMaxDate}
+        minDate={this.props.minDate || defaultMinDate}
         name={this.props.name}
         onChange={this.onChangeNative}
         required={this.props.required}
