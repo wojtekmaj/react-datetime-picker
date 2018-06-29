@@ -239,4 +239,20 @@ describe('DateTimePicker', () => {
     expect(component.state('isCalendarOpen')).toBe(true);
     expect(component.state('isClockOpen')).toBe(true);
   });
+
+  it('closes Clock when Calendar is opened by a click on the calendar icon', () => {
+    const component = mount(
+      <DateTimePicker isClockOpen />
+    );
+
+    expect(component.state('isClockOpen')).toBe(true);
+
+    const button = component.find('button.react-datetime-picker__calendar-button');
+    button.simulate('click');
+
+    component.update();
+
+    expect(component.state('isClockOpen')).toBe(false);
+    expect(component.find('Calendar')).toHaveLength(1)
+  })
 });
