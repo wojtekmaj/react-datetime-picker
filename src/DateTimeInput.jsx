@@ -28,9 +28,9 @@ const allViews = ['hour', 'minute', 'second'];
 const className = 'react-datetime-picker__button__input';
 
 const datesAreDifferent = (date1, date2) => (
-  (date1 && !date2) ||
-  (!date1 && date2) ||
-  (date1 && date2 && date1.getTime() !== date2.getTime())
+  (date1 && !date2)
+  || (!date1 && date2)
+  || (date1 && date2 && date1.getTime() !== date2.getTime())
 );
 
 const findPreviousInput = (element) => {
@@ -61,9 +61,9 @@ const removeUnwantedCharacters = str => str
   .split('')
   .filter(a => (
     // We don't want spaces in dates
-    a.charCodeAt(0) !== 32 &&
+    a.charCodeAt(0) !== 32
     // Internet Explorer specific
-    a.charCodeAt(0) !== 8206
+    && a.charCodeAt(0) !== 8206
   ))
   .join('');
 
@@ -87,8 +87,8 @@ export default class DateTimeInput extends PureComponent {
     const nextValue = nextProps.value;
     if (
       // Toggling calendar visibility resets values
-      nextState.isCalendarOpen || // Flag was toggled
-      datesAreDifferent(nextValue, prevState.value)
+      nextState.isCalendarOpen // Flag was toggled
+      || datesAreDifferent(nextValue, prevState.value)
     ) {
       if (nextValue) {
         nextState.year = getYear(nextValue);
@@ -171,15 +171,23 @@ export default class DateTimeInput extends PureComponent {
   }
 
   get commonInputProps() {
+    const {
+      disabled,
+      isWidgetOpen,
+      maxDate,
+      minDate,
+      required,
+    } = this.props;
+
     return {
-      disabled: this.props.disabled,
-      maxDate: this.props.maxDate || defaultMaxDate,
-      minDate: this.props.minDate || defaultMinDate,
+      disabled,
+      maxDate: maxDate || defaultMaxDate,
+      minDate: minDate || defaultMinDate,
       onChange: this.onChange,
       onKeyDown: this.onKeyDown,
       placeholder: '--',
       // This is only for showing validity when editing
-      required: this.props.required || this.props.isWidgetOpen,
+      required: required || isWidgetOpen,
       itemRef: (ref) => {
         if (!ref) return;
 
@@ -193,7 +201,9 @@ export default class DateTimeInput extends PureComponent {
    * Returns value type that can be returned with currently applied settings.
    */
   get valueType() {
-    return this.props.maxDetail;
+    const { maxDetail } = this.props;
+
+    return maxDetail;
   }
 
   onKeyDown = (event) => {
@@ -236,10 +246,11 @@ export default class DateTimeInput extends PureComponent {
    * Called when native date input is changed.
    */
   onChangeNative = (event) => {
+    const { onChange } = this.props;
     const { value } = event.target;
 
-    if (this.props.onChange) {
-      this.props.onChange(value);
+    if (onChange) {
+      onChange(value);
     }
   }
 
@@ -248,7 +259,9 @@ export default class DateTimeInput extends PureComponent {
    * calls props.onChange.
    */
   onChangeExternal = () => {
-    if (this.props.onChange) {
+    const { onChange } = this.props;
+
+    if (onChange) {
       const formElements = [
         this.dayInput,
         this.monthInput,
@@ -264,55 +277,62 @@ export default class DateTimeInput extends PureComponent {
       });
 
       if (formElements.every(formElement => formElement.value && formElement.checkValidity())) {
-        const proposedValue =
-          new Date(
-            values.year,
-            (values.month || 1) - 1,
-            values.day || 1,
-            values.hour,
-            values.minute || 0,
-            values.second || 0,
-          );
+        const proposedValue = new Date(
+          values.year,
+          (values.month || 1) - 1,
+          values.day || 1,
+          values.hour,
+          values.minute || 0,
+          values.second || 0,
+        );
         const processedValue = proposedValue;
-        this.props.onChange(processedValue, false);
+        onChange(processedValue, false);
       }
     }
   }
 
   renderDay() {
+    const { maxDetail, showLeadingZeros } = this.props;
+    const { day, month, year } = this.state;
+
     return (
       <DayInput
         key="day"
         className={className}
-        maxDetail={this.props.maxDetail}
-        month={this.state.month}
-        showLeadingZeros={this.props.showLeadingZeros}
-        year={this.state.year}
-        value={this.state.day}
+        maxDetail={maxDetail}
+        month={month}
+        showLeadingZeros={showLeadingZeros}
+        year={year}
+        value={day}
         {...this.commonInputProps}
       />
     );
   }
 
   renderMonth() {
+    const { maxDetail, showLeadingZeros } = this.props;
+    const { month } = this.state;
+
     return (
       <MonthInput
         key="month"
         className={className}
-        maxDetail={this.props.maxDetail}
-        showLeadingZeros={this.props.showLeadingZeros}
-        value={this.state.month}
+        maxDetail={maxDetail}
+        showLeadingZeros={showLeadingZeros}
+        value={month}
         {...this.commonInputProps}
       />
     );
   }
 
   renderYear() {
+    const { year } = this.state;
+
     return (
       <YearInput
         key="year"
         className={className}
-        value={this.state.year}
+        value={year}
         valueType="day"
         {...this.commonInputProps}
       />
@@ -320,11 +340,13 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderHour() {
+    const { hour } = this.state;
+
     return (
       <HourInput
         key="hour"
         className={className}
-        value={this.state.hour}
+        value={hour}
         {...this.commonInputProps}
       />
     );
@@ -338,12 +360,14 @@ export default class DateTimeInput extends PureComponent {
       return null;
     }
 
+    const { minute } = this.state;
+
     return (
       <MinuteInput
         key="minute"
         className={className}
-        maxDetail={this.props.maxDetail}
-        value={this.state.minute}
+        maxDetail={maxDetail}
+        value={minute}
         {...this.commonInputProps}
       />
     );
@@ -357,12 +381,14 @@ export default class DateTimeInput extends PureComponent {
       return null;
     }
 
+    const { second } = this.state;
+
     return (
       <SecondInput
         key="second"
         className={className}
-        maxDetail={this.props.maxDetail}
-        value={this.state.second}
+        maxDetail={maxDetail}
+        value={second}
         {...this.commonInputProps}
       />
     );
@@ -435,16 +461,25 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderNativeInput() {
+    const {
+      disabled,
+      maxDate,
+      minDate,
+      name,
+      required,
+      value,
+    } = this.props;
+
     return (
       <NativeInput
         key="time"
-        disabled={this.props.disabled}
-        maxDate={this.props.maxDate || defaultMaxDate}
-        minDate={this.props.minDate || defaultMinDate}
-        name={this.props.name}
+        disabled={disabled}
+        maxDate={maxDate || defaultMaxDate}
+        minDate={minDate || defaultMinDate}
+        name={name}
         onChange={this.onChangeNative}
-        required={this.props.required}
-        value={this.props.value}
+        required={required}
+        value={value}
         valueType={this.valueType}
       />
     );
