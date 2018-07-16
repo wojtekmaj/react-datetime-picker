@@ -196,7 +196,7 @@ describe('DateTimePicker', () => {
     );
 
     const clock = component.find('Clock');
-    const input = component.find('input[name="hour"]');
+    const input = component.find('input[name^="hour"]');
 
     expect(clock).toHaveLength(0);
 

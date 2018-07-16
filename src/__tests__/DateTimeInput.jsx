@@ -5,6 +5,18 @@ import DateTimeInput from '../DateTimeInput';
 
 /* eslint-disable comma-dangle */
 
+const hasFullICU = (() => {
+  try {
+    const date = new Date(2018, 0, 1, 21);
+    const formatter = new Intl.DateTimeFormat('de-DE', { hour: 'numeric' });
+    return formatter.format(date) === '21';
+  } catch (err) {
+    return false;
+  }
+})();
+
+const itIfFullICU = hasFullICU ? it : it.skip;
+
 const keyCodes = {
   ArrowLeft: 37,
   ArrowUp: 38,
@@ -45,7 +57,7 @@ describe('DateTimeInput', () => {
     const yearInput = customInputs.find('input[name="year"]');
     const secondInput = customInputs.find('input[name="second"]');
     const minuteInput = customInputs.find('input[name="minute"]');
-    const hourInput = customInputs.find('input[name="hour"]');
+    const hourInput = customInputs.find('input[name^="hour"]');
 
     expect(customInputs).toHaveLength(5);
 
@@ -68,7 +80,7 @@ describe('DateTimeInput', () => {
     const yearInput = customInputs.find('input[name="year"]');
     const secondInput = customInputs.find('input[name="second"]');
     const minuteInput = customInputs.find('input[name="minute"]');
-    const hourInput = customInputs.find('input[name="hour"]');
+    const hourInput = customInputs.find('input[name^="hour"]');
 
     expect(customInputs).toHaveLength(4);
 
@@ -80,7 +92,7 @@ describe('DateTimeInput', () => {
     expect(secondInput).toHaveLength(0);
   });
 
-  it('shows a given date in all inputs correctly', () => {
+  it('shows a given date in all inputs correctly (12-hour format)', () => {
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
     const component = mount(
@@ -97,6 +109,29 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(0).getDOMNode().value).toBe('9');
     expect(customInputs.at(1).getDOMNode().value).toBe('30');
     expect(customInputs.at(2).getDOMNode().value).toBe('2017');
+    expect(customInputs.at(3).getDOMNode().value).toBe('10');
+    expect(customInputs.at(4).getDOMNode().value).toBe('17');
+    expect(customInputs.at(5).getDOMNode().value).toBe('0');
+  });
+
+  itIfFullICU('shows a given date in all inputs correctly (24-hour format)', () => {
+    const date = new Date(2017, 8, 30, 22, 17, 0);
+
+    const component = mount(
+      <DateTimeInput
+        locale="de-DE"
+        maxDetail="second"
+        value={date}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+    const customInputs = component.find('input[type="number"]');
+
+    expect(nativeInput.getDOMNode().value).toBe('2017-09-30T22:17');
+    expect(customInputs.at(0).getDOMNode().value).toBe('2017');
+    expect(customInputs.at(1).getDOMNode().value).toBe('9');
+    expect(customInputs.at(2).getDOMNode().value).toBe('30');
     expect(customInputs.at(3).getDOMNode().value).toBe('22');
     expect(customInputs.at(4).getDOMNode().value).toBe('17');
     expect(customInputs.at(5).getDOMNode().value).toBe('0');
@@ -126,12 +161,9 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(5).getDOMNode().value).toBe('');
   });
 
-  it('renders custom inputs in a proper order (en-US)', () => {
+  it('renders custom inputs in a proper order (12-hour format)', () => {
     const component = mount(
-      <DateTimeInput
-        locale="en-US"
-        maxDetail="second"
-      />
+      <DateTimeInput maxDetail="second" />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -139,22 +171,39 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(0).prop('name')).toBe('month');
     expect(customInputs.at(1).prop('name')).toBe('day');
     expect(customInputs.at(2).prop('name')).toBe('year');
-    expect(customInputs.at(3).prop('name')).toBe('hour');
+    expect(customInputs.at(3).prop('name')).toBe('hour12');
     expect(customInputs.at(4).prop('name')).toBe('minute');
     expect(customInputs.at(5).prop('name')).toBe('second');
   });
 
-  it('renders proper input separators (en-US)', () => {
+  itIfFullICU('renders custom inputs in a proper order (24-hour format)', () => {
     const component = mount(
       <DateTimeInput
-        locale="en-US"
+        locale="de-DE"
+        maxDetail="second"
       />
+    );
+
+    const customInputs = component.find('input[type="number"]');
+
+    expect(customInputs.at(0).prop('name')).toBe('year');
+    expect(customInputs.at(1).prop('name')).toBe('month');
+    expect(customInputs.at(2).prop('name')).toBe('day');
+    expect(customInputs.at(3).prop('name')).toBe('hour24');
+    expect(customInputs.at(4).prop('name')).toBe('minute');
+    expect(customInputs.at(5).prop('name')).toBe('second');
+  });
+
+  it('renders proper input separators', () => {
+    const component = mount(
+      <DateTimeInput />
     );
 
     const separators = component.find('.react-datetime-picker__button__input__divider');
 
     expect(separators).toHaveLength(4);
     expect(separators.at(0).text()).toBe('/');
+    expect(separators.at(1).text()).toBe('/');
     expect(separators.at(2).text()).toBe('\u00a0'); // Non-breaking space
     expect(separators.at(3).text()).toBe(':');
   });

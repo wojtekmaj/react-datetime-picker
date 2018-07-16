@@ -5,9 +5,11 @@ import { polyfill } from 'react-lifecycles-compat';
 import DayInput from 'react-date-picker/dist/DateInput/DayInput';
 import MonthInput from 'react-date-picker/dist/DateInput/MonthInput';
 import YearInput from 'react-date-picker/dist/DateInput/YearInput';
-import HourInput from 'react-time-picker/dist/TimeInput/HourInput';
+import Hour12Input from 'react-time-picker/dist/TimeInput/Hour12Input';
+import Hour24Input from 'react-time-picker/dist/TimeInput/Hour24Input';
 import MinuteInput from 'react-time-picker/dist/TimeInput/MinuteInput';
 import SecondInput from 'react-time-picker/dist/TimeInput/SecondInput';
+import AmPm from 'react-time-picker/dist/TimeInput/AmPm';
 import Divider from './Divider';
 import NativeInput from './DateTimeInput/NativeInput';
 
@@ -19,6 +21,8 @@ import {
   getMonth,
   getSeconds,
   getYear,
+  convert12to24,
+  convert24to12,
 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
@@ -93,6 +97,7 @@ export default class DateTimeInput extends PureComponent {
       || datesAreDifferent(nextValue, prevState.value)
     ) {
       if (nextValue) {
+        [, nextState.amPm] = convert24to12(getHours(nextValue));
         nextState.year = getYear(nextValue);
         nextState.month = getMonth(nextValue);
         nextState.day = getDay(nextValue);
@@ -100,6 +105,7 @@ export default class DateTimeInput extends PureComponent {
         nextState.minute = getMinutes(nextValue);
         nextState.second = getSeconds(nextValue);
       } else {
+        nextState.amPm = null;
         nextState.year = null;
         nextState.month = null;
         nextState.day = null;
@@ -114,6 +120,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   state = {
+    amPm: null,
     year: null,
     month: null,
     day: null,
@@ -182,6 +189,7 @@ export default class DateTimeInput extends PureComponent {
     } = this.props;
 
     return {
+      className,
       disabled,
       maxDate: maxDate || defaultMaxDate,
       minDate: minDate || defaultMinDate,
@@ -190,11 +198,9 @@ export default class DateTimeInput extends PureComponent {
       placeholder: '--',
       // This is only for showing validity when editing
       required: required || isWidgetOpen,
-      itemRef: (ref) => {
-        if (!ref) return;
-
+      itemRef: (ref, name) => {
         // Save a reference to each input field
-        this[`${ref.name}Input`] = ref;
+        this[`${name || ref.name}Input`] = ref;
       },
     };
   }
@@ -238,10 +244,30 @@ export default class DateTimeInput extends PureComponent {
   onChange = (event) => {
     const { name, value } = event.target;
 
-    this.setState(
-      { [name]: value ? parseInt(value, 10) : null },
-      this.onChangeExternal,
-    );
+    switch (name) {
+      case 'hour12': {
+        this.setState(
+          prevState => ({
+            hour: value ? convert12to24(parseInt(value, 10), prevState.amPm) : null,
+          }),
+          this.onChangeExternal,
+        );
+        break;
+      }
+      case 'hour24': {
+        this.setState(
+          { hour: value ? parseInt(value, 10) : null },
+          this.onChangeExternal,
+        );
+        break;
+      }
+      default: {
+        this.setState(
+          { [name]: value ? parseInt(value, 10) : null },
+          this.onChangeExternal,
+        );
+      }
+    }
   }
 
   /**
@@ -256,6 +282,15 @@ export default class DateTimeInput extends PureComponent {
     }
   }
 
+  onChangeAmPm = (event) => {
+    const { value } = event.target;
+
+    this.setState(
+      ({ amPm: value }),
+      this.onChangeExternal,
+    );
+  }
+
   /**
    * Called after internal onChange. Checks input validity. If all fields are valid,
    * calls props.onChange.
@@ -268,9 +303,11 @@ export default class DateTimeInput extends PureComponent {
         this.dayInput,
         this.monthInput,
         this.yearInput,
-        this.hourInput,
+        this.hour12Input,
+        this.hour24Input,
         this.minuteInput,
         this.secondInput,
+        this.amPmInput,
       ].filter(Boolean);
 
       const values = {};
@@ -279,11 +316,12 @@ export default class DateTimeInput extends PureComponent {
       });
 
       if (formElements.every(formElement => formElement.value && formElement.checkValidity())) {
+        const hour = values.hour24 || convert12to24(values.hour12, values.amPm);
         const proposedValue = new Date(
           values.year,
           (values.month || 1) - 1,
           values.day || 1,
-          values.hour,
+          hour,
           values.minute || 0,
           values.second || 0,
         );
@@ -300,13 +338,12 @@ export default class DateTimeInput extends PureComponent {
     return (
       <DayInput
         key="day"
-        className={className}
+        {...this.commonInputProps}
         maxDetail={maxDetail}
         month={month}
         showLeadingZeros={showLeadingZeros}
         year={year}
         value={day}
-        {...this.commonInputProps}
       />
     );
   }
@@ -318,11 +355,10 @@ export default class DateTimeInput extends PureComponent {
     return (
       <MonthInput
         key="month"
-        className={className}
+        {...this.commonInputProps}
         maxDetail={maxDetail}
         showLeadingZeros={showLeadingZeros}
         value={month}
-        {...this.commonInputProps}
       />
     );
   }
@@ -333,23 +369,33 @@ export default class DateTimeInput extends PureComponent {
     return (
       <YearInput
         key="year"
-        className={className}
+        {...this.commonInputProps}
         value={year}
         valueType="day"
-        {...this.commonInputProps}
       />
     );
   }
 
-  renderHour() {
+  renderHour12() {
     const { hour } = this.state;
 
     return (
-      <HourInput
-        key="hour"
-        className={className}
-        value={hour}
+      <Hour12Input
+        key="hour12"
         {...this.commonInputProps}
+        value={hour}
+      />
+    );
+  }
+
+  renderHour24() {
+    const { hour } = this.state;
+
+    return (
+      <Hour24Input
+        key="hour24"
+        {...this.commonInputProps}
+        value={hour}
       />
     );
   }
@@ -367,7 +413,6 @@ export default class DateTimeInput extends PureComponent {
     return (
       <MinuteInput
         key="minute"
-        className={className}
         maxDetail={maxDetail}
         value={minute}
         {...this.commonInputProps}
@@ -388,10 +433,22 @@ export default class DateTimeInput extends PureComponent {
     return (
       <SecondInput
         key="second"
-        className={className}
+        {...this.commonInputProps}
         maxDetail={maxDetail}
         value={second}
+      />
+    );
+  }
+
+  renderAmPm() {
+    const { amPm } = this.state;
+
+    return (
+      <AmPm
+        key="ampm"
         {...this.commonInputProps}
+        value={amPm}
+        onChange={this.onChangeAmPm}
       />
     );
   }
@@ -411,10 +468,8 @@ export default class DateTimeInput extends PureComponent {
           }
         })
         .filter(Boolean)
-        .reduce((result, element, index, array) => {
-          result.push(element);
-
-          if (index + 1 < array.length) {
+        .reduce((result, element, index) => {
+          if (index) {
             result.push(
               // eslint-disable-next-line react/no-array-index-key
               <Divider key={`separator_${index}`}>
@@ -422,6 +477,8 @@ export default class DateTimeInput extends PureComponent {
               </Divider>,
             );
           }
+
+          result.push(element);
 
           return result;
         }, [])
@@ -436,19 +493,17 @@ export default class DateTimeInput extends PureComponent {
         .split(timeDivider)
         .map((part) => {
           switch (part) {
-            case 'hour-24': return this.renderHour();
-            case 'hour-12': return this.renderHour();
+            case 'hour-12': return this.renderHour12();
+            case 'hour-24': return this.renderHour24();
             case 'minute': return this.renderMinute();
             case 'second': return this.renderSecond();
-            case 'ampm': return null; // TODO
+            case 'ampm': return this.renderAmPm();
             default: return null;
           }
         })
         .filter(Boolean)
-        .reduce((result, element, index, array) => {
-          result.push(element);
-
-          if (index + 1 < array.length) {
+        .reduce((result, element, index) => {
+          if (index && element.key !== 'ampm') {
             result.push(
               // eslint-disable-next-line react/no-array-index-key
               <Divider key={`separator_${index}`}>
@@ -456,6 +511,8 @@ export default class DateTimeInput extends PureComponent {
               </Divider>,
             );
           }
+
+          result.push(element);
 
           return result;
         }, [])

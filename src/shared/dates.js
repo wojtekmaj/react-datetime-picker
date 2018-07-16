@@ -13,6 +13,11 @@ export {
   getSeconds,
 } from 'react-clock/dist/shared/dates';
 
+export {
+  convert12to24,
+  convert24to12,
+} from 'react-time-picker/dist/shared/dates';
+
 // eslint-disable-next-line import/prefer-default-export
 export const getISOLocalDateTime = (value) => {
   if (!value) {

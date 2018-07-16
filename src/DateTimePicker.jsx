@@ -93,7 +93,8 @@ export default class DateTimePicker extends PureComponent {
       case 'year':
         this.openCalendar();
         break;
-      case 'hour':
+      case 'hour12':
+      case 'hour24':
       case 'minute':
       case 'second':
         this.openClock();
