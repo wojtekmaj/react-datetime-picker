@@ -3503,9 +3503,9 @@ react-clock@^2.2.1:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^6.11.0:
-  version "6.11.0"
-  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-6.11.0.tgz#0fbc0e22acdacf3c195e42f1447db55a5feee4dc"
+react-date-picker@^6.11.2:
+  version "6.11.2"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-6.11.2.tgz#3a7a290a37ec092422929a7878b51f9cb7b6278e"
   dependencies:
     detect-element-overflow "^1.1.1"
     lodash.once "^4.1.1"
@@ -3557,9 +3557,9 @@ react-test-renderer@^16.4.1:
     prop-types "^15.6.0"
     react-is "^16.4.1"
 
-react-time-picker@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.5.0.tgz#2da481b1d453a243b1f260fd865e8aa9e3f81716"
+react-time-picker@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.5.1.tgz#480b346683e73798c9f0a29b94d820751e758725"
   dependencies:
     detect-element-overflow "^1.1.1"
     lodash.once "^4.1.1"
