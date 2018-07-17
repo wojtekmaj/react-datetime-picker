@@ -200,7 +200,7 @@ export default class DateTimeInput extends PureComponent {
       required: required || isWidgetOpen,
       itemRef: (ref, name) => {
         // Save a reference to each input field
-        this[`${name || ref.name}Input`] = ref;
+        this[`${name}Input`] = ref;
       },
     };
   }
