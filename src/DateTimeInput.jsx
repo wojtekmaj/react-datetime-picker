@@ -282,6 +282,10 @@ export default class DateTimeInput extends PureComponent {
     }
 
     const processedValue = (() => {
+      if (!value) {
+        return null;
+      }
+
       const [valueDate, valueTime] = value.split('T');
 
       const [yearString, monthString, dayString] = valueDate.split('-');
