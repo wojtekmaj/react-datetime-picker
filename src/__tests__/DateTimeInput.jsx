@@ -308,4 +308,87 @@ describe('DateTimeInput', () => {
 
     expect(document.activeElement).toBe(dayInput.getDOMNode());
   });
+
+  it('triggers onChange correctly when changed custom input', () => {
+    const onChange = jest.fn();
+    const date = new Date(2017, 8, 30, 22, 17, 0);
+
+    const component = mount(
+      <DateTimeInput
+        onChange={onChange}
+        value={date}
+      />
+    );
+
+    const customInputs = component.find('input[type="number"]');
+
+    customInputs.at(3).getDOMNode().value = '20';
+    customInputs.at(3).simulate('change');
+
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 0));
+  });
+
+  it('triggers onChange correctly when cleared custom inputs', () => {
+    const onChange = jest.fn();
+    const date = new Date(2017, 8, 30, 22, 17, 0);
+
+    const component = mount(
+      <DateTimeInput
+        maxDetail="second"
+        onChange={onChange}
+        value={date}
+      />
+    );
+
+    const customInputs = component.find('input[type="number"]');
+
+    customInputs.forEach((customInput) => {
+      customInput.getDOMNode().value = ''; // eslint-disable-line no-param-reassign
+      customInput.simulate('change');
+    });
+
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith(null);
+  });
+
+  it('triggers onChange correctly when changed native input', () => {
+    const onChange = jest.fn();
+    const date = new Date(2017, 8, 30, 22, 17, 0);
+
+    const component = mount(
+      <DateTimeInput
+        onChange={onChange}
+        value={date}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+
+    nativeInput.getDOMNode().value = '2017-09-30T20:17:00';
+    nativeInput.simulate('change');
+
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 0));
+  });
+
+  it('triggers onChange correctly when cleared native input', () => {
+    const onChange = jest.fn();
+    const date = new Date(2017, 8, 30, 22, 17, 0);
+
+    const component = mount(
+      <DateTimeInput
+        onChange={onChange}
+        value={date}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+
+    nativeInput.getDOMNode().value = '';
+    nativeInput.simulate('change');
+
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith(null);
+  });
 });
