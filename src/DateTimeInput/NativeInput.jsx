@@ -7,9 +7,25 @@ import { isMaxDate, isMinDate } from '../shared/propTypes';
 const nativeValueParser = getISOLocalDateTime;
 
 export default class NativeInput extends PureComponent {
+  get step() {
+    const { valueType } = this.props;
+
+    switch (valueType) {
+      case 'hour':
+        return 3600;
+      case 'minute':
+        return 60;
+      case 'second':
+        return 1;
+      default:
+        throw new Error('Invalid valueType.');
+    }
+  }
+
   stopPropagation = event => event.stopPropagation();
 
   render() {
+    const { step } = this;
     const {
       disabled, maxDate, minDate, name, onChange, required, value,
     } = this.props;
@@ -24,6 +40,7 @@ export default class NativeInput extends PureComponent {
         onChange={onChange}
         onFocus={this.stopPropagation}
         required={required}
+        step={step}
         style={{
           visibility: 'hidden',
           position: 'absolute',
