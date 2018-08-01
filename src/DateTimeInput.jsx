@@ -277,9 +277,27 @@ export default class DateTimeInput extends PureComponent {
     const { onChange } = this.props;
     const { value } = event.target;
 
-    if (onChange) {
-      onChange(value);
+    if (!onChange) {
+      return;
     }
+
+    const processedValue = (() => {
+      const [valueDate, valueTime] = value.split('T');
+
+      const [yearString, monthString, dayString] = valueDate.split('-');
+      const year = parseInt(yearString, 10);
+      const monthIndex = parseInt(monthString, 10) - 1 || 0;
+      const date = parseInt(dayString, 10) || 1;
+
+      const [hourString, minuteString, secondString] = valueTime.split(':');
+      const hour = parseInt(hourString, 10) || 0;
+      const minute = parseInt(minuteString, 10) || 0;
+      const second = parseInt(secondString, 10) || 0;
+
+      return new Date(year, monthIndex, date, hour, minute, second);
+    })();
+
+    onChange(processedValue);
   }
 
   onChangeAmPm = (event) => {
