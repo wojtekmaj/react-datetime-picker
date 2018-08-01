@@ -320,36 +320,44 @@ export default class DateTimeInput extends PureComponent {
   onChangeExternal = () => {
     const { onChange } = this.props;
 
-    if (onChange) {
-      const formElements = [
-        this.dayInput,
-        this.monthInput,
-        this.yearInput,
-        this.hour12Input,
-        this.hour24Input,
-        this.minuteInput,
-        this.secondInput,
-        this.amPmInput,
-      ].filter(Boolean);
+    if (!onChange) {
+      return;
+    }
 
-      const values = {};
-      formElements.forEach((formElement) => {
-        values[formElement.name] = formElement.value;
-      });
+    const formElements = [
+      this.dayInput,
+      this.monthInput,
+      this.yearInput,
+      this.hour12Input,
+      this.hour24Input,
+      this.minuteInput,
+      this.secondInput,
+      this.amPmInput,
+    ].filter(Boolean);
 
-      if (formElements.every(formElement => formElement.value && formElement.checkValidity())) {
-        const hour = values.hour24 || convert12to24(values.hour12, values.amPm);
-        const proposedValue = new Date(
-          values.year,
-          (values.month || 1) - 1,
-          values.day || 1,
-          hour,
-          values.minute || 0,
-          values.second || 0,
-        );
-        const processedValue = proposedValue;
-        onChange(processedValue, false);
-      }
+    const formElementsWithoutSelect = formElements.slice(0, -1);
+
+    const values = {};
+    formElements.forEach((formElement) => {
+      values[formElement.name] = formElement.value;
+    });
+
+    if (formElementsWithoutSelect.every(formElement => !formElement.value)) {
+      onChange(null);
+    } else if (
+      formElements.every(formElement => formElement.value && formElement.checkValidity())
+    ) {
+      const hour = values.hour24 || convert12to24(values.hour12, values.amPm);
+      const proposedValue = new Date(
+        values.year,
+        (values.month || 1) - 1,
+        values.day || 1,
+        hour,
+        values.minute || 0,
+        values.second || 0,
+      );
+      const processedValue = proposedValue;
+      onChange(processedValue);
     }
   }
 
