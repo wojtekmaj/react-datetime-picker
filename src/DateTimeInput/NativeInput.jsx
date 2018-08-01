@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { getISOLocalDateTime } from '../shared/dates';
-import { isMaxDate, isMinDate } from '../shared/propTypes';
+import { isMaxDate, isMinDate, isValueType } from '../shared/propTypes';
 
 const nativeValueParser = getISOLocalDateTime;
 
@@ -64,4 +64,5 @@ NativeInput.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(Date),
   ]),
+  valueType: isValueType,
 };
