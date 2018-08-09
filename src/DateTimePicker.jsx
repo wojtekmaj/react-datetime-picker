@@ -250,17 +250,18 @@ export default class DateTimePicker extends PureComponent {
   renderClock() {
     const { isClockOpen } = this.state;
 
-    if (isClockOpen === null) {
-      return null;
-    }
-
     const {
       clockClassName,
       className: timePickerClassName, // Unused, here to exclude it from clockProps
       maxDetail,
       onChange,
+      disableClock,
       ...clockProps
     } = this.props;
+
+    if (isClockOpen === null || disableClock) {
+      return null;
+    }
 
     const className = 'react-datetime-picker__clock';
 
@@ -346,6 +347,7 @@ DateTimePicker.defaultProps = {
   isCalendarOpen: null,
   isClockOpen: null,
   maxDetail: 'minute',
+  disableClock: false,
 };
 
 DateTimePicker.propTypes = {
@@ -369,6 +371,7 @@ DateTimePicker.propTypes = {
   isCalendarOpen: PropTypes.bool,
   isClockOpen: PropTypes.bool,
   maxDetail: PropTypes.oneOf(allViews),
+  disableClock: PropTypes.bool,
   maxDate: isMaxDate,
   minDate: isMinDate,
   name: PropTypes.string,
