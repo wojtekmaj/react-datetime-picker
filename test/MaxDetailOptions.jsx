@@ -5,9 +5,11 @@ const allViews = ['hour', 'minute', 'second'];
 
 export default class MaxDetailOptions extends PureComponent {
   onChange = (event) => {
+    const { setState } = this.props;
+
     const { value } = event.target;
 
-    this.props.setState({ maxDetail: value });
+    setState({ maxDetail: value });
   }
 
   render() {
@@ -15,7 +17,9 @@ export default class MaxDetailOptions extends PureComponent {
 
     return (
       <fieldset id="detailoptions">
-        <legend htmlFor="viewoptions">Maximum detail</legend>
+        <legend htmlFor="viewoptions">
+          Maximum detail
+        </legend>
 
         <div>
           <input
@@ -26,7 +30,9 @@ export default class MaxDetailOptions extends PureComponent {
             type="radio"
             value="hour"
           />
-          <label htmlFor="maxDetailHour">Hour</label>
+          <label htmlFor="maxDetailHour">
+            Hour
+          </label>
         </div>
         <div>
           <input
@@ -37,7 +43,9 @@ export default class MaxDetailOptions extends PureComponent {
             type="radio"
             value="minute"
           />
-          <label htmlFor="maxDetailMinute">Minute</label>
+          <label htmlFor="maxDetailMinute">
+            Minute
+          </label>
         </div>
         <div>
           <input
@@ -48,7 +56,9 @@ export default class MaxDetailOptions extends PureComponent {
             type="radio"
             value="second"
           />
-          <label htmlFor="maxDetailSecond">Second</label>
+          <label htmlFor="maxDetailSecond">
+            Second
+          </label>
         </div>
       </fieldset>
     );

@@ -49,7 +49,9 @@ export default class Test extends PureComponent {
     return (
       <div className="Test">
         <header>
-          <h1>react-datetime-picker test page</h1>
+          <h1>
+            react-datetime-picker test page
+          </h1>
         </header>
         <div className="Test__container">
           <aside className="Test__container__options">
@@ -107,7 +109,12 @@ export default class Test extends PureComponent {
               />
               <br />
               <br />
-              <button id="submit">Submit</button>
+              <button
+                type="submit"
+                id="submit"
+              >
+                Submit
+              </button>
             </form>
           </main>
         </div>

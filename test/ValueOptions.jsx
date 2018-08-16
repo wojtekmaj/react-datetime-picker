@@ -10,25 +10,44 @@ export default class ValueOptions extends PureComponent {
     this.setValue(value ? new Date(value) : value);
   }
 
-  setValue = value => this.props.setState({ value });
+  setValue = (value) => {
+    const { setState } = this.props;
+
+    setState({ value });
+  }
 
   render() {
     const { value } = this.props;
 
     return (
       <fieldset id="valueOptions">
-        <legend htmlFor="valueOptions">Set date and time externally</legend>
+        <legend htmlFor="valueOptions">
+          Set date and time externally
+        </legend>
 
         <div>
-          <label htmlFor="datetime">Date and time</label>
+          <label htmlFor="datetime">
+            Date and time
+          </label>
           <input
             id="datetime"
             onChange={this.onChange}
             type="datetime-local"
             value={value ? getISOLocalDateTime(value) : ''}
-          />&nbsp;
-          <button onClick={() => this.setValue(null)}>Clear to null</button>
-          <button onClick={() => this.setValue('')}>Clear to empty string</button>
+          />
+          &nbsp;
+          <button
+            type="button"
+            onClick={() => this.setValue(null)}
+          >
+            Clear to null
+          </button>
+          <button
+            type="button"
+            onClick={() => this.setValue('')}
+          >
+            Clear to empty string
+          </button>
         </div>
       </fieldset>
     );
