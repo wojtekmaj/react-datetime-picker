@@ -26,13 +26,14 @@
     ]
   },
   "keywords": [
-    "date-picker",
+    "calendar",
     "date",
-    "datetime-picker",
+    "date-picker",
     "datetime",
-    "time-picker",
+    "datetime-picker",
+    "react",
     "time",
-    "react"
+    "time-picker"
   ],
   "author": {
     "name": "Wojciech Maj",
