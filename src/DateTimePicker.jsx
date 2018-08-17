@@ -208,8 +208,8 @@ export default class DateTimePicker extends PureComponent {
 
     const {
       calendarClassName,
-      maxDetail: dateTimePickerMaxDetail, // Unused, here to exclude it from calendarProps
       className: dateTimePickerClassName, // Unused, here to exclude it from calendarProps
+      maxDetail: dateTimePickerMaxDetail, // Unused, here to exclude it from calendarProps
       onChange,
       value,
       ...calendarProps
