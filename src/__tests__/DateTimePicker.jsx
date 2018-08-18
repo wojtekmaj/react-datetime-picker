@@ -83,9 +83,9 @@ describe('DateTimePicker', () => {
       <DateTimePicker />
     );
 
-    const dateInput = component.find('DateTimeInput');
+    const dateTimeInput = component.find('DateTimeInput');
 
-    expect(dateInput).toHaveLength(1);
+    expect(dateTimeInput).toHaveLength(1);
   });
 
   it('renders clear button', () => {
@@ -108,27 +108,27 @@ describe('DateTimePicker', () => {
     expect(calendarButton).toHaveLength(1);
   });
 
-  it('renders DateInput and Calendar components when given isCalendarOpen flag', () => {
+  it('renders DateTimeInput and Calendar components when given isCalendarOpen flag', () => {
     const component = mount(
       <DateTimePicker isCalendarOpen />
     );
 
-    const dateInput = component.find('DateTimeInput');
+    const dateTimeInput = component.find('DateTimeInput');
     const calendar = component.find('Calendar');
 
-    expect(dateInput).toHaveLength(1);
+    expect(dateTimeInput).toHaveLength(1);
     expect(calendar).toHaveLength(1);
   });
 
-  it('renders DateInput and Clock components when given isClockOpen flag', () => {
+  it('renders DateTimeInput and Clock components when given isClockOpen flag', () => {
     const component = mount(
       <DateTimePicker isClockOpen />
     );
 
-    const dateInput = component.find('DateTimeInput');
+    const dateTimeInput = component.find('DateTimeInput');
     const clock = component.find('Clock');
 
-    expect(dateInput).toHaveLength(1);
+    expect(dateTimeInput).toHaveLength(1);
     expect(clock).toHaveLength(1);
   });
 
