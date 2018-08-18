@@ -32,11 +32,11 @@ export default class ValidityOptions extends PureComponent {
         </legend>
 
         <div>
-          <label htmlFor="minDate">
+          <label htmlFor="minDatetime">
             Minimum date
           </label>
           <input
-            id="minDate"
+            id="minDatetime"
             onChange={this.onMinChange}
             type="datetime-local"
             value={minDate ? getISOLocalDateTime(minDate) : ''}
@@ -51,11 +51,11 @@ export default class ValidityOptions extends PureComponent {
         </div>
 
         <div>
-          <label htmlFor="maxDate">
+          <label htmlFor="maxDatetime">
             Maximum date
           </label>
           <input
-            id="maxDate"
+            id="maxDatetime"
             onChange={this.onMaxChange}
             type="datetime-local"
             value={maxDate ? getISOLocalDateTime(maxDate) : ''}
