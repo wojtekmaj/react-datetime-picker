@@ -248,20 +248,20 @@ export default class DateTimePicker extends PureComponent {
   }
 
   renderClock() {
+    const { disableClock} = this.props;
     const { isClockOpen } = this.state;
+
+    if (isClockOpen === null || disableClock) {
+      return null;
+    }
 
     const {
       clockClassName,
       className: timePickerClassName, // Unused, here to exclude it from clockProps
       maxDetail,
       onChange,
-      disableClock,
       ...clockProps
     } = this.props;
-
-    if (isClockOpen === null || disableClock) {
-      return null;
-    }
 
     const className = 'react-datetime-picker__clock';
 
@@ -342,12 +342,11 @@ const ClearIcon = (
 );
 
 DateTimePicker.defaultProps = {
-  clearIcon: ClearIcon,
   calendarIcon: CalendarIcon,
+  clearIcon: ClearIcon,
   isCalendarOpen: null,
   isClockOpen: null,
   maxDetail: 'minute',
-  disableClock: false,
 };
 
 DateTimePicker.propTypes = {
@@ -357,22 +356,22 @@ DateTimePicker.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
-  clockClassName: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
   calendarIcon: PropTypes.node,
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
   clearIcon: PropTypes.node,
+  clockClassName: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   disabled: PropTypes.bool,
+  disableClock: PropTypes.bool,
   isCalendarOpen: PropTypes.bool,
   isClockOpen: PropTypes.bool,
-  maxDetail: PropTypes.oneOf(allViews),
-  disableClock: PropTypes.bool,
   maxDate: isMaxDate,
+  maxDetail: PropTypes.oneOf(allViews),
   minDate: isMinDate,
   name: PropTypes.string,
   onChange: PropTypes.func,
