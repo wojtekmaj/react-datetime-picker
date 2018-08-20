@@ -248,7 +248,7 @@ export default class DateTimePicker extends PureComponent {
   }
 
   renderClock() {
-    const { disableClock} = this.props;
+    const { disableClock } = this.props;
     const { isClockOpen } = this.state;
 
     if (isClockOpen === null || disableClock) {
