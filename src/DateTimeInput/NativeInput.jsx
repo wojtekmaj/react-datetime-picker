@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { getISOLocalDateTime } from '../shared/dates';
 import { isMaxDate, isMinDate, isValueType } from '../shared/propTypes';
 
-const nativeValueParser = getISOLocalDateTime;
-
 export default class NativeInput extends PureComponent {
   get step() {
     const { valueType } = this.props;
@@ -22,10 +20,25 @@ export default class NativeInput extends PureComponent {
     }
   }
 
+  get nativeValueParser() {
+    const { valueType } = this.props;
+
+    switch (valueType) {
+      case 'hour':
+        return value => `${getISOLocalDateTime(value).slice(0, -6)}:00`;
+      case 'minute':
+        return value => getISOLocalDateTime(value).slice(0, -3);
+      case 'second':
+        return getISOLocalDateTime;
+      default:
+        throw new Error('Invalid valueType.');
+    }
+  }
+
   stopPropagation = event => event.stopPropagation();
 
   render() {
-    const { step } = this;
+    const { nativeValueParser, step } = this;
     const {
       disabled, maxDate, minDate, name, onChange, required, value,
     } = this.props;
