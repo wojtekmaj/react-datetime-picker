@@ -1,10 +1,30 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { getISOLocalDateTime } from '../shared/dates';
+import {
+  getHours,
+  getHoursMinutes,
+  getISOLocalDate,
+  getISOLocalDateTime,
+} from '../shared/dates';
 import { isMaxDate, isMinDate, isValueType } from '../shared/propTypes';
 
 export default class NativeInput extends PureComponent {
+  get nativeValueParser() {
+    const { valueType } = this.props;
+
+    switch (valueType) {
+      case 'hour':
+        return value => `${getISOLocalDate(value)}T${getHours(value)}:00`;
+      case 'minute':
+        return value => `${getISOLocalDate(value)}T${getHoursMinutes(value)}`;
+      case 'second':
+        return getISOLocalDateTime;
+      default:
+        throw new Error('Invalid valueType.');
+    }
+  }
+
   get step() {
     const { valueType } = this.props;
 
@@ -15,21 +35,6 @@ export default class NativeInput extends PureComponent {
         return 60;
       case 'second':
         return 1;
-      default:
-        throw new Error('Invalid valueType.');
-    }
-  }
-
-  get nativeValueParser() {
-    const { valueType } = this.props;
-
-    switch (valueType) {
-      case 'hour':
-        return value => `${getISOLocalDateTime(value).slice(0, -6)}:00`;
-      case 'minute':
-        return value => getISOLocalDateTime(value).slice(0, -3);
-      case 'second':
-        return getISOLocalDateTime;
       default:
         throw new Error('Invalid valueType.');
     }
