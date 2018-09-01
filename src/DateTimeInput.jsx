@@ -443,9 +443,9 @@ export default class DateTimeInput extends PureComponent {
     return (
       <MinuteInput
         key="minute"
+        {...this.commonInputProps}
         maxDetail={maxDetail}
         value={minute}
-        {...this.commonInputProps}
       />
     );
   }
