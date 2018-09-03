@@ -3904,9 +3904,9 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.4.1:
     prop-types "^15.6.0"
     react-is "^16.4.2"
 
-react-time-picker@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.6.0.tgz#740d4dc17082f695e289e92b0e54d85548143410"
+react-time-picker@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.7.0.tgz#708aa7340731fa425e0eeb102381a0315fb242f4"
   dependencies:
     detect-element-overflow "^1.1.1"
     get-user-locale "^1.1.0"
