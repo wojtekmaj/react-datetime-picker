@@ -21,6 +21,7 @@ export {
 
 export {
   getISOLocalDate,
+  getHoursMinutesSeconds,
 };
 
 // eslint-disable-next-line import/prefer-default-export

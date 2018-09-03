@@ -21,6 +21,7 @@ import {
   getMonth,
   getSeconds,
   getYear,
+  getHoursMinutesSeconds,
   convert12to24,
   convert24to12,
 } from './shared/dates';
@@ -179,7 +180,48 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
+  get maxTime() {
+    const { maxDate } = this.props;
+
+    if (!maxDate) {
+      return null;
+    }
+
+    const { year, month, day } = this.state;
+
+    if (
+      getYear(maxDate) !== year
+      || getMonth(maxDate) !== month
+      || getDay(maxDate) !== day
+    ) {
+      return null;
+    }
+
+    return getHoursMinutesSeconds(maxDate);
+  }
+
+  get minTime() {
+    const { minDate } = this.props;
+
+    if (!minDate) {
+      return null;
+    }
+
+    const { year, month, day } = this.state;
+
+    if (
+      getYear(minDate) !== year
+      || getMonth(minDate) !== month
+      || getDay(minDate) !== day
+    ) {
+      return null;
+    }
+
+    return getHoursMinutesSeconds(minDate);
+  }
+
   get commonInputProps() {
+    const { maxTime, minTime } = this;
     const {
       disabled,
       isWidgetOpen,
@@ -192,7 +234,9 @@ export default class DateTimeInput extends PureComponent {
       className,
       disabled,
       maxDate: maxDate || defaultMaxDate,
+      maxTime,
       minDate: minDate || defaultMinDate,
+      minTime,
       onChange: this.onChange,
       onKeyDown: this.onKeyDown,
       placeholder: '--',
@@ -438,12 +482,13 @@ export default class DateTimeInput extends PureComponent {
       return null;
     }
 
-    const { minute } = this.state;
+    const { hour, minute } = this.state;
 
     return (
       <MinuteInput
         key="minute"
         {...this.commonInputProps}
+        hour={hour}
         maxDetail={maxDetail}
         value={minute}
       />
@@ -458,13 +503,15 @@ export default class DateTimeInput extends PureComponent {
       return null;
     }
 
-    const { second } = this.state;
+    const { hour, minute, second } = this.state;
 
     return (
       <SecondInput
         key="second"
         {...this.commonInputProps}
+        hour={hour}
         maxDetail={maxDetail}
+        minute={minute}
         value={second}
       />
     );
