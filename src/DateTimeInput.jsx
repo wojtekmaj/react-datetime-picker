@@ -63,6 +63,7 @@ const selectIfPossible = (element) => {
 };
 
 const removeUnwantedCharacters = str => str
+  .replace(/[年月日]/g, '/')
   .split('')
   .filter(a => (
     // We don't want spaces in dates
