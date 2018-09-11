@@ -2,7 +2,7 @@ import { getISOLocalDateTime } from '../dates';
 
 describe('getISOLocalDateTime', () => {
   it('returns proper ISO date', () => {
-    const date = new Date(Date.UTC(2017, 0, 1, 21, 41, 37));
+    const date = new Date(2017, 0, 1, 21, 41, 37);
 
     const ISODate = getISOLocalDateTime(date);
 
