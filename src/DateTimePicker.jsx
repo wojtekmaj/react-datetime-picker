@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { polyfill } from 'react-lifecycles-compat';
 import mergeClassNames from 'merge-class-names';
 import detectElementOverflow from 'detect-element-overflow';
 
@@ -382,3 +383,5 @@ DateTimePicker.propTypes = {
     PropTypes.instanceOf(Date),
   ]),
 };
+
+polyfill(DateTimePicker);
