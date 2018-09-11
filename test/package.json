@@ -1,6 +1,6 @@
 {
   "name": "react-datetime-picker-test-page",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A test page for React-DateTime-Picker.",
   "private": true,
   "scripts": {
