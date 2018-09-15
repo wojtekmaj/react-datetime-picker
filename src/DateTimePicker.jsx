@@ -111,13 +111,6 @@ export default class DateTimePicker extends PureComponent {
     });
   }
 
-  closeWidgets = () => {
-    this.setState({
-      isCalendarOpen: false,
-      isClockOpen: false,
-    });
-  }
-
   openCalendar = () => {
     this.setState({
       isCalendarOpen: true,
@@ -125,15 +118,18 @@ export default class DateTimePicker extends PureComponent {
     });
   }
 
-  closeCalendar = () => {
-    this.setState({ isCalendarOpen: false });
-  }
-
   toggleCalendar = () => {
     this.setState(prevState => ({
       isCalendarOpen: !prevState.isCalendarOpen,
       isClockOpen: false,
     }));
+  }
+
+  closeWidgets = () => {
+    this.setState({
+      isCalendarOpen: false,
+      isClockOpen: false,
+    });
   }
 
   stopPropagation = event => event.stopPropagation();
