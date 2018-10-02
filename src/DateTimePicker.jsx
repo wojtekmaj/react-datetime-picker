@@ -126,9 +126,15 @@ export default class DateTimePicker extends PureComponent {
   }
 
   closeWidgets = () => {
-    this.setState({
-      isCalendarOpen: false,
-      isClockOpen: false,
+    this.setState((prevState) => {
+      if (!prevState.isCalendarOpen && !prevState.isClockOpen) {
+        return null;
+      }
+
+      return {
+        isCalendarOpen: false,
+        isClockOpen: false,
+      };
     });
   }
 
