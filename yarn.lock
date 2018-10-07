@@ -4463,7 +4463,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-calendar@^2.17.3, react-calendar@^2.17.4:
+react-calendar@^2.17.4:
   version "2.17.4"
   resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.17.4.tgz#95aeb1545159b97727f152f091ef563624dfd70c"
   integrity sha512-rNpq5R6awa3Krb8rcgBsD6/KkGKvAUGL/jcBvO9f3ikzrRAsBPwQrsu7stiahup0khFfAPRNT5DKaMMNS2bAgQ==
@@ -4481,7 +4481,7 @@ react-clock@^2.3.0:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^6.12.1:
+react-date-picker@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-6.13.0.tgz#3ee21262619ed225e270deeff47c594f7fadd226"
   integrity sha512-bsqPk10hUytNf0vUZoltVI+0Lx0YsfcpMjhb8FlKUux15UGQx6MnG8Om2OxoFoMyb0gosDH6pAu38wHe6Pf/YQ==
@@ -4539,7 +4539,7 @@ react-test-renderer@^16.5.0:
     react-is "^16.5.0"
     schedule "^0.3.0"
 
-react-time-picker@^2.7.2:
+react-time-picker@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.8.0.tgz#a9ebe58ca1a6b6325268f65e513fc9482091833a"
   integrity sha512-rXoXNQOGzaWt9vxFvXGlgT1Sqp7jkxvjfeyRVS7DsnidornJnpOKbDRawG0ClYxIGmtDTRpwR7x09MluDdZvCg==
