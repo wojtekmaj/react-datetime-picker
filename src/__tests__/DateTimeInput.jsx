@@ -34,9 +34,13 @@ const getKey = key => ({
 });
 
 describe('DateTimeInput', () => {
+  const defaultProps = {
+    className: 'react-datetime-picker__button__input',
+  };
+
   it('renders a native input and custom inputs', () => {
     const component = mount(
-      <DateTimeInput />
+      <DateTimeInput {...defaultProps} />
     );
 
     const nativeInput = component.find('input[type="datetime-local"]');
@@ -48,7 +52,10 @@ describe('DateTimeInput', () => {
 
   it('does not render second input when maxDetail is "minute" or less', () => {
     const component = mount(
-      <DateTimeInput maxDetail="minute" />
+      <DateTimeInput
+        {...defaultProps}
+        maxDetail="minute"
+      />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -71,7 +78,10 @@ describe('DateTimeInput', () => {
 
   it('does not render second and minute inputs when maxDetail is "hour" or less', () => {
     const component = mount(
-      <DateTimeInput maxDetail="hour" />
+      <DateTimeInput
+        {...defaultProps}
+        maxDetail="hour"
+      />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -97,6 +107,7 @@ describe('DateTimeInput', () => {
 
     const component = mount(
       <DateTimeInput
+        {...defaultProps}
         maxDetail="second"
         value={date}
       />
@@ -119,6 +130,7 @@ describe('DateTimeInput', () => {
 
     const component = mount(
       <DateTimeInput
+        {...defaultProps}
         locale="de-DE"
         maxDetail="second"
         value={date}
@@ -142,6 +154,7 @@ describe('DateTimeInput', () => {
 
     const component = mount(
       <DateTimeInput
+        {...defaultProps}
         maxDetail="second"
         value={date}
       />
@@ -163,7 +176,10 @@ describe('DateTimeInput', () => {
 
   it('renders custom inputs in a proper order (12-hour format)', () => {
     const component = mount(
-      <DateTimeInput maxDetail="second" />
+      <DateTimeInput
+        {...defaultProps}
+        maxDetail="second"
+      />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -179,6 +195,7 @@ describe('DateTimeInput', () => {
   itIfFullICU('renders custom inputs in a proper order (24-hour format)', () => {
     const component = mount(
       <DateTimeInput
+        {...defaultProps}
         locale="de-DE"
         maxDetail="second"
       />
@@ -196,7 +213,7 @@ describe('DateTimeInput', () => {
 
   it('renders proper input separators', () => {
     const component = mount(
-      <DateTimeInput />
+      <DateTimeInput {...defaultProps} />
     );
 
     const separators = component.find('.react-datetime-picker__button__input__divider');
@@ -210,7 +227,10 @@ describe('DateTimeInput', () => {
 
   it('renders proper amount of separators', () => {
     const component = mount(
-      <DateTimeInput maxDetail="hour" />
+      <DateTimeInput
+        {...defaultProps}
+        maxDetail="hour"
+      />
     );
 
     const separators = component.find('.react-datetime-picker__button__input__divider');
@@ -221,7 +241,7 @@ describe('DateTimeInput', () => {
 
   it('jumps to the next field when right arrow is pressed', () => {
     const component = mount(
-      <DateTimeInput />
+      <DateTimeInput {...defaultProps} />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -239,7 +259,7 @@ describe('DateTimeInput', () => {
 
   it('jumps to the next field when separator key is pressed', () => {
     const component = mount(
-      <DateTimeInput />
+      <DateTimeInput {...defaultProps} />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -259,7 +279,7 @@ describe('DateTimeInput', () => {
 
   it('does not jump to the next field when right arrow is pressed when the last input is focused', () => {
     const component = mount(
-      <DateTimeInput />
+      <DateTimeInput {...defaultProps} />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -276,7 +296,7 @@ describe('DateTimeInput', () => {
 
   it('jumps to the previous field when left arrow is pressed', () => {
     const component = mount(
-      <DateTimeInput />
+      <DateTimeInput {...defaultProps} />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -294,7 +314,7 @@ describe('DateTimeInput', () => {
 
   it('does not jump to the next field when right arrow is pressed when the last input is focused', () => {
     const component = mount(
-      <DateTimeInput />
+      <DateTimeInput {...defaultProps} />
     );
 
     const customInputs = component.find('input[type="number"]');
@@ -315,6 +335,7 @@ describe('DateTimeInput', () => {
 
     const component = mount(
       <DateTimeInput
+        {...defaultProps}
         onChange={onChange}
         value={date}
       />
@@ -335,6 +356,7 @@ describe('DateTimeInput', () => {
 
     const component = mount(
       <DateTimeInput
+        {...defaultProps}
         maxDetail="second"
         onChange={onChange}
         value={date}
@@ -358,6 +380,7 @@ describe('DateTimeInput', () => {
 
     const component = mount(
       <DateTimeInput
+        {...defaultProps}
         onChange={onChange}
         value={date}
       />
@@ -378,6 +401,7 @@ describe('DateTimeInput', () => {
 
     const component = mount(
       <DateTimeInput
+        {...defaultProps}
         onChange={onChange}
         value={date}
       />

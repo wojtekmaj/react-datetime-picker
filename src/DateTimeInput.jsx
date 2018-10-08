@@ -30,7 +30,6 @@ import { isMaxDate, isMinDate } from './shared/propTypes';
 const defaultMinDate = new Date(-8.64e15);
 const defaultMaxDate = new Date(8.64e15);
 const allViews = ['hour', 'minute', 'second'];
-const className = 'react-datetime-picker__button__input';
 
 const datesAreDifferent = (date1, date2) => (
   (date1 && !date2)
@@ -224,6 +223,7 @@ export default class DateTimeInput extends PureComponent {
   get commonInputProps() {
     const { maxTime, minTime } = this;
     const {
+      className,
       disabled,
       isWidgetOpen,
       maxDate,
@@ -623,6 +623,8 @@ export default class DateTimeInput extends PureComponent {
   }
 
   render() {
+    const { className } = this.props;
+
     return (
       <div className={className}>
         {this.renderNativeInput()}
@@ -642,6 +644,7 @@ DateTimeInput.defaultProps = {
 };
 
 DateTimeInput.propTypes = {
+  className: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   isWidgetOpen: PropTypes.bool,
   locale: PropTypes.string,

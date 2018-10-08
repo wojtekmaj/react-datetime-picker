@@ -13,6 +13,7 @@ import DateTimeInput from './DateTimeInput';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
 const allViews = ['hour', 'minute', 'second'];
+const baseClassName = 'react-datetime-picker';
 
 export default class DateTimePicker extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -169,8 +170,9 @@ export default class DateTimePicker extends PureComponent {
     const { isCalendarOpen, isClockOpen } = this.state;
 
     return (
-      <div className="react-datetime-picker__button">
+      <div className={`${baseClassName}__button`}>
         <DateTimeInput
+          className={`${baseClassName}__button__input`}
           disabled={disabled}
           locale={locale}
           isWidgetOpen={isCalendarOpen || isClockOpen}
@@ -186,7 +188,7 @@ export default class DateTimePicker extends PureComponent {
         />
         {clearIcon !== null && (
           <button
-            className="react-datetime-picker__clear-button react-datetime-picker__button__icon"
+            className={`${baseClassName}__clear-button ${baseClassName}__button__icon`}
             disabled={disabled}
             onClick={this.clear}
             onFocus={this.stopPropagation}
@@ -197,7 +199,7 @@ export default class DateTimePicker extends PureComponent {
         )}
         {calendarIcon !== null && (
           <button
-            className="react-datetime-picker__calendar-button react-datetime-picker__button__icon"
+            className={`${baseClassName}__calendar-button ${baseClassName}__button__icon`}
             disabled={disabled}
             onClick={this.toggleCalendar}
             onFocus={this.stopPropagation}
@@ -227,7 +229,7 @@ export default class DateTimePicker extends PureComponent {
       ...calendarProps
     } = this.props;
 
-    const className = 'react-datetime-picker__calendar';
+    const className = `${baseClassName}__calendar`;
 
     return (
       <div
@@ -275,7 +277,7 @@ export default class DateTimePicker extends PureComponent {
       ...clockProps
     } = this.props;
 
-    const className = 'react-datetime-picker__clock';
+    const className = `${baseClassName}__clock`;
 
     const maxDetailIndex = allViews.indexOf(maxDetail);
 
@@ -312,8 +314,6 @@ export default class DateTimePicker extends PureComponent {
   render() {
     const { className, disabled } = this.props;
     const { isCalendarOpen, isClockOpen } = this.state;
-
-    const baseClassName = 'react-datetime-picker';
 
     return (
       <div
