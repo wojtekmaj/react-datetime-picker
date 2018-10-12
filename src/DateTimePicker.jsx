@@ -170,9 +170,9 @@ export default class DateTimePicker extends PureComponent {
     const { isCalendarOpen, isClockOpen } = this.state;
 
     return (
-      <div className={`${baseClassName}__button`}>
+      <div className={`${baseClassName}__wrapper`}>
         <DateTimeInput
-          className={`${baseClassName}__button__input`}
+          className={`${baseClassName}__inputGroup`}
           disabled={disabled}
           locale={locale}
           isWidgetOpen={isCalendarOpen || isClockOpen}
@@ -188,7 +188,7 @@ export default class DateTimePicker extends PureComponent {
         />
         {clearIcon !== null && (
           <button
-            className={`${baseClassName}__clear-button ${baseClassName}__button__icon`}
+            className={`${baseClassName}__clear-button ${baseClassName}__button`}
             disabled={disabled}
             onClick={this.clear}
             onFocus={this.stopPropagation}
@@ -199,7 +199,7 @@ export default class DateTimePicker extends PureComponent {
         )}
         {calendarIcon !== null && (
           <button
-            className={`${baseClassName}__calendar-button ${baseClassName}__button__icon`}
+            className={`${baseClassName}__calendar-button ${baseClassName}__button`}
             disabled={disabled}
             onClick={this.toggleCalendar}
             onFocus={this.stopPropagation}
