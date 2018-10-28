@@ -340,7 +340,7 @@ export default class DateTimeInput extends PureComponent {
       return new Date(year, monthIndex, date, hour, minute, second);
     })();
 
-    onChange(processedValue);
+    onChange(processedValue, false);
   }
 
   onChangeAmPm = (event) => {
@@ -382,7 +382,7 @@ export default class DateTimeInput extends PureComponent {
     });
 
     if (formElementsWithoutSelect.every(formElement => !formElement.value)) {
-      onChange(null);
+      onChange(null, false);
     } else if (
       formElements.every(formElement => formElement.value && formElement.checkValidity())
     ) {
@@ -396,7 +396,7 @@ export default class DateTimeInput extends PureComponent {
         values.second || 0,
       );
       const processedValue = proposedValue;
-      onChange(processedValue);
+      onChange(processedValue, false);
     }
   }
 

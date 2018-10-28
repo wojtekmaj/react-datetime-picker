@@ -347,7 +347,7 @@ describe('DateTimeInput', () => {
     customInputs.at(3).simulate('change');
 
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 0));
+    expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 0), false);
   });
 
   it('triggers onChange correctly when cleared custom inputs', () => {
@@ -371,7 +371,7 @@ describe('DateTimeInput', () => {
     });
 
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onChange).toHaveBeenCalledWith(null);
+    expect(onChange).toHaveBeenCalledWith(null, false);
   });
 
   it('triggers onChange correctly when changed native input', () => {
@@ -392,7 +392,7 @@ describe('DateTimeInput', () => {
     nativeInput.simulate('change');
 
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 0));
+    expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 0), false);
   });
 
   it('triggers onChange correctly when cleared native input', () => {
@@ -413,6 +413,6 @@ describe('DateTimeInput', () => {
     nativeInput.simulate('change');
 
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith(null);
+    expect(onChange).toHaveBeenCalledWith(null, false);
   });
 });
