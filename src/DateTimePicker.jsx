@@ -238,7 +238,7 @@ export default class DateTimePicker extends PureComponent {
           `${className}--${isCalendarOpen ? 'open' : 'closed'}`,
         )}
         ref={(ref) => {
-          if (!ref) {
+          if (!ref || !isCalendarOpen) {
             return;
           }
 
@@ -247,7 +247,14 @@ export default class DateTimePicker extends PureComponent {
           const collisions = detectElementOverflow(ref, document.body);
 
           if (collisions.collidedBottom) {
-            ref.classList.add(`${className}--above-label`);
+            const overflowTopAfterChange = (
+              collisions.overflowTop + ref.clientHeight + this.wrapper.clientHeight
+            );
+
+            // If it's going to make situation any better, display the calendar above the input
+            if (overflowTopAfterChange < collisions.overflowBottom) {
+              ref.classList.add(`${className}--above-label`);
+            }
           }
         }}
       >
@@ -288,7 +295,7 @@ export default class DateTimePicker extends PureComponent {
           `${className}--${isClockOpen ? 'open' : 'closed'}`,
         )}
         ref={(ref) => {
-          if (!ref) {
+          if (!ref || !isClockOpen) {
             return;
           }
 
@@ -297,7 +304,14 @@ export default class DateTimePicker extends PureComponent {
           const collisions = detectElementOverflow(ref, document.body);
 
           if (collisions.collidedBottom) {
-            ref.classList.add(`${className}--above-label`);
+            const overflowTopAfterChange = (
+              collisions.overflowTop + ref.clientHeight + this.wrapper.clientHeight
+            );
+
+            // If it's going to make situation any better, display the calendar above the input
+            if (overflowTopAfterChange < collisions.overflowBottom) {
+              ref.classList.add(`${className}--above-label`);
+            }
           }
         }}
       >
