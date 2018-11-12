@@ -253,6 +253,14 @@ export default class DateTimeInput extends PureComponent {
     return maxDetail;
   }
 
+  onClick = (event) => {
+    if (event.target === event.currentTarget) {
+      // Wrapper was directly clicked
+      const [/* nativeInput */, firstInput] = event.target.children;
+      focus(firstInput);
+    }
+  }
+
   onKeyDown = (event) => {
     switch (event.key) {
       case 'ArrowLeft': {
@@ -620,7 +628,10 @@ export default class DateTimeInput extends PureComponent {
     const { className } = this.props;
 
     return (
-      <div className={className}>
+      <div
+        className={className}
+        onClick={this.onClick}
+      >
         {this.renderNativeInput()}
         {this.renderCustomDateInputs()}
         <Divider>
