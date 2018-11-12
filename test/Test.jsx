@@ -20,6 +20,7 @@ const now = new Date();
 
 export default class Test extends PureComponent {
   state = {
+    disabled: false,
     locale: null,
     maxDate: null,
     maxDetail: 'minute',
@@ -35,6 +36,7 @@ export default class Test extends PureComponent {
 
   render() {
     const {
+      disabled,
       locale,
       maxDate,
       maxDetail,
@@ -76,6 +78,7 @@ export default class Test extends PureComponent {
               value={value}
             />
             <ViewOptions
+              disabled={disabled}
               setState={setState}
               showLeadingZeros={showLeadingZeros}
               showNeighboringMonth={showNeighboringMonth}
@@ -97,7 +100,7 @@ export default class Test extends PureComponent {
                 className="myCustomTimePickerClassName"
                 calendarClassName="myCustomCalendarClassName"
                 clockClassName="myCustomClockClassName"
-                disabled={false}
+                disabled={disabled}
                 locale={locale}
                 maxDetail={maxDetail}
                 maxDate={maxDate}
