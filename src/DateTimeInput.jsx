@@ -631,6 +631,7 @@ export default class DateTimeInput extends PureComponent {
       <div
         className={className}
         onClick={this.onClick}
+        role="presentation"
       >
         {this.renderNativeInput()}
         {this.renderCustomDateInputs()}
