@@ -218,11 +218,12 @@ describe('DateTimeInput', () => {
 
     const separators = component.find('.react-datetime-picker__inputGroup__divider');
 
-    expect(separators).toHaveLength(4);
+    expect(separators).toHaveLength(5);
     expect(separators.at(0).text()).toBe('/');
     expect(separators.at(1).text()).toBe('/');
     expect(separators.at(2).text()).toBe('\u00a0'); // Non-breaking space
     expect(separators.at(3).text()).toBe(':');
+    expect(separators.at(4).text()).toBe(' ');
   });
 
   it('renders proper amount of separators', () => {
@@ -235,8 +236,9 @@ describe('DateTimeInput', () => {
 
     const separators = component.find('.react-datetime-picker__inputGroup__divider');
     const customInputs = component.find('input[type="number"]');
+    const ampm = component.find('select');
 
-    expect(separators).toHaveLength(customInputs.length - 1);
+    expect(separators).toHaveLength(customInputs.length + ampm.length - 1);
   });
 
   it('jumps to the next field when right arrow is pressed', () => {
@@ -282,16 +284,15 @@ describe('DateTimeInput', () => {
       <DateTimeInput {...defaultProps} />
     );
 
-    const customInputs = component.find('input[type="number"]');
-    const minuteInput = customInputs.at(4);
+    const select = component.find('select');
 
-    minuteInput.getDOMNode().focus();
+    select.getDOMNode().focus();
 
-    expect(document.activeElement).toBe(minuteInput.getDOMNode());
+    expect(document.activeElement).toBe(select.getDOMNode());
 
-    minuteInput.simulate('keydown', getKey('ArrowRight'));
+    select.simulate('keydown', getKey('ArrowRight'));
 
-    expect(document.activeElement).toBe(minuteInput.getDOMNode());
+    expect(document.activeElement).toBe(select.getDOMNode());
   });
 
   it('jumps to the previous field when left arrow is pressed', () => {

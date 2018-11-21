@@ -13,7 +13,7 @@ import AmPm from 'react-time-picker/dist/TimeInput/AmPm';
 import Divider from './Divider';
 import NativeInput from './DateTimeInput/NativeInput';
 
-import { formatDate, formatTime } from './shared/dateFormatter';
+import { getFormatter, formatDate } from './shared/dateFormatter';
 import {
   getDay,
   getHours,
@@ -55,18 +55,24 @@ const findNextInput = (element) => {
 
 const focus = element => element && element.focus();
 
-const removeUnwantedCharacters = str => str
-  .replace(/[年月日]/g, '/')
-  .split('')
-  .filter(a => (
-    // We don't want spaces in dates
-    a.charCodeAt(0) !== 32
-    // Internet Explorer specific
-    && a.charCodeAt(0) !== 8206
-    // Remove non-ASCII characters
-    && /^[\x20-\x7F]*$/.test(a)
-  ))
-  .join('');
+const renderCustomInputs = (placeholder, elementFunctions) => {
+  const pattern = new RegExp(Object.keys(elementFunctions).join('|'), 'gi');
+  const matches = placeholder.match(pattern);
+  return placeholder.split(pattern)
+    .reduce((arr, element, index) => {
+      const divider = element && (
+        // eslint-disable-next-line react/no-array-index-key
+        <Divider key={`separator_${index}`}>
+          {element}
+        </Divider>
+      );
+      const res = [...arr, divider];
+      if (matches[index]) {
+        res.push(elementFunctions[matches[index]]());
+      }
+      return res;
+    }, []);
+};
 
 export default class DateTimeInput extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -124,24 +130,32 @@ export default class DateTimeInput extends PureComponent {
     second: null,
   };
 
+  get formatTime() {
+    const { locale, maxDetail } = this.props;
+
+    const options = { hour: 'numeric' };
+    const level = allViews.indexOf(maxDetail);
+    if (level >= 1) {
+      options.minute = 'numeric';
+    }
+    if (level >= 2) {
+      options.second = 'numeric';
+    }
+
+    return getFormatter(options, locale);
+  }
+
   get dateDivider() {
     const { locale } = this.props;
     const date = new Date(2017, 11, 11);
 
-    return (
-      removeUnwantedCharacters(formatDate(date, locale))
-        .match(/[^0-9]/)[0]
-    );
+    return formatDate(date, locale).match(/[^0-9a-z]/i)[0];
   }
 
   get timeDivider() {
-    const { locale } = this.props;
     const date = new Date(2017, 0, 1, 21, 12, 13);
 
-    return (
-      removeUnwantedCharacters(formatTime(date, locale))
-        .match(/[^0-9]/)[0]
-    );
+    return this.formatTime(date).match(/[^0-9a-z]/i)[0];
   }
 
   get datePlaceholder() {
@@ -149,7 +163,7 @@ export default class DateTimeInput extends PureComponent {
     const date = new Date(2017, 11, 11);
 
     return (
-      removeUnwantedCharacters(formatDate(date, locale))
+      formatDate(date, locale)
         .replace('2017', 'year')
         .replace('12', 'month')
         .replace('11', 'day')
@@ -157,16 +171,15 @@ export default class DateTimeInput extends PureComponent {
   }
 
   get timePlaceholder() {
-    const { locale } = this.props;
     const date = new Date(2017, 0, 1, 21, 13, 14);
 
     return (
-      removeUnwantedCharacters(formatTime(date, locale))
+      this.formatTime(date)
         .replace('21', 'hour-24')
         .replace('9', 'hour-12')
         .replace('13', 'minute')
         .replace('14', 'second')
-        .replace(/AM|PM/i, `${this.timeDivider}ampm`)
+        .replace(/AM|PM|上午|下午/i, 'ampm')
     );
   }
 
@@ -404,7 +417,7 @@ export default class DateTimeInput extends PureComponent {
     }
   }
 
-  renderDay() {
+  renderDay = () => {
     const { maxDetail, showLeadingZeros } = this.props;
     const { day, month, year } = this.state;
 
@@ -421,7 +434,7 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderMonth() {
+  renderMonth = () => {
     const { maxDetail, showLeadingZeros } = this.props;
     const { month } = this.state;
 
@@ -436,7 +449,7 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderYear() {
+  renderYear = () => {
     const { year } = this.state;
 
     return (
@@ -449,7 +462,7 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderHour12() {
+  renderHour12 = () => {
     const { hour } = this.state;
 
     return (
@@ -461,7 +474,7 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderHour24() {
+  renderHour24 = () => {
     const { hour } = this.state;
 
     return (
@@ -473,14 +486,8 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderMinute() {
+  renderMinute = () => {
     const { maxDetail } = this.props;
-
-    // Do not display if maxDetail is "hour" or less
-    if (allViews.indexOf(maxDetail) < 1) {
-      return null;
-    }
-
     const { hour, minute } = this.state;
 
     return (
@@ -494,14 +501,8 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderSecond() {
+  renderSecond = () => {
     const { maxDetail } = this.props;
-
-    // Do not display if maxDetail is "minute" or less
-    if (allViews.indexOf(maxDetail) < 2) {
-      return null;
-    }
-
     const { hour, minute, second } = this.state;
 
     return (
@@ -516,7 +517,7 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderAmPm() {
+  renderAmPm = () => {
     const { amPm } = this.state;
 
     return (
@@ -530,69 +531,27 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderCustomDateInputs() {
-    const { dateDivider, datePlaceholder } = this;
+    const { datePlaceholder } = this;
+    const elementFunctions = {
+      day: this.renderDay,
+      month: this.renderMonth,
+      year: this.renderYear,
+    };
 
-    return (
-      datePlaceholder
-        .split(dateDivider)
-        .map((part) => {
-          switch (part) {
-            case 'day': return this.renderDay();
-            case 'month': return this.renderMonth();
-            case 'year': return this.renderYear();
-            default: return null;
-          }
-        })
-        .filter(Boolean)
-        .reduce((result, element, index) => {
-          if (index) {
-            result.push(
-              // eslint-disable-next-line react/no-array-index-key
-              <Divider key={`separator_${index}`}>
-                {dateDivider}
-              </Divider>,
-            );
-          }
-
-          result.push(element);
-
-          return result;
-        }, [])
-    );
+    return renderCustomInputs(datePlaceholder, elementFunctions);
   }
 
   renderCustomTimeInputs() {
-    const { timeDivider, timePlaceholder } = this;
+    const { timePlaceholder } = this;
+    const elementFunctions = {
+      'hour-12': this.renderHour12,
+      'hour-24': this.renderHour24,
+      minute: this.renderMinute,
+      second: this.renderSecond,
+      ampm: this.renderAmPm,
+    };
 
-    return (
-      timePlaceholder
-        .split(timeDivider)
-        .map((part) => {
-          switch (part) {
-            case 'hour-12': return this.renderHour12();
-            case 'hour-24': return this.renderHour24();
-            case 'minute': return this.renderMinute();
-            case 'second': return this.renderSecond();
-            case 'ampm': return this.renderAmPm();
-            default: return null;
-          }
-        })
-        .filter(Boolean)
-        .reduce((result, element, index) => {
-          if (index && element.key !== 'ampm') {
-            result.push(
-              // eslint-disable-next-line react/no-array-index-key
-              <Divider key={`separator_${index}`}>
-                {timeDivider}
-              </Divider>,
-            );
-          }
-
-          result.push(element);
-
-          return result;
-        }, [])
-    );
+    return renderCustomInputs(timePlaceholder, elementFunctions);
   }
 
   renderNativeInput() {
