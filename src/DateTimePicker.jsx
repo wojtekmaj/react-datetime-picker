@@ -339,7 +339,13 @@ export default class DateTimePicker extends PureComponent {
         )}
         {...this.eventProps}
         onFocus={this.onFocus}
-        ref={(ref) => { this.wrapper = ref; }}
+        ref={(ref) => {
+          if (!ref) {
+            return;
+          }
+
+          this.wrapper = ref;
+        }}
       >
         {this.renderInputs()}
         {this.renderCalendar()}
