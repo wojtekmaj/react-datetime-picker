@@ -124,7 +124,6 @@ export default class DateTimeInput extends PureComponent {
     second: null,
   };
 
-  // eslint-disable-next-line class-methods-use-this
   get dateDivider() {
     const { locale } = this.props;
     const date = new Date(2017, 11, 11);
@@ -135,7 +134,6 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get timeDivider() {
     const { locale } = this.props;
     const date = new Date(2017, 0, 1, 21, 12, 13);
@@ -146,7 +144,6 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get datePlaceholder() {
     const { locale } = this.props;
     const date = new Date(2017, 11, 11);
@@ -159,7 +156,6 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get timePlaceholder() {
     const { locale } = this.props;
     const date = new Date(2017, 0, 1, 21, 13, 14);
