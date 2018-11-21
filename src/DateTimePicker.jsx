@@ -107,7 +107,13 @@ export default class DateTimePicker extends PureComponent {
       onBlur(event);
     }
 
-    this.closeWidgets();
+    requestAnimationFrame(() => {
+      const stillHasFocus = this.wrapper.querySelector(':focus');
+
+      if (!stillHasFocus) {
+        this.closeWidgets();
+      }
+    });
   }
 
   openClock = () => {
