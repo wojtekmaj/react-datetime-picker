@@ -26,6 +26,7 @@ import {
   convert24to12,
 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
+import { getAmPmLabels } from './shared/utils';
 
 const defaultMinDate = new Date(-8.64e15);
 const defaultMaxDate = new Date(8.64e15);
@@ -171,6 +172,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   get timePlaceholder() {
+    const { locale } = this.props;
     const date = new Date(2017, 0, 1, 21, 13, 14);
 
     return (
@@ -179,7 +181,7 @@ export default class DateTimeInput extends PureComponent {
         .replace('9', 'hour-12')
         .replace('13', 'minute')
         .replace('14', 'second')
-        .replace(/AM|PM|上午|下午/i, 'ampm')
+        .replace(new RegExp(getAmPmLabels(locale).join('|')), 'ampm')
     );
   }
 
@@ -519,13 +521,15 @@ export default class DateTimeInput extends PureComponent {
 
   renderAmPm = () => {
     const { amPm } = this.state;
+    const { locale } = this.props;
 
     return (
       <AmPm
         key="ampm"
         {...this.commonInputProps}
-        value={amPm}
+        locale={locale}
         onChange={this.onChangeAmPm}
+        value={amPm}
       />
     );
   }
