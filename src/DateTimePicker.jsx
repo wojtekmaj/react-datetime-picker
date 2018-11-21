@@ -38,20 +38,6 @@ export default class DateTimePicker extends PureComponent {
     return makeEventProps(this.props);
   }
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.onClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.onClick);
-  }
-
-  onClick = (event) => {
-    if (this.wrapper && !this.wrapper.contains(event.target)) {
-      this.closeWidgets();
-    }
-  }
-
   onDateChange = (value, closeWidgets = true) => {
     const { value: prevValue } = this.props;
 
@@ -112,6 +98,16 @@ export default class DateTimePicker extends PureComponent {
         break;
       default:
     }
+  }
+
+  onBlur = () => {
+    const { onBlur } = this.props;
+
+    if (onBlur) {
+      onBlur(event);
+    }
+
+    this.closeWidgets();
   }
 
   openClock = () => {
@@ -339,6 +335,7 @@ export default class DateTimePicker extends PureComponent {
         )}
         {...this.eventProps}
         onFocus={this.onFocus}
+        onBlur={this.onBlur}
         ref={(ref) => {
           if (!ref) {
             return;
