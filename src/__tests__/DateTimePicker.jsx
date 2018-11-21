@@ -226,18 +226,71 @@ describe('DateTimePicker', () => {
     expect(clock2).toHaveLength(1);
   });
 
-  it('closes Calendar and Clock component when focused outside', () => {
+  it('closes Calendar component when clicked outside', () => {
+    const root = document.createElement('div');
+    document.body.appendChild(root);
+
     const component = mount(
-      <DateTimePicker isCalendarOpen isClockOpen />
+      <DateTimePicker isCalendarOpen />,
+      { attachTo: root }
     );
 
-    const customInputs = component.find('input[type="number"]');
-    const dayInput = customInputs.at(0);
-
-    dayInput.simulate('blur');
+    const event = document.createEvent('MouseEvent');
+    event.initEvent('mousedown', true, true);
+    document.body.dispatchEvent(event);
     component.update();
 
     expect(component.state('isCalendarOpen')).toBe(false);
+  });
+
+  it('closes Calendar component when focused outside', () => {
+    const root = document.createElement('div');
+    document.body.appendChild(root);
+
+    const component = mount(
+      <DateTimePicker isCalendarOpen />,
+      { attachTo: root }
+    );
+
+    const event = document.createEvent('FocusEvent');
+    event.initEvent('focusin', true, true);
+    document.body.dispatchEvent(event);
+    component.update();
+
+    expect(component.state('isCalendarOpen')).toBe(false);
+  });
+
+  it('closes Clock component when clicked outside', () => {
+    const root = document.createElement('div');
+    document.body.appendChild(root);
+
+    const component = mount(
+      <DateTimePicker isClockOpen />,
+      { attachTo: root }
+    );
+
+    const event = document.createEvent('MouseEvent');
+    event.initEvent('mousedown', true, true);
+    document.body.dispatchEvent(event);
+    component.update();
+
+    expect(component.state('isClockOpen')).toBe(false);
+  });
+
+  it('closes Clock component when focused outside', () => {
+    const root = document.createElement('div');
+    document.body.appendChild(root);
+
+    const component = mount(
+      <DateTimePicker isClockOpen />,
+      { attachTo: root }
+    );
+
+    const event = document.createEvent('FocusEvent');
+    event.initEvent('focusin', true, true);
+    document.body.dispatchEvent(event);
+    component.update();
+
     expect(component.state('isClockOpen')).toBe(false);
   });
 
