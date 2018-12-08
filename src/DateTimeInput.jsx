@@ -143,14 +143,22 @@ export default class DateTimeInput extends PureComponent {
       options.second = 'numeric';
     }
 
-    return getFormatter(options, locale);
+    return getFormatter(locale, options);
+  }
+
+  get formatNumber() {
+    const { locale } = this.props;
+
+    const options = { useGrouping: false };
+
+    return getFormatter(locale, options);
   }
 
   get dateDivider() {
     const { locale } = this.props;
     const date = new Date(2017, 11, 11);
 
-    return formatDate(date, locale).match(/[^0-9a-z]/i)[0];
+    return formatDate(locale, date).match(/[^0-9a-z]/i)[0];
   }
 
   get timeDivider() {
@@ -161,26 +169,36 @@ export default class DateTimeInput extends PureComponent {
 
   get datePlaceholder() {
     const { locale } = this.props;
-    const date = new Date(2017, 11, 11);
+
+    const year = 2017;
+    const monthIndex = 11;
+    const day = 11;
+
+    const date = new Date(year, monthIndex, day);
 
     return (
-      formatDate(date, locale)
-        .replace('2017', 'year')
-        .replace('12', 'month')
-        .replace('11', 'day')
+      formatDate(locale, date)
+        .replace(this.formatNumber(year), 'year')
+        .replace(this.formatNumber(monthIndex + 1), 'month')
+        .replace(this.formatNumber(day), 'day')
     );
   }
 
   get timePlaceholder() {
     const { locale } = this.props;
-    const date = new Date(2017, 0, 1, 21, 13, 14);
+
+    const hour24 = 21;
+    const hour12 = 9;
+    const minute = 13;
+    const second = 14;
+    const date = new Date(2017, 0, 1, hour24, minute, second);
 
     return (
       this.formatTime(date)
-        .replace('21', 'hour-24')
-        .replace('9', 'hour-12')
-        .replace('13', 'minute')
-        .replace('14', 'second')
+        .replace(this.formatNumber(hour24), 'hour-24')
+        .replace(this.formatNumber(hour12), 'hour-12')
+        .replace(this.formatNumber(minute), 'minute')
+        .replace(this.formatNumber(second), 'second')
         .replace(new RegExp(getAmPmLabels(locale).join('|')), 'ampm')
     );
   }
