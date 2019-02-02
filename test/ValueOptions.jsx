@@ -59,6 +59,9 @@ ValueOptions.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Date),
-    PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+    PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ])),
   ]),
 };
