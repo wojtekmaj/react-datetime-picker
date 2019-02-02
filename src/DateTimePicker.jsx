@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { polyfill } from 'react-lifecycles-compat';
 import makeEventProps from 'make-event-props';
 import mergeClassNames from 'merge-class-names';
-import detectElementOverflow from 'detect-element-overflow';
+import Fit from 'react-fit';
 
 import Calendar from 'react-calendar/dist/entry.nostyle';
 import Clock from 'react-clock/dist/entry.nostyle';
@@ -234,39 +234,16 @@ export default class DateTimePicker extends PureComponent {
     const className = `${baseClassName}__calendar`;
 
     return (
-      <div
-        className={mergeClassNames(
-          className,
-          `${className}--${isCalendarOpen ? 'open' : 'closed'}`,
-        )}
-        ref={(ref) => {
-          if (!ref || !isCalendarOpen) {
-            return;
-          }
-
-          ref.classList.remove(`${className}--above-label`);
-
-          const collisions = detectElementOverflow(ref, document.body);
-
-          if (collisions.collidedBottom) {
-            const overflowTopAfterChange = (
-              collisions.overflowTop + ref.clientHeight + this.wrapper.clientHeight
-            );
-
-            // If it's going to make situation any better, display the calendar above the input
-            if (overflowTopAfterChange < collisions.overflowBottom) {
-              ref.classList.add(`${className}--above-label`);
-            }
-          }
-        }}
-      >
-        <Calendar
-          className={calendarClassName}
-          onChange={this.onDateChange}
-          value={value || null}
-          {...calendarProps}
-        />
-      </div>
+      <Fit>
+        <div className={mergeClassNames(className, `${className}--${isCalendarOpen ? 'open' : 'closed'}`)}>
+          <Calendar
+            className={calendarClassName}
+            onChange={this.onDateChange}
+            value={value || null}
+            {...calendarProps}
+          />
+        </div>
+      </Fit>
     );
   }
 
@@ -291,39 +268,16 @@ export default class DateTimePicker extends PureComponent {
     const maxDetailIndex = allViews.indexOf(maxDetail);
 
     return (
-      <div
-        className={mergeClassNames(
-          className,
-          `${className}--${isClockOpen ? 'open' : 'closed'}`,
-        )}
-        ref={(ref) => {
-          if (!ref || !isClockOpen) {
-            return;
-          }
-
-          ref.classList.remove(`${className}--above-label`);
-
-          const collisions = detectElementOverflow(ref, document.body);
-
-          if (collisions.collidedBottom) {
-            const overflowTopAfterChange = (
-              collisions.overflowTop + ref.clientHeight + this.wrapper.clientHeight
-            );
-
-            // If it's going to make situation any better, display the calendar above the input
-            if (overflowTopAfterChange < collisions.overflowBottom) {
-              ref.classList.add(`${className}--above-label`);
-            }
-          }
-        }}
-      >
-        <Clock
-          className={clockClassName}
-          renderMinuteHand={maxDetailIndex > 0}
-          renderSecondHand={maxDetailIndex > 1}
-          {...clockProps}
-        />
-      </div>
+      <Fit>
+        <div className={mergeClassNames(className, `${className}--${isClockOpen ? 'open' : 'closed'}`)}>
+          <Clock
+            className={clockClassName}
+            renderMinuteHand={maxDetailIndex > 0}
+            renderSecondHand={maxDetailIndex > 1}
+            {...clockProps}
+          />
+        </div>
+      </Fit>
     );
   }
 
