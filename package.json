@@ -1,6 +1,6 @@
 {
   "name": "react-datetime-picker",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A date range picker for your React app.",
   "main": "dist/entry.js",
   "source": "src/entry.js",
