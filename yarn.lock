@@ -4144,16 +4144,6 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-calendar@^2.17.4:
-  version "2.17.5"
-  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.17.5.tgz#eba17a5614c27b70caa635ce74a1471b033f4890"
-  integrity sha512-8QeCsZUoe+X0NjNVMx6kZQyPSV8ttnRyqXV72Dxp16t6wGyOFBHMLmsHJVcdlxlIUFKp6LfHrCRZ9IWp6RrZBw==
-  dependencies:
-    get-user-locale "^1.1.1"
-    merge-class-names "^1.1.1"
-    prop-types "^15.6.0"
-    react-lifecycles-compat "^3.0.4"
-
 react-calendar@^2.18.0:
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.18.0.tgz#a5681745300b5fe1ef31ea5912885629f90cf3d8"
@@ -4172,17 +4162,17 @@ react-clock@^2.3.0:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^7.1.0:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.1.1.tgz#d8548e2be09bdfcc2fa75e2c3be947aabad79d90"
-  integrity sha512-tFc8oEHozcPkCHUOW9EQVAikxVA+XSjJ8WEf6U2f2Z2ZuxTxuKY46HodpRasXrwb1kcjxKBMMMdG7kmA+2bKRg==
+react-date-picker@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.3.0.tgz#1c2398b6b958682853ef8f189c9fb8d500af632c"
+  integrity sha512-uxn4kgVCZPo0PEOeY9kMLkG8b9qJt+doVr/7qfp34jEI5zSdpl4gsZ7UsqxfIZSdGP3y1aQpmOvEAqVwZYHsHw==
   dependencies:
-    detect-element-overflow "^1.1.1"
     get-user-locale "^1.1.1"
     make-event-props "^1.1.0"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
-    react-calendar "^2.17.4"
+    react-calendar "^2.18.0"
+    react-fit "^1.0.3"
     react-lifecycles-compat "^3.0.4"
 
 react-dom@^16.7.0:
@@ -4223,17 +4213,17 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
     react-is "^16.7.0"
     scheduler "^0.12.0"
 
-react-time-picker@^3.1.0:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.1.1.tgz#66bae9b364a622c0b08cf07280557af053c15247"
-  integrity sha512-ifRByYT1aLWah4hQxIEKdzFJuRs9CLzHPsqTt1MbmEOEY///ip9szR9o1M4tEPCLeZoVLEYbHiROSXO8wf+EuQ==
+react-time-picker@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.3.0.tgz#9e78557fb1c2b66d20ab64d7ab9fba7308734a64"
+  integrity sha512-xdDEwlp4PSkr0fM75qwnLO2ViZ6Z4pJbk6loIe4iJpywI8ALeZmb7sDilNreMPBaCbr63qLuOuDcIN864EqSdQ==
   dependencies:
-    detect-element-overflow "^1.1.1"
     get-user-locale "^1.1.1"
     make-event-props "^1.1.0"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
     react-clock "^2.3.0"
+    react-fit "^1.0.3"
     react-lifecycles-compat "^3.0.4"
 
 react@^16.7.0:
