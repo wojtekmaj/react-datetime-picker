@@ -3,6 +3,7 @@
   "version": "2.2.1",
   "description": "A date range picker for your React app.",
   "main": "dist/entry.js",
+  "types": "index.d.ts",
   "source": "src/entry.js",
   "scripts": {
     "build": "yarn run build-js && yarn run copy-styles && yarn run build-styles",
