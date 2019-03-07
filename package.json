@@ -3,7 +3,7 @@
   "version": "2.2.1",
   "description": "A date range picker for your React app.",
   "main": "dist/entry.js",
-  "types": "index.d.ts",
+  "types": "./index.d.ts",
   "source": "src/entry.js",
   "scripts": {
     "build": "yarn run build-js && yarn run copy-styles && yarn run build-styles",
@@ -43,6 +43,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/react": "^16.8.7",
     "get-user-locale": "^1.1.1",
     "make-event-props": "^1.1.0",
     "merge-class-names": "^1.1.1",
