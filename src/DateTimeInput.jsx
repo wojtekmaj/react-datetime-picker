@@ -285,7 +285,7 @@ export default class DateTimeInput extends PureComponent {
   onClick = (event) => {
     if (event.target === event.currentTarget) {
       // Wrapper was directly clicked
-      const [/* nativeInput */, firstInput] = event.target.children;
+      const firstInput = event.target.children[1];
       focus(firstInput);
     }
   }
