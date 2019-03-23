@@ -382,7 +382,11 @@ DateTimePicker.propTypes = {
   maxDetail: PropTypes.oneOf(allViews),
   minDate: isMinDate,
   name: PropTypes.string,
+  onCalendarClose: PropTypes.func,
+  onCalendarOpen: PropTypes.func,
   onChange: PropTypes.func,
+  onClockClose: PropTypes.func,
+  onClockOpen: PropTypes.func,
   required: PropTypes.bool,
   showLeadingZeros: PropTypes.bool,
   value: PropTypes.oneOfType([
