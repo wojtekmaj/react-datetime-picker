@@ -102,9 +102,9 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 |minDate|Defines minimum date that the user can select. Periods partially overlapped by minDate will also be selectable, although React-DateTime-Picker will ensure that no earlier date is selected.|Date: `new Date()`|
 |minDetail|Defines the least detailed calendar view that the user shall see. Can be "month", "year", "decade" or "century". Defaults to "century".|`"century"`|
 |name|Defines input name. Defaults to "datetime".|`"myCustomName"`|
-|onChange|Function called when the user clicks an item on the most detailed view available.|`(value) => alert('New date is: ', value)`|
 |onCalendarClose|Function called when the calendar closes.|`() => alert('Calendar closed')`|
 |onCalendarOpen|Function called when the calendar opens.|`() => alert('Calendar opened')`|
+|onChange|Function called when the user clicks an item on the most detailed view available.|`(value) => alert('New date is: ', value)`|
 |onClockClose|Function called when the clock closes.|`() => alert('Clock closed')`|
 |onClockOpen|Function called when the clock opens.|`() => alert('Clock opened')`|
 |returnValue|Defines which dates shall be passed by the calendar to the onChange function and onClick{Period} functions. Can be "start", "end" or "range". The latter will cause an array with start and end values to be passed. Defaults to "start".|`"range"`|
