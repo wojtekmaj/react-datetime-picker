@@ -48,10 +48,10 @@
     "prop-types": "^15.6.0",
     "react-calendar": "^2.18.0",
     "react-clock": "^2.3.0",
-    "react-date-picker": "^7.3.0",
+    "react-date-picker": "^7.4.0",
     "react-fit": "^1.0.3",
     "react-lifecycles-compat": "^3.0.4",
-    "react-time-picker": "^3.3.0"
+    "react-time-picker": "^3.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
