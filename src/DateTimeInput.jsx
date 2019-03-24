@@ -438,14 +438,13 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderDay = () => {
-    const { maxDetail, showLeadingZeros } = this.props;
+    const { showLeadingZeros } = this.props;
     const { day, month, year } = this.state;
 
     return (
       <DayInput
         key="day"
         {...this.commonInputProps}
-        maxDetail={maxDetail}
         month={month}
         showLeadingZeros={showLeadingZeros}
         year={year}
@@ -455,14 +454,13 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderMonth = () => {
-    const { maxDetail, showLeadingZeros } = this.props;
+    const { showLeadingZeros } = this.props;
     const { month } = this.state;
 
     return (
       <MonthInput
         key="month"
         {...this.commonInputProps}
-        maxDetail={maxDetail}
         showLeadingZeros={showLeadingZeros}
         value={month}
       />
@@ -507,7 +505,6 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderMinute = () => {
-    const { maxDetail } = this.props;
     const { hour, minute } = this.state;
 
     return (
@@ -515,14 +512,12 @@ export default class DateTimeInput extends PureComponent {
         key="minute"
         {...this.commonInputProps}
         hour={hour}
-        maxDetail={maxDetail}
         value={minute}
       />
     );
   }
 
   renderSecond = () => {
-    const { maxDetail } = this.props;
     const { hour, minute, second } = this.state;
 
     return (
@@ -530,7 +525,6 @@ export default class DateTimeInput extends PureComponent {
         key="second"
         {...this.commonInputProps}
         hour={hour}
-        maxDetail={maxDetail}
         minute={minute}
         value={second}
       />
