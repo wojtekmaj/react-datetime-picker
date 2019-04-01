@@ -38,6 +38,12 @@ const datesAreDifferent = (date1, date2) => (
   || (date1 && date2 && date1.getTime() !== date2.getTime())
 );
 
+const isSameDate = (date, year, month, day) => (
+  getYear(date) === year
+  && getMonth(date) === month
+  && getDay(date) === day
+);
+
 const isValidInput = element => element.tagName === 'INPUT' && element.type === 'number';
 
 const findPreviousInput = (element) => {
@@ -235,11 +241,7 @@ export default class DateTimeInput extends PureComponent {
 
     const { year, month, day } = this.state;
 
-    if (
-      getYear(maxDate) !== year
-      || getMonth(maxDate) !== month
-      || getDay(maxDate) !== day
-    ) {
+    if (!isSameDate(maxDate, year, month, day)) {
       return null;
     }
 
@@ -255,11 +257,7 @@ export default class DateTimeInput extends PureComponent {
 
     const { year, month, day } = this.state;
 
-    if (
-      getYear(minDate) !== year
-      || getMonth(minDate) !== month
-      || getDay(minDate) !== day
-    ) {
+    if (!isSameDate(minDate, year, month, day)) {
       return null;
     }
 
