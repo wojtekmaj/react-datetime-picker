@@ -178,6 +178,7 @@ export default class DateTimePicker extends PureComponent {
       calendarIcon,
       clearIcon,
       disabled,
+      format,
       locale,
       maxDetail,
       maxDate,
@@ -195,6 +196,7 @@ export default class DateTimePicker extends PureComponent {
         <DateTimeInput
           className={`${baseClassName}__inputGroup`}
           disabled={disabled}
+          format={format}
           locale={locale}
           isWidgetOpen={isCalendarOpen || isClockOpen}
           maxDetail={maxDetail}
@@ -376,6 +378,7 @@ DateTimePicker.propTypes = {
   ]),
   disableClock: PropTypes.bool,
   disabled: PropTypes.bool,
+  format: PropTypes.string,
   isCalendarOpen: PropTypes.bool,
   isClockOpen: PropTypes.bool,
   maxDate: isMaxDate,

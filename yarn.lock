@@ -4162,10 +4162,10 @@ react-clock@^2.3.0:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^7.4.0:
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.4.0.tgz#b0334b3902c737d3e95a238656363f42cd5f793b"
-  integrity sha512-t6ym4bppc74Nh3MsG6nuJWMLv2fu25DVQCYoeWTaKDP0dL3BGKiGNu0DaDjEc/FnHDuJFqWGNPBvR0MnmOYlsw==
+react-date-picker@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.5.0.tgz#a2fa61d43a2e12daaba60a662457d137e4ebd4ff"
+  integrity sha512-OkhJgMxS2sAFJ/AGWUOW/A1BXw8Zm3GZ8GdoxFb1USbaEG8FMV3vA8OapvCLdJLh7JrIfK84j8RPI0T59uCiZw==
   dependencies:
     get-user-locale "^1.1.1"
     make-event-props "^1.1.0"
@@ -4213,10 +4213,10 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
     react-is "^16.7.0"
     scheduler "^0.12.0"
 
-react-time-picker@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.4.0.tgz#9de21b34366a392b07dcdc9077023f8423419d30"
-  integrity sha512-98NQAczudSmJQ1+wHHEqe+tJ/SZTVWsSpKMzov5rD4Ye/ZqWDIp1tUoQ59Ijp8IApWmXvBqkPPM/a2+UwRWlgQ==
+react-time-picker@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.5.1.tgz#69e395f5626c377306d464580f6b83dc660365f7"
+  integrity sha512-IgvtKQSAsulesEZueLZseiSjL8Rxy+zeLVFS4tof/dvCUQvVGWZlN4Q/6PdhP1jv29WCMpvkKphCwuUEkHWduw==
   dependencies:
     get-user-locale "^1.1.1"
     make-event-props "^1.1.0"

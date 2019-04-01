@@ -59,8 +59,11 @@ const findNextInput = (element) => {
 const focus = element => element && element.focus();
 
 const renderCustomInputs = (placeholder, elementFunctions) => {
-  const pattern = new RegExp(Object.keys(elementFunctions).join('|'), 'gi');
+  const pattern = new RegExp(
+    Object.keys(elementFunctions).map(el => `${el}+`).join('|'), 'g',
+  );
   const matches = placeholder.match(pattern);
+
   return placeholder.split(pattern)
     .reduce((arr, element, index) => {
       const divider = element && (
@@ -70,8 +73,16 @@ const renderCustomInputs = (placeholder, elementFunctions) => {
         </Divider>
       );
       const res = [...arr, divider];
-      if (matches && matches[index]) {
-        res.push(elementFunctions[matches[index]]());
+      const currentMatch = matches && matches[index];
+      if (currentMatch) {
+        const renderFunction = (
+          elementFunctions[currentMatch]
+          || elementFunctions[
+            Object.keys(elementFunctions)
+              .find(elementFunction => currentMatch.match(elementFunction))
+          ]
+        );
+        res.push(renderFunction(currentMatch));
       }
       return res;
     }, []);
@@ -180,9 +191,9 @@ export default class DateTimeInput extends PureComponent {
 
     return (
       formatDate(locale, date)
-        .replace(this.formatNumber(year), 'year')
-        .replace(this.formatNumber(monthIndex + 1), 'month')
-        .replace(this.formatNumber(day), 'day')
+        .replace(this.formatNumber(year), 'y')
+        .replace(this.formatNumber(monthIndex + 1), 'M')
+        .replace(this.formatNumber(day), 'd')
     );
   }
 
@@ -197,12 +208,22 @@ export default class DateTimeInput extends PureComponent {
 
     return (
       this.formatTime(date)
-        .replace(this.formatNumber(hour24), 'hour-24')
-        .replace(this.formatNumber(hour12), 'hour-12')
-        .replace(this.formatNumber(minute), 'minute')
-        .replace(this.formatNumber(second), 'second')
-        .replace(new RegExp(getAmPmLabels(locale).join('|')), 'ampm')
+        .replace(this.formatNumber(hour12), 'h')
+        .replace(this.formatNumber(hour24), 'H')
+        .replace(this.formatNumber(minute), 'mm')
+        .replace(this.formatNumber(second), 'ss')
+        .replace(new RegExp(getAmPmLabels(locale).join('|')), 'a')
     );
+  }
+
+  get placeholder() {
+    const { format } = this.props;
+
+    if (format) {
+      return format;
+    }
+
+    return `${this.datePlaceholder}\u00a0${this.timePlaceholder}`;
   }
 
   get maxTime() {
@@ -439,31 +460,43 @@ export default class DateTimeInput extends PureComponent {
     }
   }
 
-  renderDay = () => {
+  renderDay = (currentMatch) => {
     const { showLeadingZeros } = this.props;
     const { day, month, year } = this.state;
+
+    if (currentMatch && currentMatch.length > 2) {
+      throw new Error(`Unsupported token: ${currentMatch}`);
+    }
+
+    const showLeadingZerosFromFormat = currentMatch && currentMatch.length === 2;
 
     return (
       <DayInput
         key="day"
         {...this.commonInputProps}
         month={month}
-        showLeadingZeros={showLeadingZeros}
-        year={year}
+        showLeadingZeros={showLeadingZerosFromFormat || showLeadingZeros}
         value={day}
+        year={year}
       />
     );
   }
 
-  renderMonth = () => {
+  renderMonth = (currentMatch) => {
     const { showLeadingZeros } = this.props;
     const { month } = this.state;
+
+    if (currentMatch && currentMatch.length > 2) {
+      throw new Error(`Unsupported token: ${currentMatch}`);
+    }
+
+    const showLeadingZerosFromFormat = currentMatch && currentMatch.length === 2;
 
     return (
       <MonthInput
         key="month"
         {...this.commonInputProps}
-        showLeadingZeros={showLeadingZeros}
+        showLeadingZeros={showLeadingZerosFromFormat || showLeadingZeros}
         value={month}
       />
     );
@@ -482,45 +515,72 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderHour12 = () => {
+  renderHour12 = (currentMatch) => {
     const { hour } = this.state;
+
+    if (currentMatch && currentMatch.length > 2) {
+      throw new Error(`Unsupported token: ${currentMatch}`);
+    }
+
+    const showLeadingZeros = currentMatch && currentMatch.length === 2;
 
     return (
       <Hour12Input
         key="hour12"
         {...this.commonInputProps}
+        showLeadingZeros={showLeadingZeros}
         value={hour}
       />
     );
   }
 
-  renderHour24 = () => {
+  renderHour24 = (currentMatch) => {
     const { hour } = this.state;
+
+    if (currentMatch && currentMatch.length > 2) {
+      throw new Error(`Unsupported token: ${currentMatch}`);
+    }
+
+    const showLeadingZeros = currentMatch && currentMatch.length === 2;
 
     return (
       <Hour24Input
         key="hour24"
         {...this.commonInputProps}
+        showLeadingZeros={showLeadingZeros}
         value={hour}
       />
     );
   }
 
-  renderMinute = () => {
+  renderMinute = (currentMatch) => {
     const { hour, minute } = this.state;
+
+    if (currentMatch && currentMatch.length > 2) {
+      throw new Error(`Unsupported token: ${currentMatch}`);
+    }
+
+    const showLeadingZeros = currentMatch && currentMatch.length === 2;
 
     return (
       <MinuteInput
         key="minute"
         {...this.commonInputProps}
         hour={hour}
+        showLeadingZeros={showLeadingZeros}
         value={minute}
       />
     );
   }
 
-  renderSecond = () => {
+  renderSecond = (currentMatch) => {
     const { hour, minute, second } = this.state;
+
+    if (currentMatch && currentMatch.length > 2) {
+      throw new Error(`Unsupported token: ${currentMatch}`);
+    }
+
+    const showLeadingZeros = currentMatch ? currentMatch.length === 2 : true;
 
     return (
       <SecondInput
@@ -528,6 +588,7 @@ export default class DateTimeInput extends PureComponent {
         {...this.commonInputProps}
         hour={hour}
         minute={minute}
+        showLeadingZeros={showLeadingZeros}
         value={second}
       />
     );
@@ -548,28 +609,20 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 
-  renderCustomDateInputs() {
-    const { datePlaceholder } = this;
+  renderCustomInputs() {
+    const { placeholder } = this;
     const elementFunctions = {
-      day: this.renderDay,
-      month: this.renderMonth,
-      year: this.renderYear,
+      d: this.renderDay,
+      M: this.renderMonth,
+      y: this.renderYear,
+      h: this.renderHour12,
+      H: this.renderHour24,
+      m: this.renderMinute,
+      s: this.renderSecond,
+      a: this.renderAmPm,
     };
 
-    return renderCustomInputs(datePlaceholder, elementFunctions);
-  }
-
-  renderCustomTimeInputs() {
-    const { timePlaceholder } = this;
-    const elementFunctions = {
-      'hour-12': this.renderHour12,
-      'hour-24': this.renderHour24,
-      minute: this.renderMinute,
-      second: this.renderSecond,
-      ampm: this.renderAmPm,
-    };
-
-    return renderCustomInputs(timePlaceholder, elementFunctions);
+    return renderCustomInputs(placeholder, elementFunctions);
   }
 
   renderNativeInput() {
@@ -607,11 +660,7 @@ export default class DateTimeInput extends PureComponent {
         role="presentation"
       >
         {this.renderNativeInput()}
-        {this.renderCustomDateInputs()}
-        <Divider>
-          {'\u00a0'}
-        </Divider>
-        {this.renderCustomTimeInputs()}
+        {this.renderCustomInputs()}
       </div>
     );
   }
@@ -625,6 +674,7 @@ DateTimeInput.defaultProps = {
 DateTimeInput.propTypes = {
   className: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  format: PropTypes.string,
   isWidgetOpen: PropTypes.bool,
   locale: PropTypes.string,
   maxDate: isMaxDate,
