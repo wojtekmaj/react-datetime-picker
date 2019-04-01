@@ -3,6 +3,8 @@ import { mount } from 'enzyme';
 
 import DateTimeInput from '../DateTimeInput';
 
+import { muteConsole, restoreConsole } from './utils';
+
 /* eslint-disable comma-dangle */
 
 const hasFullICU = (() => {
@@ -209,6 +211,351 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(3).prop('name')).toBe('hour24');
     expect(customInputs.at(4).prop('name')).toBe('minute');
     expect(customInputs.at(5).prop('name')).toBe('second');
+  });
+
+  describe('renders custom inputs in a proper order given format', () => {
+    it('renders "y" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="y"
+        />
+      );
+
+      const componentInput = component.find('YearInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+    });
+
+    it('renders "yyyy" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="yyyy"
+        />
+      );
+
+      const componentInput = component.find('YearInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+    });
+
+    it('renders "M" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="M"
+        />
+      );
+
+      const componentInput = component.find('MonthInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+    });
+
+    it('renders "MM" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="MM"
+        />
+      );
+
+      const componentInput = component.find('MonthInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+      expect(componentInput.prop('showLeadingZeros')).toBeTruthy();
+    });
+
+    it('throws error for "MMM"', () => {
+      muteConsole();
+
+      const renderComponent = () => mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="MMM"
+        />
+      );
+
+      expect(renderComponent).toThrow('Unsupported token: MMM');
+
+      restoreConsole();
+    });
+
+    it('renders "d" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="d"
+        />
+      );
+
+      const componentInput = component.find('DayInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+    });
+
+    it('renders "dd" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="dd"
+        />
+      );
+
+      const componentInput = component.find('DayInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+      expect(componentInput.prop('showLeadingZeros')).toBeTruthy();
+    });
+
+    it('throws error for "ddd"', () => {
+      muteConsole();
+
+      const renderComponent = () => mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="ddd"
+        />
+      );
+
+      expect(renderComponent).toThrow('Unsupported token: ddd');
+
+      restoreConsole();
+    });
+
+    it('renders "yyyy-MM-dd" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="yyyy-MM-d"
+        />
+      );
+
+      const monthInput = component.find('MonthInput');
+      const dayInput = component.find('DayInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(monthInput).toHaveLength(1);
+      expect(dayInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(3);
+      expect(customInputs.at(0).prop('name')).toBe('year');
+      expect(customInputs.at(1).prop('name')).toBe('month');
+      expect(customInputs.at(2).prop('name')).toBe('day');
+      expect(monthInput.prop('showLeadingZeros')).toBeTruthy();
+      expect(dayInput.prop('showLeadingZeros')).toBeFalsy();
+    });
+
+    it('renders "h" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="h"
+        />
+      );
+
+      const componentInput = component.find('Hour12Input');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+    });
+
+    it('renders "hh" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="hh"
+        />
+      );
+
+      const componentInput = component.find('Hour12Input');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+      expect(componentInput.prop('showLeadingZeros')).toBeTruthy();
+    });
+
+    it('throws error for "hhh"', () => {
+      muteConsole();
+
+      const renderComponent = () => mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="hhh"
+        />
+      );
+
+      expect(renderComponent).toThrow('Unsupported token: hhh');
+
+      restoreConsole();
+    });
+
+    it('renders "H" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="H"
+        />
+      );
+
+      const componentInput = component.find('Hour24Input');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+    });
+
+    it('renders "HH" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="HH"
+        />
+      );
+
+      const componentInput = component.find('Hour24Input');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+      expect(componentInput.prop('showLeadingZeros')).toBeTruthy();
+    });
+
+    it('throws error for "HHH"', () => {
+      muteConsole();
+
+      const renderComponent = () => mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="HHH"
+        />
+      );
+
+      expect(renderComponent).toThrow('Unsupported token: HHH');
+
+      restoreConsole();
+    });
+
+    it('renders "m" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="m"
+        />
+      );
+
+      const componentInput = component.find('MinuteInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+    });
+
+    it('renders "mm" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="mm"
+        />
+      );
+
+      const componentInput = component.find('MinuteInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+      expect(componentInput.prop('showLeadingZeros')).toBeTruthy();
+    });
+
+    it('throws error for "mmm"', () => {
+      muteConsole();
+
+      const renderComponent = () => mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="mmm"
+        />
+      );
+
+      expect(renderComponent).toThrow('Unsupported token: mmm');
+
+      restoreConsole();
+    });
+
+    it('renders "s" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="s"
+        />
+      );
+
+      const componentInput = component.find('SecondInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+    });
+
+    it('renders "ss" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="ss"
+        />
+      );
+
+      const componentInput = component.find('SecondInput');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(1);
+      expect(componentInput.prop('showLeadingZeros')).toBeTruthy();
+    });
+
+    it('throws error for "sss"', () => {
+      muteConsole();
+
+      const renderComponent = () => mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="sss"
+        />
+      );
+
+      expect(renderComponent).toThrow('Unsupported token: sss');
+
+      restoreConsole();
+    });
+
+    it('renders "a" properly', () => {
+      const component = mount(
+        <DateTimeInput
+          {...defaultProps}
+          format="a"
+        />
+      );
+
+      const componentInput = component.find('AmPm');
+      const customInputs = component.find('input[type="number"]');
+
+      expect(componentInput).toHaveLength(1);
+      expect(customInputs).toHaveLength(0);
+    });
   });
 
   it('renders proper input separators', () => {

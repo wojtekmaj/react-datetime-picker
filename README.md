@@ -94,6 +94,7 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 |clearIcon|Defines the content of the clear button. Setting the value explicitly to `null` will hide the icon.|<ul><li>String: `"Clear"`</li><li>React element: `<ClearIcon />`</li></ul>|
 |disabled|Defines whether the date picker should be disabled. Defaults to false.|`true`|
 |disableClock|Defines whether the clock should be disabled. Defaults to false.|`true`|
+|format|Defines input format based on [Unicode Technical Standard #35](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). Supported values are: `y`, `M`, `MM`, `d`, `dd`, `H`, `HH`, `h`, `hh`, `m`, `mm`, `s`, `ss`, `a`.|`"y-MM-dd h:mm:ss a"`|
 |isCalendarOpen|Defines whether the calendar should be opened. Defaults to false.|`true`|
 |isClockOpen|Defines whether the clock should be opened. Defaults to false.|`true`|
 |locale|Defines which locale should be used by the datetime picker and the calendar. Can be any [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag). Defaults to user's browser settings.|`"hu-HU"`|
