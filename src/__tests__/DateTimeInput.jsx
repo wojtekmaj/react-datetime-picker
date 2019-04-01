@@ -606,7 +606,7 @@ describe('DateTimeInput', () => {
     expect(document.activeElement).toBe(monthInput.getDOMNode());
   });
 
-  it('jumps to the next field when separator key is pressed', () => {
+  it('jumps to the next field when date separator key is pressed', () => {
     const component = mount(
       <DateTimeInput {...defaultProps} />
     );
@@ -620,7 +620,29 @@ describe('DateTimeInput', () => {
     expect(document.activeElement).toBe(dayInput.getDOMNode());
 
     const separators = component.find('.react-datetime-picker__inputGroup__divider');
-    const separatorKey = separators.at(0).text();
+    const separatorsTexts = separators.map(el => el.text()).filter(el => el.trim());
+    const separatorKey = separatorsTexts[0];
+    dayInput.simulate('keydown', getKey(separatorKey));
+
+    expect(document.activeElement).toBe(monthInput.getDOMNode());
+  });
+
+  it('jumps to the next field when time separator key is pressed', () => {
+    const component = mount(
+      <DateTimeInput {...defaultProps} />
+    );
+
+    const customInputs = component.find('input[type="number"]');
+    const dayInput = customInputs.at(0);
+    const monthInput = customInputs.at(1);
+
+    dayInput.getDOMNode().focus();
+
+    expect(document.activeElement).toBe(dayInput.getDOMNode());
+
+    const separators = component.find('.react-datetime-picker__inputGroup__divider');
+    const separatorsTexts = separators.map(el => el.text()).filter(el => el.trim());
+    const separatorKey = separatorsTexts[separatorsTexts.length - 1];
     dayInput.simulate('keydown', getKey(separatorKey));
 
     expect(document.activeElement).toBe(monthInput.getDOMNode());
