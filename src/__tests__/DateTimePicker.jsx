@@ -434,4 +434,22 @@ describe('DateTimePicker', () => {
 
     expect(onChange).toHaveBeenCalledWith(new Date(2019, 0, 1, hours, minutes, seconds, ms));
   });
+
+  it('clears the value when clicking on a button', () => {
+    const onChange = jest.fn();
+
+    const component = mount(
+      <DateTimePicker onChange={onChange} />
+    );
+
+    const calendar = component.find('Calendar');
+    const button = component.find('button.react-datetime-picker__clear-button');
+
+    expect(calendar).toHaveLength(0);
+
+    button.simulate('click');
+    component.update();
+
+    expect(onChange).toHaveBeenCalledWith(null);
+  });
 });
