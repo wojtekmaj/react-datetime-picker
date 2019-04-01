@@ -394,12 +394,15 @@ describe('DateTimePicker', () => {
     expect(component.state('isClockOpen')).toBe(true);
   });
 
-  it('calls onChange callback when calling internal onChange', () => {
-    const nextValue = new Date(2019, 0, 1);
+  it('calls onChange callback when calling internal internal onChange', () => {
+    const nextValue = new Date(2019, 0, 1, 21, 40, 11, 458);
     const onChange = jest.fn();
 
     const component = mount(
-      <DateTimePicker onChange={onChange} />
+      <DateTimePicker
+        onChange={onChange}
+        value={new Date(2018, 6, 17)}
+      />
     );
 
     const { onChange: onChangeInternal } = component.instance();
@@ -430,23 +433,5 @@ describe('DateTimePicker', () => {
     onDateChange(nextValue);
 
     expect(onChange).toHaveBeenCalledWith(new Date(2019, 0, 1, hours, minutes, seconds, ms));
-  });
-
-  it('calls onChange callback when calling internal onTimeChange', () => {
-    const nextValue = new Date(2019, 0, 1, 21, 40, 11, 458);
-    const onChange = jest.fn();
-
-    const component = mount(
-      <DateTimePicker
-        onChange={onChange}
-        value={new Date(2018, 6, 17)}
-      />
-    );
-
-    const { onTimeChange } = component.instance();
-
-    onTimeChange(nextValue);
-
-    expect(onChange).toHaveBeenCalledWith(nextValue);
   });
 });

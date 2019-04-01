@@ -91,10 +91,6 @@ export default class DateTimePicker extends PureComponent {
     }
   }
 
-  onTimeChange = (value, closeWidgets = true) => {
-    this.onChange(value, closeWidgets);
-  }
-
   onChange = (value, closeWidgets = true) => {
     this.setState(prevState => ({
       isCalendarOpen: prevState.isCalendarOpen && !closeWidgets,
@@ -203,7 +199,7 @@ export default class DateTimePicker extends PureComponent {
           maxDate={maxDate}
           minDate={minDate}
           name={name}
-          onChange={this.onTimeChange}
+          onChange={this.onChange}
           placeholder={this.placeholder}
           required={required}
           showLeadingZeros={showLeadingZeros}
