@@ -44,64 +44,58 @@ const isSameDate = (date, year, month, day) => (
   && getDay(date) === day
 );
 
-const getValueFrom = (value) => {
+const getValueFromRange = (valueOrArrayOfValues, index) => {
+  if (Array.isArray(valueOrArrayOfValues)) {
+    return valueOrArrayOfValues[index];
+  }
+
+  return valueOrArrayOfValues;
+};
+
+const parseAndValidateDate = (rawValue) => {
+  if (!rawValue) {
+    return null;
+  }
+
+  const valueDate = new Date(rawValue);
+
+  if (isNaN(valueDate.getTime())) {
+    throw new Error(`Invalid date: ${rawValue}`);
+  }
+
+  return valueDate;
+};
+
+const getDetailValue = (value, minDate, maxDate) => {
   if (!value) {
     return null;
   }
 
-  const rawValueFrom = value instanceof Array && value.length === 2 ? value[0] : value;
+  return between(value, minDate, maxDate);
+};
 
-  if (!rawValueFrom) {
-    return null;
-  }
+const getValueFrom = (value) => {
+  const valueFrom = getValueFromRange(value, 0);
 
-  const valueFromDate = new Date(rawValueFrom);
-
-  if (isNaN(valueFromDate.getTime())) {
-    throw new Error(`Invalid date: ${value}`);
-  }
-
-  return valueFromDate;
+  return parseAndValidateDate(valueFrom);
 };
 
 const getDetailValueFrom = (value, minDate, maxDate) => {
   const valueFrom = getValueFrom(value);
 
-  if (!valueFrom) {
-    return null;
-  }
-
-  return between(valueFrom, minDate, maxDate);
+  return getDetailValue(valueFrom, minDate, maxDate);
 };
 
 const getValueTo = (value) => {
-  if (!value) {
-    return null;
-  }
+  const valueTo = getValueFromRange(value, 1);
 
-  const rawValueTo = value instanceof Array && value.length === 2 ? value[1] : value;
-
-  if (!rawValueTo) {
-    return null;
-  }
-
-  const valueToDate = new Date(rawValueTo);
-
-  if (isNaN(valueToDate.getTime())) {
-    throw new Error(`Invalid date: ${value}`);
-  }
-
-  return valueToDate;
+  return parseAndValidateDate(valueTo);
 };
 
 const getDetailValueTo = (value, minDate, maxDate) => {
   const valueTo = getValueTo(value);
 
-  if (!valueTo) {
-    return null;
-  }
-
-  return between(valueTo, minDate, maxDate);
+  return getDetailValue(valueTo, minDate, maxDate);
 };
 
 const isValidInput = element => element.tagName === 'INPUT' && element.type === 'number';
