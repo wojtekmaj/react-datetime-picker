@@ -104,7 +104,7 @@ describe('DateTimeInput', () => {
     expect(secondInput).toHaveLength(0);
   });
 
-  it('shows a given date in all inputs correctly (12-hour format)', () => {
+  it('shows a given date in all inputs correctly given Date (12-hour format)', () => {
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
     const component = mount(
@@ -127,7 +127,53 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(5).getDOMNode().value).toBe('0');
   });
 
-  itIfFullICU('shows a given date in all inputs correctly (24-hour format)', () => {
+  it('shows a given date in all inputs correctly given array of Date objects (12-hour format)', () => {
+    const date = [new Date(2017, 8, 30, 22, 17, 0), new Date(2017, 8, 30, 0, 0, 0, -1)];
+
+    const component = mount(
+      <DateTimeInput
+        {...defaultProps}
+        maxDetail="second"
+        value={date}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+    const customInputs = component.find('input[type="number"]');
+
+    expect(nativeInput.getDOMNode().value).toBe('2017-09-30T22:17');
+    expect(customInputs.at(0).getDOMNode().value).toBe('9');
+    expect(customInputs.at(1).getDOMNode().value).toBe('30');
+    expect(customInputs.at(2).getDOMNode().value).toBe('2017');
+    expect(customInputs.at(3).getDOMNode().value).toBe('10');
+    expect(customInputs.at(4).getDOMNode().value).toBe('17');
+    expect(customInputs.at(5).getDOMNode().value).toBe('0');
+  });
+
+  it('shows a given date in all inputs correctly given ISO string (12-hour format)', () => {
+    const date = '2017-09-30T22:17:00.000';
+
+    const component = mount(
+      <DateTimeInput
+        {...defaultProps}
+        maxDetail="second"
+        value={date}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+    const customInputs = component.find('input[type="number"]');
+
+    expect(nativeInput.getDOMNode().value).toBe('2017-09-30T22:17');
+    expect(customInputs.at(0).getDOMNode().value).toBe('9');
+    expect(customInputs.at(1).getDOMNode().value).toBe('30');
+    expect(customInputs.at(2).getDOMNode().value).toBe('2017');
+    expect(customInputs.at(3).getDOMNode().value).toBe('10');
+    expect(customInputs.at(4).getDOMNode().value).toBe('17');
+    expect(customInputs.at(5).getDOMNode().value).toBe('0');
+  });
+
+  itIfFullICU('shows a given date in all inputs correctly given Date (24-hour format)', () => {
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
     const component = mount(
@@ -147,6 +193,54 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(1).getDOMNode().value).toBe('9');
     expect(customInputs.at(2).getDOMNode().value).toBe('30');
     expect(customInputs.at(3).getDOMNode().value).toBe('22');
+    expect(customInputs.at(4).getDOMNode().value).toBe('17');
+    expect(customInputs.at(5).getDOMNode().value).toBe('0');
+  });
+
+  itIfFullICU('shows a given date in all inputs correctly given array of Date objects (12-hour format)', () => {
+    const date = [new Date(2017, 8, 30, 22, 17, 0), new Date(2017, 8, 30, 0, 0, 0, -1)];
+
+    const component = mount(
+      <DateTimeInput
+        {...defaultProps}
+        locale="de-DE"
+        maxDetail="second"
+        value={date}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+    const customInputs = component.find('input[type="number"]');
+
+    expect(nativeInput.getDOMNode().value).toBe('2017-09-30T22:17');
+    expect(customInputs.at(0).getDOMNode().value).toBe('9');
+    expect(customInputs.at(1).getDOMNode().value).toBe('30');
+    expect(customInputs.at(2).getDOMNode().value).toBe('2017');
+    expect(customInputs.at(3).getDOMNode().value).toBe('10');
+    expect(customInputs.at(4).getDOMNode().value).toBe('17');
+    expect(customInputs.at(5).getDOMNode().value).toBe('0');
+  });
+
+  itIfFullICU('shows a given date in all inputs correctly given ISO string (12-hour format)', () => {
+    const date = '2017-09-30T22:17:00.000';
+
+    const component = mount(
+      <DateTimeInput
+        {...defaultProps}
+        locale="de-DE"
+        maxDetail="second"
+        value={date}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+    const customInputs = component.find('input[type="number"]');
+
+    expect(nativeInput.getDOMNode().value).toBe('2017-09-30T22:17');
+    expect(customInputs.at(0).getDOMNode().value).toBe('9');
+    expect(customInputs.at(1).getDOMNode().value).toBe('30');
+    expect(customInputs.at(2).getDOMNode().value).toBe('2017');
+    expect(customInputs.at(3).getDOMNode().value).toBe('10');
     expect(customInputs.at(4).getDOMNode().value).toBe('17');
     expect(customInputs.at(5).getDOMNode().value).toBe('0');
   });

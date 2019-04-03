@@ -26,7 +26,7 @@ import {
   convert24to12,
 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
-import { getAmPmLabels } from './shared/utils';
+import { between, getAmPmLabels } from './shared/utils';
 
 const defaultMinDate = new Date(-8.64e15);
 const defaultMaxDate = new Date(8.64e15);
@@ -43,6 +43,66 @@ const isSameDate = (date, year, month, day) => (
   && getMonth(date) === month
   && getDay(date) === day
 );
+
+const getValueFrom = (value) => {
+  if (!value) {
+    return null;
+  }
+
+  const rawValueFrom = value instanceof Array && value.length === 2 ? value[0] : value;
+
+  if (!rawValueFrom) {
+    return null;
+  }
+
+  const valueFromDate = new Date(rawValueFrom);
+
+  if (isNaN(valueFromDate.getTime())) {
+    throw new Error(`Invalid date: ${value}`);
+  }
+
+  return valueFromDate;
+};
+
+const getDetailValueFrom = (value, minDate, maxDate) => {
+  const valueFrom = getValueFrom(value);
+
+  if (!valueFrom) {
+    return null;
+  }
+
+  return between(valueFrom, minDate, maxDate);
+};
+
+const getValueTo = (value) => {
+  if (!value) {
+    return null;
+  }
+
+  const rawValueTo = value instanceof Array && value.length === 2 ? value[1] : value;
+
+  if (!rawValueTo) {
+    return null;
+  }
+
+  const valueToDate = new Date(rawValueTo);
+
+  if (isNaN(valueToDate.getTime())) {
+    throw new Error(`Invalid date: ${value}`);
+  }
+
+  return valueToDate;
+};
+
+const getDetailValueTo = (value, minDate, maxDate) => {
+  const valueTo = getValueTo(value);
+
+  if (!valueTo) {
+    return null;
+  }
+
+  return between(valueTo, minDate, maxDate);
+};
 
 const isValidInput = element => element.tagName === 'INPUT' && element.type === 'number';
 
@@ -96,6 +156,8 @@ const renderCustomInputs = (placeholder, elementFunctions) => {
 
 export default class DateTimeInput extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
+    const { minDate, maxDate } = nextProps;
+
     const nextState = {};
 
     /**
@@ -111,11 +173,17 @@ export default class DateTimeInput extends PureComponent {
      * which values provided are limited by minDate and maxDate so that the dates are the same),
      * get a new one.
      */
-    const nextValue = nextProps.value;
+    const nextValue = getDetailValueFrom(nextProps.value, minDate, maxDate);
+    const values = [nextValue, prevState.value];
     if (
       // Toggling calendar visibility resets values
       nextState.isCalendarOpen // Flag was toggled
-      || datesAreDifferent(nextValue, prevState.value)
+      || datesAreDifferent(
+        ...values.map(value => getDetailValueFrom(value, minDate, maxDate)),
+      )
+      || datesAreDifferent(
+        ...values.map(value => getDetailValueTo(value, minDate, maxDate)),
+      )
     ) {
       if (nextValue) {
         [, nextState.amPm] = convert24to12(getHours(nextValue));
@@ -630,8 +698,8 @@ export default class DateTimeInput extends PureComponent {
       minDate,
       name,
       required,
-      value,
     } = this.props;
+    const { value } = this.state;
 
     return (
       <NativeInput
@@ -685,6 +753,7 @@ DateTimeInput.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Date),
+    PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   ]),
 };
 
