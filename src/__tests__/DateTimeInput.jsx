@@ -245,6 +245,48 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(5).getDOMNode().value).toBe('0');
   });
 
+  it('shows empty value in all inputs correctly given null', () => {
+    const component = mount(
+      <DateTimeInput
+        {...defaultProps}
+        maxDetail="second"
+        value={null}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+    const customInputs = component.find('input[type="number"]');
+
+    expect(nativeInput.getDOMNode().value).toBe('');
+    expect(customInputs.at(0).getDOMNode().value).toBe('');
+    expect(customInputs.at(1).getDOMNode().value).toBe('');
+    expect(customInputs.at(2).getDOMNode().value).toBe('');
+    expect(customInputs.at(3).getDOMNode().value).toBe('');
+    expect(customInputs.at(4).getDOMNode().value).toBe('');
+    expect(customInputs.at(5).getDOMNode().value).toBe('');
+  });
+
+  it('shows empty value in all inputs correctly given an array of nulls', () => {
+    const component = mount(
+      <DateTimeInput
+        {...defaultProps}
+        maxDetail="second"
+        value={[null, null]}
+      />
+    );
+
+    const nativeInput = component.find('input[type="datetime-local"]');
+    const customInputs = component.find('input[type="number"]');
+
+    expect(nativeInput.getDOMNode().value).toBe('');
+    expect(customInputs.at(0).getDOMNode().value).toBe('');
+    expect(customInputs.at(1).getDOMNode().value).toBe('');
+    expect(customInputs.at(2).getDOMNode().value).toBe('');
+    expect(customInputs.at(3).getDOMNode().value).toBe('');
+    expect(customInputs.at(4).getDOMNode().value).toBe('');
+    expect(customInputs.at(5).getDOMNode().value).toBe('');
+  });
+
   it('clears the value correctly', () => {
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
