@@ -205,7 +205,7 @@ export default class DateTimeInput extends PureComponent {
   };
 
   get formatTime() {
-    const { locale, maxDetail } = this.props;
+    const { maxDetail } = this.props;
 
     const options = { hour: 'numeric' };
     const level = allViews.indexOf(maxDetail);
@@ -216,28 +216,22 @@ export default class DateTimeInput extends PureComponent {
       options.second = 'numeric';
     }
 
-    return getFormatter(locale, options);
+    return getFormatter(options);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get formatNumber() {
-    const { locale } = this.props;
-
     const options = { useGrouping: false };
 
-    return getFormatter(locale, options);
+    return getFormatter(options);
   }
 
   get dateDivider() {
-    const { locale } = this.props;
-    const date = new Date(2017, 11, 11);
-
-    return formatDate(locale, date).match(/[^0-9a-z]/i)[0];
+    return this.datePlaceholder.match(/[^0-9a-z]/i)[0];
   }
 
   get timeDivider() {
-    const date = new Date(2017, 0, 1, 21, 12, 13);
-
-    return this.formatTime(date).match(/[^0-9a-z]/i)[0];
+    return this.timePlaceholder.match(/[^0-9a-z]/i)[0];
   }
 
   get datePlaceholder() {
@@ -251,9 +245,9 @@ export default class DateTimeInput extends PureComponent {
 
     return (
       formatDate(locale, date)
-        .replace(this.formatNumber(year), 'y')
-        .replace(this.formatNumber(monthIndex + 1), 'M')
-        .replace(this.formatNumber(day), 'd')
+        .replace(this.formatNumber(locale, year), 'y')
+        .replace(this.formatNumber(locale, monthIndex + 1), 'M')
+        .replace(this.formatNumber(locale, day), 'd')
     );
   }
 
@@ -267,11 +261,11 @@ export default class DateTimeInput extends PureComponent {
     const date = new Date(2017, 0, 1, hour24, minute, second);
 
     return (
-      this.formatTime(date)
-        .replace(this.formatNumber(hour12), 'h')
-        .replace(this.formatNumber(hour24), 'H')
-        .replace(this.formatNumber(minute), 'mm')
-        .replace(this.formatNumber(second), 'ss')
+      this.formatTime(locale, date)
+        .replace(this.formatNumber(locale, hour12), 'h')
+        .replace(this.formatNumber(locale, hour24), 'H')
+        .replace(this.formatNumber(locale, minute), 'mm')
+        .replace(this.formatNumber(locale, second), 'ss')
         .replace(new RegExp(getAmPmLabels(locale).join('|')), 'a')
     );
   }
