@@ -4162,10 +4162,10 @@ react-clock@^2.3.0:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^7.5.0:
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.5.0.tgz#a2fa61d43a2e12daaba60a662457d137e4ebd4ff"
-  integrity sha512-OkhJgMxS2sAFJ/AGWUOW/A1BXw8Zm3GZ8GdoxFb1USbaEG8FMV3vA8OapvCLdJLh7JrIfK84j8RPI0T59uCiZw==
+react-date-picker@^7.5.1:
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.5.1.tgz#bf2b997e0433e422d6466c5eeaaed084f578b449"
+  integrity sha512-5KMMmFCSUXElrii3e3C/tklL0sHoZwY63CrAVjIjWjgjQAaTO40iFj0BIfVvbEcbpaiCRfwdjm8CYnJOSJkAPw==
   dependencies:
     get-user-locale "^1.1.1"
     make-event-props "^1.1.0"
