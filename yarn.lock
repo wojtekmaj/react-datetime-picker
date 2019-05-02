@@ -4213,10 +4213,10 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
     react-is "^16.7.0"
     scheduler "^0.12.0"
 
-react-time-picker@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.5.1.tgz#69e395f5626c377306d464580f6b83dc660365f7"
-  integrity sha512-IgvtKQSAsulesEZueLZseiSjL8Rxy+zeLVFS4tof/dvCUQvVGWZlN4Q/6PdhP1jv29WCMpvkKphCwuUEkHWduw==
+react-time-picker@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.5.2.tgz#130a6f7033a5692b8f586fd073421ecea0734ce0"
+  integrity sha512-UIajQVfEGLjXLqTPUZCd1nxRiM0ED5MaoK2jNCX0MsHVHYnjXPsluvd0YU2YMiCgyj+oqYE5bVOULckqb+PgwQ==
   dependencies:
     get-user-locale "^1.1.1"
     make-event-props "^1.1.0"

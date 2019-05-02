@@ -54,7 +54,7 @@
     "react-date-picker": "^7.5.0",
     "react-fit": "^1.0.3",
     "react-lifecycles-compat": "^3.0.4",
-    "react-time-picker": "^3.5.1"
+    "react-time-picker": "^3.5.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
