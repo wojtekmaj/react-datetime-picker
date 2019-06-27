@@ -100,8 +100,8 @@ export default class Test extends PureComponent {
                 clockClassName="myCustomClockClassName"
                 disabled={disabled}
                 locale={locale}
-                maxDetail={maxDetail}
                 maxDate={maxDate}
+                maxDetail={maxDetail}
                 minDate={minDate}
                 name="myCustomName"
                 onChange={this.onChange}

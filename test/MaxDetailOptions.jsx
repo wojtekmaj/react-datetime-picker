@@ -1,71 +1,49 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const allViews = ['hour', 'minute', 'second'];
 
-export default class MaxDetailOptions extends PureComponent {
-  onChange = (event) => {
-    const { setState } = this.props;
+function upperCaseFirstLetter(str) {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
 
+export default function MaxDetailOptions({ maxDetail, minDetail, setState }) {
+  function onChange(event) {
     const { value } = event.target;
 
     setState({ maxDetail: value });
   }
 
-  render() {
-    const { maxDetail } = this.props;
+  const minDetailIndex = allViews.indexOf(minDetail);
 
-    return (
-      <fieldset id="detailoptions">
-        <legend htmlFor="viewoptions">
-          Maximum detail
-        </legend>
+  return (
+    <fieldset id="detailoptions">
+      <legend htmlFor="viewoptions">
+        Maximum detail
+      </legend>
 
-        <div>
+      {allViews.map((view, index) => (
+        <div key={view}>
           <input
-            checked={maxDetail === 'hour'}
-            id="maxDetailHour"
+            checked={maxDetail === view}
+            disabled={minDetailIndex > index}
+            id={view}
             name="maxDetail"
-            onChange={this.onChange}
+            onChange={onChange}
             type="radio"
-            value="hour"
+            value={view}
           />
-          <label htmlFor="maxDetailHour">
-            Hour
+          <label htmlFor={view}>
+            {upperCaseFirstLetter(view)}
           </label>
         </div>
-        <div>
-          <input
-            checked={maxDetail === 'minute'}
-            id="maxDetailMinute"
-            name="maxDetail"
-            onChange={this.onChange}
-            type="radio"
-            value="minute"
-          />
-          <label htmlFor="maxDetailMinute">
-            Minute
-          </label>
-        </div>
-        <div>
-          <input
-            checked={maxDetail === 'second'}
-            id="maxDetailSecond"
-            name="maxDetail"
-            onChange={this.onChange}
-            type="radio"
-            value="second"
-          />
-          <label htmlFor="maxDetailSecond">
-            Second
-          </label>
-        </div>
-      </fieldset>
-    );
-  }
+      ))}
+    </fieldset>
+  );
 }
 
 MaxDetailOptions.propTypes = {
   maxDetail: PropTypes.oneOf(allViews).isRequired,
+  minDetail: PropTypes.oneOf(allViews).isRequired,
   setState: PropTypes.func.isRequired,
 };

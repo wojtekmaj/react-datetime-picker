@@ -1,57 +1,55 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getISOLocalDateTime } from '../src/shared/dates';
 
-export default class ValueOptions extends PureComponent {
-  onChange = (event) => {
-    const { value } = event.target;
 
-    this.setValue(value ? new Date(value) : value);
+export default function ValueOptions({
+  setState,
+  value,
+}) {
+  function setValue(nextValue) {
+    setState({ value: nextValue });
   }
 
-  setValue = (value) => {
-    const { setState } = this.props;
+  function onChange(event) {
+    const { value: nextValue } = event.target;
 
-    setState({ value });
+    setValue(nextValue && new Date(nextValue));
   }
 
-  render() {
-    const { value } = this.props;
+  return (
+    <fieldset id="valueOptions">
+      <legend htmlFor="valueOptions">
+        Set date and time externally
+      </legend>
 
-    return (
-      <fieldset id="valueOptions">
-        <legend htmlFor="valueOptions">
-          Set date and time externally
-        </legend>
-
-        <div>
-          <label htmlFor="datetime">
-            Date and time
-          </label>
-          <input
-            id="datetime"
-            onChange={this.onChange}
-            type="datetime-local"
-            value={value ? getISOLocalDateTime(value) : ''}
-          />
-          &nbsp;
-          <button
-            type="button"
-            onClick={() => this.setValue(null)}
-          >
-            Clear to null
-          </button>
-          <button
-            type="button"
-            onClick={() => this.setValue('')}
-          >
-            Clear to empty string
-          </button>
-        </div>
-      </fieldset>
-    );
-  }
+      <div>
+        <label htmlFor="datetime">
+          Date and time
+        </label>
+        <input
+          id="datetime"
+          onChange={onChange}
+          type="datetime-local"
+          value={value ? getISOLocalDateTime(value) : ''}
+        />
+        &nbsp;
+        <button
+          type="button"
+          onClick={() => setValue(null)}
+        >
+          Clear to null
+        </button>
+        <button
+          type="button"
+          onClick={() => setValue('')}
+        >
+          Clear to empty string
+        </button>
+      </div>
+    </fieldset>
+  );
 }
 
 ValueOptions.propTypes = {
