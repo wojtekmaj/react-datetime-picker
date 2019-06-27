@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -9,25 +9,30 @@ import {
 } from '../shared/dates';
 import { isMaxDate, isMinDate, isValueType } from '../shared/propTypes';
 
-export default class NativeInput extends PureComponent {
-  get nativeValueParser() {
-    const { valueType } = this.props;
-
+export default function NativeInput({
+  disabled,
+  maxDate,
+  minDate,
+  name,
+  onChange,
+  required,
+  value,
+  valueType,
+}) {
+  const nativeValueParser = (() => {
     switch (valueType) {
       case 'hour':
-        return value => `${getISOLocalDate(value)}T${getHours(value)}:00`;
+        return receivedValue => `${getISOLocalDate(receivedValue)}T${getHours(receivedValue)}:00`;
       case 'minute':
-        return value => `${getISOLocalDate(value)}T${getHoursMinutes(value)}`;
+        return receivedValue => `${getISOLocalDate(receivedValue)}T${getHoursMinutes(receivedValue)}`;
       case 'second':
         return getISOLocalDateTime;
       default:
         throw new Error('Invalid valueType.');
     }
-  }
+  })();
 
-  get step() {
-    const { valueType } = this.props;
-
+  const step = (() => {
     switch (valueType) {
       case 'hour':
         return 3600;
@@ -38,37 +43,32 @@ export default class NativeInput extends PureComponent {
       default:
         throw new Error('Invalid valueType.');
     }
+  })();
+
+  function stopPropagation(event) {
+    event.stopPropagation();
   }
 
-  stopPropagation = event => event.stopPropagation();
-
-  render() {
-    const { nativeValueParser, step } = this;
-    const {
-      disabled, maxDate, minDate, name, onChange, required, value,
-    } = this.props;
-
-    return (
-      <input
-        type="datetime-local"
-        disabled={disabled}
-        max={maxDate ? nativeValueParser(maxDate) : null}
-        min={minDate ? nativeValueParser(minDate) : null}
-        name={name}
-        onChange={onChange}
-        onFocus={this.stopPropagation}
-        required={required}
-        step={step}
-        style={{
-          visibility: 'hidden',
-          position: 'absolute',
-          top: '-9999px',
-          left: '-9999px',
-        }}
-        value={value ? nativeValueParser(value) : ''}
-      />
-    );
-  }
+  return (
+    <input
+      type="datetime-local"
+      disabled={disabled}
+      max={maxDate ? nativeValueParser(maxDate) : null}
+      min={minDate ? nativeValueParser(minDate) : null}
+      name={name}
+      onChange={onChange}
+      onFocus={stopPropagation}
+      required={required}
+      step={step}
+      style={{
+        visibility: 'hidden',
+        position: 'absolute',
+        top: '-9999px',
+        left: '-9999px',
+      }}
+      value={value ? nativeValueParser(value) : ''}
+    />
+  );
 }
 
 NativeInput.propTypes = {
