@@ -85,33 +85,33 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 
 #### Props
 
-|Prop name|Description|Example values|
-|----|----|----|
-|calendarClassName|Defines class name(s) that will be added along with "react-calendar" to the main React-Calendar `<div>` element.|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
-|clockClassName|Defines class name(s) that will be added along with "react-clock" to the main React-Calendar `<div>` element.|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
-|calendarIcon|Defines the content of the calendar button. Setting the value explicitly to `null` will hide the icon.|<ul><li>String: `"Calendar"`</li><li>React element: `<CalendarIcon />`</li></ul>|
-|className|Defines class name(s) that will be added along with "react-datetime-picker" to the main React-DateTime-Picker `<div>` element.|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
-|clearIcon|Defines the content of the clear button. Setting the value explicitly to `null` will hide the icon.|<ul><li>String: `"Clear"`</li><li>React element: `<ClearIcon />`</li></ul>|
-|disabled|Defines whether the date picker should be disabled. Defaults to false.|`true`|
-|disableClock|Defines whether the clock should be disabled. Defaults to false.|`true`|
-|format|Defines input format based on [Unicode Technical Standard #35](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). Supported values are: `y`, `M`, `MM`, `d`, `dd`, `H`, `HH`, `h`, `hh`, `m`, `mm`, `s`, `ss`, `a`.|`"y-MM-dd h:mm:ss a"`|
-|isCalendarOpen|Defines whether the calendar should be opened. Defaults to false.|`true`|
-|isClockOpen|Defines whether the clock should be opened. Defaults to false.|`true`|
-|locale|Defines which locale should be used by the datetime picker and the calendar. Can be any [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag). Defaults to user's browser settings.|`"hu-HU"`|
-|maxDate|Defines maximum date that the user can select. Periods partially overlapped by maxDate will also be selectable, although React-DateTime-Picker will ensure that no later date is selected.|Date: `new Date()`|
-|maxDetail|Defines the most detailed calendar view that the user shall see. View defined here also becomes the one on which clicking an item in the calendar will select a date and pass it to onChange. Can be "month", "year", "decade" or "century". Defaults to "month".|`"month"`|
-|minDate|Defines minimum date that the user can select. Periods partially overlapped by minDate will also be selectable, although React-DateTime-Picker will ensure that no earlier date is selected.|Date: `new Date()`|
-|minDetail|Defines the least detailed calendar view that the user shall see. Can be "month", "year", "decade" or "century". Defaults to "century".|`"century"`|
-|name|Defines input name. Defaults to "datetime".|`"myCustomName"`|
-|onCalendarClose|Function called when the calendar closes.|`() => alert('Calendar closed')`|
-|onCalendarOpen|Function called when the calendar opens.|`() => alert('Calendar opened')`|
-|onChange|Function called when the user clicks an item on the most detailed view available.|`(value) => alert('New date is: ', value)`|
-|onClockClose|Function called when the clock closes.|`() => alert('Clock closed')`|
-|onClockOpen|Function called when the clock opens.|`() => alert('Clock opened')`|
-|returnValue|Defines which dates shall be passed by the calendar to the onChange function and onClick{Period} functions. Can be "start", "end" or "range". The latter will cause an array with start and end values to be passed. Defaults to "start".|`"range"`|
-|required|Defines whether date input should be required. Defaults to false.|`true`|
-|showLeadingZeros|Defines whether leading zeros should be rendered in date inputs. Defaults to false.|`true`|
-|value|Defines the value of the input.|<ul><li>Date: `new Date()`</li><li>An array of dates: `[new Date(2017, 0, 1), new Date(2017, 7, 1)]`</li></ul>|
+|Prop name|Description|Default value|Example values|
+|----|----|----|----|
+|calendarClassName|Class name(s) that will be added along with `"react-calendar"` to the main React-Calendar `<div>` element.|n/a|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
+|clockClassName|Class name(s) that will be added along with `"react-clock"` to the main React-Calendar `<div>` element.|n/a|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
+|calendarIcon|Content of the calendar button. Setting the value explicitly to `null` will hide the icon.|(default icon)|<ul><li>String: `"Calendar"`</li><li>React element: `<CalendarIcon />`</li></ul>|
+|className|Class name(s) that will be added along with `"react-datetime-picker"` to the main React-DateTime-Picker `<div>` element.|n/a|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
+|clearIcon|Content of the clear button. Setting the value explicitly to `null` will hide the icon.|(default icon)|<ul><li>String: `"Clear"`</li><li>React element: `<ClearIcon />`</li></ul>|
+|disabled|Whether the date picker should be disabled.|`false`|`true`|
+|disableClock|Whether the clock should be disabled.|`false`|`true`|
+|format|Input format based on [Unicode Technical Standard #35](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). Supported values are: `y`, `M`, `MM`, `d`, `dd`, `H`, `HH`, `h`, `hh`, `m`, `mm`, `s`, `ss`, `a`.|n/a|`"y-MM-dd h:mm:ss a"`|
+|isCalendarOpen|Whether the calendar should be opened.|`false`|`true`|
+|isClockOpen|Whether the clock should be opened.|`false`|`true`|
+|locale|Locale that should be used by the datetime picker and the calendar. Can be any [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag).|User's browser settings|`"hu-HU"`|
+|maxDate|Maximum date that the user can select. Periods partially overlapped by maxDate will also be selectable, although React-DateTime-Picker will ensure that no later date is selected.|n/a|Date: `new Date()`|
+|maxDetail|The most detailed calendar view that the user shall see. View defined here also becomes the one on which clicking an item in the calendar will select a date and pass it to onChange. Can be `"month"`, `"year"`, `"decade"` or `"century"`.|`"month"`|`"year"`|
+|minDate|Minimum date that the user can select. Periods partially overlapped by minDate will also be selectable, although React-DateTime-Picker will ensure that no earlier date is selected.|n/a|Date: `new Date()`|
+|minDetail|The least detailed calendar view that the user shall see. Can be `"month"`, `"year"`, `"decade"` or `"century"`.|`"century"`|`"decade"`|
+|name|Input name.|`"datetime"`|`"myCustomName"`|
+|onCalendarClose|Function called when the calendar closes.|n/a|`() => alert('Calendar closed')`|
+|onCalendarOpen|Function called when the calendar opens.|n/a|`() => alert('Calendar opened')`|
+|onChange|Function called when the user clicks an item on the most detailed view available.|n/a|`(value) => alert('New date is: ', value)`|
+|onClockClose|Function called when the clock closes.|n/a|`() => alert('Clock closed')`|
+|onClockOpen|Function called when the clock opens.|n/a|`() => alert('Clock opened')`|
+|returnValue|Which dates shall be passed by the calendar to the onChange function and onClick{Period} functions. Can be `"start"`, `"end"` or `"range"`. The latter will cause an array with start and end values to be passed.|` "start"`|`"range"`|
+|required|Whether date input should be required.|`false`|`true`|
+|showLeadingZeros|Whether leading zeros should be rendered in date inputs.|`false`|`true`|
+|value|Input value.|n/a|<ul><li>Date: `new Date()`</li><li>An array of dates: `[new Date(2017, 0, 1), new Date(2017, 7, 1)]`</li></ul>|
 
 ### Calendar
 
