@@ -22,8 +22,19 @@ export default class Sample extends Component {
         <div className="Sample__container">
           <main className="Sample__container__content">
             <DateTimePicker
+              amPmAriaLabel="Select AM/PM"
+              calendarAriaLabel="Toggle calendar"
+              clearAriaLabel="Clear value"
+              dayAriaLabel="Day"
+              hourAriaLabel="Hour"
+              maxDetail="second"
+              minuteAriaLabel="Minute"
+              monthAriaLabel="Month"
+              nativeInputAriaLabel="Date and time"
               onChange={this.onChange}
+              secondAriaLabel="Second"
               value={value}
+              yearAriaLabel="Year"
             />
           </main>
         </div>

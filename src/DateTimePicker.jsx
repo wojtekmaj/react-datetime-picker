@@ -186,18 +186,28 @@ export default class DateTimePicker extends PureComponent {
 
   renderInputs() {
     const {
+      amPmAriaLabel,
+      calendarAriaLabel,
       calendarIcon,
+      clearAriaLabel,
       clearIcon,
+      dayAriaLabel,
       disabled,
       format,
+      hourAriaLabel,
       locale,
-      maxDetail,
       maxDate,
+      maxDetail,
       minDate,
+      minuteAriaLabel,
+      monthAriaLabel,
       name,
+      nativeInputAriaLabel,
       required,
+      secondAriaLabel,
       showLeadingZeros,
       value,
+      yearAriaLabel,
     } = this.props;
 
     const { isCalendarOpen, isClockOpen } = this.state;
@@ -205,23 +215,32 @@ export default class DateTimePicker extends PureComponent {
     return (
       <div className={`${baseClassName}__wrapper`}>
         <DateTimeInput
+          amPmAriaLabel={amPmAriaLabel}
           className={`${baseClassName}__inputGroup`}
+          dayAriaLabel={dayAriaLabel}
           disabled={disabled}
           format={format}
-          locale={locale}
+          hourAriaLabel={hourAriaLabel}
           isWidgetOpen={isCalendarOpen || isClockOpen}
-          maxDetail={maxDetail}
+          locale={locale}
           maxDate={maxDate}
+          maxDetail={maxDetail}
           minDate={minDate}
+          minuteAriaLabel={minuteAriaLabel}
+          monthAriaLabel={monthAriaLabel}
           name={name}
+          nativeInputAriaLabel={nativeInputAriaLabel}
           onChange={this.onChange}
           placeholder={this.placeholder}
           required={required}
+          secondAriaLabel={secondAriaLabel}
           showLeadingZeros={showLeadingZeros}
           value={value}
+          yearAriaLabel={yearAriaLabel}
         />
         {clearIcon !== null && (
           <button
+            aria-label={clearAriaLabel}
             className={`${baseClassName}__clear-button ${baseClassName}__button`}
             disabled={disabled}
             onClick={this.clear}
@@ -233,6 +252,7 @@ export default class DateTimePicker extends PureComponent {
         )}
         {calendarIcon !== null && (
           <button
+            aria-label={calendarAriaLabel}
             className={`${baseClassName}__calendar-button ${baseClassName}__button`}
             disabled={disabled}
             onClick={this.toggleCalendar}
@@ -384,6 +404,8 @@ DateTimePicker.defaultProps = {
 DateTimePicker.propTypes = {
   ...Calendar.propTypes,
   ...Clock.propTypes,
+  amPmAriaLabel: PropTypes.string,
+  calendarAriaLabel: PropTypes.string,
   calendarClassName: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
@@ -393,6 +415,7 @@ DateTimePicker.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+  clearAriaLabel: PropTypes.string,
   clearIcon: PropTypes.node,
   clockClassName: PropTypes.oneOfType([
     PropTypes.string,
@@ -401,18 +424,23 @@ DateTimePicker.propTypes = {
   disableClock: PropTypes.bool,
   disabled: PropTypes.bool,
   format: PropTypes.string,
+  hourAriaLabel: PropTypes.string,
   isCalendarOpen: PropTypes.bool,
   isClockOpen: PropTypes.bool,
+  locale: PropTypes.string,
   maxDate: isMaxDate,
   maxDetail: PropTypes.oneOf(allViews),
   minDate: isMinDate,
+  minuteAriaLabel: PropTypes.string,
   name: PropTypes.string,
+  nativeInputAriaLabel: PropTypes.string,
   onCalendarClose: PropTypes.func,
   onCalendarOpen: PropTypes.func,
   onChange: PropTypes.func,
   onClockClose: PropTypes.func,
   onClockOpen: PropTypes.func,
   required: PropTypes.bool,
+  secondAriaLabel: PropTypes.string,
   showLeadingZeros: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,

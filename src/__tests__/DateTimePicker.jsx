@@ -40,6 +40,38 @@ describe('DateTimePicker', () => {
     expect(dateInput.prop('format')).toBe(format);
   });
 
+  it('passes aria-label props to DateInput', () => {
+    const ariaLabelProps = {
+      amPmAriaLabel: 'Select AM/PM',
+      calendarAriaLabel: 'Toggle calendar',
+      clearAriaLabel: 'Clear value',
+      dayAriaLabel: 'Day',
+      hourAriaLabel: 'Hour',
+      minuteAriaLabel: 'Minute',
+      monthAriaLabel: 'Month',
+      secondAriaLabel: 'Second',
+      yearAriaLabel: 'Year'
+    };
+
+    const component = mount(
+      <DateTimePicker {...ariaLabelProps} />
+    );
+
+    const calendarButton = component.find('button.react-datetime-picker__calendar-button');
+    const clearButton = component.find('button.react-datetime-picker__clear-button');
+    const dateTimeInput = component.find('DateTimeInput');
+
+    expect(calendarButton.prop('aria-label')).toBe(ariaLabelProps.calendarAriaLabel);
+    expect(clearButton.prop('aria-label')).toBe(ariaLabelProps.clearAriaLabel);
+    expect(dateTimeInput.prop('dayAriaLabel')).toBe(ariaLabelProps.dayAriaLabel);
+    expect(dateTimeInput.prop('monthAriaLabel')).toBe(ariaLabelProps.monthAriaLabel);
+    expect(dateTimeInput.prop('yearAriaLabel')).toBe(ariaLabelProps.yearAriaLabel);
+    expect(dateTimeInput.prop('amPmAriaLabel')).toBe(ariaLabelProps.amPmAriaLabel);
+    expect(dateTimeInput.prop('hourAriaLabel')).toBe(ariaLabelProps.hourAriaLabel);
+    expect(dateTimeInput.prop('minuteAriaLabel')).toBe(ariaLabelProps.minuteAriaLabel);
+    expect(dateTimeInput.prop('secondAriaLabel')).toBe(ariaLabelProps.secondAriaLabel);
+  });
+
   it('applies className to its wrapper when given a string', () => {
     const className = 'testClassName';
 

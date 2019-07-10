@@ -508,7 +508,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderDay = (currentMatch) => {
-    const { showLeadingZeros } = this.props;
+    const { dayAriaLabel, showLeadingZeros } = this.props;
     const { day, month, year } = this.state;
 
     if (currentMatch && currentMatch.length > 2) {
@@ -521,6 +521,7 @@ export default class DateTimeInput extends PureComponent {
       <DayInput
         key="day"
         {...this.commonInputProps}
+        dayAriaLabel={dayAriaLabel}
         month={month}
         showLeadingZeros={showLeadingZerosFromFormat || showLeadingZeros}
         value={day}
@@ -530,7 +531,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderMonth = (currentMatch) => {
-    const { locale, showLeadingZeros } = this.props;
+    const { locale, monthAriaLabel, showLeadingZeros } = this.props;
     const { month, year } = this.state;
 
     if (currentMatch && currentMatch.length > 4) {
@@ -543,6 +544,7 @@ export default class DateTimeInput extends PureComponent {
           key="month"
           {...this.commonInputProps}
           locale={locale}
+          monthAriaLabel={monthAriaLabel}
           short={currentMatch.length === 3}
           value={month}
           year={year}
@@ -556,13 +558,16 @@ export default class DateTimeInput extends PureComponent {
       <MonthInput
         key="month"
         {...this.commonInputProps}
+        monthAriaLabel={monthAriaLabel}
         showLeadingZeros={showLeadingZerosFromFormat || showLeadingZeros}
         value={month}
+        year={year}
       />
     );
   }
 
   renderYear = () => {
+    const { yearAriaLabel } = this.props;
     const { year } = this.state;
 
     return (
@@ -571,11 +576,13 @@ export default class DateTimeInput extends PureComponent {
         {...this.commonInputProps}
         value={year}
         valueType="day"
+        yearAriaLabel={yearAriaLabel}
       />
     );
   }
 
   renderHour12 = (currentMatch) => {
+    const { hourAriaLabel } = this.props;
     const { amPm, hour } = this.state;
 
     if (currentMatch && currentMatch.length > 2) {
@@ -590,6 +597,7 @@ export default class DateTimeInput extends PureComponent {
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
         amPm={amPm}
+        hourAriaLabel={hourAriaLabel}
         showLeadingZeros={showLeadingZeros}
         value={hour}
       />
@@ -597,6 +605,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderHour24 = (currentMatch) => {
+    const { hourAriaLabel } = this.props;
     const { hour } = this.state;
 
     if (currentMatch && currentMatch.length > 2) {
@@ -610,6 +619,7 @@ export default class DateTimeInput extends PureComponent {
         key="hour24"
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
+        hourAriaLabel={hourAriaLabel}
         showLeadingZeros={showLeadingZeros}
         value={hour}
       />
@@ -617,6 +627,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderMinute = (currentMatch) => {
+    const { minuteAriaLabel } = this.props;
     const { hour, minute } = this.state;
 
     if (currentMatch && currentMatch.length > 2) {
@@ -631,6 +642,7 @@ export default class DateTimeInput extends PureComponent {
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
         hour={hour}
+        minuteAriaLabel={minuteAriaLabel}
         showLeadingZeros={showLeadingZeros}
         value={minute}
       />
@@ -638,6 +650,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderSecond = (currentMatch) => {
+    const { secondAriaLabel } = this.props;
     const { hour, minute, second } = this.state;
 
     if (currentMatch && currentMatch.length > 2) {
@@ -653,6 +666,7 @@ export default class DateTimeInput extends PureComponent {
         {...this.commonTimeInputProps}
         hour={hour}
         minute={minute}
+        secondAriaLabel={secondAriaLabel}
         showLeadingZeros={showLeadingZeros}
         value={second}
       />
@@ -660,14 +674,15 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderAmPm = () => {
+    const { amPmAriaLabel, locale } = this.props;
     const { amPm } = this.state;
-    const { locale } = this.props;
 
     return (
       <AmPm
         key="ampm"
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
+        amPmAriaLabel={amPmAriaLabel}
         locale={locale}
         onChange={this.onChangeAmPm}
         value={amPm}
@@ -697,6 +712,7 @@ export default class DateTimeInput extends PureComponent {
       maxDate,
       minDate,
       name,
+      nativeInputAriaLabel,
       required,
     } = this.props;
     const { value } = this.state;
@@ -708,6 +724,7 @@ export default class DateTimeInput extends PureComponent {
         maxDate={maxDate || defaultMaxDate}
         minDate={minDate || defaultMinDate}
         name={name}
+        nativeInputAriaLabel={nativeInputAriaLabel}
         onChange={this.onChangeNative}
         required={required}
         value={value}
@@ -738,23 +755,31 @@ DateTimeInput.defaultProps = {
 };
 
 DateTimeInput.propTypes = {
+  amPmAriaLabel: PropTypes.string,
   className: PropTypes.string.isRequired,
+  dayAriaLabel: PropTypes.string,
   disabled: PropTypes.bool,
   format: PropTypes.string,
+  hourAriaLabel: PropTypes.string,
   isWidgetOpen: PropTypes.bool,
   locale: PropTypes.string,
   maxDate: isMaxDate,
   maxDetail: PropTypes.oneOf(allViews),
   minDate: isMinDate,
+  minuteAriaLabel: PropTypes.string,
+  monthAriaLabel: PropTypes.string,
   name: PropTypes.string,
+  nativeInputAriaLabel: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  secondAriaLabel: PropTypes.string,
   showLeadingZeros: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Date),
     PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   ]),
+  yearAriaLabel: PropTypes.string,
 };
 
 polyfill(DateTimeInput);
