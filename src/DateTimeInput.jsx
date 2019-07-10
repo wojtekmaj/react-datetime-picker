@@ -4,6 +4,7 @@ import { polyfill } from 'react-lifecycles-compat';
 
 import DayInput from 'react-date-picker/dist/DateInput/DayInput';
 import MonthInput from 'react-date-picker/dist/DateInput/MonthInput';
+import MonthSelect from 'react-date-picker/dist/DateInput/MonthSelect';
 import YearInput from 'react-date-picker/dist/DateInput/YearInput';
 import Hour12Input from 'react-time-picker/dist/TimeInput/Hour12Input';
 import Hour24Input from 'react-time-picker/dist/TimeInput/Hour24Input';
@@ -523,11 +524,24 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderMonth = (currentMatch) => {
-    const { showLeadingZeros } = this.props;
-    const { month } = this.state;
+    const { locale, showLeadingZeros } = this.props;
+    const { month, year } = this.state;
 
-    if (currentMatch && currentMatch.length > 2) {
+    if (currentMatch && currentMatch.length > 4) {
       throw new Error(`Unsupported token: ${currentMatch}`);
+    }
+
+    if (currentMatch.length > 2) {
+      return (
+        <MonthSelect
+          key="month"
+          {...this.commonInputProps}
+          locale={locale}
+          short={currentMatch.length === 3}
+          value={month}
+          year={year}
+        />
+      );
     }
 
     const showLeadingZerosFromFormat = currentMatch && currentMatch.length === 2;

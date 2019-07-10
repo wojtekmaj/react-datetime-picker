@@ -14,6 +14,7 @@ export default function NativeInput({
   maxDate,
   minDate,
   name,
+  nativeInputAriaLabel,
   onChange,
   required,
   value,
@@ -52,6 +53,7 @@ export default function NativeInput({
   return (
     <input
       type="datetime-local"
+      aria-label={nativeInputAriaLabel}
       disabled={disabled}
       max={maxDate ? nativeValueParser(maxDate) : null}
       min={minDate ? nativeValueParser(minDate) : null}
@@ -76,6 +78,7 @@ NativeInput.propTypes = {
   maxDate: isMaxDate,
   minDate: isMinDate,
   name: PropTypes.string,
+  nativeInputAriaLabel: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.oneOfType([
