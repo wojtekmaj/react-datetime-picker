@@ -4437,10 +4437,10 @@ react-clock@^2.3.0:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^7.5.1:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.5.1.tgz#bf2b997e0433e422d6466c5eeaaed084f578b449"
-  integrity sha512-5KMMmFCSUXElrii3e3C/tklL0sHoZwY63CrAVjIjWjgjQAaTO40iFj0BIfVvbEcbpaiCRfwdjm8CYnJOSJkAPw==
+react-date-picker@^7.6.0:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.6.0.tgz#ad141b6bc8994f905298ff23c549f4d04371be24"
+  integrity sha512-hfKmejfRTtPDs+ra3Kh4aiXAeGd+QhrPEckzFuCovSGIoYsOupAWGhAXsJy9XjWDpI0vuSG2uTpRv5+b4cr8Fw==
   dependencies:
     get-user-locale "^1.1.1"
     make-event-props "^1.1.0"
@@ -4449,6 +4449,7 @@ react-date-picker@^7.5.1:
     react-calendar "^2.18.0"
     react-fit "^1.0.3"
     react-lifecycles-compat "^3.0.4"
+    update-input-width "^1.0.1"
 
 react-dom@^16.7.0:
   version "16.8.6"
@@ -4488,10 +4489,10 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
     react-is "^16.8.6"
     scheduler "^0.13.6"
 
-react-time-picker@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.5.2.tgz#130a6f7033a5692b8f586fd073421ecea0734ce0"
-  integrity sha512-UIajQVfEGLjXLqTPUZCd1nxRiM0ED5MaoK2jNCX0MsHVHYnjXPsluvd0YU2YMiCgyj+oqYE5bVOULckqb+PgwQ==
+react-time-picker@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.6.0.tgz#97975ed61cba88813861b4b30ae3a7b856b12c4c"
+  integrity sha512-MIhHeZt4qVgdXCIkTALABYd+Ug948hh/aSgauQL97fJ5mA6ZobUwi9YG2ZE2KQu51j+qLJgEqY+V1fQX7+zY5A==
   dependencies:
     get-user-locale "^1.1.1"
     make-event-props "^1.1.0"
@@ -4500,6 +4501,7 @@ react-time-picker@^3.5.2:
     react-clock "^2.3.0"
     react-fit "^1.0.3"
     react-lifecycles-compat "^3.0.4"
+    update-input-width "^1.0.1"
 
 react@^16.7.0:
   version "16.8.6"
@@ -5360,6 +5362,11 @@ upath@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.1.2.tgz#3db658600edaeeccbe6db5e684d67ee8c2acd068"
   integrity sha512-kXpym8nmDmlCBr7nKdIx8P2jNBa+pBpIUFRnKJ4dr8htyYGJFokkr2ZvERRtUN+9SY+JqXouNgUPtv6JQva/2Q==
+
+update-input-width@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/update-input-width/-/update-input-width-1.0.1.tgz#916033cccc8bca9debaa6ed7a8f74def33198a84"
+  integrity sha512-RejZ4/tYUZwaudPbSD4pOW5sYXKFI6bvHc+nb8z8GUdixxbQm2391IguMa8eYMraBs8hdVQMUXeseDbfs77Anw==
 
 uri-js@^4.2.2:
   version "4.2.2"
