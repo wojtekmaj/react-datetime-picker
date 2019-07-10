@@ -314,7 +314,6 @@ export default class DateTimeInput extends PureComponent {
   }
 
   get commonInputProps() {
-    const { maxTime, minTime } = this;
     const {
       className,
       disabled,
@@ -328,9 +327,7 @@ export default class DateTimeInput extends PureComponent {
       className,
       disabled,
       maxDate: maxDate || defaultMaxDate,
-      maxTime,
       minDate: minDate || defaultMinDate,
-      minTime,
       onChange: this.onChange,
       onKeyDown: this.onKeyDown,
       placeholder: '--',
@@ -340,6 +337,15 @@ export default class DateTimeInput extends PureComponent {
         // Save a reference to each input field
         this[`${name}Input`] = ref;
       },
+    };
+  }
+
+  get commonTimeInputProps() {
+    const { maxTime, minTime } = this;
+
+    return {
+      maxTime,
+      minTime,
     };
   }
 
@@ -582,6 +588,7 @@ export default class DateTimeInput extends PureComponent {
       <Hour12Input
         key="hour12"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         amPm={amPm}
         showLeadingZeros={showLeadingZeros}
         value={hour}
@@ -602,6 +609,7 @@ export default class DateTimeInput extends PureComponent {
       <Hour24Input
         key="hour24"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         showLeadingZeros={showLeadingZeros}
         value={hour}
       />
@@ -621,6 +629,7 @@ export default class DateTimeInput extends PureComponent {
       <MinuteInput
         key="minute"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         hour={hour}
         showLeadingZeros={showLeadingZeros}
         value={minute}
@@ -641,6 +650,7 @@ export default class DateTimeInput extends PureComponent {
       <SecondInput
         key="second"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         hour={hour}
         minute={minute}
         showLeadingZeros={showLeadingZeros}
@@ -657,6 +667,7 @@ export default class DateTimeInput extends PureComponent {
       <AmPm
         key="ampm"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         locale={locale}
         onChange={this.onChangeAmPm}
         value={amPm}
