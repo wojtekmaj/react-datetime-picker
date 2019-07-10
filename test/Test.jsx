@@ -16,6 +16,19 @@ import './Test.less';
 
 const now = new Date();
 
+const ariaLabelProps = {
+  amPmAriaLabel: 'Select AM/PM',
+  calendarAriaLabel: 'Toggle calendar',
+  clearAriaLabel: 'Clear value',
+  dayAriaLabel: 'Day',
+  hourAriaLabel: 'Hour',
+  minuteAriaLabel: 'Minute',
+  monthAriaLabel: 'Month',
+  nativeInputAriaLabel: 'Date and time',
+  secondAriaLabel: 'Second',
+  yearAriaLabel: 'Year',
+};
+
 /* eslint-disable no-console */
 
 export default class Test extends PureComponent {
@@ -95,6 +108,7 @@ export default class Test extends PureComponent {
               }}
             >
               <DateTimePicker
+                {...ariaLabelProps}
                 className="myCustomTimePickerClassName"
                 calendarClassName="myCustomCalendarClassName"
                 clockClassName="myCustomClockClassName"
