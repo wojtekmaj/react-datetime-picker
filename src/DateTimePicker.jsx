@@ -209,8 +209,9 @@ export default class DateTimePicker extends PureComponent {
       value,
       yearAriaLabel,
     } = this.props;
-
     const { isCalendarOpen, isClockOpen } = this.state;
+
+    const [valueFrom] = [].concat(value);
 
     const ariaLabelProps = {
       amPmAriaLabel,
@@ -240,7 +241,7 @@ export default class DateTimePicker extends PureComponent {
           placeholder={this.placeholder}
           required={required}
           showLeadingZeros={showLeadingZeros}
-          value={value}
+          value={valueFrom}
         />
         {clearIcon !== null && (
           <button
@@ -316,10 +317,12 @@ export default class DateTimePicker extends PureComponent {
       className: timePickerClassName, // Unused, here to exclude it from clockProps
       maxDetail,
       onChange,
+      value,
       ...clockProps
     } = this.props;
 
     const className = `${baseClassName}__clock`;
+    const [valueFrom] = [].concat(value);
 
     const maxDetailIndex = allViews.indexOf(maxDetail);
 
@@ -330,6 +333,7 @@ export default class DateTimePicker extends PureComponent {
             className={clockClassName}
             renderMinuteHand={maxDetailIndex > 0}
             renderSecondHand={maxDetailIndex > 1}
+            value={valueFrom}
             {...clockProps}
           />
         </div>
@@ -405,9 +409,12 @@ DateTimePicker.defaultProps = {
   maxDetail: 'minute',
 };
 
+const isValue = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.instanceOf(Date),
+]);
+
 DateTimePicker.propTypes = {
-  ...Calendar.propTypes,
-  ...Clock.propTypes,
   amPmAriaLabel: PropTypes.string,
   calendarAriaLabel: PropTypes.string,
   calendarClassName: PropTypes.oneOfType([
@@ -445,12 +452,13 @@ DateTimePicker.propTypes = {
   onChange: PropTypes.func,
   onClockClose: PropTypes.func,
   onClockOpen: PropTypes.func,
+  onFocus: PropTypes.func,
   required: PropTypes.bool,
   secondAriaLabel: PropTypes.string,
   showLeadingZeros: PropTypes.bool,
   value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.instanceOf(Date),
+    isValue,
+    PropTypes.arrayOf(isValue),
   ]),
   yearAriaLabel: PropTypes.string,
 };
