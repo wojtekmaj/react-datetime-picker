@@ -212,31 +212,35 @@ export default class DateTimePicker extends PureComponent {
 
     const { isCalendarOpen, isClockOpen } = this.state;
 
+    const ariaLabelProps = {
+      amPmAriaLabel,
+      dayAriaLabel,
+      hourAriaLabel,
+      minuteAriaLabel,
+      monthAriaLabel,
+      nativeInputAriaLabel,
+      secondAriaLabel,
+      yearAriaLabel,
+    };
+
     return (
       <div className={`${baseClassName}__wrapper`}>
         <DateTimeInput
-          amPmAriaLabel={amPmAriaLabel}
+          {...ariaLabelProps}
           className={`${baseClassName}__inputGroup`}
-          dayAriaLabel={dayAriaLabel}
           disabled={disabled}
           format={format}
-          hourAriaLabel={hourAriaLabel}
           isWidgetOpen={isCalendarOpen || isClockOpen}
           locale={locale}
           maxDate={maxDate}
           maxDetail={maxDetail}
           minDate={minDate}
-          minuteAriaLabel={minuteAriaLabel}
-          monthAriaLabel={monthAriaLabel}
           name={name}
-          nativeInputAriaLabel={nativeInputAriaLabel}
           onChange={this.onChange}
           placeholder={this.placeholder}
           required={required}
-          secondAriaLabel={secondAriaLabel}
           showLeadingZeros={showLeadingZeros}
           value={value}
-          yearAriaLabel={yearAriaLabel}
         />
         {clearIcon !== null && (
           <button
