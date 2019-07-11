@@ -28,7 +28,7 @@ describe('DateTimePicker', () => {
     expect(dateTimeInput.prop('name')).toBe(name);
   });
 
-  it('passes format to DateInput', () => {
+  it('passes format to DateTimeInput', () => {
     const format = 'y-MM-dd h:mm:ss a';
 
     const component = mount(
