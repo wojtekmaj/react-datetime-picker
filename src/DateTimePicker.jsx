@@ -425,6 +425,7 @@ DateTimePicker.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+  dayAriaLabel: PropTypes.string,
   disableClock: PropTypes.bool,
   disabled: PropTypes.bool,
   format: PropTypes.string,
@@ -436,6 +437,7 @@ DateTimePicker.propTypes = {
   maxDetail: PropTypes.oneOf(allViews),
   minDate: isMinDate,
   minuteAriaLabel: PropTypes.string,
+  monthAriaLabel: PropTypes.string,
   name: PropTypes.string,
   nativeInputAriaLabel: PropTypes.string,
   onCalendarClose: PropTypes.func,
@@ -450,6 +452,7 @@ DateTimePicker.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(Date),
   ]),
+  yearAriaLabel: PropTypes.string,
 };
 
 polyfill(DateTimePicker);
