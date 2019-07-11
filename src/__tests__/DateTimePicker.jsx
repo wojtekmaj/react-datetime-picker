@@ -199,6 +199,18 @@ describe('DateTimePicker', () => {
     expect(clock).toHaveLength(1);
   });
 
+  it('does not render Calendar component when given disableCalendar & isCalendarOpen flags', () => {
+    const component = mount(
+      <DateTimePicker disableCalendar isCalendarOpen />
+    );
+
+    const dateTimeInput = component.find('DateTimeInput');
+    const calendar = component.find('Calendar');
+
+    expect(dateTimeInput).toHaveLength(1);
+    expect(calendar).toHaveLength(0);
+  });
+
   it('does not render Clock component when given disableClock & isClockOpen flags', () => {
     const component = mount(
       <DateTimePicker disableClock isClockOpen />
