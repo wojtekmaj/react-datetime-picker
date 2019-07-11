@@ -49,6 +49,7 @@ describe('DateTimePicker', () => {
       hourAriaLabel: 'Hour',
       minuteAriaLabel: 'Minute',
       monthAriaLabel: 'Month',
+      nativeInputAriaLabel: 'Date and time',
       secondAriaLabel: 'Second',
       yearAriaLabel: 'Year'
     };
@@ -63,13 +64,14 @@ describe('DateTimePicker', () => {
 
     expect(calendarButton.prop('aria-label')).toBe(ariaLabelProps.calendarAriaLabel);
     expect(clearButton.prop('aria-label')).toBe(ariaLabelProps.clearAriaLabel);
-    expect(dateTimeInput.prop('dayAriaLabel')).toBe(ariaLabelProps.dayAriaLabel);
-    expect(dateTimeInput.prop('monthAriaLabel')).toBe(ariaLabelProps.monthAriaLabel);
-    expect(dateTimeInput.prop('yearAriaLabel')).toBe(ariaLabelProps.yearAriaLabel);
     expect(dateTimeInput.prop('amPmAriaLabel')).toBe(ariaLabelProps.amPmAriaLabel);
+    expect(dateTimeInput.prop('dayAriaLabel')).toBe(ariaLabelProps.dayAriaLabel);
     expect(dateTimeInput.prop('hourAriaLabel')).toBe(ariaLabelProps.hourAriaLabel);
     expect(dateTimeInput.prop('minuteAriaLabel')).toBe(ariaLabelProps.minuteAriaLabel);
+    expect(dateTimeInput.prop('monthAriaLabel')).toBe(ariaLabelProps.monthAriaLabel);
+    expect(dateTimeInput.prop('nativeInputAriaLabel')).toBe(ariaLabelProps.nativeInputAriaLabel);
     expect(dateTimeInput.prop('secondAriaLabel')).toBe(ariaLabelProps.secondAriaLabel);
+    expect(dateTimeInput.prop('yearAriaLabel')).toBe(ariaLabelProps.yearAriaLabel);
   });
 
   it('applies className to its wrapper when given a string', () => {
