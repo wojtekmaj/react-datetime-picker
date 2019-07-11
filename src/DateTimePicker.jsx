@@ -314,7 +314,7 @@ export default class DateTimePicker extends PureComponent {
 
     const {
       clockClassName,
-      className: timePickerClassName, // Unused, here to exclude it from clockProps
+      className: dateTimePickerClassName, // Unused, here to exclude it from clockProps
       maxDetail,
       onChange,
       value,
