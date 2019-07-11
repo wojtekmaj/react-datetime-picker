@@ -35,9 +35,9 @@ describe('DateTimePicker', () => {
       <DateTimePicker format={format} />
     );
 
-    const dateInput = component.find('DateTimeInput');
+    const dateTimeInput = component.find('DateTimeInput');
 
-    expect(dateInput.prop('format')).toBe(format);
+    expect(dateTimeInput.prop('format')).toBe(format);
   });
 
   it('passes aria-label props to DateInput', () => {
@@ -72,6 +72,33 @@ describe('DateTimePicker', () => {
     expect(dateTimeInput.prop('nativeInputAriaLabel')).toBe(ariaLabelProps.nativeInputAriaLabel);
     expect(dateTimeInput.prop('secondAriaLabel')).toBe(ariaLabelProps.secondAriaLabel);
     expect(dateTimeInput.prop('yearAriaLabel')).toBe(ariaLabelProps.yearAriaLabel);
+  });
+
+  describe('passes value to DateTimeInput', () => {
+    it('passes single value to DateTimeInput', () => {
+      const value = new Date(2019, 0, 1);
+
+      const component = mount(
+        <DateTimePicker value={value} />
+      );
+
+      const dateTimeInput = component.find('DateTimeInput');
+
+      expect(dateTimeInput.prop('value')).toBe(value);
+    });
+
+    it('passes the first item of an array of values to DateTimeInput', () => {
+      const value1 = new Date(2019, 0, 1);
+      const value2 = new Date(2019, 6, 1);
+
+      const component = mount(
+        <DateTimePicker value={[value1, value2]} />
+      );
+
+      const dateTimeInput = component.find('DateTimeInput');
+
+      expect(dateTimeInput.prop('value')).toBe(value1);
+    });
   });
 
   it('applies className to its wrapper when given a string', () => {

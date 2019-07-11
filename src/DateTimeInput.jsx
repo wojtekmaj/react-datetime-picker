@@ -780,6 +780,11 @@ DateTimeInput.defaultProps = {
   name: 'datetime',
 };
 
+const isValue = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.instanceOf(Date),
+]);
+
 DateTimeInput.propTypes = {
   amPmAriaLabel: PropTypes.string,
   className: PropTypes.string.isRequired,
@@ -801,9 +806,8 @@ DateTimeInput.propTypes = {
   secondAriaLabel: PropTypes.string,
   showLeadingZeros: PropTypes.bool,
   value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.instanceOf(Date),
-    PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+    isValue,
+    PropTypes.arrayOf(isValue),
   ]),
   yearAriaLabel: PropTypes.string,
 };
