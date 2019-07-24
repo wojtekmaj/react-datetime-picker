@@ -92,8 +92,8 @@ export default class Test extends PureComponent {
               setState={setState}
             />
             <LocaleOptions
-              setState={setState}
               locale={locale}
+              setState={setState}
             />
             <ValueOptions
               setState={setState}
@@ -119,8 +119,8 @@ export default class Test extends PureComponent {
               <DateTimePicker
                 {...ariaLabelProps}
                 {...placeholderProps}
-                className="myCustomTimePickerClassName"
                 calendarClassName="myCustomCalendarClassName"
+                className="myCustomTimePickerClassName"
                 clockClassName="myCustomClockClassName"
                 disabled={disabled}
                 locale={locale}
@@ -128,11 +128,11 @@ export default class Test extends PureComponent {
                 maxDetail={maxDetail}
                 minDate={minDate}
                 name="myCustomName"
-                onChange={this.onChange}
-                onCalendarOpen={() => console.log('Calendar opened')}
                 onCalendarClose={() => console.log('Calendar closed')}
-                onClockOpen={() => console.log('Clock opened')}
+                onCalendarOpen={() => console.log('Calendar opened')}
+                onChange={this.onChange}
                 onClockClose={() => console.log('Clock closed')}
+                onClockOpen={() => console.log('Clock opened')}
                 required={required}
                 showLeadingZeros={showLeadingZeros}
                 showNeighboringMonth={showNeighboringMonth}
@@ -142,8 +142,8 @@ export default class Test extends PureComponent {
               <br />
               <br />
               <button
-                type="submit"
                 id="submit"
+                type="submit"
               >
                 Submit
               </button>

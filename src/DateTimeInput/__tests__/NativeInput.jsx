@@ -64,8 +64,8 @@ describe('NativeInput', () => {
     const component = shallow(
       <NativeInput
         {...defaultProps}
-        valueType={valueType}
         value={value}
+        valueType={valueType}
       />
     );
 

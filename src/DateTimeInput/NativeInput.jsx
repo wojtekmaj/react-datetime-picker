@@ -52,7 +52,6 @@ export default function NativeInput({
 
   return (
     <input
-      type="datetime-local"
       aria-label={ariaLabel}
       disabled={disabled}
       max={maxDate ? nativeValueParser(maxDate) : null}
@@ -68,6 +67,7 @@ export default function NativeInput({
         top: '-9999px',
         left: '-9999px',
       }}
+      type="datetime-local"
       value={value ? nativeValueParser(value) : ''}
     />
   );
