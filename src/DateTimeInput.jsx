@@ -554,7 +554,7 @@ export default class DateTimeInput extends PureComponent {
       <DayInput
         key="day"
         {...this.commonInputProps}
-        dayAriaLabel={dayAriaLabel}
+        ariaLabel={dayAriaLabel}
         month={month}
         placeholder={dayPlaceholder}
         showLeadingZeros={showLeadingZerosFromFormat || showLeadingZeros}
@@ -582,8 +582,8 @@ export default class DateTimeInput extends PureComponent {
         <MonthSelect
           key="month"
           {...this.commonInputProps}
+          ariaLabel={monthAriaLabel}
           locale={locale}
-          monthAriaLabel={monthAriaLabel}
           placeholder={monthPlaceholder}
           short={currentMatch.length === 3}
           value={month}
@@ -598,7 +598,7 @@ export default class DateTimeInput extends PureComponent {
       <MonthInput
         key="month"
         {...this.commonInputProps}
-        monthAriaLabel={monthAriaLabel}
+        ariaLabel={monthAriaLabel}
         placeholder={monthPlaceholder}
         showLeadingZeros={showLeadingZerosFromFormat || showLeadingZeros}
         value={month}
@@ -615,10 +615,10 @@ export default class DateTimeInput extends PureComponent {
       <YearInput
         key="year"
         {...this.commonInputProps}
+        ariaLabel={yearAriaLabel}
         placeholder={yearPlaceholder}
         value={year}
         valueType="day"
-        yearAriaLabel={yearAriaLabel}
       />
     );
   }
@@ -647,7 +647,7 @@ export default class DateTimeInput extends PureComponent {
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
         amPm={amPm}
-        hourAriaLabel={hourAriaLabel}
+        ariaLabel={hourAriaLabel}
         placeholder={hourPlaceholder}
         showLeadingZeros={showLeadingZeros}
         value={hour}
@@ -670,7 +670,7 @@ export default class DateTimeInput extends PureComponent {
         key="hour24"
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
-        hourAriaLabel={hourAriaLabel}
+        ariaLabel={hourAriaLabel}
         placeholder={hourPlaceholder}
         showLeadingZeros={showLeadingZeros}
         value={hour}
@@ -693,8 +693,8 @@ export default class DateTimeInput extends PureComponent {
         key="minute"
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
+        ariaLabel={minuteAriaLabel}
         hour={hour}
-        minuteAriaLabel={minuteAriaLabel}
         placeholder={minutePlaceholder}
         showLeadingZeros={showLeadingZeros}
         value={minute}
@@ -717,10 +717,10 @@ export default class DateTimeInput extends PureComponent {
         key="second"
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
+        ariaLabel={secondAriaLabel}
         hour={hour}
         minute={minute}
         placeholder={secondPlaceholder}
-        secondAriaLabel={secondAriaLabel}
         showLeadingZeros={showLeadingZeros}
         value={second}
       />
@@ -736,7 +736,7 @@ export default class DateTimeInput extends PureComponent {
         key="ampm"
         {...this.commonInputProps}
         {...this.commonTimeInputProps}
-        amPmAriaLabel={amPmAriaLabel}
+        ariaLabel={amPmAriaLabel}
         locale={locale}
         onChange={this.onChangeAmPm}
         value={amPm}
@@ -777,11 +777,11 @@ export default class DateTimeInput extends PureComponent {
     return (
       <NativeInput
         key="time"
+        ariaLabel={nativeInputAriaLabel}
         disabled={disabled}
         maxDate={maxDate || defaultMaxDate}
         minDate={minDate || defaultMinDate}
         name={name}
-        nativeInputAriaLabel={nativeInputAriaLabel}
         onChange={this.onChangeNative}
         required={required}
         value={value}
