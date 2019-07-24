@@ -29,6 +29,15 @@ const ariaLabelProps = {
   yearAriaLabel: 'Year',
 };
 
+const placeholderProps = {
+  dayPlaceholder: 'dd',
+  hourPlaceholder: 'hh',
+  minutePlaceholder: 'mm',
+  monthPlaceholder: 'mm',
+  secondPlaceholder: 'ss',
+  yearPlaceholder: 'yyyy',
+};
+
 /* eslint-disable no-console */
 
 export default class Test extends PureComponent {
@@ -109,6 +118,7 @@ export default class Test extends PureComponent {
             >
               <DateTimePicker
                 {...ariaLabelProps}
+                {...placeholderProps}
                 className="myCustomTimePickerClassName"
                 calendarClassName="myCustomCalendarClassName"
                 clockClassName="myCustomClockClassName"

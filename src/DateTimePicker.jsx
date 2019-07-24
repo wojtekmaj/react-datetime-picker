@@ -192,23 +192,29 @@ export default class DateTimePicker extends PureComponent {
       clearAriaLabel,
       clearIcon,
       dayAriaLabel,
+      dayPlaceholder,
       disableCalendar,
       disabled,
       format,
       hourAriaLabel,
+      hourPlaceholder,
       locale,
       maxDate,
       maxDetail,
       minDate,
       minuteAriaLabel,
+      minutePlaceholder,
       monthAriaLabel,
+      monthPlaceholder,
       name,
       nativeInputAriaLabel,
       required,
       secondAriaLabel,
+      secondPlaceholder,
       showLeadingZeros,
       value,
       yearAriaLabel,
+      yearPlaceholder,
     } = this.props;
     const { isCalendarOpen, isClockOpen } = this.state;
 
@@ -225,10 +231,20 @@ export default class DateTimePicker extends PureComponent {
       yearAriaLabel,
     };
 
+    const placeholderProps = {
+      dayPlaceholder,
+      hourPlaceholder,
+      minutePlaceholder,
+      monthPlaceholder,
+      secondPlaceholder,
+      yearPlaceholder,
+    };
+
     return (
       <div className={`${baseClassName}__wrapper`}>
         <DateTimeInput
           {...ariaLabelProps}
+          {...placeholderProps}
           className={`${baseClassName}__inputGroup`}
           disabled={disabled}
           format={format}
@@ -435,11 +451,13 @@ DateTimePicker.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
   dayAriaLabel: PropTypes.string,
+  dayPlaceholder: PropTypes.string,
   disableCalendar: PropTypes.bool,
   disableClock: PropTypes.bool,
   disabled: PropTypes.bool,
   format: PropTypes.string,
   hourAriaLabel: PropTypes.string,
+  hourPlaceholder: PropTypes.string,
   isCalendarOpen: PropTypes.bool,
   isClockOpen: PropTypes.bool,
   locale: PropTypes.string,
@@ -447,7 +465,9 @@ DateTimePicker.propTypes = {
   maxDetail: PropTypes.oneOf(allViews),
   minDate: isMinDate,
   minuteAriaLabel: PropTypes.string,
+  minutePlaceholder: PropTypes.string,
   monthAriaLabel: PropTypes.string,
+  monthPlaceholder: PropTypes.string,
   name: PropTypes.string,
   nativeInputAriaLabel: PropTypes.string,
   onCalendarClose: PropTypes.func,
@@ -458,12 +478,14 @@ DateTimePicker.propTypes = {
   onFocus: PropTypes.func,
   required: PropTypes.bool,
   secondAriaLabel: PropTypes.string,
+  secondPlaceholder: PropTypes.string,
   showLeadingZeros: PropTypes.bool,
   value: PropTypes.oneOfType([
     isValue,
     PropTypes.arrayOf(isValue),
   ]),
   yearAriaLabel: PropTypes.string,
+  yearPlaceholder: PropTypes.string,
 };
 
 polyfill(DateTimePicker);

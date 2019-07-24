@@ -96,11 +96,13 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 |clockClassName|Class name(s) that will be added along with `"react-clock"` to the main React-Calendar `<div>` element.|n/a|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
 |className|Class name(s) that will be added along with `"react-datetime-picker"` to the main React-DateTime-Picker `<div>` element.|n/a|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
 |dayAriaLabel|`aria-label` for the day input.|n/a|`"Day"`|
+|dayPlaceholder|`placeholder` for the day input.|`"--"`|`"dd"`|
 |disabled|Whether the date picker should be disabled.|`false`|`true`|
 |disableCalendar|When set to `true`, will remove the clock and the button toggling its visibility.|`false`|`true`|
 |disableClock|When set to `true`, will remove the clock.|`false`|`true`|
 |format|Input format based on [Unicode Technical Standard #35](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). Supported values are: `y`, `M`, `MM`, `MMM`, `MMMM`, `d`, `dd`, `H`, `HH`, `h`, `hh`, `m`, `mm`, `s`, `ss`, `a`.|n/a|`"y-MM-dd h:mm:ss a"`|
 |hourAriaLabel|`aria-label` for the hour input.|n/a|`"Hour"`|
+|hourPlaceholder|`placeholder` for the hour input.|`"--"`|`"hh"`|
 |isCalendarOpen|Whether the calendar should be opened.|`false`|`true`|
 |isClockOpen|Whether the clock should be opened.|`false`|`true`|
 |locale|Locale that should be used by the datetime picker and the calendar. Can be any [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag).|User's browser settings|`"hu-HU"`|
@@ -109,7 +111,9 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 |minDate|Minimum date that the user can select. Periods partially overlapped by minDate will also be selectable, although React-DateTime-Picker will ensure that no earlier date is selected.|n/a|Date: `new Date()`|
 |minDetail|The least detailed calendar view that the user shall see. Can be `"month"`, `"year"`, `"decade"` or `"century"`.|`"century"`|`"decade"`|
 |minuteAriaLabel|`aria-label` for the minute input.|n/a|`"Minute"`|
+|minutePlaceholder|`placeholder` for the minute input.|`"--"`|`"mm"`|
 |monthAriaLabel|`aria-label` for the month input.|n/a|`"Month"`|
+|monthPlaceholder|`placeholder` for the month input.|`"--"`|`"mm"`|
 |name|Input name.|`"datetime"`|`"myCustomName"`|
 |nativeInputAriaLabel|`aria-label` for the native datetime input.|n/a|`"Date"`|
 |onCalendarClose|Function called when the calendar closes.|n/a|`() => alert('Calendar closed')`|
@@ -120,9 +124,11 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 |returnValue|Which dates shall be passed by the calendar to the onChange function and onClick{Period} functions. Can be `"start"`, `"end"` or `"range"`. The latter will cause an array with start and end values to be passed.|` "start"`|`"range"`|
 |required|Whether datetime input should be required.|`false`|`true`|
 |secondAriaLabel|`aria-label` for the second input.|n/a|`"Second"`|
+|secondPlaceholder|`placeholder` for the second input.|`"--"`|`"ss"`|
 |showLeadingZeros|Whether leading zeros should be rendered in datetime inputs.|`false`|`true`|
 |value|Input value.|n/a|<ul><li>Date: `new Date()`</li><li>An array of dates: `[new Date(2017, 0, 1), new Date(2017, 7, 1)]`</li></ul>|
 |yearAriaLabel|`aria-label` for the year input.|n/a|`"Year"`|
+|yearPlaceholder|`aria-label` for the year input.|`"----"`|`"yyyy"`|
 
 ### Calendar
 
