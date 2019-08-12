@@ -45,11 +45,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "get-user-locale": "^1.1.1",
+    "get-user-locale": "^1.2.0",
     "make-event-props": "^1.1.0",
     "merge-class-names": "^1.1.1",
     "prop-types": "^15.6.0",
-    "react-calendar": "^2.18.0",
+    "react-calendar": "^2.19.1",
     "react-clock": "^2.3.0",
     "react-date-picker": "^7.8.0",
     "react-fit": "^1.0.3",
