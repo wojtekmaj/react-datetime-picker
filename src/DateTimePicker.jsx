@@ -36,10 +36,6 @@ export default class DateTimePicker extends PureComponent {
 
   state = {};
 
-  get eventProps() {
-    return makeEventProps(this.props);
-  }
-
   componentDidMount() {
     this.handleOutsideActionListeners();
   }
@@ -73,13 +69,8 @@ export default class DateTimePicker extends PureComponent {
     this.handleOutsideActionListeners(false);
   }
 
-  handleOutsideActionListeners(shouldListen) {
-    const { isCalendarOpen, isClockOpen } = this.state;
-    const isWidgetOpen = isCalendarOpen || isClockOpen;
-
-    const shouldListenWithFallback = typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
-    const fnName = shouldListenWithFallback ? 'addEventListener' : 'removeEventListener';
-    outsideActionEvents.forEach(eventName => document[fnName](eventName, this.onOutsideAction));
+  get eventProps() {
+    return makeEventProps(this.props);
   }
 
   onOutsideAction = (event) => {
@@ -183,6 +174,15 @@ export default class DateTimePicker extends PureComponent {
   stopPropagation = event => event.stopPropagation();
 
   clear = () => this.onChange(null);
+
+  handleOutsideActionListeners(shouldListen) {
+    const { isCalendarOpen, isClockOpen } = this.state;
+    const isWidgetOpen = isCalendarOpen || isClockOpen;
+
+    const shouldListenWithFallback = typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
+    const fnName = shouldListenWithFallback ? 'addEventListener' : 'removeEventListener';
+    outsideActionEvents.forEach(eventName => document[fnName](eventName, this.onOutsideAction));
+  }
 
   renderInputs() {
     const {
