@@ -28,6 +28,16 @@ describe('DateTimePicker', () => {
     expect(dateTimeInput.prop('name')).toBe(name);
   });
 
+  it('passes disabled flag to DateTimeInput', () => {
+    const component = mount(
+      <DateTimePicker disabled />
+    );
+
+    const dateTimeInput = component.find('DateTimeInput');
+
+    expect(dateTimeInput.prop('disabled')).toBeTruthy();
+  });
+
   it('passes format to DateTimeInput', () => {
     const format = 'y-MM-dd h:mm:ss a';
 
