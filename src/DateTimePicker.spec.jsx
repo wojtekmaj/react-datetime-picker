@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import DateTimePicker from '../DateTimePicker';
+import DateTimePicker from './DateTimePicker';
 
 /* eslint-disable comma-dangle */
 

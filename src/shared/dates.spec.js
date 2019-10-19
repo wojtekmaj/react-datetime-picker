@@ -1,4 +1,4 @@
-import { getISOLocalDateTime } from '../dates';
+import { getISOLocalDateTime } from './dates';
 
 describe('getISOLocalDateTime', () => {
   it('returns proper ISO date', () => {
