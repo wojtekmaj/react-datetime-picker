@@ -1,6 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { polyfill } from 'react-lifecycles-compat';
+import {
+  getYear,
+  getMonthHuman,
+  getDate,
+  getHours,
+  getMinutes,
+  getSeconds,
+  getHoursMinutesSeconds,
+} from '@wojtekmaj/date-utils';
 
 import DayInput from 'react-date-picker/dist/DateInput/DayInput';
 import MonthInput from 'react-date-picker/dist/DateInput/MonthInput';
@@ -16,13 +25,6 @@ import NativeInput from './DateTimeInput/NativeInput';
 
 import { getFormatter, formatDate } from './shared/dateFormatter';
 import {
-  getDay,
-  getHours,
-  getMinutes,
-  getMonth,
-  getSeconds,
-  getYear,
-  getHoursMinutesSeconds,
   convert12to24,
   convert24to12,
 } from './shared/dates';
@@ -41,8 +43,8 @@ const datesAreDifferent = (date1, date2) => (
 
 const isSameDate = (date, year, month, day) => (
   getYear(date) === year
-  && getMonth(date) === month
-  && getDay(date) === day
+  && getMonthHuman(date) === month
+  && getDate(date) === day
 );
 
 const getValueFromRange = (valueOrArrayOfValues, index) => {
@@ -183,8 +185,8 @@ export default class DateTimeInput extends PureComponent {
       if (nextValue) {
         [, nextState.amPm] = convert24to12(getHours(nextValue));
         nextState.year = getYear(nextValue);
-        nextState.month = getMonth(nextValue);
-        nextState.day = getDay(nextValue);
+        nextState.month = getMonthHuman(nextValue);
+        nextState.day = getDate(nextValue);
         nextState.hour = getHours(nextValue);
         nextState.minute = getMinutes(nextValue);
         nextState.second = getSeconds(nextValue);

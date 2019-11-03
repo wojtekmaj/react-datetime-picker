@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { getISOLocalDateTime } from '../src/shared/dates';
+import { getISOLocalDateTime } from '@wojtekmaj/date-utils';
 
 export default function ValidityOptions({
   maxDate,
