@@ -2444,7 +2444,7 @@ get-stream@^4.0.0:
   dependencies:
     pump "^3.0.0"
 
-get-user-locale@^1.1.1, get-user-locale@^1.2.0:
+get-user-locale@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/get-user-locale/-/get-user-locale-1.2.0.tgz#e4940db90a6694a512455af3f756903a01410eb7"
   integrity sha512-yodJVDMWnM4ZOGa+n1ofebE8u+yjd8FIZMqthUK+xcOQcmfU2ECaP5gLiTMt6j0R/e67QsEelES0fQYLy/oHPg==
@@ -4446,7 +4446,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-calendar@^2.18.0, react-calendar@^2.19.1:
+react-calendar@^2.19.1:
   version "2.19.1"
   resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.19.1.tgz#6d56ec4abc5c93681b980e46fedb86712542531e"
   integrity sha512-BVV6q7mRFB0Gcc0N3UhfpQHzUTCsSbNj7RFIVXW3ZmcB+57Vx6QY+Y81va7GShedDDViwpAba99rAi8KaBUJDw==
@@ -4464,19 +4464,20 @@ react-clock@^2.3.0:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^7.8.0:
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.8.0.tgz#f5a2d7c6f479c19397598a6e74ebe61feecef720"
-  integrity sha512-goD0XKDFU/j6Wkm7kNTcoL2GifDCUPkn9SIcl50LWLFQcElNVvronleQJsqkk2ZWvHak7sKOTSwhR5Gi+iqzpg==
+react-date-picker@^7.9.0:
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.9.0.tgz#728cf4a7d47c5fa9c669f648bc7e7bdc55a1c79e"
+  integrity sha512-uBbFtCLnpjySLmWNfJv3eGMYhODyScVku2y4/+9XM47LKsz24ZoEb2zX1GcpUb7547LWxfMPZpnLBVY2nfedDA==
   dependencies:
-    get-user-locale "^1.1.1"
+    "@wojtekmaj/date-utils" "^1.0.0"
+    get-user-locale "^1.2.0"
     make-event-props "^1.1.0"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
-    react-calendar "^2.18.0"
+    react-calendar "^2.19.1"
     react-fit "^1.0.3"
     react-lifecycles-compat "^3.0.4"
-    update-input-width "^1.0.1"
+    update-input-width "^1.1.1"
 
 react-dom@^16.7.0:
   version "16.8.6"
@@ -4516,19 +4517,20 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
     react-is "^16.8.6"
     scheduler "^0.13.6"
 
-react-time-picker@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.7.0.tgz#e2d85bdcb4f1632b9ecb0718d22f5c33199331d9"
-  integrity sha512-zpYbbK1uOeSvXHJsD+cKNzHeoT/l69U/vFlSfjjQtg8Bl+HV0auGWf9/d2zYbkdyoBB46bd2SeLw8gBppk4+tQ==
+react-time-picker@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.8.0.tgz#77c6ee6b76711b707ccc99996662d22dfc49869d"
+  integrity sha512-NL0+kCZWL1vmh+1Hybn8LcAOpa5S+QavQu2+rQpVM8llksqfQQXlc/E8AICZcNeoBoG9ZikAvoTUIeIUhbgMgQ==
   dependencies:
-    get-user-locale "^1.1.1"
+    "@wojtekmaj/date-utils" "^1.0.0"
+    get-user-locale "^1.2.0"
     make-event-props "^1.1.0"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
     react-clock "^2.3.0"
     react-fit "^1.0.3"
     react-lifecycles-compat "^3.0.4"
-    update-input-width "^1.0.1"
+    update-input-width "^1.1.1"
 
 react@^16.7.0:
   version "16.8.6"
@@ -5416,10 +5418,10 @@ upath@^1.1.1:
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.1.2.tgz#3db658600edaeeccbe6db5e684d67ee8c2acd068"
   integrity sha512-kXpym8nmDmlCBr7nKdIx8P2jNBa+pBpIUFRnKJ4dr8htyYGJFokkr2ZvERRtUN+9SY+JqXouNgUPtv6JQva/2Q==
 
-update-input-width@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/update-input-width/-/update-input-width-1.0.1.tgz#916033cccc8bca9debaa6ed7a8f74def33198a84"
-  integrity sha512-RejZ4/tYUZwaudPbSD4pOW5sYXKFI6bvHc+nb8z8GUdixxbQm2391IguMa8eYMraBs8hdVQMUXeseDbfs77Anw==
+update-input-width@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/update-input-width/-/update-input-width-1.1.1.tgz#075cad85e20f542a5eccc216937ab8d57a1ab892"
+  integrity sha512-khNPvsmV9CJbvOlK0Wou2FLPNcKFQepq5yKHyClxz39A3TTkCkkDOOdOs1xoMNWKTesN+qQALffoNP4P8Jydgw==
 
 uri-js@^4.2.2:
   version "4.2.2"
