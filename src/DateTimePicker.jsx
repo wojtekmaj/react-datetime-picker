@@ -187,6 +187,7 @@ export default class DateTimePicker extends PureComponent {
   renderInputs() {
     const {
       amPmAriaLabel,
+      autoFocus,
       calendarAriaLabel,
       calendarIcon,
       clearAriaLabel,
@@ -245,6 +246,7 @@ export default class DateTimePicker extends PureComponent {
         <DateTimeInput
           {...ariaLabelProps}
           {...placeholderProps}
+          autoFocus={autoFocus}
           className={`${baseClassName}__inputGroup`}
           disabled={disabled}
           format={format}
@@ -434,6 +436,7 @@ const isValue = PropTypes.oneOfType([
 
 DateTimePicker.propTypes = {
   amPmAriaLabel: PropTypes.string,
+  autoFocus: PropTypes.bool,
   calendarAriaLabel: PropTypes.string,
   calendarClassName: PropTypes.oneOfType([
     PropTypes.string,
