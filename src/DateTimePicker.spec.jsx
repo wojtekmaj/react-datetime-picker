@@ -28,6 +28,16 @@ describe('DateTimePicker', () => {
     expect(dateTimeInput.prop('name')).toBe(name);
   });
 
+  it('passes autoFocus flag to DateTimeInput', () => {
+    const component = mount(
+      <DateTimePicker autoFocus />
+    );
+
+    const dateTimeInput = component.find('DateTimeInput');
+
+    expect(dateTimeInput.prop('autoFocus')).toBeTruthy();
+  });
+
   it('passes disabled flag to DateTimeInput', () => {
     const component = mount(
       <DateTimePicker disabled />
