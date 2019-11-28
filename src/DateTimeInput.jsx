@@ -35,27 +35,31 @@ const defaultMinDate = new Date(-8.64e15);
 const defaultMaxDate = new Date(8.64e15);
 const allViews = ['hour', 'minute', 'second'];
 
-const datesAreDifferent = (date1, date2) => (
-  (date1 && !date2)
-  || (!date1 && date2)
-  || (date1 && date2 && date1.getTime() !== date2.getTime())
-);
+function datesAreDifferent(date1, date2) {
+  return (
+    (date1 && !date2)
+    || (!date1 && date2)
+    || (date1 && date2 && date1.getTime() !== date2.getTime())
+  );
+}
 
-const isSameDate = (date, year, month, day) => (
-  getYear(date) === year
-  && getMonthHuman(date) === month
-  && getDate(date) === day
-);
+function isSameDate(date, year, month, day) {
+  return (
+    getYear(date) === year
+    && getMonthHuman(date) === month
+    && getDate(date) === day
+  );
+}
 
-const getValueFromRange = (valueOrArrayOfValues, index) => {
+function getValueFromRange(valueOrArrayOfValues, index) {
   if (Array.isArray(valueOrArrayOfValues)) {
     return valueOrArrayOfValues[index];
   }
 
   return valueOrArrayOfValues;
-};
+}
 
-const parseAndValidateDate = (rawValue) => {
+function parseAndValidateDate(rawValue) {
   if (!rawValue) {
     return null;
   }
@@ -67,53 +71,59 @@ const parseAndValidateDate = (rawValue) => {
   }
 
   return valueDate;
-};
+}
 
-const getDetailValue = (value, minDate, maxDate) => {
+function getDetailValue(value, minDate, maxDate) {
   if (!value) {
     return null;
   }
 
   return between(value, minDate, maxDate);
-};
+}
 
-const getValueFrom = (value) => {
+function getValueFrom(value) {
   const valueFrom = getValueFromRange(value, 0);
 
   return parseAndValidateDate(valueFrom);
-};
+}
 
-const getDetailValueFrom = (value, minDate, maxDate) => {
+function getDetailValueFrom(value, minDate, maxDate) {
   const valueFrom = getValueFrom(value);
 
   return getDetailValue(valueFrom, minDate, maxDate);
-};
+}
 
-const getValueTo = (value) => {
+function getValueTo(value) {
   const valueTo = getValueFromRange(value, 1);
 
   return parseAndValidateDate(valueTo);
-};
+}
 
-const getDetailValueTo = (value, minDate, maxDate) => {
+function getDetailValueTo(value, minDate, maxDate) {
   const valueTo = getValueTo(value);
 
   return getDetailValue(valueTo, minDate, maxDate);
-};
+}
 
-const isValidInput = element => element.tagName === 'INPUT' && element.type === 'number';
+function isValidInput(element) {
+  return element.tagName === 'INPUT' && element.type === 'number';
+}
 
-const findInput = (element, property) => {
+function findInput(element, property) {
   let nextElement = element;
   do {
     nextElement = nextElement[property];
   } while (nextElement && !isValidInput(nextElement));
   return nextElement;
-};
+}
 
-const focus = element => element && element.focus();
+function focus(element) {
+  if (element) {
+    element.focus();
+  }
+}
 
-const renderCustomInputs = (placeholder, elementFunctions, allowMultipleInstances) => {
+function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstances) {
   const usedFunctions = [];
   const pattern = new RegExp(
     Object.keys(elementFunctions).map(el => `${el}+`).join('|'), 'g',
@@ -149,7 +159,7 @@ const renderCustomInputs = (placeholder, elementFunctions, allowMultipleInstance
       }
       return res;
     }, []);
-};
+}
 
 export default class DateTimeInput extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
