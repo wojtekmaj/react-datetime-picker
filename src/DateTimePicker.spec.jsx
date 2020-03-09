@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import DateTimePicker from '../DateTimePicker';
+import DateTimePicker from './DateTimePicker';
 
 /* eslint-disable comma-dangle */
 
@@ -26,6 +26,26 @@ describe('DateTimePicker', () => {
     const dateTimeInput = component.find('DateTimeInput');
 
     expect(dateTimeInput.prop('name')).toBe(name);
+  });
+
+  it('passes autoFocus flag to DateTimeInput', () => {
+    const component = mount(
+      <DateTimePicker autoFocus />
+    );
+
+    const dateTimeInput = component.find('DateTimeInput');
+
+    expect(dateTimeInput.prop('autoFocus')).toBeTruthy();
+  });
+
+  it('passes disabled flag to DateTimeInput', () => {
+    const component = mount(
+      <DateTimePicker disabled />
+    );
+
+    const dateTimeInput = component.find('DateTimeInput');
+
+    expect(dateTimeInput.prop('disabled')).toBeTruthy();
   });
 
   it('passes format to DateTimeInput', () => {

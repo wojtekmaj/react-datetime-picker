@@ -35,10 +35,6 @@ export default class DateTimePicker extends PureComponent {
 
   state = {};
 
-  get eventProps() {
-    return makeEventProps(this.props);
-  }
-
   componentDidMount() {
     this.handleOutsideActionListeners();
   }
@@ -72,13 +68,8 @@ export default class DateTimePicker extends PureComponent {
     this.handleOutsideActionListeners(false);
   }
 
-  handleOutsideActionListeners(shouldListen) {
-    const { isCalendarOpen, isClockOpen } = this.state;
-    const isWidgetOpen = isCalendarOpen || isClockOpen;
-
-    const shouldListenWithFallback = typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
-    const fnName = shouldListenWithFallback ? 'addEventListener' : 'removeEventListener';
-    outsideActionEvents.forEach(eventName => document[fnName](eventName, this.onOutsideAction));
+  get eventProps() {
+    return makeEventProps(this.props);
   }
 
   onOutsideAction = (event) => {
@@ -183,9 +174,19 @@ export default class DateTimePicker extends PureComponent {
 
   clear = () => this.onChange(null);
 
+  handleOutsideActionListeners(shouldListen) {
+    const { isCalendarOpen, isClockOpen } = this.state;
+    const isWidgetOpen = isCalendarOpen || isClockOpen;
+
+    const shouldListenWithFallback = typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
+    const fnName = shouldListenWithFallback ? 'addEventListener' : 'removeEventListener';
+    outsideActionEvents.forEach(eventName => document[fnName](eventName, this.onOutsideAction));
+  }
+
   renderInputs() {
     const {
       amPmAriaLabel,
+      autoFocus,
       calendarAriaLabel,
       calendarIcon,
       clearAriaLabel,
@@ -244,6 +245,7 @@ export default class DateTimePicker extends PureComponent {
         <DateTimeInput
           {...ariaLabelProps}
           {...placeholderProps}
+          autoFocus={autoFocus}
           className={`${baseClassName}__inputGroup`}
           disabled={disabled}
           format={format}
@@ -433,6 +435,7 @@ const isValue = PropTypes.oneOfType([
 
 DateTimePicker.propTypes = {
   amPmAriaLabel: PropTypes.string,
+  autoFocus: PropTypes.bool,
   calendarAriaLabel: PropTypes.string,
   calendarClassName: PropTypes.oneOfType([
     PropTypes.string,

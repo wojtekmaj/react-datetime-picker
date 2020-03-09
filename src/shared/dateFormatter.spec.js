@@ -1,4 +1,4 @@
-import { formatDate } from '../dateFormatter';
+import { formatDate } from './dateFormatter';
 
 describe('formatDate', () => {
   it('returns proper full numeric date', () => {

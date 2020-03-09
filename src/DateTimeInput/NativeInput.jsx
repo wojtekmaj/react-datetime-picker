@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {
   getHours,
   getHoursMinutes,
   getISOLocalDate,
   getISOLocalDateTime,
-} from '../shared/dates';
+} from '@wojtekmaj/date-utils';
+
 import { isMaxDate, isMinDate, isValueType } from '../shared/propTypes';
 
 export default function NativeInput({
