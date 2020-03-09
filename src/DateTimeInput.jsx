@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { polyfill } from 'react-lifecycles-compat';
 import {
   getYear,
   getMonthHuman,
@@ -872,5 +871,3 @@ DateTimeInput.propTypes = {
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
 };
-
-polyfill(DateTimeInput);
