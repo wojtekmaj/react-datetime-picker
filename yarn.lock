@@ -1100,7 +1100,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@wojtekmaj/date-utils@^1.0.0":
+"@wojtekmaj/date-utils@^1.0.0", "@wojtekmaj/date-utils@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@wojtekmaj/date-utils/-/date-utils-1.0.2.tgz#31348c572606ac42aaf9b7bb22074fc0b163cc2b"
   integrity sha512-sOu+uH3jzsECLg3YGH++/pLWs8S4eKiXMwMIcotE62CO9AB/HRyhZ0ISwann/30DLnfCw4skvr8h9gF3aafhPA==
@@ -4462,15 +4462,15 @@ randexp@0.4.6:
     discontinuous-range "1.0.0"
     ret "~0.1.10"
 
-react-calendar@^2.19.1:
-  version "2.19.2"
-  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.19.2.tgz#496e78eb11a00aee1ae6b5d02d221ed1ca2db952"
-  integrity sha512-zKbWxwmYEg84grFsCJz9EYpnGqsZy0iV67dHzkVE0EhBdXMg2eISBQYvw4+t8zdy5ySxQkDhUW8X8ERbSyZPVw==
+react-calendar@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-3.0.1.tgz#69c11188d7fee6fd7d837593e6e6868317f2e682"
+  integrity sha512-EGzmSZXYVxMhhGWFZKEW6I5RFWwi7TrhJIwPIFTTW2nGuMed4aHS51degFEvvSQNf6jt/LLwcXxbwC2U6D2BIg==
   dependencies:
+    "@wojtekmaj/date-utils" "^1.0.2"
     get-user-locale "^1.2.0"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
-    react-lifecycles-compat "^3.0.4"
 
 react-clock@^2.3.0:
   version "2.4.0"
@@ -4480,19 +4480,18 @@ react-clock@^2.3.0:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
-react-date-picker@^7.9.0:
-  version "7.10.0"
-  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-7.10.0.tgz#890f37684da5087c80d63132b4e77e3d0677b332"
-  integrity sha512-5lyWOeSMeCmzqKTd5X1W2jaxPU67Pu06IMmjKmh/tgw0u6QM2UHkwmBlZnMoBuaxrjMlc33HrssxB4EkUyqzHg==
+react-date-picker@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-8.0.0.tgz#b88c387711525ab57bc4f3ca88505a025f82d1f1"
+  integrity sha512-4fzvuGOolm3gDM7pDFfqr4bnQAcK4Q6UoGaxQf6XfArYTdsteFQJSiv1Gx7EetgnkzKi5uhdZWl954SOFkLAxw==
   dependencies:
-    "@wojtekmaj/date-utils" "^1.0.0"
+    "@wojtekmaj/date-utils" "^1.0.2"
     get-user-locale "^1.2.0"
     make-event-props "^1.1.0"
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
-    react-calendar "^2.19.1"
+    react-calendar "^3.0.0"
     react-fit "^1.0.3"
-    react-lifecycles-compat "^3.0.4"
     update-input-width "^1.1.1"
 
 react-dom@^16.7.0:

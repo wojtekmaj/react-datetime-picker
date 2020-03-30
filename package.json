@@ -50,9 +50,9 @@
     "make-event-props": "^1.1.0",
     "merge-class-names": "^1.1.1",
     "prop-types": "^15.6.0",
-    "react-calendar": "^2.19.1",
+    "react-calendar": "^3.0.0",
     "react-clock": "^2.3.0",
-    "react-date-picker": "^7.9.0",
+    "react-date-picker": "^8.0.0",
     "react-fit": "^1.0.3",
     "react-time-picker": "^3.8.0"
   },
