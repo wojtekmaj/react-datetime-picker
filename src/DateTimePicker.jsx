@@ -185,6 +185,7 @@ export default class DateTimePicker extends PureComponent {
 
   renderInputs() {
     const {
+      allowInvalidValues,
       amPmAriaLabel,
       autoFocus,
       calendarAriaLabel,
@@ -245,6 +246,7 @@ export default class DateTimePicker extends PureComponent {
         <DateTimeInput
           {...ariaLabelProps}
           {...placeholderProps}
+          allowInvalidValues={allowInvalidValues}
           autoFocus={autoFocus}
           className={`${baseClassName}__inputGroup`}
           disabled={disabled}
@@ -434,6 +436,7 @@ const isValue = PropTypes.oneOfType([
 ]);
 
 DateTimePicker.propTypes = {
+  allowInvalidValues: PropTypes.bool,
   amPmAriaLabel: PropTypes.string,
   autoFocus: PropTypes.bool,
   calendarAriaLabel: PropTypes.string,

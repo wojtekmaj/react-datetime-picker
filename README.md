@@ -87,6 +87,7 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 
 |Prop name|Description|Default value|Example values|
 |----|----|----|----|
+|allowInvalidValues|Whether entering an invalid value (eg. date outside of a given range) should trigger onChange function.|`false`|`true`|
 |amPmAriaLabel|`aria-label` for the AM/PM select input.|n/a|`"Select AM/PM"`|
 |autoFocus|Automatically focuses the input on mount.|n/a|`true`|
 |calendarAriaLabel|`aria-label` for the calendar button.|n/a|`"Toggle calendar"`|
