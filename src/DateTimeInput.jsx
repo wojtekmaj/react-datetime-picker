@@ -28,7 +28,7 @@ import {
   convert24to12,
 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
-import { between, getAmPmLabels } from './shared/utils';
+import { getAmPmLabels } from './shared/utils';
 
 const defaultMinDate = new Date(-8.64e15);
 const defaultMaxDate = new Date(8.64e15);
@@ -70,16 +70,14 @@ function getValue(value, index) {
   return valueDate;
 }
 
-function getDetailValue({
-  value, minDate, maxDate,
-}, index) {
+function getDetailValue({ value }, index) {
   const valuePiece = getValue(value, index);
 
   if (!valuePiece) {
     return null;
   }
 
-  return between(valuePiece, minDate, maxDate);
+  return valuePiece;
 }
 
 const getDetailValueFrom = args => getDetailValue(args, 0);
@@ -144,8 +142,6 @@ function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstance
 
 export default class DateTimeInput extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { minDate, maxDate } = nextProps;
-
     const nextState = {};
 
     /**
@@ -161,17 +157,13 @@ export default class DateTimeInput extends PureComponent {
      * which values provided are limited by minDate and maxDate so that the dates are the same),
      * get a new one.
      */
-    const nextValue = getDetailValueFrom({ value: nextProps.value, minDate, maxDate });
+    const nextValue = getDetailValueFrom({ value: nextProps.value });
     const values = [nextValue, prevState.value];
     if (
       // Toggling calendar visibility resets values
       nextState.isCalendarOpen // Flag was toggled
-      || datesAreDifferent(
-        ...values.map(value => getDetailValueFrom({ value, minDate, maxDate })),
-      )
-      || datesAreDifferent(
-        ...values.map(value => getDetailValueTo({ value, minDate, maxDate })),
-      )
+      || datesAreDifferent(...values.map(value => getDetailValueFrom({ value })))
+      || datesAreDifferent(...values.map(value => getDetailValueTo({ value })))
     ) {
       if (nextValue) {
         [, nextState.amPm] = convert24to12(getHours(nextValue));
@@ -510,29 +502,35 @@ export default class DateTimeInput extends PureComponent {
 
     const formElementsWithoutSelect = formElements.slice(0, -1);
 
+    // If date is incomplete, don't trigger onChange…
+    if (formElementsWithoutSelect.some(formElement => !formElement.value)) {
+      // …unless all form elements are empty.
+      if (formElementsWithoutSelect.every(formElement => !formElement.value)) {
+        onChange(null, false);
+      }
+      return;
+    }
+
+    if (!allowInvalidValues && formElements.some(formElement => !formElement.checkValidity())) {
+      return;
+    }
+
     const values = {};
     formElements.forEach((formElement) => {
       // eslint-disable-next-line react/destructuring-assignment
       values[formElement.name] = this.state[formElement.name];
     });
 
-    if (formElementsWithoutSelect.every(formElement => !formElement.value)) {
-      onChange(null, false);
-    } else if (
-      allowInvalidValues
-      || formElements.every(formElement => formElement.value && formElement.checkValidity())
-    ) {
-      const year = parseInt(values.year, 10) || 0;
-      const monthIndex = parseInt(values.month, 10) - 1 || 0;
-      const day = parseInt(values.day || 1, 10);
-      const hour = parseInt(values.hour24 || convert12to24(values.hour12, values.amPm) || 0, 10);
-      const minute = parseInt(values.minute || 0, 10);
-      const second = parseInt(values.second || 0, 10);
+    const year = parseInt(values.year, 10) || 0;
+    const monthIndex = parseInt(values.month, 10) - 1 || 0;
+    const day = parseInt(values.day || 1, 10);
+    const hour = parseInt(values.hour24 || convert12to24(values.hour12, values.amPm) || 0, 10);
+    const minute = parseInt(values.minute || 0, 10);
+    const second = parseInt(values.second || 0, 10);
 
-      const proposedValue = new Date(year, monthIndex, day, hour, minute, second);
-      const processedValue = proposedValue;
-      onChange(processedValue, false);
-    }
+    const proposedValue = new Date(year, monthIndex, day, hour, minute, second);
+    const processedValue = proposedValue;
+    onChange(processedValue, false);
   }
 
   renderDay = (currentMatch, index) => {
