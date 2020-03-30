@@ -4517,11 +4517,6 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.6, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
   integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
 
-react-lifecycles-compat@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
-  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.0.tgz#39ba3bf72cedc8210c3f81983f0bb061b14a3014"
@@ -4532,10 +4527,10 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
     react-is "^16.8.6"
     scheduler "^0.19.0"
 
-react-time-picker@^3.8.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-3.9.0.tgz#32ee372d3b6a4484f54211f3779b3fa0f708a0ff"
-  integrity sha512-CMdXQsu0vUBs0RdgD7nVEXeRlEIj6F3/Fy65MJDwlUXrXjPVZh21kV49pMMiyuX0epY1RocOGJRrSdvIBQqD9g==
+react-time-picker@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-4.0.0.tgz#b193ce4c280b9c4ea97b43498b8fd03807e882e5"
+  integrity sha512-qNaSq2/2zYlCX8t0+PaAo0Zncnq7WvV8SaRLjuM2RwWFvGrNJh4FOlpYyYgOrhg50LOrWEyHIOQ5AfoncJHz4A==
   dependencies:
     "@wojtekmaj/date-utils" "^1.0.0"
     get-user-locale "^1.2.0"
@@ -4544,7 +4539,6 @@ react-time-picker@^3.8.0:
     prop-types "^15.6.0"
     react-clock "^2.3.0"
     react-fit "^1.0.3"
-    react-lifecycles-compat "^3.0.4"
     update-input-width "^1.1.1"
 
 react@^16.7.0:
