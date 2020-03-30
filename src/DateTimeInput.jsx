@@ -539,13 +539,13 @@ export default class DateTimeInput extends PureComponent {
       formElements.every(formElement => formElement.value && formElement.checkValidity())
     ) {
       const year = parseInt(values.year, 10);
-      const month = parseInt(values.month || 1, 10);
+      const monthIndex = parseInt(values.month, 10) - 1 || 0;
       const day = parseInt(values.day || 1, 10);
       const hour = parseInt(values.hour24 || convert12to24(values.hour12, values.amPm) || 0, 10);
       const minute = parseInt(values.minute || 0, 10);
       const second = parseInt(values.second || 0, 10);
 
-      const proposedValue = new Date(year, month - 1, day, hour, minute, second);
+      const proposedValue = new Date(year, monthIndex, day, hour, minute, second);
       const processedValue = proposedValue;
       onChange(processedValue, false);
     }
