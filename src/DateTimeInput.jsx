@@ -50,15 +50,13 @@ function isSameDate(date, year, month, day) {
   );
 }
 
-function getValueFromRange(valueOrArrayOfValues, index) {
-  if (Array.isArray(valueOrArrayOfValues)) {
-    return valueOrArrayOfValues[index];
+function getValue(value, index) {
+  if (!value) {
+    return null;
   }
 
-  return valueOrArrayOfValues;
-}
+  const rawValue = value instanceof Array && value.length === 2 ? value[index] : value;
 
-function parseAndValidateDate(rawValue) {
   if (!rawValue) {
     return null;
   }
@@ -66,43 +64,27 @@ function parseAndValidateDate(rawValue) {
   const valueDate = new Date(rawValue);
 
   if (isNaN(valueDate.getTime())) {
-    throw new Error(`Invalid date: ${rawValue}`);
+    throw new Error(`Invalid date: ${value}`);
   }
 
   return valueDate;
 }
 
-function getDetailValue(value, minDate, maxDate) {
-  if (!value) {
+function getDetailValue({
+  value, minDate, maxDate,
+}, index) {
+  const valuePiece = getValue(value, index);
+
+  if (!valuePiece) {
     return null;
   }
 
   return between(value, minDate, maxDate);
 }
 
-function getValueFrom(value) {
-  const valueFrom = getValueFromRange(value, 0);
+const getDetailValueFrom = args => getDetailValue(args, 0);
 
-  return parseAndValidateDate(valueFrom);
-}
-
-function getDetailValueFrom(value, minDate, maxDate) {
-  const valueFrom = getValueFrom(value);
-
-  return getDetailValue(valueFrom, minDate, maxDate);
-}
-
-function getValueTo(value) {
-  const valueTo = getValueFromRange(value, 1);
-
-  return parseAndValidateDate(valueTo);
-}
-
-function getDetailValueTo(value, minDate, maxDate) {
-  const valueTo = getValueTo(value);
-
-  return getDetailValue(valueTo, minDate, maxDate);
-}
+const getDetailValueTo = args => getDetailValue(args, 1);
 
 function isValidInput(element) {
   return element.tagName === 'INPUT' && element.type === 'number';
@@ -179,16 +161,16 @@ export default class DateTimeInput extends PureComponent {
      * which values provided are limited by minDate and maxDate so that the dates are the same),
      * get a new one.
      */
-    const nextValue = getDetailValueFrom(nextProps.value, minDate, maxDate);
+    const nextValue = getDetailValueFrom({ value: nextProps.value, minDate, maxDate });
     const values = [nextValue, prevState.value];
     if (
       // Toggling calendar visibility resets values
       nextState.isCalendarOpen // Flag was toggled
       || datesAreDifferent(
-        ...values.map(value => getDetailValueFrom(value, minDate, maxDate)),
+        ...values.map(value => getDetailValueFrom({ value, minDate, maxDate })),
       )
       || datesAreDifferent(
-        ...values.map(value => getDetailValueTo(value, minDate, maxDate)),
+        ...values.map(value => getDetailValueTo({ value, minDate, maxDate })),
       )
     ) {
       if (nextValue) {
