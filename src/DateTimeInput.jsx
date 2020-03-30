@@ -79,7 +79,7 @@ function getDetailValue({
     return null;
   }
 
-  return between(value, minDate, maxDate);
+  return between(valuePiece, minDate, maxDate);
 }
 
 const getDetailValueFrom = args => getDetailValue(args, 0);
