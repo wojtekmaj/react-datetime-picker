@@ -520,11 +520,13 @@ export default class DateTimeInput extends PureComponent {
       // eslint-disable-next-line react/destructuring-assignment
       values[formElement.name] = this.state[formElement.name];
     });
+    // eslint-disable-next-line react/destructuring-assignment
+    values.hour = this.state.hour;
 
     const year = parseInt(values.year, 10) || 0;
     const monthIndex = parseInt(values.month, 10) - 1 || 0;
     const day = parseInt(values.day || 1, 10);
-    const hour = parseInt(values.hour24 || convert12to24(values.hour12, values.amPm) || 0, 10);
+    const hour = parseInt(values.hour || 0, 10);
     const minute = parseInt(values.minute || 0, 10);
     const second = parseInt(values.second || 0, 10);
 
