@@ -464,14 +464,18 @@ export default class DateTimeInput extends PureComponent {
       const [yearString, monthString, dayString] = valueDate.split('-');
       const year = parseInt(yearString, 10);
       const monthIndex = parseInt(monthString, 10) - 1 || 0;
-      const date = parseInt(dayString, 10) || 1;
+      const day = parseInt(dayString, 10) || 1;
 
       const [hourString, minuteString, secondString] = valueTime.split(':');
       const hour = parseInt(hourString, 10) || 0;
       const minute = parseInt(minuteString, 10) || 0;
       const second = parseInt(secondString, 10) || 0;
 
-      return new Date(year, monthIndex, date, hour, minute, second);
+      const proposedValue = new Date();
+      proposedValue.setFullYear(year, monthIndex, day);
+      proposedValue.setHours(hour, minute, second, 0);
+
+      return proposedValue;
     })();
 
     onChange(processedValue, false);
@@ -527,7 +531,9 @@ export default class DateTimeInput extends PureComponent {
       const minute = parseInt(values.minute || 0, 10);
       const second = parseInt(values.second || 0, 10);
 
-      const proposedValue = new Date(year, monthIndex, day, hour, minute, second);
+      const proposedValue = new Date();
+      proposedValue.setFullYear(year, monthIndex, day);
+      proposedValue.setHours(hour, minute, second, 0);
       const processedValue = proposedValue;
       onChange(processedValue, false);
     }
