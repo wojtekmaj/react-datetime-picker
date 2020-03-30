@@ -509,7 +509,7 @@ describe('DateTimePicker', () => {
     expect(clock2).toHaveLength(1);
   });
 
-  it('closes Calendar when calling internal onChange', () => {
+  it('closes Calendar when calling internal onChange by default', () => {
     const component = mount(
       <DateTimePicker isCalendarOpen />
     );
@@ -519,6 +519,21 @@ describe('DateTimePicker', () => {
     onChange(new Date());
 
     expect(component.state('isCalendarOpen')).toBe(false);
+  });
+
+  it('does not close Calendar when calling internal onChange with prop closeWidgets = false', () => {
+    const component = mount(
+      <DateTimePicker
+        closeWidgets={false}
+        isCalendarOpen
+      />
+    );
+
+    const { onChange } = component.instance();
+
+    onChange(new Date());
+
+    expect(component.state('isCalendarOpen')).toBe(true);
   });
 
   it('does not close Calendar when calling internal onChange with closeWidgets = false', () => {
@@ -533,7 +548,7 @@ describe('DateTimePicker', () => {
     expect(component.state('isCalendarOpen')).toBe(true);
   });
 
-  it('closes Clock when calling internal onChange', () => {
+  it('closes Clock when calling internal onChange by default', () => {
     const component = mount(
       <DateTimePicker isClockOpen />
     );
@@ -543,6 +558,21 @@ describe('DateTimePicker', () => {
     onChange(new Date());
 
     expect(component.state('isClockOpen')).toBe(false);
+  });
+
+  it('does not close Clock when calling internal onChange with prop closeWidgets = false', () => {
+    const component = mount(
+      <DateTimePicker
+        closeWidgets={false}
+        isClockOpen
+      />
+    );
+
+    const { onChange } = component.instance();
+
+    onChange(new Date());
+
+    expect(component.state('isClockOpen')).toBe(true);
   });
 
   it('does not close Clock when calling internal onChange with closeWidgets = false', () => {

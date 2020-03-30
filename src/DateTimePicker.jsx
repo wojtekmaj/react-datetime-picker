@@ -78,7 +78,7 @@ export default class DateTimePicker extends PureComponent {
     }
   }
 
-  onDateChange = (value, closeWidgets = true) => {
+  onDateChange = (value, closeWidgets) => {
     const { value: prevValue } = this.props;
 
     if (prevValue) {
@@ -96,13 +96,14 @@ export default class DateTimePicker extends PureComponent {
     }
   }
 
-  onChange = (value, closeWidgets = true) => {
-    this.setState(prevState => ({
-      isCalendarOpen: prevState.isCalendarOpen && !closeWidgets,
-      isClockOpen: prevState.isClockOpen && !closeWidgets,
-    }));
-
+  // eslint-disable-next-line react/destructuring-assignment
+  onChange = (value, closeWidgets = this.props.closeWidgets) => {
     const { onChange } = this.props;
+
+    if (closeWidgets) {
+      this.closeWidgets();
+    }
+
     if (onChange) {
       onChange(value);
     }
@@ -423,6 +424,7 @@ const ClearIcon = (
 DateTimePicker.defaultProps = {
   calendarIcon: CalendarIcon,
   clearIcon: ClearIcon,
+  closeWidgets: true,
   isCalendarOpen: null,
   isClockOpen: null,
   maxDetail: 'minute',
@@ -452,6 +454,7 @@ DateTimePicker.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+  closeWidgets: PropTypes.bool,
   dayAriaLabel: PropTypes.string,
   dayPlaceholder: PropTypes.string,
   disableCalendar: PropTypes.bool,
