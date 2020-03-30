@@ -462,7 +462,7 @@ export default class DateTimeInput extends PureComponent {
       const [valueDate, valueTime] = value.split('T');
 
       const [yearString, monthString, dayString] = valueDate.split('-');
-      const year = parseInt(yearString, 10);
+      const year = parseInt(yearString, 10) || 0;
       const monthIndex = parseInt(monthString, 10) - 1 || 0;
       const date = parseInt(dayString, 10) || 1;
 
@@ -491,7 +491,7 @@ export default class DateTimeInput extends PureComponent {
    * calls props.onChange.
    */
   onChangeExternal = () => {
-    const { onChange } = this.props;
+    const { allowInvalidValues, onChange } = this.props;
 
     if (!onChange) {
       return;
@@ -518,9 +518,10 @@ export default class DateTimeInput extends PureComponent {
     if (formElementsWithoutSelect.every(formElement => !formElement.value)) {
       onChange(null, false);
     } else if (
-      formElements.every(formElement => formElement.value && formElement.checkValidity())
+      allowInvalidValues
+      || formElements.every(formElement => formElement.value && formElement.checkValidity())
     ) {
-      const year = parseInt(values.year, 10);
+      const year = parseInt(values.year, 10) || 0;
       const monthIndex = parseInt(values.month, 10) - 1 || 0;
       const day = parseInt(values.day || 1, 10);
       const hour = parseInt(values.hour24 || convert12to24(values.hour12, values.amPm) || 0, 10);
@@ -821,6 +822,7 @@ const isValue = PropTypes.oneOfType([
 ]);
 
 DateTimeInput.propTypes = {
+  allowInvalidValues: PropTypes.bool,
   amPmAriaLabel: PropTypes.string,
   autoFocus: PropTypes.bool,
   className: PropTypes.string.isRequired,
