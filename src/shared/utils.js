@@ -17,17 +17,6 @@ export function between(value, min, max) {
   return value;
 }
 
-/**
- * Calls a function, if it's defined, with specified arguments
- * @param {Function} fn
- * @param {Object} args
- */
-export function callIfDefined(fn, ...args) {
-  if (fn && typeof fn === 'function') {
-    fn(...args);
-  }
-}
-
 const nines = ['9', '٩'];
 const ninesRegExp = new RegExp(`[${nines.join('')}]`);
 const amPmFormatter = getFormatter({ hour: 'numeric' });
