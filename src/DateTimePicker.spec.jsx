@@ -462,7 +462,7 @@ describe('DateTimePicker', () => {
       <DateTimePicker isCalendarOpen />
     );
 
-    const customInputs = component.find('input[type="number"]');
+    const customInputs = component.find('input[data-input]');
     const dayInput = customInputs.at(0);
     const monthInput = customInputs.at(1);
 
@@ -479,7 +479,7 @@ describe('DateTimePicker', () => {
       <DateTimePicker isClockOpen />
     );
 
-    const customInputs = component.find('input[type="number"]');
+    const customInputs = component.find('input[data-input]');
     const hourInput = customInputs.at(3);
     const minuteInput = customInputs.at(4);
 

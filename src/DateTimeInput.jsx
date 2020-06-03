@@ -86,15 +86,15 @@ const getDetailValueFrom = args => getDetailValue(args, 0);
 
 const getDetailValueTo = args => getDetailValue(args, 1);
 
-function isValidInput(element) {
-  return element.tagName === 'INPUT' && element.type === 'number';
+function isInternalInput(element) {
+  return element.tagName === 'INPUT' && element.getAttribute('data-input') === 'true';
 }
 
 function findInput(element, property) {
   let nextElement = element;
   do {
     nextElement = nextElement[property];
-  } while (nextElement && !isValidInput(nextElement));
+  } while (nextElement && !isInternalInput(nextElement));
   return nextElement;
 }
 
