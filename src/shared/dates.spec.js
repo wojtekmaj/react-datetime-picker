@@ -30,8 +30,11 @@ describe('convert12to24', () => {
     ${9}   | ${'pm'} | ${21}
     ${10}  | ${'pm'} | ${22}
     ${11}  | ${'pm'} | ${23}
-  `('returns $hour24 for $hour12 $amPm',
-  ({ hour12, amPm, hour24 }) => {
+  `('returns $hour24 for $hour12 $amPm', ({
+    hour12,
+    amPm,
+    hour24,
+  }) => {
     expect(convert12to24(hour12, amPm)).toBe(hour24);
   });
 });
@@ -63,8 +66,11 @@ describe('convert24to12', () => {
     ${21}  | ${9}   | ${'pm'}
     ${22}  | ${10}  | ${'pm'}
     ${23}  | ${11}  | ${'pm'}
-  `('returns $hour12 $amPm for $hour24',
-  ({ hour12, amPm, hour24 }) => {
+  `('returns $hour12 $amPm for $hour24', ({
+    hour24,
+    hour12,
+    amPm,
+  }) => {
     expect(convert24to12(hour24)).toEqual([hour12, amPm]);
   });
 });
