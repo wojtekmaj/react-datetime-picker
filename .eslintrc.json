@@ -2,8 +2,7 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
-    "es6": true,
-    "jest": true
+    "es6": true
   },
   "parser": "babel-eslint",
   "rules": {
@@ -11,6 +10,7 @@
       "requireForBlockBody": true
     }],
     "jsx-a11y/label-has-associated-control": ["error", { "required": { "some": ["id", "nesting"] }}],
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["element"] }],
     "no-restricted-globals": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-sort-props": ["error", {
@@ -21,6 +21,16 @@
     "react/state-in-constructor": ["error", "never"]
   },
   "overrides": [
+    {
+      "files": [
+        "**/*.spec.js",
+        "**/*.spec.jsx",
+        "**/__tests__/*"
+      ],
+      "env": {
+        "jest": true
+      }
+    },
     {
       "files": [
         "sample/**",
