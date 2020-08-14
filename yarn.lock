@@ -6699,19 +6699,6 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-clock@npm:^2.3.0":
-  version: 2.4.0
-  resolution: "react-clock@npm:2.4.0"
-  dependencies:
-    merge-class-names: ^1.1.1
-    prop-types: ^15.6.0
-  peerDependencies:
-    react: ">=15.5"
-    react-dom: ">=15.5"
-  checksum: ee6ba7922c68ffb6d1348014fa314998e51eab3303e9133161091dfc4c8ff17add8c0d3573cd4601d7d936b0ee32d8772b87a490bdfeddd8cad3f832213a0dec
-  languageName: node
-  linkType: hard
-
 "react-clock@npm:^3.0.0":
   version: 3.0.0
   resolution: "react-clock@npm:3.0.0"
@@ -6769,7 +6756,7 @@ fsevents@^2.1.2:
     prop-types: ^15.6.0
     react: ^17.0.0
     react-calendar: ^3.3.1
-    react-clock: ^2.3.0
+    react-clock: ^3.0.0
     react-date-picker: ^8.0.7
     react-dom: ^17.0.0
     react-fit: ^1.0.3
