@@ -4,6 +4,10 @@
   "description": "A date range picker for your React app.",
   "main": "dist/entry.js",
   "source": "src/entry.js",
+  "workspaces": [
+    ".",
+    "test"
+  ],
   "scripts": {
     "build": "yarn build-js && yarn copy-styles && yarn build-styles",
     "build-js": "babel src -d dist --ignore **/*.spec.js,**/*.spec.jsx",
