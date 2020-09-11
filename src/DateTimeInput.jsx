@@ -30,7 +30,7 @@ import {
 import { isMaxDate, isMinDate } from './shared/propTypes';
 import { between, getAmPmLabels } from './shared/utils';
 
-const defaultMinDate = new Date(-8.64e15);
+const defaultMinDate = new Date('0001-01-01');
 const defaultMaxDate = new Date(8.64e15);
 const allViews = ['hour', 'minute', 'second'];
 
