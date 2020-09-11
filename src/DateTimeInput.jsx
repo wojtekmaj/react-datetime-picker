@@ -244,13 +244,23 @@ export default class DateTimeInput extends PureComponent {
     const day = 11;
 
     const date = new Date(year, monthIndex, day);
+    const formattedDate = formatDate(locale, date);
 
-    return (
-      formatDate(locale, date)
-        .replace(this.formatNumber(locale, year), 'y')
-        .replace(this.formatNumber(locale, monthIndex + 1), 'M')
-        .replace(this.formatNumber(locale, day), 'd')
-    );
+    const datePieces = ['year', 'month', 'day'];
+    const datePieceReplacements = ['y', 'M', 'd'];
+
+    function formatDatePiece(name, dateToFormat) {
+      return getFormatter({ useGrouping: false, [name]: 'numeric' })(locale, dateToFormat).match(/\d{1,}/);
+    }
+
+    let placeholder = formattedDate;
+    datePieces.forEach((datePiece, index) => {
+      const formattedDatePiece = formatDatePiece(datePiece, date);
+      const datePieceReplacement = datePieceReplacements[index];
+      placeholder = placeholder.replace(formattedDatePiece, datePieceReplacement);
+    });
+
+    return placeholder;
   }
 
   get timePlaceholder() {
