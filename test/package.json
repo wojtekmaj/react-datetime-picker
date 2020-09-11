@@ -16,7 +16,7 @@
     "@wojtekmaj/date-utils": "^1.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "react-datetime-picker": "workspace:*",
+    "react-datetime-picker": "portal:../",
     "react-dom": "^16.7.0"
   },
   "devDependencies": {
