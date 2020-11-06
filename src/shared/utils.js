@@ -31,11 +31,11 @@ export function getAmPmLabels(locale) {
   if (pm2 !== undefined) {
     // If pm2 is undefined, nine was not found in pmString - this locale is not using 12-hour time
     if (am1 !== pm1) {
-      return [am1, pm1].map(el => el.trim());
+      return [am1, pm1].map((el) => el.trim());
     }
 
     if (am2 !== pm2) {
-      return [am2, pm2].map(el => el.trim());
+      return [am2, pm2].map((el) => el.trim());
     }
   }
 

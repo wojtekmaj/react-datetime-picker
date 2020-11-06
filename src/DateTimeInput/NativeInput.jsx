@@ -23,9 +23,9 @@ export default function NativeInput({
   const nativeValueParser = (() => {
     switch (valueType) {
       case 'hour':
-        return receivedValue => `${getISOLocalDate(receivedValue)}T${getHours(receivedValue)}:00`;
+        return (receivedValue) => `${getISOLocalDate(receivedValue)}T${getHours(receivedValue)}:00`;
       case 'minute':
-        return receivedValue => `${getISOLocalDate(receivedValue)}T${getHoursMinutes(receivedValue)}`;
+        return (receivedValue) => `${getISOLocalDate(receivedValue)}T${getHoursMinutes(receivedValue)}`;
       case 'second':
         return getISOLocalDateTime;
       default:

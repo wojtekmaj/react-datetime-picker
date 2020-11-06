@@ -153,7 +153,7 @@ export default class DateTimePicker extends PureComponent {
   }
 
   toggleCalendar = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isCalendarOpen: !prevState.isCalendarOpen,
       isClockOpen: false,
     }));
@@ -172,7 +172,7 @@ export default class DateTimePicker extends PureComponent {
     });
   }
 
-  stopPropagation = event => event.stopPropagation();
+  stopPropagation = (event) => event.stopPropagation();
 
   clear = () => this.onChange(null);
 
@@ -182,7 +182,7 @@ export default class DateTimePicker extends PureComponent {
 
     const shouldListenWithFallback = typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
     const fnName = shouldListenWithFallback ? 'addEventListener' : 'removeEventListener';
-    outsideActionEvents.forEach(eventName => document[fnName](eventName, this.onOutsideAction));
+    outsideActionEvents.forEach((eventName) => document[fnName](eventName, this.onOutsideAction));
   }
 
   renderInputs() {

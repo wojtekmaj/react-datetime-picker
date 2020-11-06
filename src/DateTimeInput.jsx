@@ -82,9 +82,9 @@ function getDetailValue({
   return between(valuePiece, minDate, maxDate);
 }
 
-const getDetailValueFrom = args => getDetailValue(args, 0);
+const getDetailValueFrom = (args) => getDetailValue(args, 0);
 
-const getDetailValueTo = args => getDetailValue(args, 1);
+const getDetailValueTo = (args) => getDetailValue(args, 1);
 
 function isValidInput(element) {
   return element.tagName === 'INPUT' && element.type === 'number';
@@ -107,7 +107,7 @@ function focus(element) {
 function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstances) {
   const usedFunctions = [];
   const pattern = new RegExp(
-    Object.keys(elementFunctions).map(el => `${el}+`).join('|'), 'g',
+    Object.keys(elementFunctions).map((el) => `${el}+`).join('|'), 'g',
   );
   const matches = placeholder.match(pattern);
 
@@ -127,7 +127,7 @@ function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstance
           elementFunctions[currentMatch]
           || elementFunctions[
             Object.keys(elementFunctions)
-              .find(elementFunction => currentMatch.match(elementFunction))
+              .find((elementFunction) => currentMatch.match(elementFunction))
           ]
         );
 
@@ -167,10 +167,10 @@ export default class DateTimeInput extends PureComponent {
       // Toggling calendar visibility resets values
       nextState.isCalendarOpen // Flag was toggled
       || datesAreDifferent(
-        ...values.map(value => getDetailValueFrom({ value, minDate, maxDate })),
+        ...values.map((value) => getDetailValueFrom({ value, minDate, maxDate })),
       )
       || datesAreDifferent(
-        ...values.map(value => getDetailValueTo({ value, minDate, maxDate })),
+        ...values.map((value) => getDetailValueTo({ value, minDate, maxDate })),
       )
     ) {
       if (nextValue) {
@@ -430,7 +430,7 @@ export default class DateTimeInput extends PureComponent {
     switch (name) {
       case 'hour12': {
         this.setState(
-          prevState => ({
+          (prevState) => ({
             hour: value ? convert12to24(parseInt(value, 10), prevState.amPm) : null,
           }),
           this.onChangeExternal,
@@ -529,10 +529,10 @@ export default class DateTimeInput extends PureComponent {
       values[formElement.name] = formElement.value;
     });
 
-    if (formElementsWithoutSelect.every(formElement => !formElement.value)) {
+    if (formElementsWithoutSelect.every((formElement) => !formElement.value)) {
       onChange(null, false);
     } else if (
-      formElements.every(formElement => formElement.value && formElement.validity.valid)
+      formElements.every((formElement) => formElement.value && formElement.validity.valid)
     ) {
       const year = parseInt(values.year, 10);
       const monthIndex = parseInt(values.month, 10) - 1 || 0;

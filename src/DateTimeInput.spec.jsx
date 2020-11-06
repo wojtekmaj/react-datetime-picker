@@ -29,7 +29,7 @@ const keyCodes = {
   '/': 191,
 };
 
-const getKey = key => ({
+const getKey = (key) => ({
   keyCode: keyCodes[key],
   which: keyCodes[key],
   key,
@@ -788,7 +788,7 @@ describe('DateTimeInput', () => {
     expect(document.activeElement).toBe(dayInput.getDOMNode());
 
     const separators = component.find('.react-datetime-picker__inputGroup__divider');
-    const separatorsTexts = separators.map(el => el.text()).filter(el => el.trim());
+    const separatorsTexts = separators.map((el) => el.text()).filter((el) => el.trim());
     const separatorKey = separatorsTexts[0];
     dayInput.simulate('keydown', getKey(separatorKey));
 
@@ -810,7 +810,7 @@ describe('DateTimeInput', () => {
     expect(document.activeElement).toBe(dayInput.getDOMNode());
 
     const separators = component.find('.react-datetime-picker__inputGroup__divider');
-    const separatorsTexts = separators.map(el => el.text()).filter(el => el.trim());
+    const separatorsTexts = separators.map((el) => el.text()).filter((el) => el.trim());
     const separatorKey = separatorsTexts[separatorsTexts.length - 1];
     dayInput.simulate('keydown', getKey(separatorKey));
 
