@@ -55,7 +55,7 @@ function getValue(value, index) {
     return null;
   }
 
-  const rawValue = value instanceof Array && value.length === 2 ? value[index] : value;
+  const rawValue = Array.isArray(value) && value.length === 2 ? value[index] : value;
 
   if (!rawValue) {
     return null;
