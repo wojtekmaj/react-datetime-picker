@@ -1702,6 +1702,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-calendar@npm:^3.0.0":
+  version: 3.1.2
+  resolution: "@types/react-calendar@npm:3.1.2"
+  checksum: be15b3ea3834c246bae15c0fb37b6b203a10e464976596f8f7b99ce413376cd3c504bb1449f3621ea0d4ddab578f2e1820ddc4ab3d58ad8458d08e6bfe0f7f06
+  languageName: node
+  linkType: hard
+
 "@types/stack-utils@npm:^2.0.0":
   version: 2.0.0
   resolution: "@types/stack-utils@npm:2.0.0"
@@ -6677,18 +6684,18 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-calendar@npm:^3.0.0":
-  version: 3.0.1
-  resolution: "react-calendar@npm:3.0.1"
+"react-calendar@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "react-calendar@npm:3.3.1"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.2
     get-user-locale: ^1.2.0
     merge-class-names: ^1.1.1
     prop-types: ^15.6.0
   peerDependencies:
-    react: ">=16.3"
-    react-dom: ">=16.3"
-  checksum: 18eb09965b6dbd80a04caf2cc7ff4c37eab16bd75f05ac725873a7c5a8b2f2317b42dd9e739952a4ba129863e541b487e25695223669b55f26378780a69b87c9
+    react: ^16.3.0 || ^17.0.0-0
+    react-dom: ^16.3.0 || ^17.0.0-0
+  checksum: f5e4687f1eb04a82ef87449ca47620c87d73ac09c63a2d128a7785ea611389a1140ec517f39703fae8fc0d5dea23628289dbe82b2cf63e5dc92c021712677f97
   languageName: node
   linkType: hard
 
@@ -6705,22 +6712,23 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "react-date-picker@npm:8.0.0"
+"react-date-picker@npm:^8.0.7":
+  version: 8.0.7
+  resolution: "react-date-picker@npm:8.0.7"
   dependencies:
-    "@wojtekmaj/date-utils": ^1.0.2
+    "@types/react-calendar": ^3.0.0
+    "@wojtekmaj/date-utils": ^1.0.3
     get-user-locale: ^1.2.0
     make-event-props: ^1.1.0
     merge-class-names: ^1.1.1
     prop-types: ^15.6.0
-    react-calendar: ^3.0.0
+    react-calendar: ^3.3.1
     react-fit: ^1.0.3
     update-input-width: ^1.1.1
   peerDependencies:
-    react: ">=16.3"
-    react-dom: ">=16.3"
-  checksum: 059cefccc99dfced1f756afbdc19a969ff6e8ed0acbd4a4595634b1188bbd104a7b34d218e4e477b4e8605361c08dae2e934f6622f34467c830b3d1588f50be2
+    react: ^16.3.0 || ^17.0.0-0
+    react-dom: ^16.3.0 || ^17.0.0-0
+  checksum: 9b6aec0ba9016db5c42a8a537efd4e4761014674b4ff653e19a9c41f318d1eaa45d5caeb20d8d84ea076c994b84c6f10180c6686e96fb189224b5acb6fd360c0
   languageName: node
   linkType: hard
 
@@ -6746,9 +6754,9 @@ fsevents@^2.1.2:
     merge-class-names: ^1.1.1
     prop-types: ^15.6.0
     react: ^17.0.0
-    react-calendar: ^3.0.0
+    react-calendar: ^3.3.1
     react-clock: ^2.3.0
-    react-date-picker: ^8.0.0
+    react-date-picker: ^8.0.7
     react-dom: ^17.0.0
     react-fit: ^1.0.3
     react-time-picker: ^4.0.0
