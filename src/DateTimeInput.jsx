@@ -36,6 +36,14 @@ defaultMinDate.setHours(0, 0, 0, 0);
 const defaultMaxDate = new Date(8.64e15);
 const allViews = ['hour', 'minute', 'second'];
 
+function toDate(value) {
+  if (value instanceof Date) {
+    return value;
+  }
+
+  return new Date(value);
+}
+
 function datesAreDifferent(date1, date2) {
   return (
     (date1 && !date2)
@@ -63,7 +71,7 @@ function getValue(value, index) {
     return null;
   }
 
-  const valueDate = new Date(rawValue);
+  const valueDate = toDate(rawValue);
 
   if (isNaN(valueDate.getTime())) {
     throw new Error(`Invalid date: ${value}`);
