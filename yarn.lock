@@ -6712,6 +6712,20 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"react-clock@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "react-clock@npm:3.0.0"
+  dependencies:
+    "@wojtekmaj/date-utils": ^1.0.0
+    merge-class-names: ^1.1.1
+    prop-types: ^15.6.0
+  peerDependencies:
+    react: ">=15.5"
+    react-dom: ">=15.5"
+  checksum: 4c34de4c2800740ddc6f1901cc7a8af0b288d417be102ff6edbf58c778c3d8ff60c8760877e914e09facc8f9e8e9bfa08ee701ac369a6b7fb78add58a787e807
+  languageName: node
+  linkType: hard
+
 "react-date-picker@npm:^8.0.7":
   version: 8.0.7
   resolution: "react-date-picker@npm:8.0.7"
@@ -6759,7 +6773,7 @@ fsevents@^2.1.2:
     react-date-picker: ^8.0.7
     react-dom: ^17.0.0
     react-fit: ^1.0.3
-    react-time-picker: ^4.0.0
+    react-time-picker: ^4.1.0
     rimraf: ^3.0.0
   peerDependencies:
     react: ^16.3.0 || ^17.0.0-0
@@ -6833,22 +6847,22 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "react-time-picker@npm:4.0.1"
+"react-time-picker@npm:^4.1.0":
+  version: 4.1.2
+  resolution: "react-time-picker@npm:4.1.2"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.0
     get-user-locale: ^1.2.0
     make-event-props: ^1.1.0
     merge-class-names: ^1.1.1
     prop-types: ^15.6.0
-    react-clock: ^2.3.0
+    react-clock: ^3.0.0
     react-fit: ^1.0.3
     update-input-width: ^1.1.1
   peerDependencies:
-    react: ">=16.3"
-    react-dom: ">=16.3"
-  checksum: fb5ca5fc79a1d2f0ebd56d4e1e7a1e55c3f4855af8934214cd4ca36796bad0559668a12685547e003708d43f62680291bdf594ce8df3098ea64a005fc6ccda7f
+    react: ^16.3.0 || ^17.0.0-0
+    react-dom: ^16.3.0 || ^17.0.0-0
+  checksum: 21477910650583b5678ff617ad18cafa8ba002959355cbfe25804fc4f7edf5a89609eb42c9e5bc49b20c4725d21c5774b39a1f90d3ec3018ccb3a01851f20e9a
   languageName: node
   linkType: hard
 
