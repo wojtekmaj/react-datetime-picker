@@ -54,9 +54,9 @@ function datesAreDifferent(date1, date2) {
 
 function isSameDate(date, year, month, day) {
   return (
-    getYear(date) === year
-    && getMonthHuman(date) === month
-    && getDate(date) === day
+    year === getYear(date).toString()
+    && month === getMonthHuman(date).toString()
+    && day === getDate(date).toString()
   );
 }
 
@@ -185,12 +185,12 @@ export default class DateTimeInput extends PureComponent {
     ) {
       if (nextValue) {
         [, nextState.amPm] = convert24to12(getHours(nextValue));
-        nextState.year = getYear(nextValue);
-        nextState.month = getMonthHuman(nextValue);
-        nextState.day = getDate(nextValue);
-        nextState.hour = getHours(nextValue);
-        nextState.minute = getMinutes(nextValue);
-        nextState.second = getSeconds(nextValue);
+        nextState.year = getYear(nextValue).toString();
+        nextState.month = getMonthHuman(nextValue).toString();
+        nextState.day = getDate(nextValue).toString();
+        nextState.hour = getHours(nextValue).toString();
+        nextState.minute = getMinutes(nextValue).toString();
+        nextState.second = getSeconds(nextValue).toString();
       } else {
         nextState.amPm = null;
         nextState.year = null;

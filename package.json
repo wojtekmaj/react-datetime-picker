@@ -52,9 +52,9 @@
     "prop-types": "^15.6.0",
     "react-calendar": "^3.3.1",
     "react-clock": "^3.0.0",
-    "react-date-picker": "^8.0.7",
+    "react-date-picker": "^8.1.0",
     "react-fit": "^1.0.3",
-    "react-time-picker": "^4.1.0"
+    "react-time-picker": "^4.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.0",

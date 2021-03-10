@@ -130,12 +130,12 @@ describe('DateTimeInput', () => {
     const customInputs = component.find('input[type="number"]');
 
     expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
-    expect(customInputs.at(0).prop('value')).toBe(9);
-    expect(customInputs.at(1).prop('value')).toBe(30);
-    expect(customInputs.at(2).prop('value')).toBe(2017);
-    expect(customInputs.at(3).prop('value')).toBe(10);
-    expect(customInputs.at(4).prop('value')).toBe(17);
-    expect(customInputs.at(5).prop('value')).toBe(0);
+    expect(customInputs.at(0).prop('value')).toBe('9');
+    expect(customInputs.at(1).prop('value')).toBe('30');
+    expect(customInputs.at(2).prop('value')).toBe('2017');
+    expect(customInputs.at(3).prop('value')).toBe('10');
+    expect(customInputs.at(4).prop('value')).toBe('17');
+    expect(customInputs.at(5).prop('value')).toBe('0');
   });
 
   it('shows a given date in all inputs correctly given array of Date objects (12-hour format)', () => {
@@ -153,12 +153,12 @@ describe('DateTimeInput', () => {
     const customInputs = component.find('input[type="number"]');
 
     expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
-    expect(customInputs.at(0).prop('value')).toBe(9);
-    expect(customInputs.at(1).prop('value')).toBe(30);
-    expect(customInputs.at(2).prop('value')).toBe(2017);
-    expect(customInputs.at(3).prop('value')).toBe(10);
-    expect(customInputs.at(4).prop('value')).toBe(17);
-    expect(customInputs.at(5).prop('value')).toBe(0);
+    expect(customInputs.at(0).prop('value')).toBe('9');
+    expect(customInputs.at(1).prop('value')).toBe('30');
+    expect(customInputs.at(2).prop('value')).toBe('2017');
+    expect(customInputs.at(3).prop('value')).toBe('10');
+    expect(customInputs.at(4).prop('value')).toBe('17');
+    expect(customInputs.at(5).prop('value')).toBe('0');
   });
 
   it('shows a given date in all inputs correctly given ISO string (12-hour format)', () => {
@@ -176,12 +176,12 @@ describe('DateTimeInput', () => {
     const customInputs = component.find('input[type="number"]');
 
     expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
-    expect(customInputs.at(0).prop('value')).toBe(9);
-    expect(customInputs.at(1).prop('value')).toBe(30);
-    expect(customInputs.at(2).prop('value')).toBe(2017);
-    expect(customInputs.at(3).prop('value')).toBe(10);
-    expect(customInputs.at(4).prop('value')).toBe(17);
-    expect(customInputs.at(5).prop('value')).toBe(0);
+    expect(customInputs.at(0).prop('value')).toBe('9');
+    expect(customInputs.at(1).prop('value')).toBe('30');
+    expect(customInputs.at(2).prop('value')).toBe('2017');
+    expect(customInputs.at(3).prop('value')).toBe('10');
+    expect(customInputs.at(4).prop('value')).toBe('17');
+    expect(customInputs.at(5).prop('value')).toBe('0');
   });
 
   itIfFullICU('shows a given date in all inputs correctly given Date (24-hour format)', () => {
@@ -200,12 +200,12 @@ describe('DateTimeInput', () => {
     const customInputs = component.find('input[type="number"]');
 
     expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
-    expect(customInputs.at(0).prop('value')).toBe(2017);
-    expect(customInputs.at(1).prop('value')).toBe(9);
-    expect(customInputs.at(2).prop('value')).toBe(30);
-    expect(customInputs.at(3).prop('value')).toBe(22);
-    expect(customInputs.at(4).prop('value')).toBe(17);
-    expect(customInputs.at(5).prop('value')).toBe(0);
+    expect(customInputs.at(0).prop('value')).toBe('2017');
+    expect(customInputs.at(1).prop('value')).toBe('9');
+    expect(customInputs.at(2).prop('value')).toBe('30');
+    expect(customInputs.at(3).prop('value')).toBe('22');
+    expect(customInputs.at(4).prop('value')).toBe('17');
+    expect(customInputs.at(5).prop('value')).toBe('0');
   });
 
   itIfFullICU('shows a given date in all inputs correctly given array of Date objects (24-hour format)', () => {
@@ -224,12 +224,12 @@ describe('DateTimeInput', () => {
     const customInputs = component.find('input[type="number"]');
 
     expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
-    expect(customInputs.at(0).prop('value')).toBe(2017);
-    expect(customInputs.at(1).prop('value')).toBe(9);
-    expect(customInputs.at(2).prop('value')).toBe(30);
-    expect(customInputs.at(3).prop('value')).toBe(22);
-    expect(customInputs.at(4).prop('value')).toBe(17);
-    expect(customInputs.at(5).prop('value')).toBe(0);
+    expect(customInputs.at(0).prop('value')).toBe('2017');
+    expect(customInputs.at(1).prop('value')).toBe('9');
+    expect(customInputs.at(2).prop('value')).toBe('30');
+    expect(customInputs.at(3).prop('value')).toBe('22');
+    expect(customInputs.at(4).prop('value')).toBe('17');
+    expect(customInputs.at(5).prop('value')).toBe('0');
   });
 
   itIfFullICU('shows a given date in all inputs correctly given ISO string (24-hour format)', () => {
@@ -248,12 +248,12 @@ describe('DateTimeInput', () => {
     const customInputs = component.find('input[type="number"]');
 
     expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
-    expect(customInputs.at(0).prop('value')).toBe(2017);
-    expect(customInputs.at(1).prop('value')).toBe(9);
-    expect(customInputs.at(2).prop('value')).toBe(30);
-    expect(customInputs.at(3).prop('value')).toBe(22);
-    expect(customInputs.at(4).prop('value')).toBe(17);
-    expect(customInputs.at(5).prop('value')).toBe(0);
+    expect(customInputs.at(0).prop('value')).toBe('2017');
+    expect(customInputs.at(1).prop('value')).toBe('9');
+    expect(customInputs.at(2).prop('value')).toBe('30');
+    expect(customInputs.at(3).prop('value')).toBe('22');
+    expect(customInputs.at(4).prop('value')).toBe('17');
+    expect(customInputs.at(5).prop('value')).toBe('0');
   });
 
   it('shows empty value in all inputs correctly given null', () => {
