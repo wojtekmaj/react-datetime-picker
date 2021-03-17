@@ -328,14 +328,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-validator-identifier@npm:^7.10.4":
-  version: 7.10.4
-  resolution: "@babel/helper-validator-identifier@npm:7.10.4"
-  checksum: 25098ef842e3ffecdd9a7216f6173da7ad7be1b0b3e454a9f6965055154b9ad7a4acd2f218ba3d2efc0821bdab97837b3cb815844af7d72f66f89d446a54efc6
-  languageName: node
-  linkType: hard
-
-"@babel/helper-validator-identifier@npm:^7.12.11":
+"@babel/helper-validator-identifier@npm:^7.10.4, @babel/helper-validator-identifier@npm:^7.12.11":
   version: 7.12.11
   resolution: "@babel/helper-validator-identifier@npm:7.12.11"
   checksum: 18de432203264b501db2690b53370a4289dc56084f5a2c66de624b159ee28b8abaeb402b2b7584296d9261645d91ddb6bfd21125d3ffd9bf02e9262e77baf3d2
@@ -698,18 +691,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-top-level-await@npm:^7.10.4":
-  version: 7.10.4
-  resolution: "@babel/plugin-syntax-top-level-await@npm:7.10.4"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.10.4
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 998d87fbd38a2c7d1b630ccd0a90430a70dec6b7fb23fc37c60cbc10de7112a094c786602d9c8e3093568f538eb2642705006682ce58eb922f2eda889af3ad48
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-syntax-top-level-await@npm:^7.8.3":
+"@babel/plugin-syntax-top-level-await@npm:^7.10.4, @babel/plugin-syntax-top-level-await@npm:^7.8.3":
   version: 7.12.1
   resolution: "@babel/plugin-syntax-top-level-await@npm:7.12.1"
   dependencies:
@@ -1330,18 +1312,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.10.4, @babel/types@npm:^7.10.5, @babel/types@npm:^7.11.0, @babel/types@npm:^7.11.5, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.7.0":
-  version: 7.11.5
-  resolution: "@babel/types@npm:7.11.5"
-  dependencies:
-    "@babel/helper-validator-identifier": ^7.10.4
-    lodash: ^4.17.19
-    to-fast-properties: ^2.0.0
-  checksum: a1515b3ed19a8499f1f27d2c90537803b3e77f6d100ef1c327c86f85817ad2d915a61ae777eaacd9d955999db4ea68d6bb3b5933e0611d3d18a6ffc95430f44a
-  languageName: node
-  linkType: hard
-
-"@babel/types@npm:^7.8.3":
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.10.4, @babel/types@npm:^7.10.5, @babel/types@npm:^7.11.0, @babel/types@npm:^7.11.5, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.7.0, @babel/types@npm:^7.8.3":
   version: 7.12.12
   resolution: "@babel/types@npm:7.12.12"
   dependencies:
@@ -1690,16 +1661,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__traverse@npm:*, @types/babel__traverse@npm:^7.0.6":
-  version: 7.0.14
-  resolution: "@types/babel__traverse@npm:7.0.14"
-  dependencies:
-    "@babel/types": ^7.3.0
-  checksum: 322b1fc7dbd22c13aaef1d00fcd3569844240609c84558fff110290ad60a51d66735a1a6e122489a08250ec0076fcc6c8e7e44356f52e3fc93037de556631e82
-  languageName: node
-  linkType: hard
-
-"@types/babel__traverse@npm:^7.0.4":
+"@types/babel__traverse@npm:*, @types/babel__traverse@npm:^7.0.4, @types/babel__traverse@npm:^7.0.6":
   version: 7.11.0
   resolution: "@types/babel__traverse@npm:7.11.0"
   dependencies:
@@ -8346,22 +8308,23 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-clock@npm:^2.3.0":
-  version: 2.4.0
-  resolution: "react-clock@npm:2.4.0"
+"react-clock@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "react-clock@npm:3.0.0"
   dependencies:
+    "@wojtekmaj/date-utils": ^1.0.0
     merge-class-names: ^1.1.1
     prop-types: ^15.6.0
   peerDependencies:
     react: ">=15.5"
     react-dom: ">=15.5"
-  checksum: ee6ba7922c68ffb6d1348014fa314998e51eab3303e9133161091dfc4c8ff17add8c0d3573cd4601d7d936b0ee32d8772b87a490bdfeddd8cad3f832213a0dec
+  checksum: 4c34de4c2800740ddc6f1901cc7a8af0b288d417be102ff6edbf58c778c3d8ff60c8760877e914e09facc8f9e8e9bfa08ee701ac369a6b7fb78add58a787e807
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^8.0.7":
-  version: 8.0.7
-  resolution: "react-date-picker@npm:8.0.7"
+"react-date-picker@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "react-date-picker@npm:8.1.0"
   dependencies:
     "@types/react-calendar": ^3.0.0
     "@wojtekmaj/date-utils": ^1.0.3
@@ -8375,7 +8338,7 @@ fsevents@^2.1.2:
   peerDependencies:
     react: ^16.3.0 || ^17.0.0-0
     react-dom: ^16.3.0 || ^17.0.0-0
-  checksum: 9b6aec0ba9016db5c42a8a537efd4e4761014674b4ff653e19a9c41f318d1eaa45d5caeb20d8d84ea076c994b84c6f10180c6686e96fb189224b5acb6fd360c0
+  checksum: b871f9ede4ebbdcf665824ed8fb9d85e14f72a40006913a2d17db9e06cbc1527363cfb7f837410764f225f5ffec89ed4b4e367446adee5ae6aba44276df25f1f
   languageName: node
   linkType: hard
 
@@ -8430,11 +8393,11 @@ fsevents@^2.1.2:
     prop-types: ^15.6.0
     react: ^17.0.0
     react-calendar: ^3.3.1
-    react-clock: ^2.3.0
-    react-date-picker: ^8.0.7
+    react-clock: ^3.0.0
+    react-date-picker: ^8.1.0
     react-dom: ^17.0.0
     react-fit: ^1.0.3
-    react-time-picker: ^4.0.0
+    react-time-picker: ^4.2.0
     rimraf: ^3.0.0
   peerDependencies:
     react: ^16.3.0 || ^17.0.0-0
@@ -8515,22 +8478,22 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "react-time-picker@npm:4.0.1"
+"react-time-picker@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "react-time-picker@npm:4.2.0"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.0
     get-user-locale: ^1.2.0
     make-event-props: ^1.1.0
     merge-class-names: ^1.1.1
     prop-types: ^15.6.0
-    react-clock: ^2.3.0
+    react-clock: ^3.0.0
     react-fit: ^1.0.3
     update-input-width: ^1.1.1
   peerDependencies:
-    react: ">=16.3"
-    react-dom: ">=16.3"
-  checksum: fb5ca5fc79a1d2f0ebd56d4e1e7a1e55c3f4855af8934214cd4ca36796bad0559668a12685547e003708d43f62680291bdf594ce8df3098ea64a005fc6ccda7f
+    react: ^16.3.0 || ^17.0.0-0
+    react-dom: ^16.3.0 || ^17.0.0-0
+  checksum: cb6d41c1116708e4340bda06f512060276ceb26b65be808f8c7999e7635cc16e04aa4b02fd70c0ae09c2fbc589aebbcbfcd74cff98881354305b4f666646a3e1
   languageName: node
   linkType: hard
 
