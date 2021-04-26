@@ -42,3 +42,13 @@ export function getAmPmLabels(locale) {
   // Fallback
   return ['AM', 'PM'];
 }
+
+/**
+ * cast the value to a String if it's not undefined or null
+ *
+ * @param {*} value any value
+ */
+export function castToString(value) {
+  // value == null to exlude 0 because it a Number
+  return value == null ? value : String(value);
+}
