@@ -441,7 +441,7 @@ export default class DateTimeInput extends PureComponent {
       case 'hour12': {
         this.setState(
           (prevState) => ({
-            hour: value ? convert12to24(parseInt(value, 10), prevState.amPm) : null,
+            hour: value ? convert12to24(parseInt(value, 10), prevState.amPm).toString() : '',
           }),
           this.onChangeExternal,
         );
@@ -449,14 +449,14 @@ export default class DateTimeInput extends PureComponent {
       }
       case 'hour24': {
         this.setState(
-          { hour: value ? parseInt(value, 10) : null },
+          { hour: value },
           this.onChangeExternal,
         );
         break;
       }
       default: {
         this.setState(
-          { [name]: value ? parseInt(value, 10) : null },
+          { [name]: value },
           this.onChangeExternal,
         );
       }
