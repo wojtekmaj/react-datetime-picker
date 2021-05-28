@@ -111,7 +111,11 @@ export default class DateTimePicker extends PureComponent {
   }
 
   onFocus = (event) => {
-    const { disabled, onFocus } = this.props;
+    const {
+      disabled,
+      onFocus,
+      openWidgetsOnFocus,
+    } = this.props;
 
     if (onFocus) {
       onFocus(event);
@@ -122,19 +126,21 @@ export default class DateTimePicker extends PureComponent {
       return;
     }
 
-    switch (event.target.name) {
-      case 'day':
-      case 'month':
-      case 'year':
-        this.openCalendar();
-        break;
-      case 'hour12':
-      case 'hour24':
-      case 'minute':
-      case 'second':
-        this.openClock();
-        break;
-      default:
+    if (openWidgetsOnFocus) {
+      switch (event.target.name) {
+        case 'day':
+        case 'month':
+        case 'year':
+          this.openCalendar();
+          break;
+        case 'hour12':
+        case 'hour24':
+        case 'minute':
+        case 'second':
+          this.openClock();
+          break;
+        default:
+      }
     }
   }
 
@@ -429,6 +435,7 @@ DateTimePicker.defaultProps = {
   isCalendarOpen: null,
   isClockOpen: null,
   maxDetail: 'minute',
+  openWidgetsOnFocus: true,
 };
 
 const isValue = PropTypes.oneOfType([
@@ -482,6 +489,7 @@ DateTimePicker.propTypes = {
   onClockClose: PropTypes.func,
   onClockOpen: PropTypes.func,
   onFocus: PropTypes.func,
+  openWidgetsOnFocus: PropTypes.bool,
   required: PropTypes.bool,
   secondAriaLabel: PropTypes.string,
   secondPlaceholder: PropTypes.string,

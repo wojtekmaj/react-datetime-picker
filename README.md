@@ -119,6 +119,7 @@ Displays an input field complete with custom inputs, native input, a calendar, a
 |onChange|Function called when the user clicks an item on the most detailed view available.|n/a|`(value) => alert('New date is: ', value)`|
 |onClockClose|Function called when the clock closes.|n/a|`() => alert('Clock closed')`|
 |onClockOpen|Function called when the clock opens.|n/a|`() => alert('Clock opened')`|
+|openWidgetsOnFocus|Whether to open the widgets on input focus.|`true`|`false`|
 |returnValue|Which dates shall be passed by the calendar to the onChange function and onClick{Period} functions. Can be `"start"`, `"end"` or `"range"`. The latter will cause an array with start and end values to be passed.|` "start"`|`"range"`|
 |required|Whether datetime input should be required.|`false`|`true`|
 |secondAriaLabel|`aria-label` for the second input.|n/a|`"Second"`|
