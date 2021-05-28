@@ -317,40 +317,116 @@ describe('DateTimePicker', () => {
     expect(calendar2).toHaveLength(1);
   });
 
-  it('opens Calendar component when focusing on a date input inside', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+  describe('handles opening Calendar component when focusing on an input inside properly', () => {
+    it('opens Calendar component when focusing on an input inside by default', () => {
+      const component = mount(
+        <DateTimePicker />,
+      );
 
-    const calendar = component.find('Calendar');
-    const input = component.find('input[name="day"]');
+      const calendar = component.find('Calendar');
+      const input = component.find('input[name="day"]');
 
-    expect(calendar).toHaveLength(0);
+      expect(calendar).toHaveLength(0);
 
-    input.simulate('focus');
-    component.update();
+      input.simulate('focus');
+      component.update();
 
-    const calendar2 = component.find('Calendar');
+      const calendar2 = component.find('Calendar');
 
-    expect(calendar2).toHaveLength(1);
+      expect(calendar2).toHaveLength(1);
+    });
+
+    it('opens Calendar component when focusing on an input inside given openWidgetsOnFocus = true', () => {
+      const component = mount(
+        <DateTimePicker openWidgetsOnFocus />,
+      );
+
+      const calendar = component.find('Calendar');
+      const input = component.find('input[name="day"]');
+
+      expect(calendar).toHaveLength(0);
+
+      input.simulate('focus');
+      component.update();
+
+      const calendar2 = component.find('Calendar');
+
+      expect(calendar2).toHaveLength(1);
+    });
+
+    it('does not open Calendar component when focusing on an input inside given openWidgetsOnFocus = false', () => {
+      const component = mount(
+        <DateTimePicker openWidgetsOnFocus={false} />,
+      );
+
+      const calendar = component.find('Calendar');
+      const input = component.find('input[name="day"]');
+
+      expect(calendar).toHaveLength(0);
+
+      input.simulate('focus');
+      component.update();
+
+      const calendar2 = component.find('Calendar');
+
+      expect(calendar2).toHaveLength(0);
+    });
   });
 
-  it('opens Clock component when focusing on a time input inside', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+  describe('handles opening Clock component when focusing on an input inside properly', () => {
+    it('opens Clock component when focusing on an input inside by default', () => {
+      const component = mount(
+        <DateTimePicker />,
+      );
 
-    const clock = component.find('Clock');
-    const input = component.find('input[name^="hour"]');
+      const clock = component.find('Clock');
+      const input = component.find('input[name^="hour"]');
 
-    expect(clock).toHaveLength(0);
+      expect(clock).toHaveLength(0);
 
-    input.simulate('focus');
-    component.update();
+      input.simulate('focus');
+      component.update();
 
-    const clock2 = component.find('Clock');
+      const clock2 = component.find('Clock');
 
-    expect(clock2).toHaveLength(1);
+      expect(clock2).toHaveLength(1);
+    });
+
+    it('opens Clock component when focusing on an input inside given openWidgetsOnFocus = true', () => {
+      const component = mount(
+        <DateTimePicker openWidgetsOnFocus />,
+      );
+
+      const clock = component.find('Clock');
+      const input = component.find('input[name^="hour"]');
+
+      expect(clock).toHaveLength(0);
+
+      input.simulate('focus');
+      component.update();
+
+      const clock2 = component.find('Clock');
+
+      expect(clock2).toHaveLength(1);
+    });
+
+    it('does not open Clock component when focusing on an input inside given openWidgetsOnFocus = false', () => {
+      const component = mount(
+        <DateTimePicker openWidgetsOnFocus={false} />,
+      );
+
+      const clock = component.find('Clock');
+      const input = component.find('input[name^="hour"]');
+
+      expect(clock).toHaveLength(0);
+
+      input.simulate('focus');
+      component.update();
+
+      const clock2 = component.find('Clock');
+
+      expect(clock2).toHaveLength(0);
+    });
   });
 
   it('closes Calendar component when clicked outside', () => {
