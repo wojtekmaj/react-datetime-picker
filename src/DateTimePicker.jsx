@@ -74,7 +74,9 @@ export default class DateTimePicker extends PureComponent {
   }
 
   onOutsideAction = (event) => {
-    if (this.wrapper && !this.wrapper.contains(event.target)) {
+    // Try event.composedPath first to handle clicks inside a Shadow DOM.
+    const target = 'composedPath' in event ? event.composedPath()[0] : event.target;
+    if (this.wrapper && !this.wrapper.contains(target)) {
       this.closeWidgets();
     }
   }
