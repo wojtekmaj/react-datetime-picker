@@ -5666,6 +5666,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"merge-refs@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "merge-refs@npm:1.0.0"
+  checksum: 3b4ea1a178c52349a0e725281aa34b130fb6819d22f8e616ae30da6f4da223d9c3a53f6e1a427c5ba56bf6b162c98de95a53f76e01a343e10162823fee33f64a
+  languageName: node
+  linkType: hard
+
 "merge-stream@npm:^2.0.0":
   version: 2.0.0
   resolution: "merge-stream@npm:2.0.0"
@@ -6712,23 +6719,24 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "react-date-picker@npm:8.1.0"
+"react-date-picker@npm:^8.3.2":
+  version: 8.3.2
+  resolution: "react-date-picker@npm:8.3.2"
   dependencies:
     "@types/react-calendar": ^3.0.0
     "@wojtekmaj/date-utils": ^1.0.3
     get-user-locale: ^1.2.0
     make-event-props: ^1.1.0
     merge-class-names: ^1.1.1
+    merge-refs: ^1.0.0
     prop-types: ^15.6.0
     react-calendar: ^3.3.1
     react-fit: ^1.0.3
-    update-input-width: ^1.1.1
+    update-input-width: ^1.2.2
   peerDependencies:
     react: ^16.3.0 || ^17.0.0-0
     react-dom: ^16.3.0 || ^17.0.0-0
-  checksum: c6d0a69a6fd0e3c4f37a04e9118f03bc2a76fc6d366bb2df45b0871013535776b0c3818503700df3e44b7b107d6478916cdc6ce82fa73a829c18ad2b36de6d47
+  checksum: 545d6ccd5a78a3b77e94481dfd9b7c8eb87c72dcd56acb003921f4090d09ac4cd83fcffd547c2c9baf927b6f8723598cf1fb79afa8b4de0a1b51500bf2e4307b
   languageName: node
   linkType: hard
 
@@ -6756,10 +6764,10 @@ fsevents@^2.1.2:
     react: ^17.0.0
     react-calendar: ^3.3.1
     react-clock: ^3.0.0
-    react-date-picker: ^8.1.0
+    react-date-picker: ^8.3.2
     react-dom: ^17.0.0
     react-fit: ^1.0.3
-    react-time-picker: ^4.2.0
+    react-time-picker: ^4.4.1
     rimraf: ^3.0.0
   peerDependencies:
     react: ^16.3.0 || ^17.0.0-0
@@ -6833,22 +6841,23 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "react-time-picker@npm:4.2.0"
+"react-time-picker@npm:^4.4.1":
+  version: 4.4.1
+  resolution: "react-time-picker@npm:4.4.1"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.0
     get-user-locale: ^1.2.0
     make-event-props: ^1.1.0
     merge-class-names: ^1.1.1
+    merge-refs: ^1.0.0
     prop-types: ^15.6.0
     react-clock: ^3.0.0
     react-fit: ^1.0.3
-    update-input-width: ^1.1.1
+    update-input-width: ^1.2.2
   peerDependencies:
     react: ^16.3.0 || ^17.0.0-0
     react-dom: ^16.3.0 || ^17.0.0-0
-  checksum: f990b151f6e2acec520a6015095b289ea3e23f5a167271c252a2222f802c626c5826d485563910855766c61e224d284fe6254c8a1e51b3c43beadf37d2df3bf0
+  checksum: 6d9658b6b2673baeab014d62257d0e65d00fe14571e27dd1b9b5fbfa03b7dc7d7d10d1965ce850896cca9414157e0bccacae4f868efdf7a95da93c63dc2a9b29
   languageName: node
   linkType: hard
 
@@ -8134,10 +8143,10 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"update-input-width@npm:^1.1.1":
-  version: 1.2.1
-  resolution: "update-input-width@npm:1.2.1"
-  checksum: ce02ff53b30e8fbc8481e0ef24a3773cc8d1220b810c03ed1077adf66a3d98f8ceaf2ce5773c742657d1cf727ac8f1c4b0069e8e9bbbcbadea56ae1c49886005
+"update-input-width@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "update-input-width@npm:1.2.2"
+  checksum: bfa5d87e005d482a23086c0380d39911aeff6f4784204b04a066d72c6178dd86af19f7ce44eae08f594a693312d97346f3fea9f7a89094c7f6c140e7d200539c
   languageName: node
   linkType: hard
 
