@@ -375,18 +375,21 @@ export default class DateTimePicker extends PureComponent {
   }
 
   render() {
+    const { eventProps } = this;
     const { className, disabled } = this.props;
-    const { isCalendarOpen, isClockOpen } = this.state;
+    const { isOpen } = this.state;
+
+    const { onChange, ...eventPropsWithoutOnChange } = eventProps;
 
     return (
       <div
         className={mergeClassNames(
           baseClassName,
-          `${baseClassName}--${isCalendarOpen || isClockOpen ? 'open' : 'closed'}`,
+          `${baseClassName}--${isOpen ? 'open' : 'closed'}`,
           `${baseClassName}--${disabled ? 'disabled' : 'enabled'}`,
           className,
         )}
-        {...this.eventProps}
+        {...eventPropsWithoutOnChange}
         onFocus={this.onFocus}
         ref={(ref) => {
           if (!ref) {
