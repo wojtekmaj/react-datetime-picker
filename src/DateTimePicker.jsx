@@ -150,6 +150,12 @@ export default class DateTimePicker extends PureComponent {
     }
   }
 
+  onKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      this.closeWidgets();
+    }
+  }
+
   openClock = () => {
     this.setState({
       isCalendarOpen: false,
@@ -195,6 +201,7 @@ export default class DateTimePicker extends PureComponent {
     const shouldListenWithFallback = typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
     const fnName = shouldListenWithFallback ? 'addEventListener' : 'removeEventListener';
     outsideActionEvents.forEach((eventName) => document[fnName](eventName, this.onOutsideAction));
+    document[fnName]('keydown', this.onKeyDown);
   }
 
   renderInputs() {
