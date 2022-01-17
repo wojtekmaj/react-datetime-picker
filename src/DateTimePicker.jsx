@@ -332,7 +332,14 @@ export default class DateTimePicker extends PureComponent {
 
     return (
       <Fit>
-        <div className={mergeClassNames(className, `${className}--${isCalendarOpen ? 'open' : 'closed'}`)}>
+        <div
+          ref={(ref) => {
+            if (ref && !isCalendarOpen) {
+              ref.removeAttribute('style');
+            }
+          }}
+          className={mergeClassNames(className, `${className}--${isCalendarOpen ? 'open' : 'closed'}`)}
+        >
           <Calendar
             className={calendarClassName}
             onChange={this.onDateChange}
@@ -368,7 +375,14 @@ export default class DateTimePicker extends PureComponent {
 
     return (
       <Fit>
-        <div className={mergeClassNames(className, `${className}--${isClockOpen ? 'open' : 'closed'}`)}>
+        <div
+          ref={(ref) => {
+            if (ref && !isClockOpen) {
+              ref.removeAttribute('style');
+            }
+          }}
+          className={mergeClassNames(className, `${className}--${isClockOpen ? 'open' : 'closed'}`)}
+        >
           <Clock
             className={clockClassName}
             renderMinuteHand={maxDetailIndex > 0}
