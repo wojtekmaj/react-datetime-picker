@@ -39,7 +39,7 @@
     "react-calendar": "^3.3.1",
     "react-clock": "^3.0.0",
     "react-date-picker": "^8.3.3",
-    "react-fit": "^1.0.3",
+    "react-fit": "^1.4.0",
     "react-time-picker": "^4.4.2"
   },
   "devDependencies": {
@@ -59,8 +59,8 @@
     "rimraf": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^16.3.0 || ^17.0.0-0",
-    "react-dom": "^16.3.0 || ^17.0.0-0"
+    "react": "^16.3.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.3.0 || ^17.0.0 || ^18.0.0"
   },
   "resolutions": {
     "semver@7.0.0": "^7.0.0"
