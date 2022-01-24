@@ -22,7 +22,7 @@ import AmPm from 'react-time-picker/dist/TimeInput/AmPm';
 import Divider from './Divider';
 import NativeInput from './DateTimeInput/NativeInput';
 
-import { getFormatter, formatDate } from './shared/dateFormatter';
+import { getFormatter, getNumberFormatter, formatDate } from './shared/dateFormatter';
 import {
   convert12to24,
   convert24to12,
@@ -152,6 +152,8 @@ function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstance
     }, []);
 }
 
+const formatNumber = getNumberFormatter({ useGrouping: false });
+
 export default class DateTimeInput extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
     const { minDate, maxDate } = nextProps;
@@ -249,9 +251,7 @@ export default class DateTimeInput extends PureComponent {
 
   // eslint-disable-next-line class-methods-use-this
   get formatNumber() {
-    const options = { useGrouping: false };
-
-    return getFormatter(options);
+    return formatNumber;
   }
 
   get dateDivider() {
