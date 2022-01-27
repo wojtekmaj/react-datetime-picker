@@ -40,12 +40,7 @@ export default class DateTimePicker extends PureComponent {
 
   componentDidUpdate(prevProps, prevState) {
     const { isCalendarOpen, isClockOpen } = this.state;
-    const {
-      onCalendarClose,
-      onCalendarOpen,
-      onClockClose,
-      onClockOpen,
-    } = this.props;
+    const { onCalendarClose, onCalendarOpen, onClockClose, onClockOpen } = this.props;
 
     const isWidgetOpen = isCalendarOpen || isClockOpen;
     const prevIsWidgetOpen = prevState.isCalendarOpen || prevState.isClockOpen;
@@ -79,7 +74,7 @@ export default class DateTimePicker extends PureComponent {
     if (this.wrapper && !this.wrapper.contains(target)) {
       this.closeWidgets();
     }
-  }
+  };
 
   onDateChange = (value, closeWidgets) => {
     const { value: prevValue } = this.props;
@@ -97,9 +92,8 @@ export default class DateTimePicker extends PureComponent {
     } else {
       this.onChange(value, closeWidgets);
     }
-  }
+  };
 
-  // eslint-disable-next-line react/destructuring-assignment
   onChange = (value, closeWidgets = this.props.closeWidgets) => {
     const { onChange } = this.props;
 
@@ -110,14 +104,10 @@ export default class DateTimePicker extends PureComponent {
     if (onChange) {
       onChange(value);
     }
-  }
+  };
 
   onFocus = (event) => {
-    const {
-      disabled,
-      onFocus,
-      openWidgetsOnFocus,
-    } = this.props;
+    const { disabled, onFocus, openWidgetsOnFocus } = this.props;
 
     if (onFocus) {
       onFocus(event);
@@ -148,34 +138,34 @@ export default class DateTimePicker extends PureComponent {
         default:
       }
     }
-  }
+  };
 
   onKeyDown = (event) => {
     if (event.key === 'Escape') {
       this.closeWidgets();
     }
-  }
+  };
 
   openClock = () => {
     this.setState({
       isCalendarOpen: false,
       isClockOpen: true,
     });
-  }
+  };
 
   openCalendar = () => {
     this.setState({
       isCalendarOpen: true,
       isClockOpen: false,
     });
-  }
+  };
 
   toggleCalendar = () => {
     this.setState((prevState) => ({
       isCalendarOpen: !prevState.isCalendarOpen,
       isClockOpen: false,
     }));
-  }
+  };
 
   closeWidgets = () => {
     this.setState((prevState) => {
@@ -188,7 +178,7 @@ export default class DateTimePicker extends PureComponent {
         isClockOpen: false,
       };
     });
-  }
+  };
 
   stopPropagation = (event) => event.stopPropagation();
 
@@ -198,7 +188,8 @@ export default class DateTimePicker extends PureComponent {
     const { isCalendarOpen, isClockOpen } = this.state;
     const isWidgetOpen = isCalendarOpen || isClockOpen;
 
-    const shouldListenWithFallback = typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
+    const shouldListenWithFallback =
+      typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
     const fnName = shouldListenWithFallback ? 'addEventListener' : 'removeEventListener';
     outsideActionEvents.forEach((eventName) => document[fnName](eventName, this.onOutsideAction));
     document[fnName]('keydown', this.onKeyDown);
@@ -266,6 +257,7 @@ export default class DateTimePicker extends PureComponent {
         <DateTimeInput
           {...ariaLabelProps}
           {...placeholderProps}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={autoFocus}
           className={`${baseClassName}__inputGroup`}
           disabled={disabled}
@@ -338,7 +330,10 @@ export default class DateTimePicker extends PureComponent {
               ref.removeAttribute('style');
             }
           }}
-          className={mergeClassNames(className, `${className}--${isCalendarOpen ? 'open' : 'closed'}`)}
+          className={mergeClassNames(
+            className,
+            `${className}--${isCalendarOpen ? 'open' : 'closed'}`,
+          )}
         >
           <Calendar
             className={calendarClassName}
@@ -468,30 +463,18 @@ DateTimePicker.defaultProps = {
   openWidgetsOnFocus: true,
 };
 
-const isValue = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.instanceOf(Date),
-]);
+const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
 
 DateTimePicker.propTypes = {
   amPmAriaLabel: PropTypes.string,
   autoFocus: PropTypes.bool,
   calendarAriaLabel: PropTypes.string,
-  calendarClassName: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  calendarClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   calendarIcon: PropTypes.node,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   clearAriaLabel: PropTypes.string,
   clearIcon: PropTypes.node,
-  clockClassName: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  clockClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   closeWidgets: PropTypes.bool,
   dayAriaLabel: PropTypes.string,
   dayPlaceholder: PropTypes.string,
@@ -524,10 +507,7 @@ DateTimePicker.propTypes = {
   secondAriaLabel: PropTypes.string,
   secondPlaceholder: PropTypes.string,
   showLeadingZeros: PropTypes.bool,
-  value: PropTypes.oneOfType([
-    isValue,
-    PropTypes.arrayOf(isValue),
-  ]),
+  value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
 };

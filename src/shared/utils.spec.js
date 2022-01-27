@@ -1,6 +1,4 @@
-import {
-  between,
-} from './utils';
+import { between } from './utils';
 
 describe('between', () => {
   it('returns value when value is within set boundaries', () => {

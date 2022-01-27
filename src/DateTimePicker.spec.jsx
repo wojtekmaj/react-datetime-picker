@@ -5,9 +5,7 @@ import DateTimePicker from './DateTimePicker';
 
 describe('DateTimePicker', () => {
   it('passes default name to DateTimeInput', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+    const component = mount(<DateTimePicker />);
 
     const dateTimeInput = component.find('DateTimeInput');
 
@@ -17,9 +15,7 @@ describe('DateTimePicker', () => {
   it('passes custom name to DateTimeInput', () => {
     const name = 'testName';
 
-    const component = mount(
-      <DateTimePicker name={name} />,
-    );
+    const component = mount(<DateTimePicker name={name} />);
 
     const dateTimeInput = component.find('DateTimeInput');
 
@@ -27,9 +23,8 @@ describe('DateTimePicker', () => {
   });
 
   it('passes autoFocus flag to DateTimeInput', () => {
-    const component = mount(
-      <DateTimePicker autoFocus />,
-    );
+    // eslint-disable-next-line jsx-a11y/no-autofocus
+    const component = mount(<DateTimePicker autoFocus />);
 
     const dateTimeInput = component.find('DateTimeInput');
 
@@ -37,9 +32,7 @@ describe('DateTimePicker', () => {
   });
 
   it('passes disabled flag to DateTimeInput', () => {
-    const component = mount(
-      <DateTimePicker disabled />,
-    );
+    const component = mount(<DateTimePicker disabled />);
 
     const dateTimeInput = component.find('DateTimeInput');
 
@@ -49,9 +42,7 @@ describe('DateTimePicker', () => {
   it('passes format to DateTimeInput', () => {
     const format = 'y-MM-dd h:mm:ss a';
 
-    const component = mount(
-      <DateTimePicker format={format} />,
-    );
+    const component = mount(<DateTimePicker format={format} />);
 
     const dateTimeInput = component.find('DateTimeInput');
 
@@ -72,9 +63,7 @@ describe('DateTimePicker', () => {
       yearAriaLabel: 'Year',
     };
 
-    const component = mount(
-      <DateTimePicker {...ariaLabelProps} />,
-    );
+    const component = mount(<DateTimePicker {...ariaLabelProps} />);
 
     const calendarButton = component.find('button.react-datetime-picker__calendar-button');
     const clearButton = component.find('button.react-datetime-picker__clear-button');
@@ -102,9 +91,7 @@ describe('DateTimePicker', () => {
       yearPlaceholder: 'Year',
     };
 
-    const component = mount(
-      <DateTimePicker {...placeholderProps} />,
-    );
+    const component = mount(<DateTimePicker {...placeholderProps} />);
 
     const dateTimeInput = component.find('DateTimeInput');
 
@@ -120,9 +107,7 @@ describe('DateTimePicker', () => {
     it('passes single value to DateTimeInput', () => {
       const value = new Date(2019, 0, 1);
 
-      const component = mount(
-        <DateTimePicker value={value} />,
-      );
+      const component = mount(<DateTimePicker value={value} />);
 
       const dateTimeInput = component.find('DateTimeInput');
 
@@ -133,9 +118,7 @@ describe('DateTimePicker', () => {
       const value1 = new Date(2019, 0, 1);
       const value2 = new Date(2019, 6, 1);
 
-      const component = mount(
-        <DateTimePicker value={[value1, value2]} />,
-      );
+      const component = mount(<DateTimePicker value={[value1, value2]} />);
 
       const dateTimeInput = component.find('DateTimeInput');
 
@@ -146,9 +129,7 @@ describe('DateTimePicker', () => {
   it('applies className to its wrapper when given a string', () => {
     const className = 'testClassName';
 
-    const component = mount(
-      <DateTimePicker className={className} />,
-    );
+    const component = mount(<DateTimePicker className={className} />);
 
     const wrapperClassName = component.prop('className');
 
@@ -159,10 +140,7 @@ describe('DateTimePicker', () => {
     const calendarClassName = 'testClassName';
 
     const component = mount(
-      <DateTimePicker
-        calendarClassName={calendarClassName}
-        isCalendarOpen
-      />,
+      <DateTimePicker calendarClassName={calendarClassName} isCalendarOpen />,
     );
 
     const calendar = component.find('Calendar');
@@ -174,12 +152,7 @@ describe('DateTimePicker', () => {
   it('applies clockClassName to the clock when given a string', () => {
     const clockClassName = 'testClassName';
 
-    const component = mount(
-      <DateTimePicker
-        clockClassName={clockClassName}
-        isClockOpen
-      />,
-    );
+    const component = mount(<DateTimePicker clockClassName={clockClassName} isClockOpen />);
 
     const clock = component.find('Clock');
     const calendarWrapperClassName = clock.prop('className');
@@ -188,9 +161,7 @@ describe('DateTimePicker', () => {
   });
 
   it('renders DateTimeInput component', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+    const component = mount(<DateTimePicker />);
 
     const dateTimeInput = component.find('DateTimeInput');
 
@@ -198,9 +169,7 @@ describe('DateTimePicker', () => {
   });
 
   it('renders clear button', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+    const component = mount(<DateTimePicker />);
 
     const clearButton = component.find('button.react-datetime-picker__clear-button');
 
@@ -208,9 +177,7 @@ describe('DateTimePicker', () => {
   });
 
   it('renders calendar button', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+    const component = mount(<DateTimePicker />);
 
     const calendarButton = component.find('button.react-datetime-picker__calendar-button');
 
@@ -218,9 +185,7 @@ describe('DateTimePicker', () => {
   });
 
   it('renders DateTimeInput and Calendar components when given isCalendarOpen flag', () => {
-    const component = mount(
-      <DateTimePicker isCalendarOpen />,
-    );
+    const component = mount(<DateTimePicker isCalendarOpen />);
 
     const dateTimeInput = component.find('DateTimeInput');
     const calendar = component.find('Calendar');
@@ -230,9 +195,7 @@ describe('DateTimePicker', () => {
   });
 
   it('renders DateTimeInput and Clock components when given isClockOpen flag', () => {
-    const component = mount(
-      <DateTimePicker isClockOpen />,
-    );
+    const component = mount(<DateTimePicker isClockOpen />);
 
     const dateTimeInput = component.find('DateTimeInput');
     const clock = component.find('Clock');
@@ -242,9 +205,7 @@ describe('DateTimePicker', () => {
   });
 
   it('does not render Calendar component when given disableCalendar & isCalendarOpen flags', () => {
-    const component = mount(
-      <DateTimePicker disableCalendar isCalendarOpen />,
-    );
+    const component = mount(<DateTimePicker disableCalendar isCalendarOpen />);
 
     const dateTimeInput = component.find('DateTimeInput');
     const calendar = component.find('Calendar');
@@ -254,9 +215,7 @@ describe('DateTimePicker', () => {
   });
 
   it('does not render Clock component when given disableClock & isClockOpen flags', () => {
-    const component = mount(
-      <DateTimePicker disableClock isClockOpen />,
-    );
+    const component = mount(<DateTimePicker disableClock isClockOpen />);
 
     const dateTimeInput = component.find('DateTimeInput');
     const clock = component.find('Clock');
@@ -266,9 +225,7 @@ describe('DateTimePicker', () => {
   });
 
   it('opens Calendar component when given isCalendarOpen flag by changing props', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+    const component = mount(<DateTimePicker />);
 
     const calendar = component.find('Calendar');
 
@@ -283,9 +240,7 @@ describe('DateTimePicker', () => {
   });
 
   it('opens Clock component when given isClockOpen flag by changing props', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+    const component = mount(<DateTimePicker />);
 
     const clock = component.find('Clock');
 
@@ -300,9 +255,7 @@ describe('DateTimePicker', () => {
   });
 
   it('opens Calendar component when clicking on a button', () => {
-    const component = mount(
-      <DateTimePicker />,
-    );
+    const component = mount(<DateTimePicker />);
 
     const calendar = component.find('Calendar');
     const button = component.find('button.react-datetime-picker__calendar-button');
@@ -319,9 +272,7 @@ describe('DateTimePicker', () => {
 
   describe('handles opening Calendar component when focusing on an input inside properly', () => {
     it('opens Calendar component when focusing on an input inside by default', () => {
-      const component = mount(
-        <DateTimePicker />,
-      );
+      const component = mount(<DateTimePicker />);
 
       const calendar = component.find('Calendar');
       const input = component.find('input[name="day"]');
@@ -337,9 +288,7 @@ describe('DateTimePicker', () => {
     });
 
     it('opens Calendar component when focusing on an input inside given openWidgetsOnFocus = true', () => {
-      const component = mount(
-        <DateTimePicker openWidgetsOnFocus />,
-      );
+      const component = mount(<DateTimePicker openWidgetsOnFocus />);
 
       const calendar = component.find('Calendar');
       const input = component.find('input[name="day"]');
@@ -355,9 +304,7 @@ describe('DateTimePicker', () => {
     });
 
     it('does not open Calendar component when focusing on an input inside given openWidgetsOnFocus = false', () => {
-      const component = mount(
-        <DateTimePicker openWidgetsOnFocus={false} />,
-      );
+      const component = mount(<DateTimePicker openWidgetsOnFocus={false} />);
 
       const calendar = component.find('Calendar');
       const input = component.find('input[name="day"]');
@@ -373,9 +320,7 @@ describe('DateTimePicker', () => {
     });
 
     it('does not open Calendar component when focusing on a select element', () => {
-      const component = mount(
-        <DateTimePicker format="dd.MMMM.yyyy hh:mm:ss a" />,
-      );
+      const component = mount(<DateTimePicker format="dd.MMMM.yyyy hh:mm:ss a" />);
 
       const calendar = component.find('Calendar');
       const select = component.find('select[name="month"]');
@@ -393,9 +338,7 @@ describe('DateTimePicker', () => {
 
   describe('handles opening Clock component when focusing on an input inside properly', () => {
     it('opens Clock component when focusing on an input inside by default', () => {
-      const component = mount(
-        <DateTimePicker />,
-      );
+      const component = mount(<DateTimePicker />);
 
       const clock = component.find('Clock');
       const input = component.find('input[name^="hour"]');
@@ -411,9 +354,7 @@ describe('DateTimePicker', () => {
     });
 
     it('opens Clock component when focusing on an input inside given openWidgetsOnFocus = true', () => {
-      const component = mount(
-        <DateTimePicker openWidgetsOnFocus />,
-      );
+      const component = mount(<DateTimePicker openWidgetsOnFocus />);
 
       const clock = component.find('Clock');
       const input = component.find('input[name^="hour"]');
@@ -429,9 +370,7 @@ describe('DateTimePicker', () => {
     });
 
     it('does not open Clock component when focusing on an input inside given openWidgetsOnFocus = false', () => {
-      const component = mount(
-        <DateTimePicker openWidgetsOnFocus={false} />,
-      );
+      const component = mount(<DateTimePicker openWidgetsOnFocus={false} />);
 
       const clock = component.find('Clock');
       const input = component.find('input[name^="hour"]');
@@ -447,9 +386,7 @@ describe('DateTimePicker', () => {
     });
 
     it('does not open Clock component when focusing on a select element', () => {
-      const component = mount(
-        <DateTimePicker format="dd.MMMM.yyyy hh:mm:ss a" />,
-      );
+      const component = mount(<DateTimePicker format="dd.MMMM.yyyy hh:mm:ss a" />);
 
       const clock = component.find('Clock');
       const select = component.find('select[name="amPm"]');
@@ -469,10 +406,7 @@ describe('DateTimePicker', () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
-    const component = mount(
-      <DateTimePicker isCalendarOpen />,
-      { attachTo: root },
-    );
+    const component = mount(<DateTimePicker isCalendarOpen />, { attachTo: root });
 
     const event = document.createEvent('MouseEvent');
     event.initEvent('mousedown', true, true);
@@ -486,10 +420,7 @@ describe('DateTimePicker', () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
-    const component = mount(
-      <DateTimePicker isCalendarOpen />,
-      { attachTo: root },
-    );
+    const component = mount(<DateTimePicker isCalendarOpen />, { attachTo: root });
 
     const event = document.createEvent('FocusEvent');
     event.initEvent('focusin', true, true);
@@ -503,10 +434,7 @@ describe('DateTimePicker', () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
-    const component = mount(
-      <DateTimePicker isCalendarOpen />,
-      { attachTo: root },
-    );
+    const component = mount(<DateTimePicker isCalendarOpen />, { attachTo: root });
 
     const event = document.createEvent('TouchEvent');
     event.initEvent('touchstart', true, true);
@@ -520,10 +448,7 @@ describe('DateTimePicker', () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
-    const component = mount(
-      <DateTimePicker isClockOpen />,
-      { attachTo: root },
-    );
+    const component = mount(<DateTimePicker isClockOpen />, { attachTo: root });
 
     const event = document.createEvent('MouseEvent');
     event.initEvent('mousedown', true, true);
@@ -537,10 +462,7 @@ describe('DateTimePicker', () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
-    const component = mount(
-      <DateTimePicker isClockOpen />,
-      { attachTo: root },
-    );
+    const component = mount(<DateTimePicker isClockOpen />, { attachTo: root });
 
     const event = document.createEvent('FocusEvent');
     event.initEvent('focusin', true, true);
@@ -554,10 +476,7 @@ describe('DateTimePicker', () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
-    const component = mount(
-      <DateTimePicker isClockOpen />,
-      { attachTo: root },
-    );
+    const component = mount(<DateTimePicker isClockOpen />, { attachTo: root });
 
     const event = document.createEvent('TouchEvent');
     event.initEvent('touchstart', true, true);
@@ -568,9 +487,7 @@ describe('DateTimePicker', () => {
   });
 
   it('does not close Calendar component when focused within date inputs', () => {
-    const component = mount(
-      <DateTimePicker isCalendarOpen />,
-    );
+    const component = mount(<DateTimePicker isCalendarOpen />);
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -585,9 +502,7 @@ describe('DateTimePicker', () => {
   });
 
   it('does not close Clock component when focused within time inputs', () => {
-    const component = mount(
-      <DateTimePicker isClockOpen />,
-    );
+    const component = mount(<DateTimePicker isClockOpen />);
 
     const customInputs = component.find('input[type="number"]');
     const hourInput = customInputs.at(3);
@@ -602,9 +517,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Clock when Calendar is opened by a click on the calendar icon', () => {
-    const component = mount(
-      <DateTimePicker isClockOpen />,
-    );
+    const component = mount(<DateTimePicker isClockOpen />);
 
     const clock = component.find('Clock');
     const button = component.find('button.react-datetime-picker__calendar-button');
@@ -620,9 +533,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Calendar when calling internal onChange by default', () => {
-    const component = mount(
-      <DateTimePicker isCalendarOpen />,
-    );
+    const component = mount(<DateTimePicker isCalendarOpen />);
 
     const { onChange } = component.instance();
 
@@ -632,12 +543,7 @@ describe('DateTimePicker', () => {
   });
 
   it('does not close Calendar when calling internal onChange with prop closeWidgets = false', () => {
-    const component = mount(
-      <DateTimePicker
-        closeWidgets={false}
-        isCalendarOpen
-      />,
-    );
+    const component = mount(<DateTimePicker closeWidgets={false} isCalendarOpen />);
 
     const { onChange } = component.instance();
 
@@ -647,9 +553,7 @@ describe('DateTimePicker', () => {
   });
 
   it('does not close Calendar when calling internal onChange with closeWidgets = false', () => {
-    const component = mount(
-      <DateTimePicker isCalendarOpen />,
-    );
+    const component = mount(<DateTimePicker isCalendarOpen />);
 
     const { onChange } = component.instance();
 
@@ -659,9 +563,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Clock when calling internal onChange by default', () => {
-    const component = mount(
-      <DateTimePicker isClockOpen />,
-    );
+    const component = mount(<DateTimePicker isClockOpen />);
 
     const { onChange } = component.instance();
 
@@ -671,12 +573,7 @@ describe('DateTimePicker', () => {
   });
 
   it('does not close Clock when calling internal onChange with prop closeWidgets = false', () => {
-    const component = mount(
-      <DateTimePicker
-        closeWidgets={false}
-        isClockOpen
-      />,
-    );
+    const component = mount(<DateTimePicker closeWidgets={false} isClockOpen />);
 
     const { onChange } = component.instance();
 
@@ -686,9 +583,7 @@ describe('DateTimePicker', () => {
   });
 
   it('does not close Clock when calling internal onChange with closeWidgets = false', () => {
-    const component = mount(
-      <DateTimePicker isClockOpen />,
-    );
+    const component = mount(<DateTimePicker isClockOpen />);
 
     const { onChange } = component.instance();
 
@@ -701,12 +596,7 @@ describe('DateTimePicker', () => {
     const nextValue = new Date(2019, 0, 1, 21, 40, 11, 458);
     const onChange = jest.fn();
 
-    const component = mount(
-      <DateTimePicker
-        onChange={onChange}
-        value={new Date(2018, 6, 17)}
-      />,
-    );
+    const component = mount(<DateTimePicker onChange={onChange} value={new Date(2018, 6, 17)} />);
 
     const { onChange: onChangeInternal } = component.instance();
 
@@ -741,9 +631,7 @@ describe('DateTimePicker', () => {
   it('clears the value when clicking on a button', () => {
     const onChange = jest.fn();
 
-    const component = mount(
-      <DateTimePicker onChange={onChange} />,
-    );
+    const component = mount(<DateTimePicker onChange={onChange} />);
 
     const calendar = component.find('Calendar');
     const button = component.find('button.react-datetime-picker__clear-button');

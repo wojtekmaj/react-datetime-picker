@@ -25,7 +25,8 @@ export default function NativeInput({
       case 'hour':
         return (receivedValue) => `${getISOLocalDate(receivedValue)}T${getHours(receivedValue)}:00`;
       case 'minute':
-        return (receivedValue) => `${getISOLocalDate(receivedValue)}T${getHoursMinutes(receivedValue)}`;
+        return (receivedValue) =>
+          `${getISOLocalDate(receivedValue)}T${getHoursMinutes(receivedValue)}`;
       case 'second':
         return getISOLocalDateTime;
       default:
@@ -80,9 +81,6 @@ NativeInput.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.instanceOf(Date),
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   valueType: isValueType,
 };

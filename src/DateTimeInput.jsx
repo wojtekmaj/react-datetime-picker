@@ -23,10 +23,7 @@ import Divider from './Divider';
 import NativeInput from './DateTimeInput/NativeInput';
 
 import { getFormatter, getNumberFormatter, formatDate } from './shared/dateFormatter';
-import {
-  convert12to24,
-  convert24to12,
-} from './shared/dates';
+import { convert12to24, convert24to12 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 import { between, getAmPmLabels } from './shared/utils';
 
@@ -46,17 +43,17 @@ function toDate(value) {
 
 function datesAreDifferent(date1, date2) {
   return (
-    (date1 && !date2)
-    || (!date1 && date2)
-    || (date1 && date2 && date1.getTime() !== date2.getTime())
+    (date1 && !date2) ||
+    (!date1 && date2) ||
+    (date1 && date2 && date1.getTime() !== date2.getTime())
   );
 }
 
 function isSameDate(date, year, month, day) {
   return (
-    year === getYear(date).toString()
-    && month === getMonthHuman(date).toString()
-    && day === getDate(date).toString()
+    year === getYear(date).toString() &&
+    month === getMonthHuman(date).toString() &&
+    day === getDate(date).toString()
   );
 }
 
@@ -80,9 +77,7 @@ function getValue(value, index) {
   return valueDate;
 }
 
-function getDetailValue({
-  value, minDate, maxDate,
-}, index) {
+function getDetailValue({ value, minDate, maxDate }, index) {
   const valuePiece = getValue(value, index);
 
   if (!valuePiece) {
@@ -117,39 +112,39 @@ function focus(element) {
 function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstances) {
   const usedFunctions = [];
   const pattern = new RegExp(
-    Object.keys(elementFunctions).map((el) => `${el}+`).join('|'), 'g',
+    Object.keys(elementFunctions)
+      .map((el) => `${el}+`)
+      .join('|'),
+    'g',
   );
   const matches = placeholder.match(pattern);
 
-  return placeholder.split(pattern)
-    .reduce((arr, element, index) => {
-      const divider = element && (
-        // eslint-disable-next-line react/no-array-index-key
-        <Divider key={`separator_${index}`}>
-          {element}
-        </Divider>
-      );
-      const res = [...arr, divider];
-      const currentMatch = matches && matches[index];
+  return placeholder.split(pattern).reduce((arr, element, index) => {
+    const divider = element && (
+      // eslint-disable-next-line react/no-array-index-key
+      <Divider key={`separator_${index}`}>{element}</Divider>
+    );
+    const res = [...arr, divider];
+    const currentMatch = matches && matches[index];
 
-      if (currentMatch) {
-        const renderFunction = (
-          elementFunctions[currentMatch]
-          || elementFunctions[
-            Object.keys(elementFunctions)
-              .find((elementFunction) => currentMatch.match(elementFunction))
-          ]
-        );
+    if (currentMatch) {
+      const renderFunction =
+        elementFunctions[currentMatch] ||
+        elementFunctions[
+          Object.keys(elementFunctions).find((elementFunction) =>
+            currentMatch.match(elementFunction),
+          )
+        ];
 
-        if (!allowMultipleInstances && usedFunctions.includes(renderFunction)) {
-          res.push(currentMatch);
-        } else {
-          res.push(renderFunction(currentMatch, index));
-          usedFunctions.push(renderFunction);
-        }
+      if (!allowMultipleInstances && usedFunctions.includes(renderFunction)) {
+        res.push(currentMatch);
+      } else {
+        res.push(renderFunction(currentMatch, index));
+        usedFunctions.push(renderFunction);
       }
-      return res;
-    }, []);
+    }
+    return res;
+  }, []);
 }
 
 const formatNumber = getNumberFormatter({ useGrouping: false });
@@ -177,13 +172,11 @@ export default class DateTimeInput extends PureComponent {
     const values = [nextValue, prevState.value];
     if (
       // Toggling calendar visibility resets values
-      nextState.isCalendarOpen // Flag was toggled
-      || datesAreDifferent(
+      nextState.isCalendarOpen || // Flag was toggled
+      datesAreDifferent(
         ...values.map((value) => getDetailValueFrom({ value, minDate, maxDate })),
-      )
-      || datesAreDifferent(
-        ...values.map((value) => getDetailValueTo({ value, minDate, maxDate })),
-      )
+      ) ||
+      datesAreDifferent(...values.map((value) => getDetailValueTo({ value, minDate, maxDate })))
     ) {
       if (nextValue) {
         [, nextState.amPm] = convert24to12(getHours(nextValue));
@@ -232,7 +225,7 @@ export default class DateTimeInput extends PureComponent {
 
   minuteInput = createRef();
 
-  secondInput= createRef();
+  secondInput = createRef();
 
   get formatTime() {
     const { maxDetail } = this.props;
@@ -249,7 +242,6 @@ export default class DateTimeInput extends PureComponent {
     return getFormatter(options);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get formatNumber() {
     return formatNumber;
   }
@@ -276,7 +268,9 @@ export default class DateTimeInput extends PureComponent {
     const datePieceReplacements = ['y', 'M', 'd'];
 
     function formatDatePiece(name, dateToFormat) {
-      return getFormatter({ useGrouping: false, [name]: 'numeric' })(locale, dateToFormat).match(/\d{1,}/);
+      return getFormatter({ useGrouping: false, [name]: 'numeric' })(locale, dateToFormat).match(
+        /\d{1,}/,
+      );
     }
 
     let placeholder = formattedDate;
@@ -300,14 +294,12 @@ export default class DateTimeInput extends PureComponent {
     const second = 14;
     const date = new Date(2017, 0, 1, hour24, minute, second);
 
-    return (
-      this.formatTime(locale, date)
-        .replace(this.formatNumber(locale, hour12), 'h')
-        .replace(this.formatNumber(locale, hour24), 'H')
-        .replace(this.formatNumber(locale, minute), 'mm')
-        .replace(this.formatNumber(locale, second), 'ss')
-        .replace(new RegExp(getAmPmLabels(locale).join('|')), 'a')
-    );
+    return this.formatTime(locale, date)
+      .replace(this.formatNumber(locale, hour12), 'h')
+      .replace(this.formatNumber(locale, hour24), 'H')
+      .replace(this.formatNumber(locale, minute), 'mm')
+      .replace(this.formatNumber(locale, second), 'ss')
+      .replace(new RegExp(getAmPmLabels(locale).join('|')), 'a');
   }
 
   get placeholder() {
@@ -353,14 +345,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   get commonInputProps() {
-    const {
-      className,
-      disabled,
-      isWidgetOpen,
-      maxDate,
-      minDate,
-      required,
-    } = this.props;
+    const { className, disabled, isWidgetOpen, maxDate, minDate, required } = this.props;
 
     return {
       className,
@@ -400,7 +385,7 @@ export default class DateTimeInput extends PureComponent {
       const firstInput = event.target.children[1];
       focus(firstInput);
     }
-  }
+  };
 
   onKeyDown = (event) => {
     switch (event.key) {
@@ -411,14 +396,15 @@ export default class DateTimeInput extends PureComponent {
         event.preventDefault();
 
         const { target: input } = event;
-        const property = event.key === 'ArrowLeft' ? 'previousElementSibling' : 'nextElementSibling';
+        const property =
+          event.key === 'ArrowLeft' ? 'previousElementSibling' : 'nextElementSibling';
         const nextInput = findInput(input, property);
         focus(nextInput);
         break;
       }
       default:
     }
-  }
+  };
 
   onKeyUp = (event) => {
     const { key, target: input } = event;
@@ -438,12 +424,12 @@ export default class DateTimeInput extends PureComponent {
      * However, given 2, smallers possible number would be 20, and thus keeping the focus in
      * this field doesn't make sense.
      */
-    if ((value * 10 > max) || (value.length >= max.length)) {
+    if (value * 10 > max || value.length >= max.length) {
       const property = 'nextElementSibling';
       const nextInput = findInput(input, property);
       focus(nextInput);
     }
-  }
+  };
 
   /**
    * Called when non-native date input is changed.
@@ -462,20 +448,14 @@ export default class DateTimeInput extends PureComponent {
         break;
       }
       case 'hour24': {
-        this.setState(
-          { hour: value },
-          this.onChangeExternal,
-        );
+        this.setState({ hour: value }, this.onChangeExternal);
         break;
       }
       default: {
-        this.setState(
-          { [name]: value },
-          this.onChangeExternal,
-        );
+        this.setState({ [name]: value }, this.onChangeExternal);
       }
     }
-  }
+  };
 
   /**
    * Called when native date input is changed.
@@ -513,16 +493,13 @@ export default class DateTimeInput extends PureComponent {
     })();
 
     onChange(processedValue, false);
-  }
+  };
 
   onChangeAmPm = (event) => {
     const { value } = event.target;
 
-    this.setState(
-      ({ amPm: value }),
-      this.onChangeExternal,
-    );
-  }
+    this.setState({ amPm: value }, this.onChangeExternal);
+  };
 
   /**
    * Called after internal onChange. Checks input validity. If all fields are valid,
@@ -571,15 +548,10 @@ export default class DateTimeInput extends PureComponent {
       const processedValue = proposedValue;
       onChange(processedValue, false);
     }
-  }
+  };
 
   renderDay = (currentMatch, index) => {
-    const {
-      autoFocus,
-      dayAriaLabel,
-      dayPlaceholder,
-      showLeadingZeros,
-    } = this.props;
+    const { autoFocus, dayAriaLabel, dayPlaceholder, showLeadingZeros } = this.props;
     const { day, month, year } = this.state;
 
     if (currentMatch && currentMatch.length > 2) {
@@ -593,6 +565,7 @@ export default class DateTimeInput extends PureComponent {
         key="day"
         {...this.commonInputProps}
         ariaLabel={dayAriaLabel}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={this.dayInput}
         month={month}
@@ -602,16 +575,10 @@ export default class DateTimeInput extends PureComponent {
         year={year}
       />
     );
-  }
+  };
 
   renderMonth = (currentMatch, index) => {
-    const {
-      autoFocus,
-      locale,
-      monthAriaLabel,
-      monthPlaceholder,
-      showLeadingZeros,
-    } = this.props;
+    const { autoFocus, locale, monthAriaLabel, monthPlaceholder, showLeadingZeros } = this.props;
     const { month, year } = this.state;
 
     if (currentMatch && currentMatch.length > 4) {
@@ -624,6 +591,7 @@ export default class DateTimeInput extends PureComponent {
           key="month"
           {...this.commonInputProps}
           ariaLabel={monthAriaLabel}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={index === 0 && autoFocus}
           inputRef={this.monthInput}
           locale={locale}
@@ -642,6 +610,7 @@ export default class DateTimeInput extends PureComponent {
         key="month"
         {...this.commonInputProps}
         ariaLabel={monthAriaLabel}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={this.monthInput}
         placeholder={monthPlaceholder}
@@ -650,7 +619,7 @@ export default class DateTimeInput extends PureComponent {
         year={year}
       />
     );
-  }
+  };
 
   renderYear = (currentMatch, index) => {
     const { autoFocus, yearAriaLabel, yearPlaceholder } = this.props;
@@ -661,6 +630,7 @@ export default class DateTimeInput extends PureComponent {
         key="year"
         {...this.commonInputProps}
         ariaLabel={yearAriaLabel}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={this.yearInput}
         placeholder={yearPlaceholder}
@@ -668,7 +638,7 @@ export default class DateTimeInput extends PureComponent {
         valueType="day"
       />
     );
-  }
+  };
 
   renderHour = (currentMatch, index) => {
     if (/h/.test(currentMatch)) {
@@ -694,6 +664,7 @@ export default class DateTimeInput extends PureComponent {
         {...this.commonInputProps}
         amPm={amPm}
         ariaLabel={hourAriaLabel}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={this.hour12Input}
         placeholder={hourPlaceholder}
@@ -701,7 +672,7 @@ export default class DateTimeInput extends PureComponent {
         value={hour}
       />
     );
-  }
+  };
 
   renderHour24 = (currentMatch, index) => {
     const { autoFocus, hourAriaLabel, hourPlaceholder } = this.props;
@@ -718,6 +689,7 @@ export default class DateTimeInput extends PureComponent {
         key="hour24"
         {...this.commonInputProps}
         ariaLabel={hourAriaLabel}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={this.hour24Input}
         placeholder={hourPlaceholder}
@@ -725,7 +697,7 @@ export default class DateTimeInput extends PureComponent {
         value={hour}
       />
     );
-  }
+  };
 
   renderMinute = (currentMatch, index) => {
     const { autoFocus, minuteAriaLabel, minutePlaceholder } = this.props;
@@ -742,6 +714,7 @@ export default class DateTimeInput extends PureComponent {
         key="minute"
         {...this.commonInputProps}
         ariaLabel={minuteAriaLabel}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         hour={hour}
         inputRef={this.minuteInput}
@@ -750,7 +723,7 @@ export default class DateTimeInput extends PureComponent {
         value={minute}
       />
     );
-  }
+  };
 
   renderSecond = (currentMatch, index) => {
     const { autoFocus, secondAriaLabel, secondPlaceholder } = this.props;
@@ -767,6 +740,7 @@ export default class DateTimeInput extends PureComponent {
         key="second"
         {...this.commonInputProps}
         ariaLabel={secondAriaLabel}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         hour={hour}
         inputRef={this.secondInput}
@@ -776,7 +750,7 @@ export default class DateTimeInput extends PureComponent {
         value={second}
       />
     );
-  }
+  };
 
   renderAmPm = (currentMatch, index) => {
     const { amPmAriaLabel, autoFocus, locale } = this.props;
@@ -787,6 +761,7 @@ export default class DateTimeInput extends PureComponent {
         key="ampm"
         {...this.commonInputProps}
         ariaLabel={amPmAriaLabel}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={this.amPmInput}
         locale={locale}
@@ -794,7 +769,7 @@ export default class DateTimeInput extends PureComponent {
         value={amPm}
       />
     );
-  }
+  };
 
   renderCustomInputs() {
     const { placeholder } = this;
@@ -816,14 +791,7 @@ export default class DateTimeInput extends PureComponent {
   }
 
   renderNativeInput() {
-    const {
-      disabled,
-      maxDate,
-      minDate,
-      name,
-      nativeInputAriaLabel,
-      required,
-    } = this.props;
+    const { disabled, maxDate, minDate, name, nativeInputAriaLabel, required } = this.props;
     const { value } = this.state;
 
     return (
@@ -845,13 +813,9 @@ export default class DateTimeInput extends PureComponent {
   render() {
     const { className } = this.props;
 
-    /* eslint-disable jsx-a11y/click-events-have-key-events */
-    /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
-      <div
-        className={className}
-        onClick={this.onClick}
-      >
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+      <div className={className} onClick={this.onClick}>
         {this.renderNativeInput()}
         {this.renderCustomInputs()}
       </div>
@@ -864,10 +828,7 @@ DateTimeInput.defaultProps = {
   name: 'datetime',
 };
 
-const isValue = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.instanceOf(Date),
-]);
+const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
 
 DateTimeInput.propTypes = {
   amPmAriaLabel: PropTypes.string,
@@ -895,10 +856,7 @@ DateTimeInput.propTypes = {
   secondAriaLabel: PropTypes.string,
   secondPlaceholder: PropTypes.string,
   showLeadingZeros: PropTypes.bool,
-  value: PropTypes.oneOfType([
-    isValue,
-    PropTypes.arrayOf(isValue),
-  ]),
+  value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
 };

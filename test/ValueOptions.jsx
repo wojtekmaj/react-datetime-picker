@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getISOLocalDateTime } from '@wojtekmaj/date-utils';
 
-export default function ValueOptions({
-  setValue,
-  value,
-}) {
+export default function ValueOptions({ setValue, value }) {
   function onChange(event) {
     const { value: nextValue } = event.target;
 
@@ -14,14 +11,10 @@ export default function ValueOptions({
 
   return (
     <fieldset id="valueOptions">
-      <legend htmlFor="valueOptions">
-        Set date and time externally
-      </legend>
+      <legend htmlFor="valueOptions">Set date and time externally</legend>
 
       <div>
-        <label htmlFor="datetime">
-          Date and time
-        </label>
+        <label htmlFor="datetime">Date and time</label>
         <input
           id="datetime"
           onChange={onChange}
@@ -29,16 +22,10 @@ export default function ValueOptions({
           value={value ? getISOLocalDateTime(value) : ''}
         />
         &nbsp;
-        <button
-          onClick={() => setValue(null)}
-          type="button"
-        >
+        <button onClick={() => setValue(null)} type="button">
           Clear to null
         </button>
-        <button
-          onClick={() => setValue('')}
-          type="button"
-        >
+        <button onClick={() => setValue('')} type="button">
           Clear to empty string
         </button>
       </div>
@@ -51,9 +38,6 @@ ValueOptions.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Date),
-    PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.instanceOf(Date),
-    ])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])),
   ]),
 };

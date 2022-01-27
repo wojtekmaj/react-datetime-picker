@@ -52,9 +52,7 @@ describe('DateTimeInput', () => {
   });
 
   it('renders a native input and custom inputs', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />);
 
     const nativeInput = component.find('input[type="datetime-local"]');
     const customInputs = component.find('input[type="number"]');
@@ -64,12 +62,7 @@ describe('DateTimeInput', () => {
   });
 
   it('does not render second input when maxDetail is "minute" or less', () => {
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="minute"
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="minute" />);
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.find('input[name="day"]');
@@ -90,12 +83,7 @@ describe('DateTimeInput', () => {
   });
 
   it('does not render second and minute inputs when maxDetail is "hour" or less', () => {
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="hour"
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="hour" />);
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.find('input[name="day"]');
@@ -118,13 +106,7 @@ describe('DateTimeInput', () => {
   it('shows a given date in all inputs correctly given Date (12-hour format)', () => {
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="second"
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="second" value={date} />);
 
     const nativeInput = component.find('input[type="datetime-local"]');
     const customInputs = component.find('input[type="number"]');
@@ -141,13 +123,7 @@ describe('DateTimeInput', () => {
   it('shows a given date in all inputs correctly given array of Date objects (12-hour format)', () => {
     const date = [new Date(2017, 8, 30, 22, 17, 0), new Date(2017, 8, 30, 0, 0, 0, -1)];
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="second"
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="second" value={date} />);
 
     const nativeInput = component.find('input[type="datetime-local"]');
     const customInputs = component.find('input[type="number"]');
@@ -164,13 +140,7 @@ describe('DateTimeInput', () => {
   it('shows a given date in all inputs correctly given ISO string (12-hour format)', () => {
     const date = '2017-09-30T22:17:00.000';
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="second"
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="second" value={date} />);
 
     const nativeInput = component.find('input[type="datetime-local"]');
     const customInputs = component.find('input[type="number"]');
@@ -188,12 +158,7 @@ describe('DateTimeInput', () => {
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
     const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        locale="de-DE"
-        maxDetail="second"
-        value={date}
-      />,
+      <DateTimeInput {...defaultProps} locale="de-DE" maxDetail="second" value={date} />,
     );
 
     const nativeInput = component.find('input[type="datetime-local"]');
@@ -208,62 +173,52 @@ describe('DateTimeInput', () => {
     expect(customInputs.at(5).prop('value')).toBe('0');
   });
 
-  itIfFullICU('shows a given date in all inputs correctly given array of Date objects (24-hour format)', () => {
-    const date = [new Date(2017, 8, 30, 22, 17, 0), new Date(2017, 8, 30, 0, 0, 0, -1)];
+  itIfFullICU(
+    'shows a given date in all inputs correctly given array of Date objects (24-hour format)',
+    () => {
+      const date = [new Date(2017, 8, 30, 22, 17, 0), new Date(2017, 8, 30, 0, 0, 0, -1)];
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        locale="de-DE"
-        maxDetail="second"
-        value={date}
-      />,
-    );
+      const component = mount(
+        <DateTimeInput {...defaultProps} locale="de-DE" maxDetail="second" value={date} />,
+      );
 
-    const nativeInput = component.find('input[type="datetime-local"]');
-    const customInputs = component.find('input[type="number"]');
+      const nativeInput = component.find('input[type="datetime-local"]');
+      const customInputs = component.find('input[type="number"]');
 
-    expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
-    expect(customInputs.at(0).prop('value')).toBe('2017');
-    expect(customInputs.at(1).prop('value')).toBe('9');
-    expect(customInputs.at(2).prop('value')).toBe('30');
-    expect(customInputs.at(3).prop('value')).toBe('22');
-    expect(customInputs.at(4).prop('value')).toBe('17');
-    expect(customInputs.at(5).prop('value')).toBe('0');
-  });
+      expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
+      expect(customInputs.at(0).prop('value')).toBe('2017');
+      expect(customInputs.at(1).prop('value')).toBe('9');
+      expect(customInputs.at(2).prop('value')).toBe('30');
+      expect(customInputs.at(3).prop('value')).toBe('22');
+      expect(customInputs.at(4).prop('value')).toBe('17');
+      expect(customInputs.at(5).prop('value')).toBe('0');
+    },
+  );
 
-  itIfFullICU('shows a given date in all inputs correctly given ISO string (24-hour format)', () => {
-    const date = '2017-09-30T22:17:00.000';
+  itIfFullICU(
+    'shows a given date in all inputs correctly given ISO string (24-hour format)',
+    () => {
+      const date = '2017-09-30T22:17:00.000';
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        locale="de-DE"
-        maxDetail="second"
-        value={date}
-      />,
-    );
+      const component = mount(
+        <DateTimeInput {...defaultProps} locale="de-DE" maxDetail="second" value={date} />,
+      );
 
-    const nativeInput = component.find('input[type="datetime-local"]');
-    const customInputs = component.find('input[type="number"]');
+      const nativeInput = component.find('input[type="datetime-local"]');
+      const customInputs = component.find('input[type="number"]');
 
-    expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
-    expect(customInputs.at(0).prop('value')).toBe('2017');
-    expect(customInputs.at(1).prop('value')).toBe('9');
-    expect(customInputs.at(2).prop('value')).toBe('30');
-    expect(customInputs.at(3).prop('value')).toBe('22');
-    expect(customInputs.at(4).prop('value')).toBe('17');
-    expect(customInputs.at(5).prop('value')).toBe('0');
-  });
+      expect(nativeInput.prop('value')).toBe('2017-09-30T22:17:00');
+      expect(customInputs.at(0).prop('value')).toBe('2017');
+      expect(customInputs.at(1).prop('value')).toBe('9');
+      expect(customInputs.at(2).prop('value')).toBe('30');
+      expect(customInputs.at(3).prop('value')).toBe('22');
+      expect(customInputs.at(4).prop('value')).toBe('17');
+      expect(customInputs.at(5).prop('value')).toBe('0');
+    },
+  );
 
   it('shows empty value in all inputs correctly given null', () => {
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="second"
-        value={null}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="second" value={null} />);
 
     const nativeInput = component.find('input[type="datetime-local"]');
     const customInputs = component.find('input[type="number"]');
@@ -279,11 +234,7 @@ describe('DateTimeInput', () => {
 
   it('shows empty value in all inputs correctly given an array of nulls', () => {
     const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="second"
-        value={[null, null]}
-      />,
+      <DateTimeInput {...defaultProps} maxDetail="second" value={[null, null]} />,
     );
 
     const nativeInput = component.find('input[type="datetime-local"]');
@@ -301,13 +252,7 @@ describe('DateTimeInput', () => {
   it('clears the value correctly', () => {
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="second"
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="second" value={date} />);
 
     component.setProps({ value: null });
 
@@ -324,12 +269,7 @@ describe('DateTimeInput', () => {
   });
 
   it('renders custom inputs in a proper order (12-hour format)', () => {
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="second"
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="second" />);
 
     const customInputs = component.find('input[type="number"]');
 
@@ -342,13 +282,7 @@ describe('DateTimeInput', () => {
   });
 
   itIfFullICU('renders custom inputs in a proper order (24-hour format)', () => {
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        locale="de-DE"
-        maxDetail="second"
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} locale="de-DE" maxDetail="second" />);
 
     const customInputs = component.find('input[type="number"]');
 
@@ -362,12 +296,7 @@ describe('DateTimeInput', () => {
 
   describe('renders custom inputs in a proper order given format', () => {
     it('renders "y" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="y"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="y" />);
 
       const componentInput = component.find('YearInput');
       const customInputs = component.find('input[type="number"]');
@@ -377,12 +306,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "yyyy" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="yyyy"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="yyyy" />);
 
       const componentInput = component.find('YearInput');
       const customInputs = component.find('input[type="number"]');
@@ -392,12 +316,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "M" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="M"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="M" />);
 
       const componentInput = component.find('MonthInput');
       const customInputs = component.find('input[type="number"]');
@@ -407,12 +326,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "MM" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="MM"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="MM" />);
 
       const componentInput = component.find('MonthInput');
       const customInputs = component.find('input[type="number"]');
@@ -423,12 +337,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "MMM" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="MMM"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="MMM" />);
 
       const componentSelect = component.find('MonthSelect');
       const customInputs = component.find('select');
@@ -439,12 +348,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "MMMM" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="MMMM"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="MMMM" />);
 
       const componentSelect = component.find('MonthSelect');
       const customInputs = component.find('select');
@@ -455,12 +359,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "d" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="d"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="d" />);
 
       const componentInput = component.find('DayInput');
       const customInputs = component.find('input[type="number"]');
@@ -470,12 +369,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "dd" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="dd"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="dd" />);
 
       const componentInput = component.find('DayInput');
       const customInputs = component.find('input[type="number"]');
@@ -488,12 +382,7 @@ describe('DateTimeInput', () => {
     it('throws error for "ddd"', () => {
       muteConsole();
 
-      const renderComponent = () => mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="ddd"
-        />,
-      );
+      const renderComponent = () => mount(<DateTimeInput {...defaultProps} format="ddd" />);
 
       expect(renderComponent).toThrow('Unsupported token: ddd');
 
@@ -501,12 +390,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "yyyy-MM-dd" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="yyyy-MM-d"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="yyyy-MM-d" />);
 
       const monthInput = component.find('MonthInput');
       const dayInput = component.find('DayInput');
@@ -523,12 +407,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "h" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="h"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="h" />);
 
       const componentInput = component.find('Hour12Input');
       const customInputs = component.find('input[type="number"]');
@@ -538,12 +417,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "hh" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="hh"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="hh" />);
 
       const componentInput = component.find('Hour12Input');
       const customInputs = component.find('input[type="number"]');
@@ -556,12 +430,7 @@ describe('DateTimeInput', () => {
     it('throws error for "hhh"', () => {
       muteConsole();
 
-      const renderComponent = () => mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="hhh"
-        />,
-      );
+      const renderComponent = () => mount(<DateTimeInput {...defaultProps} format="hhh" />);
 
       expect(renderComponent).toThrow('Unsupported token: hhh');
 
@@ -569,12 +438,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "H" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="H"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="H" />);
 
       const componentInput = component.find('Hour24Input');
       const customInputs = component.find('input[type="number"]');
@@ -584,12 +448,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "HH" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="HH"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="HH" />);
 
       const componentInput = component.find('Hour24Input');
       const customInputs = component.find('input[type="number"]');
@@ -602,12 +461,7 @@ describe('DateTimeInput', () => {
     it('throws error for "HHH"', () => {
       muteConsole();
 
-      const renderComponent = () => mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="HHH"
-        />,
-      );
+      const renderComponent = () => mount(<DateTimeInput {...defaultProps} format="HHH" />);
 
       expect(renderComponent).toThrow('Unsupported token: HHH');
 
@@ -615,12 +469,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "m" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="m"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="m" />);
 
       const componentInput = component.find('MinuteInput');
       const customInputs = component.find('input[type="number"]');
@@ -630,12 +479,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "mm" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="mm"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="mm" />);
 
       const componentInput = component.find('MinuteInput');
       const customInputs = component.find('input[type="number"]');
@@ -648,12 +492,7 @@ describe('DateTimeInput', () => {
     it('throws error for "mmm"', () => {
       muteConsole();
 
-      const renderComponent = () => mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="mmm"
-        />,
-      );
+      const renderComponent = () => mount(<DateTimeInput {...defaultProps} format="mmm" />);
 
       expect(renderComponent).toThrow('Unsupported token: mmm');
 
@@ -661,12 +500,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "s" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="s"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="s" />);
 
       const componentInput = component.find('SecondInput');
       const customInputs = component.find('input[type="number"]');
@@ -676,12 +510,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "ss" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="ss"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="ss" />);
 
       const componentInput = component.find('SecondInput');
       const customInputs = component.find('input[type="number"]');
@@ -694,12 +523,7 @@ describe('DateTimeInput', () => {
     it('throws error for "sss"', () => {
       muteConsole();
 
-      const renderComponent = () => mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="sss"
-        />,
-      );
+      const renderComponent = () => mount(<DateTimeInput {...defaultProps} format="sss" />);
 
       expect(renderComponent).toThrow('Unsupported token: sss');
 
@@ -707,12 +531,7 @@ describe('DateTimeInput', () => {
     });
 
     it('renders "a" properly', () => {
-      const component = mount(
-        <DateTimeInput
-          {...defaultProps}
-          format="a"
-        />,
-      );
+      const component = mount(<DateTimeInput {...defaultProps} format="a" />);
 
       const componentInput = component.find('AmPm');
       const customInputs = component.find('input[type="number"]');
@@ -723,9 +542,7 @@ describe('DateTimeInput', () => {
   });
 
   it('renders proper input separators', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />);
 
     const separators = component.find('.react-datetime-picker__inputGroup__divider');
 
@@ -738,12 +555,7 @@ describe('DateTimeInput', () => {
   });
 
   it('renders proper amount of separators', () => {
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="hour"
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} maxDetail="hour" />);
 
     const separators = component.find('.react-datetime-picker__inputGroup__divider');
     const customInputs = component.find('input[type="number"]');
@@ -753,10 +565,7 @@ describe('DateTimeInput', () => {
   });
 
   it('jumps to the next field when right arrow is pressed', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -772,10 +581,7 @@ describe('DateTimeInput', () => {
   });
 
   it('jumps to the next field when date separator key is pressed', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -794,10 +600,7 @@ describe('DateTimeInput', () => {
   });
 
   it('jumps to the next field when time separator key is pressed', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -816,10 +619,7 @@ describe('DateTimeInput', () => {
   });
 
   it('does not jump to the next field when right arrow is pressed when the last input is focused', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const select = component.find('select');
 
@@ -833,10 +633,7 @@ describe('DateTimeInput', () => {
   });
 
   it('jumps to the previous field when left arrow is pressed', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -852,10 +649,7 @@ describe('DateTimeInput', () => {
   });
 
   it('does not jump to the previous field when left arrow is pressed when the first input is focused', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -869,11 +663,8 @@ describe('DateTimeInput', () => {
     expect(document.activeElement).toBe(dayInput.getDOMNode());
   });
 
-  it('jumps to the next field when a value which can\'t be extended to another valid value is entered', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+  it("jumps to the next field when a value which can't be extended to another valid value is entered", () => {
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -888,10 +679,7 @@ describe('DateTimeInput', () => {
   });
 
   it('jumps to the next field when a value as long as the length of maximum value is entered', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -906,10 +694,7 @@ describe('DateTimeInput', () => {
   });
 
   it('does not jump the next field when a value which can be extended to another valid value is entered', () => {
-    const component = mount(
-      <DateTimeInput {...defaultProps} />,
-      { attachTo: container },
-    );
+    const component = mount(<DateTimeInput {...defaultProps} />, { attachTo: container });
 
     const customInputs = component.find('input[type="number"]');
     const dayInput = customInputs.at(0);
@@ -926,13 +711,7 @@ describe('DateTimeInput', () => {
     const onChange = jest.fn();
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        onChange={onChange}
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} onChange={onChange} value={date} />);
 
     const customInputs = component.find('input[type="number"]');
     const hourInput = customInputs.at(3);
@@ -950,13 +729,7 @@ describe('DateTimeInput', () => {
     date.setFullYear(19, 8, 30);
     date.setHours(22, 17, 0, 0);
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        onChange={onChange}
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} onChange={onChange} value={date} />);
 
     const customInputs = component.find('input[type="number"]');
     const hourInput = customInputs.at(3);
@@ -977,18 +750,13 @@ describe('DateTimeInput', () => {
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
     const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        maxDetail="second"
-        onChange={onChange}
-        value={date}
-      />,
+      <DateTimeInput {...defaultProps} maxDetail="second" onChange={onChange} value={date} />,
     );
 
     const customInputs = component.find('input[type="number"]');
 
     customInputs.forEach((customInput) => {
-      customInput.getDOMNode().value = ''; // eslint-disable-line no-param-reassign
+      customInput.getDOMNode().value = '';
       customInput.simulate('change');
     });
 
@@ -1000,13 +768,7 @@ describe('DateTimeInput', () => {
     const onChange = jest.fn();
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        onChange={onChange}
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} onChange={onChange} value={date} />);
 
     const nativeInput = component.find('input[type="datetime-local"]');
 
@@ -1023,13 +785,7 @@ describe('DateTimeInput', () => {
     date.setFullYear(19, 8, 20);
     date.setHours(22, 17, 0, 0);
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        onChange={onChange}
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} onChange={onChange} value={date} />);
 
     const nativeInput = component.find('input[type="datetime-local"]');
 
@@ -1048,13 +804,7 @@ describe('DateTimeInput', () => {
     const onChange = jest.fn();
     const date = new Date(2017, 8, 30, 22, 17, 0);
 
-    const component = mount(
-      <DateTimeInput
-        {...defaultProps}
-        onChange={onChange}
-        value={date}
-      />,
-    );
+    const component = mount(<DateTimeInput {...defaultProps} onChange={onChange} value={date} />);
 
     const nativeInput = component.find('input[type="datetime-local"]');
 

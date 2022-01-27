@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import DateTimePicker from 'react-datetime-picker/src/entry.nostyle';
 import 'react-datetime-picker/src/DateTimePicker.less';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-calendar/src/Calendar.less';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-clock/src/Clock.less';
 
 import ValidityOptions from './ValidityOptions';
@@ -58,16 +56,11 @@ export default function Test() {
   return (
     <div className="Test">
       <header>
-        <h1>
-          react-datetime-picker test page
-        </h1>
+        <h1>react-datetime-picker test page</h1>
       </header>
       <div className="Test__container">
         <aside className="Test__container__options">
-          <MaxDetailOptions
-            maxDetail={maxDetail}
-            setMaxDetail={setMaxDetail}
-          />
+          <MaxDetailOptions maxDetail={maxDetail} setMaxDetail={setMaxDetail} />
           <ValidityOptions
             maxDate={maxDate}
             minDate={minDate}
@@ -76,14 +69,8 @@ export default function Test() {
             setMinDate={setMinDate}
             setRequired={setRequired}
           />
-          <LocaleOptions
-            locale={locale}
-            setLocale={setLocale}
-          />
-          <ValueOptions
-            setValue={setValue}
-            value={value}
-          />
+          <LocaleOptions locale={locale} setLocale={setLocale} />
+          <ValueOptions setValue={setValue} value={value} />
           <ViewOptions
             disabled={disabled}
             setDisabled={setDisabled}
@@ -129,10 +116,7 @@ export default function Test() {
             />
             <br />
             <br />
-            <button
-              id="submit"
-              type="submit"
-            >
+            <button id="submit" type="submit">
               Submit
             </button>
           </form>

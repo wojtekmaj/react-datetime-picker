@@ -10,9 +10,7 @@ describe('NativeInput', () => {
   };
 
   it('renders an input', () => {
-    const component = shallow(
-      <NativeInput {...defaultProps} />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} />);
 
     const input = component.find('input');
 
@@ -22,12 +20,7 @@ describe('NativeInput', () => {
   it('applies given aria-label properly', () => {
     const nativeInputAriaLabel = 'Date';
 
-    const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        ariaLabel={nativeInputAriaLabel}
-      />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} ariaLabel={nativeInputAriaLabel} />);
 
     const select = component.find('input');
 
@@ -37,12 +30,7 @@ describe('NativeInput', () => {
   it('has proper name defined', () => {
     const name = 'testName';
 
-    const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        name={name}
-      />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} name={name} />);
 
     const input = component.find('input');
 
@@ -54,18 +42,11 @@ describe('NativeInput', () => {
     ${'second'} | ${'2017-09-30T22:17:41'}
     ${'minute'} | ${'2017-09-30T22:17'}
     ${'hour'}   | ${'2017-09-30T22:00'}
-  `('displays given value properly if valueType is $valueType', ({
-    valueType,
-    parsedValue,
-  }) => {
+  `('displays given value properly if valueType is $valueType', ({ valueType, parsedValue }) => {
     const value = new Date(2017, 8, 30, 22, 17, 41);
 
     const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        value={value}
-        valueType={valueType}
-      />,
+      <NativeInput {...defaultProps} value={value} valueType={valueType} />,
     );
 
     const input = component.find('input');
@@ -75,9 +56,7 @@ describe('NativeInput', () => {
   /* eslint-enable indent */
 
   it('does not disable input by default', () => {
-    const component = shallow(
-      <NativeInput {...defaultProps} />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} />);
 
     const input = component.find('input');
 
@@ -85,12 +64,7 @@ describe('NativeInput', () => {
   });
 
   it('disables input given disabled flag', () => {
-    const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        disabled
-      />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} disabled />);
 
     const input = component.find('input');
 
@@ -98,9 +72,7 @@ describe('NativeInput', () => {
   });
 
   it('is not required input by default', () => {
-    const component = shallow(
-      <NativeInput {...defaultProps} />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} />);
 
     const input = component.find('input');
 
@@ -108,12 +80,7 @@ describe('NativeInput', () => {
   });
 
   it('required input given required flag', () => {
-    const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        required
-      />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} required />);
 
     const input = component.find('input');
 
@@ -121,9 +88,7 @@ describe('NativeInput', () => {
   });
 
   it('has no min by default', () => {
-    const component = shallow(
-      <NativeInput {...defaultProps} />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} />);
 
     const input = component.find('input');
 
@@ -135,49 +100,47 @@ describe('NativeInput', () => {
     ${'second'} | ${'2017-09-30T22:00:00'}
     ${'minute'} | ${'2017-09-30T22:00'}
     ${'hour'}   | ${'2017-09-30T22:00'}
-  `('has proper min for minDate which is a full hour if valueType is $valueType', ({
-    valueType,
-    parsedMin,
-  }) => {
-    const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        minDate={new Date(2017, 8, 30, 22, 0, 0)}
-        valueType={valueType}
-      />,
-    );
+  `(
+    'has proper min for minDate which is a full hour if valueType is $valueType',
+    ({ valueType, parsedMin }) => {
+      const component = shallow(
+        <NativeInput
+          {...defaultProps}
+          minDate={new Date(2017, 8, 30, 22, 0, 0)}
+          valueType={valueType}
+        />,
+      );
 
-    const input = component.find('input');
+      const input = component.find('input');
 
-    expect(input.prop('min')).toBe(parsedMin);
-  });
+      expect(input.prop('min')).toBe(parsedMin);
+    },
+  );
 
   it.each`
     valueType   | parsedMin
     ${'second'} | ${'2017-09-30T22:17:41'}
     ${'minute'} | ${'2017-09-30T22:17'}
     ${'hour'}   | ${'2017-09-30T22:00'}
-  `('has proper min for minDate which is not a full hour if valueType is $valueType', ({
-    valueType,
-    parsedMin,
-  }) => {
-    const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        minDate={new Date(2017, 8, 30, 22, 17, 41)}
-        valueType={valueType}
-      />,
-    );
+  `(
+    'has proper min for minDate which is not a full hour if valueType is $valueType',
+    ({ valueType, parsedMin }) => {
+      const component = shallow(
+        <NativeInput
+          {...defaultProps}
+          minDate={new Date(2017, 8, 30, 22, 17, 41)}
+          valueType={valueType}
+        />,
+      );
 
-    const input = component.find('input');
+      const input = component.find('input');
 
-    expect(input.prop('min')).toBe(parsedMin);
-  });
+      expect(input.prop('min')).toBe(parsedMin);
+    },
+  );
 
   it('has no max by default', () => {
-    const component = shallow(
-      <NativeInput {...defaultProps} />,
-    );
+    const component = shallow(<NativeInput {...defaultProps} />);
 
     const input = component.find('input');
 
@@ -189,42 +152,42 @@ describe('NativeInput', () => {
     ${'second'} | ${'2017-09-30T22:00:00'}
     ${'minute'} | ${'2017-09-30T22:00'}
     ${'hour'}   | ${'2017-09-30T22:00'}
-  `('has proper max for maxDate which is a full hour if valueType is $valueType', ({
-    valueType,
-    parsedMax,
-  }) => {
-    const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        maxDate={new Date(2017, 8, 30, 22, 0, 0)}
-        valueType={valueType}
-      />,
-    );
+  `(
+    'has proper max for maxDate which is a full hour if valueType is $valueType',
+    ({ valueType, parsedMax }) => {
+      const component = shallow(
+        <NativeInput
+          {...defaultProps}
+          maxDate={new Date(2017, 8, 30, 22, 0, 0)}
+          valueType={valueType}
+        />,
+      );
 
-    const input = component.find('input');
+      const input = component.find('input');
 
-    expect(input.prop('max')).toBe(parsedMax);
-  });
+      expect(input.prop('max')).toBe(parsedMax);
+    },
+  );
 
   it.each`
     valueType   | parsedMax
     ${'second'} | ${'2017-09-30T22:17:41'}
     ${'minute'} | ${'2017-09-30T22:17'}
     ${'hour'}   | ${'2017-09-30T22:00'}
-  `('has proper max for maxDate which is not a full hour if valueType is $valueType', ({
-    valueType,
-    parsedMax,
-  }) => {
-    const component = shallow(
-      <NativeInput
-        {...defaultProps}
-        maxDate={new Date(2017, 8, 30, 22, 17, 41)}
-        valueType={valueType}
-      />,
-    );
+  `(
+    'has proper max for maxDate which is not a full hour if valueType is $valueType',
+    ({ valueType, parsedMax }) => {
+      const component = shallow(
+        <NativeInput
+          {...defaultProps}
+          maxDate={new Date(2017, 8, 30, 22, 17, 41)}
+          valueType={valueType}
+        />,
+      );
 
-    const input = component.find('input');
+      const input = component.find('input');
 
-    expect(input.prop('max')).toBe(parsedMax);
-  });
+      expect(input.prop('max')).toBe(parsedMax);
+    },
+  );
 });
