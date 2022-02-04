@@ -3718,7 +3718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-user-locale@npm:^1.2.0":
+"get-user-locale@npm:^1.2.0, get-user-locale@npm:^1.4.0":
   version: 1.4.0
   resolution: "get-user-locale@npm:1.4.0"
   dependencies:
@@ -5945,32 +5945,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-calendar@npm:^3.3.1":
-  version: 3.6.0
-  resolution: "react-calendar@npm:3.6.0"
+"react-calendar@npm:^3.3.1, react-calendar@npm:^3.7.0":
+  version: 3.7.0
+  resolution: "react-calendar@npm:3.7.0"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.2
     get-user-locale: ^1.2.0
     merge-class-names: ^1.1.1
     prop-types: ^15.6.0
   peerDependencies:
-    react: ^16.3.0 || ^17.0.0-0
-    react-dom: ^16.3.0 || ^17.0.0-0
-  checksum: 4499e26a5d000e6a6d9decb6ccc0ec4895197943aa3ba8024f9dbf5c597a442471df3ab686a1d46a2543c34ac31bd83c26bcbc5a7c952a02b98a03846339decb
+    react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
+  checksum: 368084515bdbc59dddf1a0e367c6bb49e9b9efdc1d01343afeeb412feb52d89b88ac6b09378433cdb3716557ff2cf56751f11183ecd99a5df2a5c48b1691e33d
   languageName: node
   linkType: hard
 
-"react-clock@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "react-clock@npm:3.0.0"
+"react-clock@npm:^3.0.0, react-clock@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "react-clock@npm:3.1.0"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.0
+    get-user-locale: ^1.4.0
     merge-class-names: ^1.1.1
     prop-types: ^15.6.0
   peerDependencies:
-    react: ">=15.5"
-    react-dom: ">=15.5"
-  checksum: 2f93f15f5fc1e4961db809044612ee430978242b8a7d886b62c9a2e1a368d4b399e807377d9fb388eb01a2d0f333f21415229f7ab949291124c16d5b9ed07ed3
+    react: ^15.5.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^15.5.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 5046a24caacbf8cf6a86c00172533f0914e849d246299a0a2e6335d06b89bc8393734d71413e75c42275d872f160953255f48c7b88cb0f791273f3d10dfb6691
   languageName: node
   linkType: hard
 
@@ -6018,8 +6019,8 @@ __metadata:
     pretty-quick: ^3.1.0
     prop-types: ^15.6.0
     react: ^17.0.0
-    react-calendar: ^3.3.1
-    react-clock: ^3.0.0
+    react-calendar: ^3.7.0
+    react-clock: ^3.1.0
     react-date-picker: ^8.4.0
     react-dom: ^17.0.0
     react-fit: ^1.4.0
