@@ -5974,9 +5974,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^8.3.3":
-  version: 8.3.6
-  resolution: "react-date-picker@npm:8.3.6"
+"react-date-picker@npm:^8.4.0":
+  version: 8.4.0
+  resolution: "react-date-picker@npm:8.4.0"
   dependencies:
     "@types/react-calendar": ^3.0.0
     "@wojtekmaj/date-utils": ^1.0.3
@@ -5986,12 +5986,12 @@ __metadata:
     merge-refs: ^1.0.0
     prop-types: ^15.6.0
     react-calendar: ^3.3.1
-    react-fit: ^1.0.3
+    react-fit: ^1.4.0
     update-input-width: ^1.2.2
   peerDependencies:
-    react: ^16.3.0 || ^17.0.0-0
-    react-dom: ^16.3.0 || ^17.0.0-0
-  checksum: f2c8e8a0e91c0499783ec2ca1896dec4ef1cc649fcc43c3f70073888545f4ff3176cbf1d42131f5052f1f5532d8743028e701c3a6ca2e6f01d8dcc66b7bd79d6
+    react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
+  checksum: 4973d5a971f69fe927ccb8e9558788fcdf2d5918ae3171040c4a2a36c54c540334cc3359b44d3f83a9f839847ed51a392450b273c3f1d586e47038c12e7bdd73
   languageName: node
   linkType: hard
 
@@ -6020,10 +6020,10 @@ __metadata:
     react: ^17.0.0
     react-calendar: ^3.3.1
     react-clock: ^3.0.0
-    react-date-picker: ^8.3.3
+    react-date-picker: ^8.4.0
     react-dom: ^17.0.0
     react-fit: ^1.4.0
-    react-time-picker: ^4.4.2
+    react-time-picker: ^4.5.0
     rimraf: ^3.0.0
   peerDependencies:
     react: ^16.3.0 || ^17.0.0 || ^18.0.0
@@ -6044,7 +6044,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fit@npm:^1.0.3, react-fit@npm:^1.4.0":
+"react-fit@npm:^1.4.0":
   version: 1.4.0
   resolution: "react-fit@npm:1.4.0"
   dependencies:
@@ -6098,9 +6098,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^4.4.2":
-  version: 4.4.4
-  resolution: "react-time-picker@npm:4.4.4"
+"react-time-picker@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "react-time-picker@npm:4.5.0"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.0
     get-user-locale: ^1.2.0
@@ -6109,12 +6109,12 @@ __metadata:
     merge-refs: ^1.0.0
     prop-types: ^15.6.0
     react-clock: ^3.0.0
-    react-fit: ^1.0.3
+    react-fit: ^1.4.0
     update-input-width: ^1.2.2
   peerDependencies:
-    react: ^16.3.0 || ^17.0.0-0
-    react-dom: ^16.3.0 || ^17.0.0-0
-  checksum: d20ac5c42cdfc97ae8ec22c806d73af10fbee97478bf55baa923c8f18e3d08724f1823e9ee78ae1e2079b359b155f15576dc3d50ca4b13d4e332b5a67881da7b
+    react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
+  checksum: 9bcf598500153e05d018cff52a282ed678526853952e67e8dd1deca333335f97aa45110d9a288a0afb232006e91f7937387b1f4c82cb0882c32a0be4250d0ff6
   languageName: node
   linkType: hard
 
