@@ -535,8 +535,8 @@ export default class DateTimeInput extends PureComponent {
     } else if (
       formElements.every((formElement) => formElement.value && formElement.validity.valid)
     ) {
-      const year = parseInt(values.year, 10);
-      const monthIndex = parseInt(values.month, 10) - 1 || 0;
+      const year = parseInt(values.year, 10) || new Date().getFullYear();
+      const monthIndex = parseInt(values.month || 1, 10) - 1;
       const day = parseInt(values.day || 1, 10);
       const hour = parseInt(values.hour24 || convert12to24(values.hour12, values.amPm) || 0, 10);
       const minute = parseInt(values.minute || 0, 10);
@@ -545,6 +545,7 @@ export default class DateTimeInput extends PureComponent {
       const proposedValue = new Date();
       proposedValue.setFullYear(year, monthIndex, day);
       proposedValue.setHours(hour, minute, second, 0);
+
       const processedValue = proposedValue;
       onChange(processedValue, false);
     }

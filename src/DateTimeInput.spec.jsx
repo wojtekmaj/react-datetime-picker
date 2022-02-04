@@ -745,6 +745,26 @@ describe('DateTimeInput', () => {
     expect(onChange).toHaveBeenCalledWith(nextDate, false);
   });
 
+  it('triggers onChange correctly when changed custom input with no year', () => {
+    const onChange = jest.fn();
+    const date = new Date(2017, 8, 30, 22, 17, 0);
+
+    const component = mount(
+      <DateTimeInput {...defaultProps} format="dd.MM HH:mm" onChange={onChange} value={date} />,
+    );
+
+    const customInputs = component.find('input[type="number"]');
+    const hourInput = customInputs.at(2);
+
+    hourInput.getDOMNode().value = '20';
+    hourInput.simulate('change');
+
+    const currentYear = new Date().getFullYear();
+
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith(new Date(currentYear, 8, 30, 20, 17, 0), false);
+  });
+
   it('triggers onChange correctly when cleared custom inputs', () => {
     const onChange = jest.fn();
     const date = new Date(2017, 8, 30, 22, 17, 0);
