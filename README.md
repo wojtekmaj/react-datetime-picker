@@ -69,6 +69,10 @@ If you don't want to use default React-DateTime-Picker, React-Calendar, and Reac
 
 Styles loaded by the default entry file are `react-datetime-picker/dist/DateTimePicker.css`, `react-calendar/dist/Calendar.css`, and `react-clock/dist/Clock.css`. You can copy them to your project to build your own upon them.
 
+### Next.js and Vite
+
+Next.js and Vite do not allow components from `node_modules` to import styles. You'll need to follow instructions from [Custom styling](#custom-styling) to get going.
+
 ## User guide
 
 ### DateTimePicker
