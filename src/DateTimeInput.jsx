@@ -27,6 +27,8 @@ import { convert12to24, convert24to12 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 import { between, getAmPmLabels } from './shared/utils';
 
+const getFormatterOptionsCache = {};
+
 const defaultMinDate = new Date();
 defaultMinDate.setFullYear(1, 0, 1);
 defaultMinDate.setHours(0, 0, 0, 0);
@@ -230,16 +232,24 @@ export default class DateTimeInput extends PureComponent {
   get formatTime() {
     const { maxDetail } = this.props;
 
-    const options = { hour: 'numeric' };
     const level = allViews.indexOf(maxDetail);
-    if (level >= 1) {
-      options.minute = 'numeric';
-    }
-    if (level >= 2) {
-      options.second = 'numeric';
-    }
+    const formatterOptions =
+      getFormatterOptionsCache[level] ||
+      (() => {
+        const options = { hour: 'numeric' };
+        if (level >= 1) {
+          options.minute = 'numeric';
+        }
+        if (level >= 2) {
+          options.second = 'numeric';
+        }
 
-    return getFormatter(options);
+        getFormatterOptionsCache[level] = options;
+
+        return options;
+      })();
+
+    return getFormatter(formatterOptions);
   }
 
   get formatNumber() {
@@ -268,9 +278,17 @@ export default class DateTimeInput extends PureComponent {
     const datePieceReplacements = ['y', 'M', 'd'];
 
     function formatDatePiece(name, dateToFormat) {
-      return getFormatter({ useGrouping: false, [name]: 'numeric' })(locale, dateToFormat).match(
-        /\d{1,}/,
-      );
+      const formatterOptions =
+        getFormatterOptionsCache[name] ||
+        (() => {
+          const options = { useGrouping: false, [name]: 'numeric' };
+
+          getFormatterOptionsCache[name] = options;
+
+          return options;
+        })();
+
+      return getFormatter(formatterOptions)(locale, dateToFormat).match(/\d{1,}/);
     }
 
     let placeholder = formattedDate;
