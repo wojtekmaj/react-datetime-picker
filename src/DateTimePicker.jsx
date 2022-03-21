@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import makeEventProps from 'make-event-props';
 import mergeClassNames from 'merge-class-names';
@@ -316,13 +317,29 @@ export default class DateTimePicker extends PureComponent {
       className: dateTimePickerClassName, // Unused, here to exclude it from calendarProps
       maxDetail: dateTimePickerMaxDetail, // Unused, here to exclude it from calendarProps
       onChange,
+      portalContainer,
       value,
       ...calendarProps
     } = this.props;
 
     const className = `${baseClassName}__calendar`;
+    const classNames = mergeClassNames(
+      className,
+      `${className}--${isCalendarOpen ? 'open' : 'closed'}`,
+    );
 
-    return (
+    const calendar = (
+      <Calendar
+        className={calendarClassName}
+        onChange={(value) => this.onDateChange(value)}
+        value={value || null}
+        {...calendarProps}
+      />
+    );
+
+    return portalContainer ? (
+      createPortal(<div className={classNames}>{calendar}</div>, portalContainer)
+    ) : (
       <Fit>
         <div
           ref={(ref) => {
@@ -330,17 +347,9 @@ export default class DateTimePicker extends PureComponent {
               ref.removeAttribute('style');
             }
           }}
-          className={mergeClassNames(
-            className,
-            `${className}--${isCalendarOpen ? 'open' : 'closed'}`,
-          )}
+          className={classNames}
         >
-          <Calendar
-            className={calendarClassName}
-            onChange={(value) => this.onDateChange(value)}
-            value={value || null}
-            {...calendarProps}
-          />
+          {calendar}
         </div>
       </Fit>
     );
@@ -359,16 +368,34 @@ export default class DateTimePicker extends PureComponent {
       className: dateTimePickerClassName, // Unused, here to exclude it from clockProps
       maxDetail,
       onChange,
+      portalContainer,
       value,
       ...clockProps
     } = this.props;
 
     const className = `${baseClassName}__clock`;
+    const classNames = mergeClassNames(
+      className,
+      `${className}--${isClockOpen ? 'open' : 'closed'}`,
+    );
+
     const [valueFrom] = [].concat(value);
 
     const maxDetailIndex = allViews.indexOf(maxDetail);
 
-    return (
+    const clock = (
+      <Clock
+        className={clockClassName}
+        renderMinuteHand={maxDetailIndex > 0}
+        renderSecondHand={maxDetailIndex > 1}
+        value={valueFrom}
+        {...clockProps}
+      />
+    );
+
+    return portalContainer ? (
+      createPortal(<div className={classNames}>{clock}</div>, portalContainer)
+    ) : (
       <Fit>
         <div
           ref={(ref) => {
@@ -376,15 +403,9 @@ export default class DateTimePicker extends PureComponent {
               ref.removeAttribute('style');
             }
           }}
-          className={mergeClassNames(className, `${className}--${isClockOpen ? 'open' : 'closed'}`)}
+          className={classNames}
         >
-          <Clock
-            className={clockClassName}
-            renderMinuteHand={maxDetailIndex > 0}
-            renderSecondHand={maxDetailIndex > 1}
-            value={valueFrom}
-            {...clockProps}
-          />
+          {clock}
         </div>
       </Fit>
     );
@@ -503,6 +524,7 @@ DateTimePicker.propTypes = {
   onClockOpen: PropTypes.func,
   onFocus: PropTypes.func,
   openWidgetsOnFocus: PropTypes.bool,
+  portalContainer: PropTypes.object,
   required: PropTypes.bool,
   secondAriaLabel: PropTypes.string,
   secondPlaceholder: PropTypes.string,
