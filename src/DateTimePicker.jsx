@@ -131,7 +131,7 @@ export default class DateTimePicker extends PureComponent {
     }
 
     if (openWidgetsOnFocus) {
-      if (event.target.getAttribute('data-select') === 'true') {
+      if (event.target.dataset.select === 'true') {
         return;
       }
 
