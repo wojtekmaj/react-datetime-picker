@@ -435,7 +435,7 @@ export default class DateTimePicker extends PureComponent {
   render() {
     const { eventProps } = this;
     const { className, disabled } = this.props;
-    const { isOpen } = this.state;
+    const { isCalendarOpen, isClockOpen } = this.state;
 
     const { onChange, ...eventPropsWithoutOnChange } = eventProps;
 
@@ -443,7 +443,7 @@ export default class DateTimePicker extends PureComponent {
       <div
         className={mergeClassNames(
           baseClassName,
-          `${baseClassName}--${isOpen ? 'open' : 'closed'}`,
+          `${baseClassName}--${isCalendarOpen || isClockOpen ? 'open' : 'closed'}`,
           `${baseClassName}--${disabled ? 'disabled' : 'enabled'}`,
           className,
         )}
