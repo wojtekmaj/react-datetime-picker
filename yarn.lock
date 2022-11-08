@@ -5966,21 +5966,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-calendar@npm:^3.7.0":
-  version: 3.9.0
-  resolution: "react-calendar@npm:3.9.0"
-  dependencies:
-    "@wojtekmaj/date-utils": ^1.0.2
-    get-user-locale: ^1.2.0
-    merge-class-names: ^1.1.1
-    prop-types: ^15.6.0
-  peerDependencies:
-    react: ^16.3.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
-  checksum: f178e8afef9e427689472c3792a2e4d60ca959657f12e06ab07a7cc27f64cc5e9531e495d087bfd5c9bc5826f7cec5088fb0e7f15fa4f28482180cc344c8c60f
-  languageName: node
-  linkType: hard
-
 "react-calendar@npm:^4.0.0":
   version: 4.0.0
   resolution: "react-calendar@npm:4.0.0"
@@ -6026,23 +6011,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "react-date-picker@npm:9.0.0"
+"react-date-picker@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "react-date-picker@npm:9.1.0"
   dependencies:
     "@types/react-calendar": ^3.0.0
     "@wojtekmaj/date-utils": ^1.0.3
+    clsx: ^1.2.1
     get-user-locale: ^1.2.0
     make-event-props: ^1.1.0
-    merge-class-names: ^1.1.1
     prop-types: ^15.6.0
-    react-calendar: ^3.7.0
+    react-calendar: ^4.0.0
     react-fit: ^1.4.0
     update-input-width: ^1.2.2
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: f0eec40992ab8682976b904edae35368561664355861ed52e4f720fd7f86744f4075dc28025aff02b94c7037ff38187d1606bdf8c49714813fa2719346e9d7f5
+  checksum: 03aab326d0d826796601744c8111f8374480d708ab6a3cb7a1918d57c02f2a55fb8f43ab08c81a016746996a51e279aedf80156b85ab33fccb11d03969812a81
   languageName: node
   linkType: hard
 
@@ -6072,7 +6057,7 @@ __metadata:
     react: ^18.2.0
     react-calendar: ^4.0.0
     react-clock: ^4.0.0
-    react-date-picker: ^9.0.0
+    react-date-picker: ^9.1.0
     react-dom: ^18.2.0
     react-fit: ^1.4.0
     react-time-picker: ^5.0.0
