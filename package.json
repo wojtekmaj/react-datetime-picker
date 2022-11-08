@@ -42,7 +42,7 @@
     "react-clock": "^4.0.0",
     "react-date-picker": "^9.1.0",
     "react-fit": "^1.4.0",
-    "react-time-picker": "^5.0.0"
+    "react-time-picker": "^5.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.0",
