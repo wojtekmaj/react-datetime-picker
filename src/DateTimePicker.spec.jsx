@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { fireEvent, render, waitForElementToBeRemoved } from '@testing-library/react';
+import { act, fireEvent, render, waitForElementToBeRemoved } from '@testing-library/react';
 
 import DateTimePicker from './DateTimePicker';
 
@@ -521,9 +521,11 @@ describe('DateTimePicker', () => {
 
     const { container } = render(<DateTimePicker isCalendarOpen ref={instance} />);
 
-    const { onChange } = instance.current;
+    const { onChange: onChangeInternal } = instance.current;
 
-    onChange(new Date());
+    act(() => {
+      onChangeInternal(new Date());
+    });
 
     waitForElementToBeRemoved(() => container.querySelector('.react-calendar'));
   });
@@ -535,9 +537,11 @@ describe('DateTimePicker', () => {
       <DateTimePicker closeWidgets={false} isCalendarOpen ref={instance} />,
     );
 
-    const { onChange } = instance.current;
+    const { onChange: onChangeInternal } = instance.current;
 
-    onChange(new Date());
+    act(() => {
+      onChangeInternal(new Date());
+    });
 
     const calendar = container.querySelector('.react-calendar');
 
@@ -549,9 +553,11 @@ describe('DateTimePicker', () => {
 
     const { container } = render(<DateTimePicker isCalendarOpen ref={instance} />);
 
-    const { onChange } = instance.current;
+    const { onChange: onChangeInternal } = instance.current;
 
-    onChange(new Date(), false);
+    act(() => {
+      onChangeInternal(new Date(), false);
+    });
 
     const calendar = container.querySelector('.react-calendar');
 
@@ -563,9 +569,11 @@ describe('DateTimePicker', () => {
 
     const { container } = render(<DateTimePicker isClockOpen ref={instance} />);
 
-    const { onChange } = instance.current;
+    const { onChange: onChangeInternal } = instance.current;
 
-    onChange(new Date());
+    act(() => {
+      onChangeInternal(new Date());
+    });
 
     waitForElementToBeRemoved(() => container.querySelector('.react-clock'));
   });
@@ -577,9 +585,11 @@ describe('DateTimePicker', () => {
       <DateTimePicker closeWidgets={false} isClockOpen ref={instance} />,
     );
 
-    const { onChange } = instance.current;
+    const { onChange: onChangeInternal } = instance.current;
 
-    onChange(new Date());
+    act(() => {
+      onChangeInternal(new Date());
+    });
 
     const clock = container.querySelector('.react-clock');
 
@@ -591,9 +601,11 @@ describe('DateTimePicker', () => {
 
     const { container } = render(<DateTimePicker isClockOpen ref={instance} />);
 
-    const { onChange } = instance.current;
+    const { onChange: onChangeInternal } = instance.current;
 
-    onChange(new Date(), false);
+    act(() => {
+      onChangeInternal(new Date(), false);
+    });
 
     const clock = container.querySelector('.react-clock');
 
@@ -609,7 +621,9 @@ describe('DateTimePicker', () => {
 
     const { onChange: onChangeInternal } = instance.current;
 
-    onChangeInternal(nextValue);
+    act(() => {
+      onChangeInternal(nextValue);
+    });
 
     expect(onChange).toHaveBeenCalledWith(nextValue);
   });
@@ -632,9 +646,11 @@ describe('DateTimePicker', () => {
       />,
     );
 
-    const { onDateChange } = instance.current;
+    const { onDateChange: onDateChangeInternal } = instance.current;
 
-    onDateChange(nextValue);
+    act(() => {
+      onDateChangeInternal(nextValue);
+    });
 
     expect(onChange).toHaveBeenCalledWith(new Date(2019, 0, 1, hours, minutes, seconds, ms));
   });
