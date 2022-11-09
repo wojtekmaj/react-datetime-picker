@@ -37,7 +37,9 @@ export default class DateTimePicker extends PureComponent {
 
   wrapper = createRef();
 
-  widgetWrapper = createRef();
+  calendarWrapper = createRef();
+
+  clockWrapper = createRef();
 
   componentDidMount() {
     this.handleOutsideActionListeners();
@@ -74,7 +76,7 @@ export default class DateTimePicker extends PureComponent {
   }
 
   onOutsideAction = (event) => {
-    const { wrapper, widgetWrapper } = this;
+    const { wrapper, calendarWrapper, clockWrapper } = this;
 
     // Try event.composedPath first to handle clicks inside a Shadow DOM.
     const target = 'composedPath' in event ? event.composedPath()[0] : event.target;
@@ -82,7 +84,8 @@ export default class DateTimePicker extends PureComponent {
     if (
       wrapper.current &&
       !wrapper.current.contains(target) &&
-      (!widgetWrapper.current || !widgetWrapper.current.contains(target))
+      (!calendarWrapper.current || !calendarWrapper.current.contains(target)) &&
+      (!clockWrapper.current || !clockWrapper.current.contains(target))
     ) {
       this.closeWidgets();
     }
@@ -365,7 +368,7 @@ export default class DateTimePicker extends PureComponent {
 
     return portalContainer ? (
       createPortal(
-        <div ref={this.widgetWrapper} className={classNames}>
+        <div ref={this.calendarWrapper} className={classNames}>
           {calendar}
         </div>,
         portalContainer,
@@ -423,7 +426,7 @@ export default class DateTimePicker extends PureComponent {
 
     return portalContainer ? (
       createPortal(
-        <div ref={this.widgetWrapper} className={classNames}>
+        <div ref={this.clockWrapper} className={classNames}>
           {clock}
         </div>,
         portalContainer,
