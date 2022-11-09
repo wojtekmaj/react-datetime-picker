@@ -50,11 +50,15 @@
       background: none;
       font: inherit;
       box-sizing: content-box;
+      -webkit-appearance: textfield;
       -moz-appearance: textfield;
+      appearance: textfield;
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
         -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         margin: 0;
       }
 
@@ -70,7 +74,9 @@
 
     &__amPm {
       font: inherit;
+      -webkit-appearance: menulist;
       -moz-appearance: menulist;
+      appearance: menulist;
     }
   }
 
@@ -126,8 +132,5 @@
     padding: 25px;
     background-color: white;
     border: thin solid rgb(160, 160, 150);
-
-    .react-clock {
-    }
   }
 }
