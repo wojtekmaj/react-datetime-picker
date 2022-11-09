@@ -159,36 +159,54 @@ export default class DateTimePicker extends PureComponent {
   };
 
   openClock = () => {
-    this.setState({
-      isCalendarOpen: false,
-      isClockOpen: true,
+    this.setState((prevState) => {
+      const nextState = { isClockOpen: true };
+
+      if (prevState.isCalendarOpen) {
+        nextState.isCalendarOpen = false;
+      }
+
+      return nextState;
     });
   };
 
   openCalendar = () => {
-    this.setState({
-      isCalendarOpen: true,
-      isClockOpen: false,
+    this.setState((prevState) => {
+      const nextState = { isCalendarOpen: true };
+
+      if (prevState.isClockOpen) {
+        nextState.isClockOpen = false;
+      }
+
+      return nextState;
     });
   };
 
   toggleCalendar = () => {
-    this.setState((prevState) => ({
-      isCalendarOpen: !prevState.isCalendarOpen,
-      isClockOpen: false,
-    }));
+    this.setState((prevState) => {
+      const nextState = { isCalendarOpen: !prevState.isCalendarOpen };
+
+      if (prevState.isClockOpen) {
+        nextState.isClockOpen = false;
+      }
+
+      return nextState;
+    });
   };
 
   closeWidgets = () => {
     this.setState((prevState) => {
-      if (!prevState.isCalendarOpen && !prevState.isClockOpen) {
-        return null;
+      const nextState = {};
+
+      if (prevState.isCalendarOpen) {
+        nextState.isCalendarOpen = false;
       }
 
-      return {
-        isCalendarOpen: false,
-        isClockOpen: false,
-      };
+      if (prevState.isClockOpen) {
+        nextState.isClockOpen = false;
+      }
+
+      return nextState;
     });
   };
 
