@@ -1,7 +1,22 @@
 import React, { createRef } from 'react';
-import { act, fireEvent, render, waitForElementToBeRemoved } from '@testing-library/react';
+import { act, fireEvent, render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import DateTimePicker from './DateTimePicker';
+
+async function waitForElementToBeRemovedOrHidden(callback) {
+  const element = callback();
+
+  if (element) {
+    try {
+      await waitFor(() =>
+        expect(element).toHaveAttribute('class', expect.stringContaining('--closed')),
+      );
+    } catch (error) {
+      await waitForElementToBeRemoved(element);
+    }
+  }
+}
 
 describe('DateTimePicker', () => {
   it('passes default name to DateTimeInput', () => {
@@ -409,18 +424,20 @@ describe('DateTimePicker', () => {
     });
   });
 
-  it('closes Calendar component when clicked outside', () => {
+  it('closes Calendar component when clicked outside', async () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
     const { container } = render(<DateTimePicker isCalendarOpen />, { attachTo: root });
 
-    fireEvent.mouseDown(document.body);
+    userEvent.click(document.body);
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-calendar'));
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__calendar'),
+    );
   });
 
-  it('closes Calendar component when focused outside', () => {
+  it('closes Calendar component when focused outside', async () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
@@ -428,30 +445,38 @@ describe('DateTimePicker', () => {
 
     fireEvent.focusIn(document.body);
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-calendar'));
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__calendar'),
+    );
   });
 
-  it('closes Calendar component when tapped outside', () => {
+  it('closes Calendar component when tapped outside', async () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
     const { container } = render(<DateTimePicker isCalendarOpen />, { attachTo: root });
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-calendar'));
+    fireEvent.touchStart(document.body);
+
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__calendar'),
+    );
   });
 
-  it('closes Clock component when clicked outside', () => {
+  it('closes Clock component when clicked outside', async () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
     const { container } = render(<DateTimePicker isClockOpen />, { attachTo: root });
 
-    fireEvent.mouseDown(document.body);
+    userEvent.click(document.body);
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-clock'));
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__clock'),
+    );
   });
 
-  it('closes Clock component when focused outside', () => {
+  it('closes Clock component when focused outside', async () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
@@ -459,10 +484,12 @@ describe('DateTimePicker', () => {
 
     fireEvent.focusIn(document.body);
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-clock'));
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__clock'),
+    );
   });
 
-  it('closes Clock component when tapped outside', () => {
+  it('closes Clock component when tapped outside', async () => {
     const root = document.createElement('div');
     document.body.appendChild(root);
 
@@ -470,7 +497,9 @@ describe('DateTimePicker', () => {
 
     fireEvent.touchStart(document.body);
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-clock'));
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__clock'),
+    );
   });
 
   it('does not close Calendar component when focused within date inputs', () => {
@@ -503,7 +532,7 @@ describe('DateTimePicker', () => {
     expect(clock).toBeInTheDocument();
   });
 
-  it('closes Clock when Calendar is opened by a click on the calendar icon', () => {
+  it('closes Clock when Calendar is opened by a click on the calendar icon', async () => {
     const { container } = render(<DateTimePicker isClockOpen />);
 
     const clock = container.querySelector('.react-clock');
@@ -513,10 +542,12 @@ describe('DateTimePicker', () => {
 
     fireEvent.click(button);
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-clock'));
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__clock'),
+    );
   });
 
-  it('closes Calendar when calling internal onChange by default', () => {
+  it('closes Calendar when calling internal onChange by default', async () => {
     const instance = createRef();
 
     const { container } = render(<DateTimePicker isCalendarOpen ref={instance} />);
@@ -527,7 +558,9 @@ describe('DateTimePicker', () => {
       onChangeInternal(new Date());
     });
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-calendar'));
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__calendar'),
+    );
   });
 
   it('does not close Calendar when calling internal onChange with prop closeWidgets = false', () => {
@@ -564,7 +597,7 @@ describe('DateTimePicker', () => {
     expect(calendar).toBeInTheDocument();
   });
 
-  it('closes Clock when calling internal onChange by default', () => {
+  it('closes Clock when calling internal onChange by default', async () => {
     const instance = createRef();
 
     const { container } = render(<DateTimePicker isClockOpen ref={instance} />);
@@ -575,7 +608,9 @@ describe('DateTimePicker', () => {
       onChangeInternal(new Date());
     });
 
-    waitForElementToBeRemoved(() => container.querySelector('.react-clock'));
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__clock'),
+    );
   });
 
   it('does not close Clock when calling internal onChange with prop closeWidgets = false', () => {
