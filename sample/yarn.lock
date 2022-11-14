@@ -4767,8 +4767,8 @@ __metadata:
   linkType: soft
 
 "react-datetime-picker@npm:latest":
-  version: 4.1.0
-  resolution: "react-datetime-picker@npm:4.1.0"
+  version: 4.1.1
+  resolution: "react-datetime-picker@npm:4.1.1"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.3
     clsx: ^1.2.1
@@ -4783,7 +4783,7 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: b7e6340bb33375d520ff620baf99e8b40d297ad94269eabae2547de1f154deb0827ad0362d5016620fa96477da7e00f4d968a1f3393e561ef38059ed8a061e30
+  checksum: 07391489d071c807d2551338847b710f502e36edc7a178275db64005c714b580157ad22578cfb3d20802f7da0530b0077d28a0aa55cd6ebd68fb059118dbe07f
   languageName: node
   linkType: hard
 
