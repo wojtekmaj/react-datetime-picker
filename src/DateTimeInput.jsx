@@ -343,7 +343,7 @@ export default class DateTimeInput extends PureComponent {
       return null;
     }
 
-    return getHoursMinutesSeconds(maxDate);
+    return getHoursMinutesSeconds(maxDate || defaultMaxDate);
   }
 
   get minTime() {
@@ -359,7 +359,7 @@ export default class DateTimeInput extends PureComponent {
       return null;
     }
 
-    return getHoursMinutesSeconds(minDate);
+    return getHoursMinutesSeconds(minDate || defaultMinDate);
   }
 
   get commonInputProps() {
@@ -681,6 +681,7 @@ export default class DateTimeInput extends PureComponent {
       <Hour12Input
         key="hour12"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         amPm={amPm}
         ariaLabel={hourAriaLabel}
         // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -707,6 +708,7 @@ export default class DateTimeInput extends PureComponent {
       <Hour24Input
         key="hour24"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         ariaLabel={hourAriaLabel}
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
@@ -732,6 +734,7 @@ export default class DateTimeInput extends PureComponent {
       <MinuteInput
         key="minute"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         ariaLabel={minuteAriaLabel}
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
@@ -758,6 +761,7 @@ export default class DateTimeInput extends PureComponent {
       <SecondInput
         key="second"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         ariaLabel={secondAriaLabel}
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
@@ -779,6 +783,7 @@ export default class DateTimeInput extends PureComponent {
       <AmPm
         key="ampm"
         {...this.commonInputProps}
+        {...this.commonTimeInputProps}
         ariaLabel={amPmAriaLabel}
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
