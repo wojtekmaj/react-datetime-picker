@@ -5,9 +5,8 @@
   "main": "dist/entry.js",
   "source": "src/entry.js",
   "scripts": {
-    "build": "yarn build-js && yarn copy-styles && yarn build-styles",
+    "build": "yarn build-js && yarn copy-styles",
     "build-js": "babel src -d dist --ignore \"**/*.spec.js,**/*.spec.jsx\"",
-    "build-styles": "lessc ./dist/DateTimePicker.less ./dist/DateTimePicker.css",
     "clean": "rimraf dist",
     "copy-styles": "node ./copy-styles.js",
     "jest": "jest",
@@ -57,7 +56,6 @@
     "husky": "^8.0.0",
     "jest": "^29.0.0",
     "jest-environment-jsdom": "^29.0.0",
-    "less": "^4.0.0",
     "prettier": "^2.7.0",
     "pretty-quick": "^3.1.0",
     "react": "^18.2.0",
