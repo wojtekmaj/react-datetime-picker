@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker/src/entry.nostyle';
-import 'react-datetime-picker/src/DateTimePicker.less';
-import 'react-calendar/src/Calendar.less';
-import 'react-clock/src/Clock.less';
+import 'react-datetime-picker/src/DateTimePicker.css';
+import 'react-calendar/src/Calendar.css';
+import 'react-clock/src/Clock.css';
 
 import ValidityOptions from './ValidityOptions';
 import MaxDetailOptions from './MaxDetailOptions';
@@ -10,7 +10,7 @@ import LocaleOptions from './LocaleOptions';
 import ValueOptions from './ValueOptions';
 import ViewOptions from './ViewOptions';
 
-import './Test.less';
+import './Test.css';
 
 const now = new Date();
 
