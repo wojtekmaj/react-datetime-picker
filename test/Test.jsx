@@ -101,6 +101,7 @@ export default function Test() {
               calendarClassName="myCustomCalendarClassName"
               className="myCustomTimePickerClassName"
               clockClassName="myCustomClockClassName"
+              data-testid="myCustomDateTimePicker"
               disabled={disabled}
               locale={locale}
               maxDate={maxDate}
