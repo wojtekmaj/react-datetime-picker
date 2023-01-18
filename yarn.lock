@@ -6071,9 +6071,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^9.1.0":
-  version: 9.1.0
-  resolution: "react-date-picker@npm:9.1.0"
+"react-date-picker@npm:^9.2.0":
+  version: 9.2.0
+  resolution: "react-date-picker@npm:9.2.0"
   dependencies:
     "@types/react-calendar": ^3.0.0
     "@wojtekmaj/date-utils": ^1.0.3
@@ -6087,7 +6087,7 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 03aab326d0d826796601744c8111f8374480d708ab6a3cb7a1918d57c02f2a55fb8f43ab08c81a016746996a51e279aedf80156b85ab33fccb11d03969812a81
+  checksum: 2573a71ef4b36adbb627f63ea835ade436ad04e827f488572da899ac66a9f85b8db2fa7c007fbdf6a505ab014d520514f6bcf4bcc771bd57976a7c901644ebd6
   languageName: node
   linkType: hard
 
@@ -6117,10 +6117,10 @@ __metadata:
     react: ^18.2.0
     react-calendar: ^4.0.0
     react-clock: ^4.0.0
-    react-date-picker: ^9.1.0
+    react-date-picker: ^9.2.0
     react-dom: ^18.2.0
     react-fit: ^1.4.0
-    react-time-picker: ^5.1.0
+    react-time-picker: ^5.2.0
     rimraf: ^3.0.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -6175,9 +6175,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "react-time-picker@npm:5.1.0"
+"react-time-picker@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "react-time-picker@npm:5.2.0"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.0
     clsx: ^1.2.1
@@ -6190,7 +6190,7 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 9dacc5bf130bc1462f4f756f570a94108286a6124cf0555844b9a5449eff3617f71936f5a56657c1835d5dfe345a5c168b0b6b5593053d8d0f823363353787be
+  checksum: 24ae145f954927a1a131eb63d215174ca7253aa19d19da00acd799bb4856e3b63d8e84071cf031781e78ce35ba7707cdaf9664ff2e57a8b53e00b03e0f2549a7
   languageName: node
   linkType: hard
 
