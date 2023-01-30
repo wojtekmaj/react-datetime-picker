@@ -316,7 +316,7 @@ export default class DateTimePicker extends PureComponent {
             onFocus={this.stopPropagation}
             type="button"
           >
-            {clearIcon}
+            {typeof clearIcon === 'function' ? React.createElement(clearIcon) : clearIcon}
           </button>
         )}
         {calendarIcon !== null && !disableCalendar && (
@@ -329,7 +329,7 @@ export default class DateTimePicker extends PureComponent {
             onFocus={this.stopPropagation}
             type="button"
           >
-            {calendarIcon}
+            {typeof calendarIcon === 'function' ? React.createElement(calendarIcon) : calendarIcon}
           </button>
         )}
       </div>
@@ -523,10 +523,10 @@ DateTimePicker.propTypes = {
   autoFocus: PropTypes.bool,
   calendarAriaLabel: PropTypes.string,
   calendarClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  calendarIcon: PropTypes.node,
+  calendarIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   clearAriaLabel: PropTypes.string,
-  clearIcon: PropTypes.node,
+  clearIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   clockClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   closeWidgets: PropTypes.bool,
   'data-testid': PropTypes.string,

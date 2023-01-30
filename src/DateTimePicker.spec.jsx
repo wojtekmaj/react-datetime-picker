@@ -209,20 +209,60 @@ describe('DateTimePicker', () => {
     expect(nativeInput).toBeInTheDocument();
   });
 
-  it('renders clear button', () => {
-    const { container } = render(<DateTimePicker />);
+  describe('renders clear button properly', () => {
+    it('renders clear button', () => {
+      const { container } = render(<DateTimePicker />);
 
-    const clearButton = container.querySelector('button.react-datetime-picker__clear-button');
+      const clearButton = container.querySelector('button.react-datetime-picker__clear-button');
 
-    expect(clearButton).toBeInTheDocument();
+      expect(clearButton).toBeInTheDocument();
+    });
+
+    it('renders clear icon by default when clearIcon is not given', () => {
+      const { container } = render(<DateTimePicker />);
+
+      const clearButton = container.querySelector('button.react-datetime-picker__clear-button');
+
+      const clearIcon = clearButton.querySelector('svg');
+
+      expect(clearIcon).toBeInTheDocument();
+    });
+
+    it('renders clear icon when given clearIcon as a React element', () => {
+      function ClearIcon() {
+        return '❌';
+      }
+
+      const { container } = render(<DateTimePicker clearIcon={<ClearIcon />} />);
+
+      const clearButton = container.querySelector('button.react-datetime-picker__clear-button');
+
+      expect(clearButton).toHaveTextContent('❌');
+    });
+
+    it('renders clear icon when given clearIcon as a function', () => {
+      function ClearIcon() {
+        return '❌';
+      }
+
+      const { container } = render(<DateTimePicker clearIcon={ClearIcon} />);
+
+      const clearButton = container.querySelector('button.react-datetime-picker__clear-button');
+
+      expect(clearButton).toHaveTextContent('❌');
+    });
   });
 
-  it('renders calendar button', () => {
-    const { container } = render(<DateTimePicker />);
+  describe('renders calendar button properly', () => {
+    it('renders calendar button', () => {
+      const { container } = render(<DateTimePicker />);
 
-    const calendarButton = container.querySelector('button.react-datetime-picker__calendar-button');
+      const calendarButton = container.querySelector(
+        'button.react-datetime-picker__calendar-button',
+      );
 
-    expect(calendarButton).toBeInTheDocument();
+      expect(calendarButton).toBeInTheDocument();
+    });
   });
 
   it('renders Calendar component when given isCalendarOpen flag', () => {
