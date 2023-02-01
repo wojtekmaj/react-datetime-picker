@@ -10,8 +10,8 @@ export default function ValueOptions({ setValue, value }) {
   }
 
   return (
-    <fieldset id="valueOptions">
-      <legend htmlFor="valueOptions">Set date and time externally</legend>
+    <fieldset>
+      <legend>Set date and time externally</legend>
 
       <div>
         <label htmlFor="datetime">Date and time</label>
