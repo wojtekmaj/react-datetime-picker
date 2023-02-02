@@ -7,4 +7,6 @@ import DateTimePicker from './DateTimePicker';
 // eslint-disable-next-line import/no-unresolved
 import './DateTimePicker.css';
 
+export { DateTimePicker };
+
 export default DateTimePicker;
