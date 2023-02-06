@@ -2143,6 +2143,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wojtekmaj/date-utils@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@wojtekmaj/date-utils@npm:1.1.2"
+  checksum: e0cc184af022ce30aa543ec61dcd02fa95d536a579611a54a00d0f955b15948c06ca0e5389633f1787301e094e2dd66d6019b286ffe2f0a3be33ae631125a819
+  languageName: node
+  linkType: hard
+
 "abab@npm:^2.0.6":
   version: 2.0.6
   resolution: "abab@npm:2.0.6"
@@ -3897,7 +3904,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-user-locale@npm:^1.2.0, get-user-locale@npm:^1.4.0":
+"get-user-locale@npm:^1.2.0":
   version: 1.5.1
   resolution: "get-user-locale@npm:1.5.1"
   dependencies:
@@ -3906,7 +3913,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-user-locale@npm:^2.1.3":
+"get-user-locale@npm:^2.0.0, get-user-locale@npm:^2.1.3":
   version: 2.1.3
   resolution: "get-user-locale@npm:2.1.3"
   dependencies:
@@ -6083,17 +6090,18 @@ __metadata:
   linkType: hard
 
 "react-clock@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "react-clock@npm:4.0.0"
+  version: 4.1.0
+  resolution: "react-clock@npm:4.1.0"
   dependencies:
-    "@wojtekmaj/date-utils": ^1.0.0
+    "@types/react": "*"
+    "@wojtekmaj/date-utils": ^1.1.2
     clsx: ^1.2.1
-    get-user-locale: ^1.4.0
+    get-user-locale: ^2.0.0
     prop-types: ^15.6.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 590b5e1b51a64291733d6b49f4c6c51873d07f71aa486bf75aed3e54fc1653da7756c3a32e83af9195185abb22c8d38c5bccbb96d940f87b5d11d23db9a301c2
+  checksum: 30a4de446fe7fcee36f155d9faafa73ca3df0faead9415b02859fcd7676f3e337325fe3b2330cc42988463fe40f45e3360d3f3d59b678d2a5ea584cc30334f4a
   languageName: node
   linkType: hard
 
