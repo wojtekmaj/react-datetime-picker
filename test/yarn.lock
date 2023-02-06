@@ -1666,6 +1666,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash.memoize@npm:^4.1.7":
+  version: 4.1.7
+  resolution: "@types/lodash.memoize@npm:4.1.7"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 85f128b6606ab0545c11194208cf844536f981859221dff0032b1043dd4e02ee5aa1b96020d1e02a24db31be7493f2e9ff45836d2e3c35cf973fc6488f129eed
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*":
+  version: 4.14.191
+  resolution: "@types/lodash@npm:4.14.191"
+  checksum: ba0d5434e10690869f32d5ea49095250157cae502f10d57de0a723fd72229ce6c6a4979576f0f13e0aa9fbe3ce2457bfb9fa7d4ec3d6daba56730a51906d1491
+  languageName: node
+  linkType: hard
+
 "@types/mime@npm:*":
   version: 3.0.1
   resolution: "@types/mime@npm:3.0.1"
@@ -1960,6 +1976,13 @@ __metadata:
   version: 1.0.3
   resolution: "@wojtekmaj/date-utils@npm:1.0.3"
   checksum: 70b7152160529295319ead97e070f85a50c0eab7973b5845e3a58eab9b0c999023975d2739b5e2a059d27b108ce7cdbf14da99737d6fa3e3822d4dafb76b06f0
+  languageName: node
+  linkType: hard
+
+"@wojtekmaj/date-utils@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@wojtekmaj/date-utils@npm:1.1.2"
+  checksum: e0cc184af022ce30aa543ec61dcd02fa95d536a579611a54a00d0f955b15948c06ca0e5389633f1787301e094e2dd66d6019b286ffe2f0a3be33ae631125a819
   languageName: node
   linkType: hard
 
@@ -3535,6 +3558,16 @@ __metadata:
   dependencies:
     lodash.memoize: ^4.1.1
   checksum: 4ab9ae83264c8b4f376b7690578ee3b332808d40f49e500469d476b832d4fddcf8477b7a01b60a242fd232b5a2ae8f6b7620f731d67350e89fd17ddd91fc8a0e
+  languageName: node
+  linkType: hard
+
+"get-user-locale@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "get-user-locale@npm:2.1.3"
+  dependencies:
+    "@types/lodash.memoize": ^4.1.7
+    lodash.memoize: ^4.1.1
+  checksum: 2fb6e14fdf1eafc0dea620d23fa658ac12c3dba4da81e89703a36152115428463e36d0df62dfeed9af1647907926f87f391eb9148b79e56cd468caf3b4c64f5b
   languageName: node
   linkType: hard
 
@@ -5167,9 +5200,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^9.1.0":
-  version: 9.1.0
-  resolution: "react-date-picker@npm:9.1.0"
+"react-date-picker@npm:^9.2.0":
+  version: 9.2.0
+  resolution: "react-date-picker@npm:9.2.0"
   dependencies:
     "@types/react-calendar": ^3.0.0
     "@wojtekmaj/date-utils": ^1.0.3
@@ -5183,7 +5216,7 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 03aab326d0d826796601744c8111f8374480d708ab6a3cb7a1918d57c02f2a55fb8f43ab08c81a016746996a51e279aedf80156b85ab33fccb11d03969812a81
+  checksum: 2573a71ef4b36adbb627f63ea835ade436ad04e827f488572da899ac66a9f85b8db2fa7c007fbdf6a505ab014d520514f6bcf4bcc771bd57976a7c901644ebd6
   languageName: node
   linkType: hard
 
@@ -5195,7 +5228,7 @@ __metadata:
     "@babel/preset-env": ^7.20.2
     "@babel/preset-react": ^7.14.0
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.0
-    "@wojtekmaj/date-utils": ^1.0.0
+    "@wojtekmaj/date-utils": ^1.1.2
     babel-loader: ^9.0.0
     css-loader: ^6.0.0
     eslint: ^8.26.0
@@ -5219,14 +5252,14 @@ __metadata:
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.3
     clsx: ^1.2.1
-    get-user-locale: ^1.2.0
+    get-user-locale: ^2.1.3
     make-event-props: ^1.1.0
     prop-types: ^15.6.0
     react-calendar: ^4.0.0
     react-clock: ^4.0.0
-    react-date-picker: ^9.1.0
+    react-date-picker: ^9.2.0
     react-fit: ^1.4.0
-    react-time-picker: ^5.1.0
+    react-time-picker: ^5.2.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -5273,9 +5306,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "react-time-picker@npm:5.1.0"
+"react-time-picker@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "react-time-picker@npm:5.2.0"
   dependencies:
     "@wojtekmaj/date-utils": ^1.0.0
     clsx: ^1.2.1
@@ -5288,7 +5321,7 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 9dacc5bf130bc1462f4f756f570a94108286a6124cf0555844b9a5449eff3617f71936f5a56657c1835d5dfe345a5c168b0b6b5593053d8d0f823363353787be
+  checksum: 24ae145f954927a1a131eb63d215174ca7253aa19d19da00acd799bb4856e3b63d8e84071cf031781e78ce35ba7707cdaf9664ff2e57a8b53e00b03e0f2549a7
   languageName: node
   linkType: hard
 
