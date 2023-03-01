@@ -2,8 +2,8 @@
   "name": "react-datetime-picker",
   "version": "4.2.0",
   "description": "A date range picker for your React app.",
-  "main": "dist/entry.js",
-  "source": "src/entry.js",
+  "main": "dist/index.js",
+  "source": "src/index.js",
   "scripts": {
     "build": "yarn build-js && yarn copy-styles",
     "build-js": "babel src -d dist --ignore \"**/*.spec.js,**/*.spec.jsx\"",
