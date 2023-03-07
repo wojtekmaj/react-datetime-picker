@@ -4018,6 +4018,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-datetime-picker@workspace:."
   dependencies:
+    "@testing-library/dom": ^9.0.0
     "@testing-library/jest-dom": ^5.15.0
     "@testing-library/react": ^14.0.0
     "@testing-library/user-event": ^14.4.0
