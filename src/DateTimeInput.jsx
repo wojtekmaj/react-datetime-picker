@@ -587,7 +587,12 @@ export default class DateTimeInput extends PureComponent {
 
     const values = {};
     formElements.forEach((formElement) => {
-      values[formElement.name] = formElement.value;
+      values[formElement.name] =
+        formElement.type === 'number'
+          ? 'valueAsNumber' in formElement
+            ? formElement.valueAsNumber
+            : parseInt(formElement.value, 10)
+          : formElement.value;
     });
 
     if (formElementsWithoutSelect.every((formElement) => !formElement.value)) {
@@ -595,12 +600,12 @@ export default class DateTimeInput extends PureComponent {
     } else if (
       formElements.every((formElement) => formElement.value && formElement.validity.valid)
     ) {
-      const year = parseInt(values.year, 10) || new Date().getFullYear();
-      const monthIndex = parseInt(values.month || 1, 10) - 1;
-      const day = parseInt(values.day || 1, 10);
-      const hour = parseInt(values.hour24 || convert12to24(values.hour12, values.amPm) || 0, 10);
-      const minute = parseInt(values.minute || 0, 10);
-      const second = parseInt(values.second || 0, 10);
+      const year = values.year || new Date().getFullYear();
+      const monthIndex = (values.month || 1) - 1;
+      const day = values.day || 1;
+      const hour = values.hour24 || convert12to24(values.hour12, values.amPm) || 0;
+      const minute = values.minute || 0;
+      const second = values.second || 0;
 
       const proposedValue = new Date();
       proposedValue.setFullYear(year, monthIndex, day);
