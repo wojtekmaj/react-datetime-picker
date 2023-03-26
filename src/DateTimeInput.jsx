@@ -151,7 +151,45 @@ function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstance
 
 const formatNumber = getNumberFormatter({ useGrouping: false });
 
+const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
+
 export default class DateTimeInput extends PureComponent {
+  static defaultProps = {
+    maxDetail: 'minute',
+    name: 'datetime',
+  };
+
+  static propTypes = {
+    amPmAriaLabel: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    className: PropTypes.string.isRequired,
+    dayAriaLabel: PropTypes.string,
+    dayPlaceholder: PropTypes.string,
+    disabled: PropTypes.bool,
+    format: PropTypes.string,
+    hourAriaLabel: PropTypes.string,
+    hourPlaceholder: PropTypes.string,
+    isWidgetOpen: PropTypes.bool,
+    locale: PropTypes.string,
+    maxDate: isMaxDate,
+    maxDetail: PropTypes.oneOf(allViews),
+    minDate: isMinDate,
+    minuteAriaLabel: PropTypes.string,
+    minutePlaceholder: PropTypes.string,
+    monthAriaLabel: PropTypes.string,
+    monthPlaceholder: PropTypes.string,
+    name: PropTypes.string,
+    nativeInputAriaLabel: PropTypes.string,
+    onChange: PropTypes.func,
+    required: PropTypes.bool,
+    secondAriaLabel: PropTypes.string,
+    secondPlaceholder: PropTypes.string,
+    showLeadingZeros: PropTypes.bool,
+    value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
+    yearAriaLabel: PropTypes.string,
+    yearPlaceholder: PropTypes.string,
+  };
+
   static getDerivedStateFromProps(nextProps, prevState) {
     const { minDate, maxDate } = nextProps;
 
@@ -846,41 +884,3 @@ export default class DateTimeInput extends PureComponent {
     );
   }
 }
-
-DateTimeInput.defaultProps = {
-  maxDetail: 'minute',
-  name: 'datetime',
-};
-
-const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
-
-DateTimeInput.propTypes = {
-  amPmAriaLabel: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  className: PropTypes.string.isRequired,
-  dayAriaLabel: PropTypes.string,
-  dayPlaceholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  format: PropTypes.string,
-  hourAriaLabel: PropTypes.string,
-  hourPlaceholder: PropTypes.string,
-  isWidgetOpen: PropTypes.bool,
-  locale: PropTypes.string,
-  maxDate: isMaxDate,
-  maxDetail: PropTypes.oneOf(allViews),
-  minDate: isMinDate,
-  minuteAriaLabel: PropTypes.string,
-  minutePlaceholder: PropTypes.string,
-  monthAriaLabel: PropTypes.string,
-  monthPlaceholder: PropTypes.string,
-  name: PropTypes.string,
-  nativeInputAriaLabel: PropTypes.string,
-  onChange: PropTypes.func,
-  required: PropTypes.bool,
-  secondAriaLabel: PropTypes.string,
-  secondPlaceholder: PropTypes.string,
-  showLeadingZeros: PropTypes.bool,
-  value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
-  yearAriaLabel: PropTypes.string,
-  yearPlaceholder: PropTypes.string,
-};
