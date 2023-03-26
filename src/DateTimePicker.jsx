@@ -16,7 +16,99 @@ const allViews = ['hour', 'minute', 'second'];
 const baseClassName = 'react-datetime-picker';
 const outsideActionEvents = ['mousedown', 'focusin', 'touchstart'];
 
+const iconProps = {
+  xmlns: 'http://www.w3.org/2000/svg',
+  width: 19,
+  height: 19,
+  viewBox: '0 0 19 19',
+  stroke: 'black',
+  strokeWidth: 2,
+};
+
+const CalendarIcon = (
+  <svg
+    {...iconProps}
+    className={`${baseClassName}__calendar-button__icon ${baseClassName}__button__icon`}
+  >
+    <rect fill="none" height="15" width="15" x="2" y="2" />
+    <line x1="6" x2="6" y1="0" y2="4" />
+    <line x1="13" x2="13" y1="0" y2="4" />
+  </svg>
+);
+
+const ClearIcon = (
+  <svg
+    {...iconProps}
+    className={`${baseClassName}__clear-button__icon ${baseClassName}__button__icon`}
+  >
+    <line x1="4" x2="15" y1="4" y2="15" />
+    <line x1="15" x2="4" y1="4" y2="15" />
+  </svg>
+);
+
+const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
+
 export default class DateTimePicker extends PureComponent {
+  static defaultProps = {
+    calendarIcon: CalendarIcon,
+    clearIcon: ClearIcon,
+    closeWidgets: true,
+    isCalendarOpen: null,
+    isClockOpen: null,
+    maxDetail: 'minute',
+    openWidgetsOnFocus: true,
+  };
+
+  static propTypes = {
+    amPmAriaLabel: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    calendarAriaLabel: PropTypes.string,
+    calendarClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+    calendarIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+    clearAriaLabel: PropTypes.string,
+    clearIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    clockClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+    closeWidgets: PropTypes.bool,
+    'data-testid': PropTypes.string,
+    dayAriaLabel: PropTypes.string,
+    dayPlaceholder: PropTypes.string,
+    disableCalendar: PropTypes.bool,
+    disableClock: PropTypes.bool,
+    disabled: PropTypes.bool,
+    format: PropTypes.string,
+    hourAriaLabel: PropTypes.string,
+    hourPlaceholder: PropTypes.string,
+    id: PropTypes.string,
+    isCalendarOpen: PropTypes.bool,
+    isClockOpen: PropTypes.bool,
+    locale: PropTypes.string,
+    maxDate: isMaxDate,
+    maxDetail: PropTypes.oneOf(allViews),
+    minDate: isMinDate,
+    minuteAriaLabel: PropTypes.string,
+    minutePlaceholder: PropTypes.string,
+    monthAriaLabel: PropTypes.string,
+    monthPlaceholder: PropTypes.string,
+    name: PropTypes.string,
+    nativeInputAriaLabel: PropTypes.string,
+    onCalendarClose: PropTypes.func,
+    onCalendarOpen: PropTypes.func,
+    onChange: PropTypes.func,
+    onClockClose: PropTypes.func,
+    onClockOpen: PropTypes.func,
+    onFocus: PropTypes.func,
+    openWidgetsOnFocus: PropTypes.bool,
+    portalContainer: PropTypes.object,
+    required: PropTypes.bool,
+    secondAriaLabel: PropTypes.string,
+    secondPlaceholder: PropTypes.string,
+    showLeadingZeros: PropTypes.bool,
+    value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
+    yearAriaLabel: PropTypes.string,
+    yearPlaceholder: PropTypes.string,
+  };
+
   static getDerivedStateFromProps(nextProps, prevState) {
     const nextState = {};
 
@@ -475,95 +567,3 @@ export default class DateTimePicker extends PureComponent {
     );
   }
 }
-
-const iconProps = {
-  xmlns: 'http://www.w3.org/2000/svg',
-  width: 19,
-  height: 19,
-  viewBox: '0 0 19 19',
-  stroke: 'black',
-  strokeWidth: 2,
-};
-
-const CalendarIcon = (
-  <svg
-    {...iconProps}
-    className={`${baseClassName}__calendar-button__icon ${baseClassName}__button__icon`}
-  >
-    <rect fill="none" height="15" width="15" x="2" y="2" />
-    <line x1="6" x2="6" y1="0" y2="4" />
-    <line x1="13" x2="13" y1="0" y2="4" />
-  </svg>
-);
-
-const ClearIcon = (
-  <svg
-    {...iconProps}
-    className={`${baseClassName}__clear-button__icon ${baseClassName}__button__icon`}
-  >
-    <line x1="4" x2="15" y1="4" y2="15" />
-    <line x1="15" x2="4" y1="4" y2="15" />
-  </svg>
-);
-
-DateTimePicker.defaultProps = {
-  calendarIcon: CalendarIcon,
-  clearIcon: ClearIcon,
-  closeWidgets: true,
-  isCalendarOpen: null,
-  isClockOpen: null,
-  maxDetail: 'minute',
-  openWidgetsOnFocus: true,
-};
-
-const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
-
-DateTimePicker.propTypes = {
-  amPmAriaLabel: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  calendarAriaLabel: PropTypes.string,
-  calendarClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  calendarIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  clearAriaLabel: PropTypes.string,
-  clearIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  clockClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  closeWidgets: PropTypes.bool,
-  'data-testid': PropTypes.string,
-  dayAriaLabel: PropTypes.string,
-  dayPlaceholder: PropTypes.string,
-  disableCalendar: PropTypes.bool,
-  disableClock: PropTypes.bool,
-  disabled: PropTypes.bool,
-  format: PropTypes.string,
-  hourAriaLabel: PropTypes.string,
-  hourPlaceholder: PropTypes.string,
-  id: PropTypes.string,
-  isCalendarOpen: PropTypes.bool,
-  isClockOpen: PropTypes.bool,
-  locale: PropTypes.string,
-  maxDate: isMaxDate,
-  maxDetail: PropTypes.oneOf(allViews),
-  minDate: isMinDate,
-  minuteAriaLabel: PropTypes.string,
-  minutePlaceholder: PropTypes.string,
-  monthAriaLabel: PropTypes.string,
-  monthPlaceholder: PropTypes.string,
-  name: PropTypes.string,
-  nativeInputAriaLabel: PropTypes.string,
-  onCalendarClose: PropTypes.func,
-  onCalendarOpen: PropTypes.func,
-  onChange: PropTypes.func,
-  onClockClose: PropTypes.func,
-  onClockOpen: PropTypes.func,
-  onFocus: PropTypes.func,
-  openWidgetsOnFocus: PropTypes.bool,
-  portalContainer: PropTypes.object,
-  required: PropTypes.bool,
-  secondAriaLabel: PropTypes.string,
-  secondPlaceholder: PropTypes.string,
-  showLeadingZeros: PropTypes.bool,
-  value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
-  yearAriaLabel: PropTypes.string,
-  yearPlaceholder: PropTypes.string,
-};
