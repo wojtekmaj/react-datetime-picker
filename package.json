@@ -47,7 +47,7 @@
     "react-calendar": "^4.0.0",
     "react-clock": "^4.0.0",
     "react-date-picker": "^9.2.0",
-    "react-fit": "^1.4.0",
+    "react-fit": "^1.5.1",
     "react-time-picker": "^5.2.0"
   },
   "devDependencies": {
