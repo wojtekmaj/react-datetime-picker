@@ -416,7 +416,6 @@ export default class DateTimePicker extends PureComponent {
             aria-label={calendarAriaLabel}
             className={`${baseClassName}__calendar-button ${baseClassName}__button`}
             disabled={disabled}
-            onBlur={this.resetValue}
             onClick={this.toggleCalendar}
             onFocus={this.stopPropagation}
             type="button"
