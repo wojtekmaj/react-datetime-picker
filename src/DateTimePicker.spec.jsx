@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import React, { createRef } from 'react';
+import React from 'react';
 import { act, fireEvent, render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -588,15 +588,13 @@ describe('DateTimePicker', () => {
     );
   });
 
-  it('closes Calendar when calling internal onChange by default', async () => {
-    const instance = createRef();
+  it('closes Calendar when changing value by default', async () => {
+    const { container } = render(<DateTimePicker isCalendarOpen />);
 
-    const { container } = render(<DateTimePicker isCalendarOpen ref={instance} />);
-
-    const { onChange: onChangeInternal } = instance.current;
+    const firstTile = container.querySelector('.react-calendar__tile');
 
     act(() => {
-      onChangeInternal(new Date());
+      fireEvent.click(firstTile);
     });
 
     await waitForElementToBeRemovedOrHidden(() =>
@@ -604,67 +602,55 @@ describe('DateTimePicker', () => {
     );
   });
 
-  it('does not close Calendar when calling internal onChange with prop closeWidgets = false', () => {
-    const instance = createRef();
+  it('closes Calendar when changing value with prop closeWidgets = true', async () => {
+    const { container } = render(<DateTimePicker closeWidgets isCalendarOpen />);
 
-    const { container } = render(
-      <DateTimePicker closeWidgets={false} isCalendarOpen ref={instance} />,
-    );
-
-    const { onChange: onChangeInternal } = instance.current;
+    const firstTile = container.querySelector('.react-calendar__tile');
 
     act(() => {
-      onChangeInternal(new Date());
-    });
-
-    const calendar = container.querySelector('.react-calendar');
-
-    expect(calendar).toBeInTheDocument();
-  });
-
-  it('does not close Calendar when calling internal onChange with closeWidgets = false', () => {
-    const instance = createRef();
-
-    const { container } = render(<DateTimePicker isCalendarOpen ref={instance} />);
-
-    const { onChange: onChangeInternal } = instance.current;
-
-    act(() => {
-      onChangeInternal(new Date(), false);
-    });
-
-    const calendar = container.querySelector('.react-calendar');
-
-    expect(calendar).toBeInTheDocument();
-  });
-
-  it('closes Clock when calling internal onChange by default', async () => {
-    const instance = createRef();
-
-    const { container } = render(<DateTimePicker isClockOpen ref={instance} />);
-
-    const { onChange: onChangeInternal } = instance.current;
-
-    act(() => {
-      onChangeInternal(new Date());
+      fireEvent.click(firstTile);
     });
 
     await waitForElementToBeRemovedOrHidden(() =>
-      container.querySelector('.react-datetime-picker__clock'),
+      container.querySelector('.react-datetime-picker__calendar'),
     );
   });
 
-  it('does not close Clock when calling internal onChange with prop closeWidgets = false', () => {
-    const instance = createRef();
+  it('does not close Calendar when changing value with prop closeWidgets = false', () => {
+    const { container } = render(<DateTimePicker closeWidgets={false} isCalendarOpen />);
 
-    const { container } = render(
-      <DateTimePicker closeWidgets={false} isClockOpen ref={instance} />,
-    );
-
-    const { onChange: onChangeInternal } = instance.current;
+    const firstTile = container.querySelector('.react-calendar__tile');
 
     act(() => {
-      onChangeInternal(new Date());
+      fireEvent.click(firstTile);
+    });
+
+    const calendar = container.querySelector('.react-calendar');
+
+    expect(calendar).toBeInTheDocument();
+  });
+
+  it('does not close Calendar when changing value using inputs', () => {
+    const { container } = render(<DateTimePicker isCalendarOpen />);
+
+    const dayInput = container.querySelector('input[name="day"]');
+
+    act(() => {
+      fireEvent.change(dayInput, { target: { value: '1' } });
+    });
+
+    const calendar = container.querySelector('.react-calendar');
+
+    expect(calendar).toBeInTheDocument();
+  });
+
+  it('does not close Clock when changing value using inputs', () => {
+    const { container } = render(<DateTimePicker isClockOpen />);
+
+    const hourInput = container.querySelector('input[name="hour12"]');
+
+    act(() => {
+      fireEvent.change(hourInput, { target: { value: '9' } });
     });
 
     const clock = container.querySelector('.react-clock');
@@ -672,63 +658,55 @@ describe('DateTimePicker', () => {
     expect(clock).toBeInTheDocument();
   });
 
-  it('does not close Clock when calling internal onChange with closeWidgets = false', () => {
-    const instance = createRef();
-
-    const { container } = render(<DateTimePicker isClockOpen ref={instance} />);
-
-    const { onChange: onChangeInternal } = instance.current;
-
-    act(() => {
-      onChangeInternal(new Date(), false);
-    });
-
-    const clock = container.querySelector('.react-clock');
-
-    expect(clock).toBeInTheDocument();
-  });
-
-  it('calls onChange callback when calling internal internal onChange', () => {
-    const instance = createRef();
-    const nextValue = new Date(2019, 0, 1, 21, 40, 11, 458);
+  it('calls onChange callback when changing value', () => {
+    const value = new Date(2023, 0, 31, 21, 40, 11);
     const onChange = vi.fn();
 
-    render(<DateTimePicker onChange={onChange} value={new Date(2018, 6, 17)} ref={instance} />);
+    const { container } = render(
+      <DateTimePicker maxDetail="second" onChange={onChange} value={value} />,
+    );
 
-    const { onChange: onChangeInternal } = instance.current;
+    const dayInput = container.querySelector('input[name="day"]');
 
     act(() => {
-      onChangeInternal(nextValue);
+      fireEvent.change(dayInput, { target: { value: '1' } });
     });
 
-    expect(onChange).toHaveBeenCalledWith(nextValue);
+    expect(onChange).toHaveBeenCalledWith(new Date(2023, 0, 1, 21, 40, 11));
   });
 
   it('calls onChange callback with merged new date & old time when calling internal onDateChange', () => {
-    const instance = createRef();
     const hours = 21;
     const minutes = 40;
     const seconds = 11;
     const ms = 458;
 
-    const nextValue = new Date(2019, 0, 1);
     const onChange = vi.fn();
+    const value = new Date(2018, 6, 17, hours, minutes, seconds, ms);
+    const nextValue = new Date(2019, 0, 1, hours, minutes, seconds, ms);
 
-    render(
-      <DateTimePicker
-        onChange={onChange}
-        value={new Date(2018, 6, 17, hours, minutes, seconds, ms)}
-        ref={instance}
-      />,
+    const { container, getByRole } = render(
+      <DateTimePicker isCalendarOpen onChange={onChange} value={value} />,
     );
 
-    const { onDateChange: onDateChangeInternal } = instance.current;
+    // Navigate up the calendar
+    const drillUpButton = container.querySelector('.react-calendar__navigation__label');
+    fireEvent.click(drillUpButton); // To year 2018
+    fireEvent.click(drillUpButton); // To 2011 – 2020 decade
 
-    act(() => {
-      onDateChangeInternal(nextValue);
-    });
+    // Click year 2019
+    const twentyNineteenButton = getByRole('button', { name: '2019' });
+    fireEvent.click(twentyNineteenButton);
 
-    expect(onChange).toHaveBeenCalledWith(new Date(2019, 0, 1, hours, minutes, seconds, ms));
+    // Click January
+    const januaryButton = getByRole('button', { name: 'January 2019' });
+    fireEvent.click(januaryButton);
+
+    // Click 1st
+    const firstButton = getByRole('button', { name: 'January 1, 2019' });
+    fireEvent.click(firstButton);
+
+    expect(onChange).toHaveBeenCalledWith(nextValue);
   });
 
   it('clears the value when clicking on a button', () => {
