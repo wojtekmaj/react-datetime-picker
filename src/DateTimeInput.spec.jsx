@@ -718,7 +718,7 @@ describe('DateTimeInput', () => {
     const customInputs = container.querySelectorAll('input[data-input]');
     const hourInput = customInputs[3];
 
-    fireEvent.change(hourInput, { target: { value: '20' } });
+    fireEvent.change(hourInput, { target: { value: '8' } });
 
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 0), false);
@@ -737,7 +737,7 @@ describe('DateTimeInput', () => {
     const customInputs = container.querySelectorAll('input[data-input]');
     const hourInput = customInputs[3];
 
-    fireEvent.change(hourInput, { target: { value: '20' } });
+    fireEvent.change(hourInput, { target: { value: '8' } });
 
     const nextDate = new Date();
     nextDate.setFullYear(19, 8, 30);
