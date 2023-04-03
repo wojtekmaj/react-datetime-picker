@@ -547,11 +547,11 @@ describe('DateTimePicker', () => {
     const { container } = render(<DateTimePicker isCalendarOpen />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const dayInput = customInputs[0];
-    const monthInput = customInputs[1];
+    const monthInput = customInputs[0];
+    const dayInput = customInputs[1];
 
-    fireEvent.blur(dayInput);
-    fireEvent.focus(monthInput);
+    fireEvent.blur(monthInput);
+    fireEvent.focus(dayInput);
 
     const calendar = container.querySelector('.react-calendar');
 
