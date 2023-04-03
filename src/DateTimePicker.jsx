@@ -166,13 +166,16 @@ export default function DateTimePicker(props) {
   }
 
   function onDateChange(nextValue, shouldCloseWidgets) {
-    if (value) {
+    const [valueFrom] = Array.isArray(value) ? value : [value];
+
+    if (valueFrom && nextValueFrom) {
+      const valueFromDate = new Date(valueFrom);
       const nextValueWithHour = new Date(nextValue);
       nextValueWithHour.setHours(
-        value.getHours(),
-        value.getMinutes(),
-        value.getSeconds(),
-        value.getMilliseconds(),
+        valueFromDate.getHours(),
+        valueFromDate.getMinutes(),
+        valueFromDate.getSeconds(),
+        valueFromDate.getMilliseconds(),
       );
 
       onChange(nextValueWithHour, shouldCloseWidgets);

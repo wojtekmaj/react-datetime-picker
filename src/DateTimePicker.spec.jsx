@@ -675,7 +675,7 @@ describe('DateTimePicker', () => {
     expect(onChange).toHaveBeenCalledWith(new Date(2023, 0, 1, 21, 40, 11));
   });
 
-  it('calls onChange callback with merged new date & old time when calling internal onDateChange', () => {
+  it('calls onChange callback with merged new date & old time when calling internal onDateChange given Date', () => {
     const hours = 21;
     const minutes = 40;
     const seconds = 11;
@@ -683,6 +683,40 @@ describe('DateTimePicker', () => {
 
     const onChange = vi.fn();
     const value = new Date(2018, 6, 17, hours, minutes, seconds, ms);
+    const nextValue = new Date(2019, 0, 1, hours, minutes, seconds, ms);
+
+    const { container, getByRole } = render(
+      <DateTimePicker isCalendarOpen onChange={onChange} value={value} />,
+    );
+
+    // Navigate up the calendar
+    const drillUpButton = container.querySelector('.react-calendar__navigation__label');
+    fireEvent.click(drillUpButton); // To year 2018
+    fireEvent.click(drillUpButton); // To 2011 – 2020 decade
+
+    // Click year 2019
+    const twentyNineteenButton = getByRole('button', { name: '2019' });
+    fireEvent.click(twentyNineteenButton);
+
+    // Click January
+    const januaryButton = getByRole('button', { name: 'January 2019' });
+    fireEvent.click(januaryButton);
+
+    // Click 1st
+    const firstButton = getByRole('button', { name: 'January 1, 2019' });
+    fireEvent.click(firstButton);
+
+    expect(onChange).toHaveBeenCalledWith(nextValue);
+  });
+
+  it('calls onChange callback with merged new date & old time when calling internal onDateChange given ISO string', () => {
+    const hours = 21;
+    const minutes = 40;
+    const seconds = 11;
+    const ms = 458;
+
+    const onChange = vi.fn();
+    const value = new Date(2018, 6, 17, hours, minutes, seconds, ms).toISOString();
     const nextValue = new Date(2019, 0, 1, hours, minutes, seconds, ms);
 
     const { container, getByRole } = render(
