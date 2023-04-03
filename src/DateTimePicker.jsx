@@ -1,20 +1,19 @@
-import React, { createRef, PureComponent } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import makeEventProps from 'make-event-props';
 import clsx from 'clsx';
 import Calendar from 'react-calendar';
-import Fit from 'react-fit';
-
 import Clock from 'react-clock';
+import Fit from 'react-fit';
 
 import DateTimeInput from './DateTimeInput';
 
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
-const allViews = ['hour', 'minute', 'second'];
 const baseClassName = 'react-datetime-picker';
 const outsideActionEvents = ['mousedown', 'focusin', 'touchstart'];
+const allViews = ['hour', 'minute', 'second'];
 
 const iconProps = {
   xmlns: 'http://www.w3.org/2000/svg',
@@ -46,315 +45,234 @@ const ClearIcon = (
   </svg>
 );
 
-const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
+export default function DateTimePicker(props) {
+  const {
+    amPmAriaLabel,
+    autoFocus,
+    calendarAriaLabel,
+    calendarIcon,
+    className,
+    clearAriaLabel,
+    clearIcon,
+    closeWidgets: shouldCloseWidgetsProps,
+    'data-testid': dataTestid,
+    dayAriaLabel,
+    dayPlaceholder,
+    disableCalendar,
+    disableClock,
+    disabled,
+    format,
+    hourAriaLabel,
+    hourPlaceholder,
+    id,
+    isCalendarOpen: isCalendarOpenProps,
+    isClockOpen: isClockOpenProps,
+    locale,
+    maxDate,
+    maxDetail,
+    minDate,
+    minuteAriaLabel,
+    minutePlaceholder,
+    monthAriaLabel,
+    monthPlaceholder,
+    name,
+    nativeInputAriaLabel,
+    onCalendarClose,
+    onCalendarOpen,
+    onChange: onChangeProps,
+    onClockClose,
+    onClockOpen,
+    onFocus: onFocusProps,
+    openWidgetsOnFocus,
+    required,
+    secondAriaLabel,
+    secondPlaceholder,
+    showLeadingZeros,
+    value,
+    yearAriaLabel,
+    yearPlaceholder,
+    ...otherProps
+  } = props;
 
-export default class DateTimePicker extends PureComponent {
-  static defaultProps = {
-    calendarIcon: CalendarIcon,
-    clearIcon: ClearIcon,
-    closeWidgets: true,
-    isCalendarOpen: null,
-    isClockOpen: null,
-    maxDetail: 'minute',
-    openWidgetsOnFocus: true,
-  };
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isClockOpen, setIsClockOpen] = useState(false);
+  const wrapper = useRef();
+  const calendarWrapper = useRef();
+  const clockWrapper = useRef();
 
-  static propTypes = {
-    amPmAriaLabel: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    calendarAriaLabel: PropTypes.string,
-    calendarClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    calendarIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    clearAriaLabel: PropTypes.string,
-    clearIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-    clockClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    closeWidgets: PropTypes.bool,
-    'data-testid': PropTypes.string,
-    dayAriaLabel: PropTypes.string,
-    dayPlaceholder: PropTypes.string,
-    disableCalendar: PropTypes.bool,
-    disableClock: PropTypes.bool,
-    disabled: PropTypes.bool,
-    format: PropTypes.string,
-    hourAriaLabel: PropTypes.string,
-    hourPlaceholder: PropTypes.string,
-    id: PropTypes.string,
-    isCalendarOpen: PropTypes.bool,
-    isClockOpen: PropTypes.bool,
-    locale: PropTypes.string,
-    maxDate: isMaxDate,
-    maxDetail: PropTypes.oneOf(allViews),
-    minDate: isMinDate,
-    minuteAriaLabel: PropTypes.string,
-    minutePlaceholder: PropTypes.string,
-    monthAriaLabel: PropTypes.string,
-    monthPlaceholder: PropTypes.string,
-    name: PropTypes.string,
-    nativeInputAriaLabel: PropTypes.string,
-    onCalendarClose: PropTypes.func,
-    onCalendarOpen: PropTypes.func,
-    onChange: PropTypes.func,
-    onClockClose: PropTypes.func,
-    onClockOpen: PropTypes.func,
-    onFocus: PropTypes.func,
-    openWidgetsOnFocus: PropTypes.bool,
-    portalContainer: PropTypes.object,
-    required: PropTypes.bool,
-    secondAriaLabel: PropTypes.string,
-    secondPlaceholder: PropTypes.string,
-    showLeadingZeros: PropTypes.bool,
-    value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
-    yearAriaLabel: PropTypes.string,
-    yearPlaceholder: PropTypes.string,
-  };
+  useEffect(() => {
+    setIsCalendarOpen(isCalendarOpenProps);
+  }, [isCalendarOpenProps]);
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const nextState = {};
+  useEffect(() => {
+    setIsClockOpen(isClockOpenProps);
+  }, [isClockOpenProps]);
 
-    if (nextProps.isCalendarOpen !== prevState.isCalendarOpenProps) {
-      nextState.isCalendarOpen = nextProps.isCalendarOpen;
-      nextState.isCalendarOpenProps = nextProps.isCalendarOpen;
-    }
+  function openCalendar() {
+    setIsClockOpen(false);
+    setIsCalendarOpen(true);
 
-    if (nextProps.isClockOpen !== prevState.isClockOpenProps) {
-      nextState.isClockOpen = nextProps.isClockOpen;
-      nextState.isClockOpenProps = nextProps.isClockOpen;
-    }
-
-    return nextState;
-  }
-
-  state = {};
-
-  wrapper = createRef();
-
-  calendarWrapper = createRef();
-
-  clockWrapper = createRef();
-
-  componentDidMount() {
-    this.handleOutsideActionListeners();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { isCalendarOpen, isClockOpen } = this.state;
-    const { onCalendarClose, onCalendarOpen, onClockClose, onClockOpen } = this.props;
-
-    const isWidgetOpen = isCalendarOpen || isClockOpen;
-    const prevIsWidgetOpen = prevState.isCalendarOpen || prevState.isClockOpen;
-
-    if (isWidgetOpen !== prevIsWidgetOpen) {
-      this.handleOutsideActionListeners();
-    }
-
-    if (isCalendarOpen !== prevState.isCalendarOpen) {
-      const callback = isCalendarOpen ? onCalendarOpen : onCalendarClose;
-      if (callback) callback();
-    }
-
-    if (isClockOpen !== prevState.isClockOpen) {
-      const callback = isClockOpen ? onClockOpen : onClockClose;
-      if (callback) callback();
+    if (onCalendarOpen) {
+      onCalendarOpen();
     }
   }
 
-  componentWillUnmount() {
-    this.handleOutsideActionListeners(false);
-  }
+  const closeCalendar = useCallback(() => {
+    setIsCalendarOpen(false);
 
-  get eventProps() {
-    return makeEventProps(this.props);
-  }
-
-  onOutsideAction = (event) => {
-    const { wrapper, calendarWrapper, clockWrapper } = this;
-
-    // Try event.composedPath first to handle clicks inside a Shadow DOM.
-    const target = 'composedPath' in event ? event.composedPath()[0] : event.target;
-
-    if (
-      wrapper.current &&
-      !wrapper.current.contains(target) &&
-      (!calendarWrapper.current || !calendarWrapper.current.contains(target)) &&
-      (!clockWrapper.current || !clockWrapper.current.contains(target))
-    ) {
-      this.closeWidgets();
+    if (onCalendarClose) {
+      onCalendarClose();
     }
-  };
+  }, [onCalendarClose]);
 
-  onDateChange = (value, closeWidgets) => {
-    const { value: prevValue } = this.props;
+  function toggleCalendar() {
+    if (isCalendarOpen) {
+      closeCalendar();
+    } else {
+      openCalendar();
+    }
+  }
 
-    if (prevValue) {
-      const valueWithHour = new Date(value);
-      valueWithHour.setHours(
-        prevValue.getHours(),
-        prevValue.getMinutes(),
-        prevValue.getSeconds(),
-        prevValue.getMilliseconds(),
+  function openClock() {
+    setIsCalendarOpen(false);
+    setIsClockOpen(true);
+
+    if (onClockOpen) {
+      onClockOpen();
+    }
+  }
+
+  const closeClock = useCallback(() => {
+    setIsClockOpen(false);
+
+    if (onClockClose) {
+      onClockClose();
+    }
+  }, [onClockClose]);
+
+  const closeWidgets = useCallback(() => {
+    closeCalendar();
+    closeClock();
+  }, [closeCalendar, closeClock]);
+
+  function onChange(value, shouldCloseWidgets = shouldCloseWidgetsProps) {
+    if (shouldCloseWidgets) {
+      closeWidgets();
+    }
+
+    if (onChangeProps) {
+      onChangeProps(value);
+    }
+  }
+
+  function onDateChange(nextValue, shouldCloseWidgets) {
+    if (value) {
+      const nextValueWithHour = new Date(nextValue);
+      nextValueWithHour.setHours(
+        value.getHours(),
+        value.getMinutes(),
+        value.getSeconds(),
+        value.getMilliseconds(),
       );
 
-      this.onChange(valueWithHour, closeWidgets);
+      onChange(nextValueWithHour, shouldCloseWidgets);
     } else {
-      this.onChange(value, closeWidgets);
+      onChange(nextValue, shouldCloseWidgets);
     }
-  };
+  }
 
-  onChange = (value, closeWidgets = this.props.closeWidgets) => {
-    const { onChange } = this.props;
-
-    if (closeWidgets) {
-      this.closeWidgets();
+  function onFocus(event) {
+    if (onFocusProps) {
+      onFocusProps(event);
     }
 
-    if (onChange) {
-      onChange(value);
-    }
-  };
-
-  onFocus = (event) => {
-    const { disabled, onFocus, openWidgetsOnFocus } = this.props;
-
-    if (onFocus) {
-      onFocus(event);
-    }
-
-    // Internet Explorer still fires onFocus on disabled elements
-    if (disabled) {
+    if (
+      // Internet Explorer still fires onFocus on disabled elements
+      disabled ||
+      isCalendarOpen ||
+      isClockOpen ||
+      !openWidgetsOnFocus ||
+      event.target.dataset.select === 'true'
+    ) {
       return;
     }
 
-    if (openWidgetsOnFocus) {
-      if (event.target.dataset.select === 'true') {
-        return;
-      }
-
-      switch (event.target.name) {
-        case 'day':
-        case 'month':
-        case 'year':
-          this.openCalendar();
-          break;
-        case 'hour12':
-        case 'hour24':
-        case 'minute':
-        case 'second':
-          this.openClock();
-          break;
-        default:
-      }
+    switch (event.target.name) {
+      case 'day':
+      case 'month':
+      case 'year':
+        openCalendar();
+        break;
+      case 'hour12':
+      case 'hour24':
+      case 'minute':
+      case 'second':
+        openClock();
+        break;
+      default:
     }
-  };
-
-  onKeyDown = (event) => {
-    if (event.key === 'Escape') {
-      this.closeWidgets();
-    }
-  };
-
-  openClock = () => {
-    this.setState((prevState) => {
-      const nextState = { isClockOpen: true };
-
-      if (prevState.isCalendarOpen) {
-        nextState.isCalendarOpen = false;
-      }
-
-      return nextState;
-    });
-  };
-
-  openCalendar = () => {
-    this.setState((prevState) => {
-      const nextState = { isCalendarOpen: true };
-
-      if (prevState.isClockOpen) {
-        nextState.isClockOpen = false;
-      }
-
-      return nextState;
-    });
-  };
-
-  toggleCalendar = () => {
-    this.setState((prevState) => {
-      const nextState = { isCalendarOpen: !prevState.isCalendarOpen };
-
-      if (prevState.isClockOpen) {
-        nextState.isClockOpen = false;
-      }
-
-      return nextState;
-    });
-  };
-
-  closeWidgets = () => {
-    this.setState((prevState) => {
-      const nextState = {};
-
-      if (prevState.isCalendarOpen) {
-        nextState.isCalendarOpen = false;
-      }
-
-      if (prevState.isClockOpen) {
-        nextState.isClockOpen = false;
-      }
-
-      return nextState;
-    });
-  };
-
-  stopPropagation = (event) => event.stopPropagation();
-
-  clear = () => this.onChange(null);
-
-  handleOutsideActionListeners(shouldListen) {
-    const { isCalendarOpen, isClockOpen } = this.state;
-    const isWidgetOpen = isCalendarOpen || isClockOpen;
-
-    const shouldListenWithFallback =
-      typeof shouldListen !== 'undefined' ? shouldListen : isWidgetOpen;
-    const fnName = shouldListenWithFallback ? 'addEventListener' : 'removeEventListener';
-    outsideActionEvents.forEach((eventName) => document[fnName](eventName, this.onOutsideAction));
-    document[fnName]('keydown', this.onKeyDown);
   }
 
-  renderInputs() {
-    const {
-      amPmAriaLabel,
-      autoFocus,
-      calendarAriaLabel,
-      calendarIcon,
-      clearAriaLabel,
-      clearIcon,
-      dayAriaLabel,
-      dayPlaceholder,
-      disableCalendar,
-      disabled,
-      format,
-      hourAriaLabel,
-      hourPlaceholder,
-      locale,
-      maxDate,
-      maxDetail,
-      minDate,
-      minuteAriaLabel,
-      minutePlaceholder,
-      monthAriaLabel,
-      monthPlaceholder,
-      name,
-      nativeInputAriaLabel,
-      required,
-      secondAriaLabel,
-      secondPlaceholder,
-      showLeadingZeros,
-      value,
-      yearAriaLabel,
-      yearPlaceholder,
-    } = this.props;
-    const { isCalendarOpen, isClockOpen } = this.state;
+  const onKeyDown = useCallback(
+    (event) => {
+      if (event.key === 'Escape') {
+        closeWidgets();
+      }
+    },
+    [closeWidgets],
+  );
 
+  function clear() {
+    onChange(null);
+  }
+
+  function stopPropagation(event) {
+    event.stopPropagation();
+  }
+
+  const onOutsideAction = useCallback(
+    (event) => {
+      const { current: wrapperEl } = wrapper;
+      const { current: calendarWrapperEl } = calendarWrapper;
+      const { current: clockWrapperEl } = clockWrapper;
+
+      // Try event.composedPath first to handle clicks inside a Shadow DOM.
+      const target = 'composedPath' in event ? event.composedPath()[0] : event.target;
+
+      if (
+        wrapperEl &&
+        !wrapperEl.contains(target) &&
+        (!calendarWrapperEl || !calendarWrapperEl.contains(target)) &&
+        (!clockWrapperEl || !clockWrapperEl.contains(target))
+      ) {
+        closeWidgets();
+      }
+    },
+    [calendarWrapper, clockWrapper, closeWidgets, wrapper],
+  );
+
+  const handleOutsideActionListeners = useCallback(
+    (shouldListen = isCalendarOpen || isClockOpen) => {
+      const action = shouldListen ? 'addEventListener' : 'removeEventListener';
+
+      outsideActionEvents.forEach((event) => {
+        document[action](event, onOutsideAction);
+      });
+
+      document[action]('keydown', onKeyDown);
+    },
+    [isCalendarOpen, isClockOpen, onOutsideAction, onKeyDown],
+  );
+
+  useEffect(() => {
+    handleOutsideActionListeners();
+
+    return () => {
+      handleOutsideActionListeners(false);
+    };
+  }, [handleOutsideActionListeners]);
+
+  function renderInputs() {
     const [valueFrom] = [].concat(value);
 
     const ariaLabelProps = {
@@ -393,8 +311,7 @@ export default class DateTimePicker extends PureComponent {
           maxDetail={maxDetail}
           minDate={minDate}
           name={name}
-          onChange={this.onChange}
-          placeholder={this.placeholder}
+          onChange={onChange}
           required={required}
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}
@@ -404,8 +321,8 @@ export default class DateTimePicker extends PureComponent {
             aria-label={clearAriaLabel}
             className={`${baseClassName}__clear-button ${baseClassName}__button`}
             disabled={disabled}
-            onClick={this.clear}
-            onFocus={this.stopPropagation}
+            onClick={clear}
+            onFocus={stopPropagation}
             type="button"
           >
             {typeof clearIcon === 'function' ? React.createElement(clearIcon) : clearIcon}
@@ -416,8 +333,8 @@ export default class DateTimePicker extends PureComponent {
             aria-label={calendarAriaLabel}
             className={`${baseClassName}__calendar-button ${baseClassName}__button`}
             disabled={disabled}
-            onClick={this.toggleCalendar}
-            onFocus={this.stopPropagation}
+            onClick={toggleCalendar}
+            onFocus={stopPropagation}
             type="button"
           >
             {typeof calendarIcon === 'function' ? React.createElement(calendarIcon) : calendarIcon}
@@ -427,10 +344,7 @@ export default class DateTimePicker extends PureComponent {
     );
   }
 
-  renderCalendar() {
-    const { disableCalendar } = this.props;
-    const { isCalendarOpen } = this.state;
-
+  function renderCalendar() {
     if (isCalendarOpen === null || disableCalendar) {
       return null;
     }
@@ -439,11 +353,11 @@ export default class DateTimePicker extends PureComponent {
       calendarClassName,
       className: dateTimePickerClassName, // Unused, here to exclude it from calendarProps
       maxDetail: dateTimePickerMaxDetail, // Unused, here to exclude it from calendarProps
-      onChange,
+      onChange: onChangeProps, // Unused, here to exclude it from calendarProps
       portalContainer,
       value,
       ...calendarProps
-    } = this.props;
+    } = props;
 
     const className = `${baseClassName}__calendar`;
     const classNames = clsx(className, `${className}--${isCalendarOpen ? 'open' : 'closed'}`);
@@ -451,7 +365,7 @@ export default class DateTimePicker extends PureComponent {
     const calendar = (
       <Calendar
         className={calendarClassName}
-        onChange={(value) => this.onDateChange(value)}
+        onChange={(value) => onDateChange(value)}
         value={value || null}
         {...calendarProps}
       />
@@ -459,7 +373,7 @@ export default class DateTimePicker extends PureComponent {
 
     return portalContainer ? (
       createPortal(
-        <div ref={this.calendarWrapper} className={classNames}>
+        <div ref={calendarWrapper} className={classNames}>
           {calendar}
         </div>,
         portalContainer,
@@ -480,10 +394,7 @@ export default class DateTimePicker extends PureComponent {
     );
   }
 
-  renderClock() {
-    const { disableClock } = this.props;
-    const { isClockOpen } = this.state;
-
+  function renderClock() {
     if (isClockOpen === null || disableClock) {
       return null;
     }
@@ -496,7 +407,7 @@ export default class DateTimePicker extends PureComponent {
       portalContainer,
       value,
       ...clockProps
-    } = this.props;
+    } = props;
 
     const className = `${baseClassName}__clock`;
     const classNames = clsx(className, `${className}--${isClockOpen ? 'open' : 'closed'}`);
@@ -517,7 +428,7 @@ export default class DateTimePicker extends PureComponent {
 
     return portalContainer ? (
       createPortal(
-        <div ref={this.clockWrapper} className={classNames}>
+        <div ref={clockWrapper} className={classNames}>
           {clock}
         </div>,
         portalContainer,
@@ -538,31 +449,92 @@ export default class DateTimePicker extends PureComponent {
     );
   }
 
-  render() {
-    const { eventProps } = this;
-    const { className, 'data-testid': dataTestid, disabled, id } = this.props;
-    const { isCalendarOpen, isClockOpen } = this.state;
+  const eventProps = useMemo(() => makeEventProps(otherProps), [otherProps]);
 
-    const { onChange, ...eventPropsWithoutOnChange } = eventProps;
+  const {
+    onChange: onChangeEventProps, // Unused, here to exclude it from eventPropsWithoutOnChange
+    ...eventPropsWithoutOnChange
+  } = eventProps;
 
-    return (
-      <div
-        className={clsx(
-          baseClassName,
-          `${baseClassName}--${isCalendarOpen || isClockOpen ? 'open' : 'closed'}`,
-          `${baseClassName}--${disabled ? 'disabled' : 'enabled'}`,
-          className,
-        )}
-        data-testid={dataTestid}
-        id={id}
-        {...eventPropsWithoutOnChange}
-        onFocus={this.onFocus}
-        ref={this.wrapper}
-      >
-        {this.renderInputs()}
-        {this.renderCalendar()}
-        {this.renderClock()}
-      </div>
-    );
-  }
+  return (
+    <div
+      className={clsx(
+        baseClassName,
+        `${baseClassName}--${isCalendarOpen || isClockOpen ? 'open' : 'closed'}`,
+        `${baseClassName}--${disabled ? 'disabled' : 'enabled'}`,
+        className,
+      )}
+      data-testid={dataTestid}
+      id={id}
+      {...eventPropsWithoutOnChange}
+      onFocus={onFocus}
+      ref={wrapper}
+    >
+      {renderInputs()}
+      {renderCalendar()}
+      {renderClock()}
+    </div>
+  );
 }
+
+DateTimePicker.defaultProps = {
+  calendarIcon: CalendarIcon,
+  clearIcon: ClearIcon,
+  closeWidgets: true,
+  isCalendarOpen: null,
+  isClockOpen: null,
+  maxDetail: 'minute',
+  openWidgetsOnFocus: true,
+};
+
+const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
+
+DateTimePicker.propTypes = {
+  amPmAriaLabel: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  calendarAriaLabel: PropTypes.string,
+  calendarClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  calendarIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  clearAriaLabel: PropTypes.string,
+  clearIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  clockClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  closeWidgets: PropTypes.bool,
+  'data-testid': PropTypes.string,
+  dayAriaLabel: PropTypes.string,
+  dayPlaceholder: PropTypes.string,
+  disableCalendar: PropTypes.bool,
+  disableClock: PropTypes.bool,
+  disabled: PropTypes.bool,
+  format: PropTypes.string,
+  hourAriaLabel: PropTypes.string,
+  hourPlaceholder: PropTypes.string,
+  id: PropTypes.string,
+  isCalendarOpen: PropTypes.bool,
+  isClockOpen: PropTypes.bool,
+  locale: PropTypes.string,
+  maxDate: isMaxDate,
+  maxDetail: PropTypes.oneOf(allViews),
+  minDate: isMinDate,
+  minuteAriaLabel: PropTypes.string,
+  minutePlaceholder: PropTypes.string,
+  monthAriaLabel: PropTypes.string,
+  monthPlaceholder: PropTypes.string,
+  name: PropTypes.string,
+  nativeInputAriaLabel: PropTypes.string,
+  onCalendarClose: PropTypes.func,
+  onCalendarOpen: PropTypes.func,
+  onChange: PropTypes.func,
+  onClockClose: PropTypes.func,
+  onClockOpen: PropTypes.func,
+  onFocus: PropTypes.func,
+  openWidgetsOnFocus: PropTypes.bool,
+  portalContainer: PropTypes.object,
+  required: PropTypes.bool,
+  secondAriaLabel: PropTypes.string,
+  secondPlaceholder: PropTypes.string,
+  showLeadingZeros: PropTypes.bool,
+  value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
+  yearAriaLabel: PropTypes.string,
+  yearPlaceholder: PropTypes.string,
+};
