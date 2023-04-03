@@ -11,6 +11,8 @@ import DateTimeInput from './DateTimeInput';
 
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
+import type { ClassName, Detail, LooseValue } from './shared/types';
+
 const baseClassName = 'react-datetime-picker';
 const outsideActionEvents = ['mousedown', 'focusin', 'touchstart'];
 const allViews = ['hour', 'minute', 'second'];
@@ -45,7 +47,61 @@ const ClearIcon = (
   </svg>
 );
 
-export default function DateTimePicker(props) {
+type Icon = React.ReactElement | string;
+
+type IconOrRenderFunction = Icon | React.ComponentType | React.ReactElement;
+
+type DateTimePickerProps = {
+  amPmAriaLabel?: string;
+  autoFocus?: boolean;
+  calendarAriaLabel?: string;
+  calendarClassName?: ClassName;
+  calendarIcon?: IconOrRenderFunction;
+  className?: ClassName;
+  clearAriaLabel?: string;
+  clearIcon?: IconOrRenderFunction;
+  clockClassName?: ClassName;
+  closeWidgets?: boolean;
+  'data-testid'?: string;
+  dayAriaLabel?: string;
+  dayPlaceholder?: string;
+  disableCalendar?: boolean;
+  disableClock?: boolean;
+  disabled?: boolean;
+  format?: string;
+  hourAriaLabel?: string;
+  hourPlaceholder?: string;
+  id?: string;
+  isCalendarOpen?: boolean;
+  isClockOpen?: boolean;
+  locale?: string;
+  maxDate?: Date;
+  maxDetail?: Detail;
+  minDate?: Date;
+  minuteAriaLabel?: string;
+  minutePlaceholder?: string;
+  monthAriaLabel?: string;
+  monthPlaceholder?: string;
+  name?: string;
+  nativeInputAriaLabel?: string;
+  onCalendarClose?: () => void;
+  onCalendarOpen?: () => void;
+  onChange?: (value: Date | null) => void;
+  onClockClose?: () => void;
+  onClockOpen?: () => void;
+  onFocus?: (event: React.FocusEvent<HTMLDivElement>) => void;
+  openWidgetsOnFocus?: boolean;
+  portalContainer?: HTMLElement;
+  required?: boolean;
+  secondAriaLabel?: string;
+  secondPlaceholder?: string;
+  showLeadingZeros?: boolean;
+  value?: LooseValue;
+  yearAriaLabel?: string;
+  yearPlaceholder?: string;
+};
+
+export default function DateTimePicker(props: DateTimePickerProps) {
   const {
     amPmAriaLabel,
     autoFocus,
@@ -94,11 +150,11 @@ export default function DateTimePicker(props) {
     ...otherProps
   } = props;
 
-  const [isCalendarOpen, setIsCalendarOpen] = useState(isCalendarOpenProps);
-  const [isClockOpen, setIsClockOpen] = useState(isClockOpenProps);
-  const wrapper = useRef();
-  const calendarWrapper = useRef();
-  const clockWrapper = useRef();
+  const [isCalendarOpen, setIsCalendarOpen] = useState<boolean | null>(isCalendarOpenProps);
+  const [isClockOpen, setIsClockOpen] = useState<boolean | null>(isClockOpenProps);
+  const wrapper = useRef<HTMLDivElement>(null);
+  const calendarWrapper = useRef<HTMLDivElement>(null);
+  const clockWrapper = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsCalendarOpen(isCalendarOpenProps);
@@ -155,7 +211,7 @@ export default function DateTimePicker(props) {
     closeClock();
   }, [closeCalendar, closeClock]);
 
-  function onChange(value, shouldCloseWidgets = shouldCloseWidgetsProps) {
+  function onChange(value: Date | null, shouldCloseWidgets: boolean = shouldCloseWidgetsProps) {
     if (shouldCloseWidgets) {
       closeWidgets();
     }
@@ -165,9 +221,9 @@ export default function DateTimePicker(props) {
     }
   }
 
-  function onDateChange(nextValue, shouldCloseWidgets) {
-    const [nextValueFrom] = [].concat(nextValue);
-    const [valueFrom] = [].concat(value);
+  function onDateChange(nextValue: Date | null | (Date | null)[], shouldCloseWidgets?: boolean) {
+    const [nextValueFrom] = Array.isArray(nextValue) ? nextValue : [nextValue];
+    const [valueFrom] = Array.isArray(value) ? value : [value];
 
     if (valueFrom && nextValueFrom) {
       const valueFromDate = new Date(valueFrom);
@@ -181,11 +237,11 @@ export default function DateTimePicker(props) {
 
       onChange(nextValueFromWithHour, shouldCloseWidgets);
     } else {
-      onChange(nextValueFrom, shouldCloseWidgets);
+      onChange(nextValueFrom || null, shouldCloseWidgets);
     }
   }
 
-  function onFocus(event) {
+  function onFocus(event: React.FocusEvent<HTMLInputElement>) {
     if (onFocusProps) {
       onFocusProps(event);
     }
@@ -218,7 +274,7 @@ export default function DateTimePicker(props) {
   }
 
   const onKeyDown = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         closeWidgets();
       }
@@ -230,18 +286,20 @@ export default function DateTimePicker(props) {
     onChange(null);
   }
 
-  function stopPropagation(event) {
+  function stopPropagation(event: React.FocusEvent) {
     event.stopPropagation();
   }
 
   const onOutsideAction = useCallback(
-    (event) => {
+    (event: Event) => {
       const { current: wrapperEl } = wrapper;
       const { current: calendarWrapperEl } = calendarWrapper;
       const { current: clockWrapperEl } = clockWrapper;
 
       // Try event.composedPath first to handle clicks inside a Shadow DOM.
-      const target = 'composedPath' in event ? event.composedPath()[0] : event.target;
+      const target = (
+        'composedPath' in event ? event.composedPath()[0] : (event as Event).target
+      ) as HTMLElement;
 
       if (
         target &&
@@ -258,13 +316,19 @@ export default function DateTimePicker(props) {
 
   const handleOutsideActionListeners = useCallback(
     (shouldListen = isCalendarOpen || isClockOpen) => {
-      const action = shouldListen ? 'addEventListener' : 'removeEventListener';
-
       outsideActionEvents.forEach((event) => {
-        document[action](event, onOutsideAction);
+        if (shouldListen) {
+          document.addEventListener(event, onOutsideAction);
+        } else {
+          document.removeEventListener(event, onOutsideAction);
+        }
       });
 
-      document[action]('keydown', onKeyDown);
+      if (shouldListen) {
+        document.addEventListener('keydown', onKeyDown);
+      } else {
+        document.removeEventListener('keydown', onKeyDown);
+      }
     },
     [isCalendarOpen, isClockOpen, onOutsideAction, onKeyDown],
   );
@@ -278,7 +342,7 @@ export default function DateTimePicker(props) {
   }, [handleOutsideActionListeners]);
 
   function renderInputs() {
-    const [valueFrom] = [].concat(value);
+    const [valueFrom] = Array.isArray(value) ? value : [value];
 
     const ariaLabelProps = {
       amPmAriaLabel,
@@ -371,7 +435,7 @@ export default function DateTimePicker(props) {
       <Calendar
         className={calendarClassName}
         onChange={(value) => onDateChange(value)}
-        value={value || null}
+        value={value}
         {...calendarProps}
       />
     );
@@ -417,7 +481,7 @@ export default function DateTimePicker(props) {
     const className = `${baseClassName}__clock`;
     const classNames = clsx(className, `${className}--${isClockOpen ? 'open' : 'closed'}`);
 
-    const [valueFrom] = [].concat(value);
+    const [valueFrom] = Array.isArray(value) ? value : [value];
 
     const maxDetailIndex = allViews.indexOf(maxDetail);
 

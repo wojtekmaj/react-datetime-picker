@@ -26,7 +26,7 @@ describe('DateTimeInput', () => {
     className: 'react-datetime-picker__inputGroup',
   };
 
-  let user;
+  let user: ReturnType<typeof userEvent.setup>;
   beforeEach(() => {
     user = userEvent.setup({
       advanceTimers: vi.advanceTimersByTime.bind(vi),
@@ -494,7 +494,7 @@ describe('DateTimeInput', () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const monthInput = customInputs[0];
+    const monthInput = customInputs[0] as HTMLInputElement;
     const dayInput = customInputs[1];
 
     await user.type(monthInput, '{arrowright}');
@@ -506,14 +506,14 @@ describe('DateTimeInput', () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const monthInput = customInputs[0];
+    const monthInput = customInputs[0] as HTMLInputElement;
     const dayInput = customInputs[1];
 
     const separators = container.querySelectorAll('.react-datetime-picker__inputGroup__divider');
     const separatorsTexts = Array.from(separators)
-      .map((el) => el.textContent)
+      .map((el) => el.textContent as string)
       .filter((el) => el.trim());
-    const separatorKey = separatorsTexts[0];
+    const separatorKey = separatorsTexts[0] as string;
 
     await user.type(monthInput, separatorKey);
 
@@ -524,14 +524,14 @@ describe('DateTimeInput', () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const monthInput = customInputs[0];
+    const monthInput = customInputs[0] as HTMLInputElement;
     const dayInput = customInputs[1];
 
     const separators = container.querySelectorAll('.react-datetime-picker__inputGroup__divider');
     const separatorsTexts = Array.from(separators)
-      .map((el) => el.textContent)
+      .map((el) => el.textContent as string)
       .filter((el) => el.trim());
-    const separatorKey = separatorsTexts[separatorsTexts.length - 1];
+    const separatorKey = separatorsTexts[separatorsTexts.length - 1] as string;
 
     await user.type(monthInput, separatorKey);
 
@@ -541,7 +541,7 @@ describe('DateTimeInput', () => {
   it('does not jump to the next field when right arrow is pressed when the last input is focused', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
-    const select = container.querySelector('select');
+    const select = container.querySelector('select') as HTMLSelectElement;
 
     await user.type(select, '{arrowright}');
 
@@ -553,7 +553,7 @@ describe('DateTimeInput', () => {
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
-    const dayInput = customInputs[1];
+    const dayInput = customInputs[1] as HTMLInputElement;
 
     await user.type(dayInput, '{arrowleft}');
 
@@ -564,7 +564,7 @@ describe('DateTimeInput', () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const monthInput = customInputs[0];
+    const monthInput = customInputs[0] as HTMLInputElement;
 
     await user.type(monthInput, '{arrowleft}');
 
@@ -575,7 +575,7 @@ describe('DateTimeInput', () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const monthInput = customInputs[0];
+    const monthInput = customInputs[0] as HTMLInputElement;
     const dayInput = customInputs[1];
 
     await user.type(monthInput, '4');
@@ -587,7 +587,7 @@ describe('DateTimeInput', () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const monthInput = customInputs[0];
+    const monthInput = customInputs[0] as HTMLInputElement;
     const dayInput = customInputs[1];
 
     await user.type(monthInput, '03');
@@ -599,7 +599,7 @@ describe('DateTimeInput', () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const monthInput = customInputs[0];
+    const monthInput = customInputs[0] as HTMLInputElement;
 
     await user.type(monthInput, '1');
 
@@ -615,7 +615,7 @@ describe('DateTimeInput', () => {
     );
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const hourInput = customInputs[3];
+    const hourInput = customInputs[3] as HTMLInputElement;
 
     fireEvent.change(hourInput, { target: { value: '8' } });
 
@@ -634,7 +634,7 @@ describe('DateTimeInput', () => {
     );
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const hourInput = customInputs[3];
+    const hourInput = customInputs[3] as HTMLInputElement;
 
     fireEvent.change(hourInput, { target: { value: '8' } });
 
@@ -655,7 +655,7 @@ describe('DateTimeInput', () => {
     );
 
     const customInputs = container.querySelectorAll('input[data-input]');
-    const hourInput = customInputs[2];
+    const hourInput = customInputs[2] as HTMLInputElement;
 
     fireEvent.change(hourInput, { target: { value: '20' } });
 
@@ -691,7 +691,7 @@ describe('DateTimeInput', () => {
       <DateTimeInput {...defaultProps} onChange={onChange} value={date} />,
     );
 
-    const nativeInput = container.querySelector('input[type="datetime-local"]');
+    const nativeInput = container.querySelector('input[type="datetime-local"]') as HTMLInputElement;
 
     fireEvent.change(nativeInput, { target: { value: '2017-09-30T20:17:00' } });
 
@@ -709,7 +709,7 @@ describe('DateTimeInput', () => {
       <DateTimeInput {...defaultProps} onChange={onChange} value={date} />,
     );
 
-    const nativeInput = container.querySelector('input[type="datetime-local"]');
+    const nativeInput = container.querySelector('input[type="datetime-local"]') as HTMLInputElement;
 
     fireEvent.change(nativeInput, { target: { value: '0019-09-20T20:17:00' } });
 
@@ -729,7 +729,7 @@ describe('DateTimeInput', () => {
       <DateTimeInput {...defaultProps} onChange={onChange} value={date} />,
     );
 
-    const nativeInput = container.querySelector('input[type="datetime-local"]');
+    const nativeInput = container.querySelector('input[type="datetime-local"]') as HTMLInputElement;
 
     fireEvent.change(nativeInput, { target: { value: '' } });
 

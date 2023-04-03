@@ -9,6 +9,18 @@ import {
 
 import { isMaxDate, isMinDate, isValueType } from '../shared/propTypes';
 
+type NativeInputProps = {
+  ariaLabel?: string;
+  disabled?: boolean;
+  maxDate?: Date;
+  minDate?: Date;
+  name?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
+  value?: Date | null;
+  valueType: 'hour' | 'minute' | 'second';
+};
+
 export default function NativeInput({
   ariaLabel,
   disabled,
@@ -19,13 +31,14 @@ export default function NativeInput({
   required,
   value,
   valueType,
-}) {
+}: NativeInputProps) {
   const nativeValueParser = (() => {
     switch (valueType) {
       case 'hour':
-        return (receivedValue) => `${getISOLocalDate(receivedValue)}T${getHours(receivedValue)}:00`;
+        return (receivedValue: Date) =>
+          `${getISOLocalDate(receivedValue)}T${getHours(receivedValue)}:00`;
       case 'minute':
-        return (receivedValue) =>
+        return (receivedValue: Date) =>
           `${getISOLocalDate(receivedValue)}T${getHoursMinutes(receivedValue)}`;
       case 'second':
         return getISOLocalDateTime;
@@ -47,7 +60,7 @@ export default function NativeInput({
     }
   })();
 
-  function stopPropagation(event) {
+  function stopPropagation(event: React.FocusEvent<HTMLInputElement>) {
     event.stopPropagation();
   }
 
@@ -56,8 +69,8 @@ export default function NativeInput({
       aria-label={ariaLabel}
       disabled={disabled}
       hidden
-      max={maxDate ? nativeValueParser(maxDate) : null}
-      min={minDate ? nativeValueParser(minDate) : null}
+      max={maxDate ? nativeValueParser(maxDate) : undefined}
+      min={minDate ? nativeValueParser(minDate) : undefined}
       name={name}
       onChange={onChange}
       onFocus={stopPropagation}
