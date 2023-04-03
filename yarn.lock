@@ -2337,7 +2337,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-user-locale@npm:^2.0.0, get-user-locale@npm:^2.1.3, get-user-locale@npm:^2.2.1":
+"get-user-locale@npm:^2.1.3, get-user-locale@npm:^2.2.1":
   version: 2.2.1
   resolution: "get-user-locale@npm:2.2.1"
   dependencies:
@@ -3996,19 +3996,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-clock@npm:^4.0.0":
-  version: 4.1.0
-  resolution: "react-clock@npm:4.1.0"
+"react-clock@npm:^4.0.0, react-clock@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "react-clock@npm:4.2.0"
   dependencies:
     "@types/react": "*"
     "@wojtekmaj/date-utils": ^1.1.2
     clsx: ^1.2.1
-    get-user-locale: ^2.0.0
+    get-user-locale: ^2.2.1
     prop-types: ^15.6.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 30a4de446fe7fcee36f155d9faafa73ca3df0faead9415b02859fcd7676f3e337325fe3b2330cc42988463fe40f45e3360d3f3d59b678d2a5ea584cc30334f4a
+  checksum: 82897d1393594c63fb0ae9d408e4ce4fab6e96b5287483a8cf07a94de74f7e1a8d2eb04852cef0aa867207fac41a8d94f7c9f4a8f4af8503b1ead0ec9e2bd739
   languageName: node
   linkType: hard
 
@@ -4053,7 +4053,7 @@ __metadata:
     prop-types: ^15.6.0
     react: ^18.2.0
     react-calendar: ^4.1.0
-    react-clock: ^4.0.0
+    react-clock: ^4.2.0
     react-date-picker: ^9.2.0
     react-dom: ^18.2.0
     react-fit: ^1.5.1
