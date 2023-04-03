@@ -156,13 +156,13 @@ export default function DateTimeInput({
   isWidgetOpen: isWidgetOpenProps,
   locale,
   maxDate,
-  maxDetail,
+  maxDetail = 'minute',
   minDate,
   minuteAriaLabel,
   minutePlaceholder,
   monthAriaLabel,
   monthPlaceholder,
-  name,
+  name = 'datetime',
   nativeInputAriaLabel,
   onChange: onChangeProps,
   required,
@@ -780,11 +780,6 @@ export default function DateTimeInput({
     </div>
   );
 }
-
-DateTimeInput.defaultProps = {
-  maxDetail: 'minute',
-  name: 'datetime',
-};
 
 DateTimeInput.propTypes = {
   amPmAriaLabel: PropTypes.string,

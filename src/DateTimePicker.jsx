@@ -50,11 +50,11 @@ export default function DateTimePicker(props) {
     amPmAriaLabel,
     autoFocus,
     calendarAriaLabel,
-    calendarIcon,
+    calendarIcon = CalendarIcon,
     className,
     clearAriaLabel,
-    clearIcon,
-    closeWidgets: shouldCloseWidgetsProps,
+    clearIcon = ClearIcon,
+    closeWidgets: shouldCloseWidgetsProps = true,
     'data-testid': dataTestid,
     dayAriaLabel,
     dayPlaceholder,
@@ -65,17 +65,17 @@ export default function DateTimePicker(props) {
     hourAriaLabel,
     hourPlaceholder,
     id,
-    isCalendarOpen: isCalendarOpenProps,
-    isClockOpen: isClockOpenProps,
+    isCalendarOpen: isCalendarOpenProps = null,
+    isClockOpen: isClockOpenProps = null,
     locale,
     maxDate,
-    maxDetail,
+    maxDetail = 'minute',
     minDate,
     minuteAriaLabel,
     minutePlaceholder,
     monthAriaLabel,
     monthPlaceholder,
-    name,
+    name = 'datetime',
     nativeInputAriaLabel,
     onCalendarClose,
     onCalendarOpen,
@@ -83,7 +83,7 @@ export default function DateTimePicker(props) {
     onClockClose,
     onClockOpen,
     onFocus: onFocusProps,
-    openWidgetsOnFocus,
+    openWidgetsOnFocus = true,
     required,
     secondAriaLabel,
     secondPlaceholder,
@@ -402,7 +402,7 @@ export default function DateTimePicker(props) {
     const {
       clockClassName,
       className: dateTimePickerClassName, // Unused, here to exclude it from clockProps
-      maxDetail,
+      maxDetail = 'minute',
       onChange,
       portalContainer,
       value,
@@ -476,16 +476,6 @@ export default function DateTimePicker(props) {
     </div>
   );
 }
-
-DateTimePicker.defaultProps = {
-  calendarIcon: CalendarIcon,
-  clearIcon: ClearIcon,
-  closeWidgets: true,
-  isCalendarOpen: null,
-  isClockOpen: null,
-  maxDetail: 'minute',
-  openWidgetsOnFocus: true,
-};
 
 const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
 
