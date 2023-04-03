@@ -21,22 +21,6 @@ const hasFullICU = (() => {
 
 const itIfFullICU = hasFullICU ? it : it.skip;
 
-const keyCodes = {
-  ArrowLeft: 37,
-  ArrowUp: 38,
-  ArrowRight: 39,
-  ArrowDown: 40,
-  '-': 189,
-  '.': 190,
-  '/': 191,
-};
-
-const getKey = (key) => ({
-  keyCode: keyCodes[key],
-  which: keyCodes[key],
-  key,
-});
-
 describe('DateTimeInput', () => {
   const defaultProps = {
     className: 'react-datetime-picker__inputGroup',
@@ -564,110 +548,83 @@ describe('DateTimeInput', () => {
     expect(separators).toHaveLength(customInputs.length + ampm.length - 1);
   });
 
-  it('jumps to the next field when right arrow is pressed', () => {
+  it('jumps to the next field when right arrow is pressed', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
     const dayInput = customInputs[1];
 
-    fireEvent.focus(monthInput);
-    monthInput.focus();
-
-    expect(monthInput).toHaveFocus();
-
-    fireEvent.keyDown(monthInput, getKey('ArrowRight'));
+    await user.type(monthInput, '{arrowright}');
 
     expect(dayInput).toHaveFocus();
   });
 
-  it('jumps to the next field when date separator key is pressed', () => {
+  it('jumps to the next field when date separator key is pressed', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
     const dayInput = customInputs[1];
-
-    fireEvent.focus(monthInput);
-    monthInput.focus();
-
-    expect(monthInput).toHaveFocus();
 
     const separators = container.querySelectorAll('.react-datetime-picker__inputGroup__divider');
     const separatorsTexts = Array.from(separators)
       .map((el) => el.textContent)
       .filter((el) => el.trim());
     const separatorKey = separatorsTexts[0];
-    fireEvent.keyDown(monthInput, getKey(separatorKey));
+
+    await user.type(monthInput, separatorKey);
 
     expect(dayInput).toHaveFocus();
   });
 
-  it('jumps to the next field when time separator key is pressed', () => {
+  it('jumps to the next field when time separator key is pressed', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
     const dayInput = customInputs[1];
-
-    fireEvent.focus(monthInput);
-    monthInput.focus();
-
-    expect(monthInput).toHaveFocus();
 
     const separators = container.querySelectorAll('.react-datetime-picker__inputGroup__divider');
     const separatorsTexts = Array.from(separators)
       .map((el) => el.textContent)
       .filter((el) => el.trim());
     const separatorKey = separatorsTexts[separatorsTexts.length - 1];
-    fireEvent.keyDown(monthInput, getKey(separatorKey));
+
+    await user.type(monthInput, separatorKey);
 
     expect(dayInput).toHaveFocus();
   });
 
-  it('does not jump to the next field when right arrow is pressed when the last input is focused', () => {
+  it('does not jump to the next field when right arrow is pressed when the last input is focused', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const select = container.querySelector('select');
 
-    select.focus();
-
-    expect(select).toHaveFocus();
-
-    fireEvent.keyDown(select, getKey('ArrowRight'));
+    await user.type(select, '{arrowright}');
 
     expect(select).toHaveFocus();
   });
 
-  it('jumps to the previous field when left arrow is pressed', () => {
+  it('jumps to the previous field when left arrow is pressed', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
     const dayInput = customInputs[1];
 
-    fireEvent.focus(dayInput);
-    dayInput.focus();
-
-    expect(dayInput).toHaveFocus();
-
-    fireEvent.keyDown(dayInput, getKey('ArrowLeft'));
+    await user.type(dayInput, '{arrowleft}');
 
     expect(monthInput).toHaveFocus();
   });
 
-  it('does not jump to the previous field when left arrow is pressed when the first input is focused', () => {
+  it('does not jump to the previous field when left arrow is pressed when the first input is focused', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
 
-    fireEvent.focus(monthInput);
-    monthInput.focus();
-
-    expect(monthInput).toHaveFocus();
-
-    fireEvent.keyDown(monthInput, getKey('ArrowLeft'));
+    await user.type(monthInput, '{arrowleft}');
 
     expect(monthInput).toHaveFocus();
   });
