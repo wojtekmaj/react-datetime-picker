@@ -189,6 +189,7 @@ export default function DateTimeInput({
   const amPmInput = useRef();
   const yearInput = useRef();
   const monthInput = useRef();
+  const monthSelect = useRef();
   const dayInput = useRef();
   const hour12Input = useRef();
   const hour24Input = useRef();
@@ -413,6 +414,7 @@ export default function DateTimeInput({
       amPmInput.current,
       dayInput.current,
       monthInput.current,
+      monthSelect.current,
       yearInput.current,
       hour12Input.current,
       hour24Input.current,
@@ -579,7 +581,7 @@ export default function DateTimeInput({
           ariaLabel={monthAriaLabel}
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={index === 0 && autoFocus}
-          inputRef={monthInput}
+          inputRef={monthSelect}
           locale={locale}
           placeholder={monthPlaceholder}
           short={currentMatch.length === 3}
