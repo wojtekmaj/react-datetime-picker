@@ -1,10 +1,13 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import DateTimeInput from './DateTimeInput';
 
 import { muteConsole, restoreConsole } from '../test-utils';
+
+vi.useFakeTimers();
 
 const hasFullICU = (() => {
   try {
@@ -38,6 +41,13 @@ describe('DateTimeInput', () => {
   const defaultProps = {
     className: 'react-datetime-picker__inputGroup',
   };
+
+  let user;
+  beforeEach(() => {
+    user = userEvent.setup({
+      advanceTimers: vi.advanceTimersByTime.bind(vi),
+    });
+  });
 
   it('renders a native input and custom inputs', () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
@@ -662,47 +672,37 @@ describe('DateTimeInput', () => {
     expect(monthInput).toHaveFocus();
   });
 
-  it("jumps to the next field when a value which can't be extended to another valid value is entered", () => {
+  it("jumps to the next field when a value which can't be extended to another valid value is entered", async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
     const dayInput = customInputs[1];
 
-    fireEvent.focus(monthInput);
-
-    monthInput.value = '4';
-    fireEvent.keyUp(monthInput, { key: '4' });
+    await user.type(monthInput, '4');
 
     expect(dayInput).toHaveFocus();
   });
 
-  it('jumps to the next field when a value as long as the length of maximum value is entered', () => {
+  it('jumps to the next field when a value as long as the length of maximum value is entered', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
     const dayInput = customInputs[1];
 
-    fireEvent.focus(monthInput);
-
-    monthInput.value = '03';
-    fireEvent.keyUp(monthInput, { key: '3' });
+    await user.type(monthInput, '03');
 
     expect(dayInput).toHaveFocus();
   });
 
-  it('does not jump the next field when a value which can be extended to another valid value is entered', () => {
+  it('does not jump the next field when a value which can be extended to another valid value is entered', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
     const monthInput = customInputs[0];
 
-    fireEvent.focus(monthInput);
-    monthInput.focus();
-
-    monthInput.value = '1';
-    fireEvent.keyUp(monthInput, { key: '1' });
+    await user.type(monthInput, '1');
 
     expect(monthInput).toHaveFocus();
   });
