@@ -819,7 +819,7 @@ DateTimeInput.propTypes = {
   secondAriaLabel: PropTypes.string,
   secondPlaceholder: PropTypes.string,
   showLeadingZeros: PropTypes.bool,
-  value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
+  value: isValue,
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
 };

@@ -104,25 +104,6 @@ describe('DateTimeInput', () => {
     expect(customInputs[5]).toHaveValue(0);
   });
 
-  it('shows a given date in all inputs correctly given array of Date objects (12-hour format)', () => {
-    const date = [new Date(2017, 8, 30, 22, 17, 0), new Date(2017, 8, 30, 0, 0, 0, -1)];
-
-    const { container } = render(
-      <DateTimeInput {...defaultProps} maxDetail="second" value={date} />,
-    );
-
-    const nativeInput = container.querySelector('input[type="datetime-local"]');
-    const customInputs = container.querySelectorAll('input[data-input]');
-
-    expect(nativeInput).toHaveValue('2017-09-30T22:17');
-    expect(customInputs[0]).toHaveValue(9);
-    expect(customInputs[1]).toHaveValue(30);
-    expect(customInputs[2]).toHaveValue(2017);
-    expect(customInputs[3]).toHaveValue(10);
-    expect(customInputs[4]).toHaveValue(17);
-    expect(customInputs[5]).toHaveValue(0);
-  });
-
   it('shows a given date in all inputs correctly given ISO string (12-hour format)', () => {
     const date = '2017-09-30T22:17:00.000';
 
@@ -162,28 +143,6 @@ describe('DateTimeInput', () => {
   });
 
   itIfFullICU(
-    'shows a given date in all inputs correctly given array of Date objects (24-hour format)',
-    () => {
-      const date = [new Date(2017, 8, 30, 22, 17, 0), new Date(2017, 8, 30, 0, 0, 0, -1)];
-
-      const { container } = render(
-        <DateTimeInput {...defaultProps} locale="de-DE" maxDetail="second" value={date} />,
-      );
-
-      const nativeInput = container.querySelector('input[type="datetime-local"]');
-      const customInputs = container.querySelectorAll('input[data-input]');
-
-      expect(nativeInput).toHaveValue('2017-09-30T22:17');
-      expect(customInputs[0]).toHaveValue(30);
-      expect(customInputs[1]).toHaveValue(9);
-      expect(customInputs[2]).toHaveValue(2017);
-      expect(customInputs[3]).toHaveValue(22);
-      expect(customInputs[4]).toHaveValue(17);
-      expect(customInputs[5]).toHaveValue(0);
-    },
-  );
-
-  itIfFullICU(
     'shows a given date in all inputs correctly given ISO string (24-hour format)',
     () => {
       const date = '2017-09-30T22:17:00.000';
@@ -208,23 +167,6 @@ describe('DateTimeInput', () => {
   it('shows empty value in all inputs correctly given null', () => {
     const { container } = render(
       <DateTimeInput {...defaultProps} maxDetail="second" value={null} />,
-    );
-
-    const nativeInput = container.querySelector('input[type="datetime-local"]');
-    const customInputs = container.querySelectorAll('input[data-input]');
-
-    expect(nativeInput).toHaveAttribute('value', '');
-    expect(customInputs[0]).toHaveAttribute('value', '');
-    expect(customInputs[1]).toHaveAttribute('value', '');
-    expect(customInputs[2]).toHaveAttribute('value', '');
-    expect(customInputs[3]).toHaveAttribute('value', '');
-    expect(customInputs[4]).toHaveAttribute('value', '');
-    expect(customInputs[5]).toHaveAttribute('value', '');
-  });
-
-  it('shows empty value in all inputs correctly given an array of nulls', () => {
-    const { container } = render(
-      <DateTimeInput {...defaultProps} maxDetail="second" value={[null, null]} />,
     );
 
     const nativeInput = container.querySelector('input[type="datetime-local"]');
