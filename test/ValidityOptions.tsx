@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getISOLocalDateTime } from '@wojtekmaj/date-utils';
+import { getISOLocalDate } from '@wojtekmaj/date-utils';
+
+type ValidityOptionsProps = {
+  maxDate?: Date;
+  minDate?: Date;
+  required?: boolean;
+  setMaxDate: (maxDate: Date | undefined) => void;
+  setMinDate: (minDate: Date | undefined) => void;
+  setRequired: (required: boolean) => void;
+};
 
 export default function ValidityOptions({
   maxDate,
@@ -9,17 +18,17 @@ export default function ValidityOptions({
   setMaxDate,
   setMinDate,
   setRequired,
-}) {
-  function onMinChange(event) {
+}: ValidityOptionsProps) {
+  function onMinChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
 
-    setMinDate(value ? new Date(value) : null);
+    setMinDate(value ? new Date(value) : undefined);
   }
 
-  function onMaxChange(event) {
+  function onMaxChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
 
-    setMaxDate(value ? new Date(value) : null);
+    setMaxDate(value ? new Date(value) : undefined);
   }
 
   return (
@@ -27,12 +36,12 @@ export default function ValidityOptions({
       <legend>Minimum and maximum date</legend>
 
       <div>
-        <label htmlFor="minDatetime">Minimum date</label>
+        <label htmlFor="minDate">Minimum date</label>
         <input
-          id="minDatetime"
+          id="minDate"
           onChange={onMinChange}
           type="datetime-local"
-          value={minDate ? getISOLocalDateTime(minDate) : ''}
+          value={minDate ? getISOLocalDate(minDate) : ''}
         />
         &nbsp;
         <button onClick={() => setMinDate(undefined)} type="button">
@@ -41,12 +50,12 @@ export default function ValidityOptions({
       </div>
 
       <div>
-        <label htmlFor="maxDatetime">Maximum date</label>
+        <label htmlFor="maxDate">Maximum date</label>
         <input
-          id="maxDatetime"
+          id="maxDate"
           onChange={onMaxChange}
           type="datetime-local"
-          value={maxDate ? getISOLocalDateTime(maxDate) : ''}
+          value={maxDate ? getISOLocalDate(maxDate) : ''}
         />
         &nbsp;
         <button onClick={() => setMaxDate(undefined)} type="button">

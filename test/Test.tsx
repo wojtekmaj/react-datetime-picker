@@ -12,6 +12,8 @@ import ViewOptions from './ViewOptions';
 
 import './Test.css';
 
+import { Detail, LooseValue } from './shared/types';
+
 const now = new Date();
 
 const ariaLabelProps = {
@@ -42,18 +44,18 @@ const nineteenNinetyFive = new Date(1995, now.getUTCMonth() + 1, 15, 12);
 const fifteenthOfNextMonth = new Date(now.getUTCFullYear(), now.getUTCMonth() + 1, 15, 12);
 
 export default function Test() {
-  const portalContainer = useRef();
+  const portalContainer = useRef<HTMLDivElement>(null);
   const [disabled, setDisabled] = useState(false);
-  const [locale, setLocale] = useState(null);
-  const [maxDate, setMaxDate] = useState(fifteenthOfNextMonth);
-  const [maxDetail, setMaxDetail] = useState('minute');
-  const [minDate, setMinDate] = useState(nineteenNinetyFive);
+  const [locale, setLocale] = useState<string>();
+  const [maxDate, setMaxDate] = useState<Date | undefined>(fifteenthOfNextMonth);
+  const [maxDetail, setMaxDetail] = useState<Detail>('minute');
+  const [minDate, setMinDate] = useState<Date | undefined>(nineteenNinetyFive);
   const [renderInPortal, setRenderInPortal] = useState(false);
   const [required, setRequired] = useState(true);
   const [showLeadingZeros, setShowLeadingZeros] = useState(true);
   const [showNeighboringMonth, setShowNeighboringMonth] = useState(false);
   const [showWeekNumbers, setShowWeekNumbers] = useState(false);
-  const [value, setValue] = useState(now);
+  const [value, setValue] = useState<LooseValue>(now);
 
   return (
     <div className="Test">

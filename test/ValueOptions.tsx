@@ -2,8 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getISOLocalDateTime } from '@wojtekmaj/date-utils';
 
-export default function ValueOptions({ setValue, value }) {
-  function onChange(event) {
+import type { LooseValue } from './shared/types';
+
+type ValueOptionsProps = {
+  setValue: (value: LooseValue) => void;
+  value?: LooseValue;
+};
+
+export default function ValueOptions({ setValue, value }: ValueOptionsProps) {
+  const [date] = Array.isArray(value) ? value : [value];
+
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value: nextValue } = event.target;
 
     setValue(nextValue && new Date(nextValue));
@@ -19,7 +28,7 @@ export default function ValueOptions({ setValue, value }) {
           id="datetime"
           onChange={onChange}
           type="datetime-local"
-          value={value ? getISOLocalDateTime(value) : ''}
+          value={date && date instanceof Date ? getISOLocalDateTime(date) : date || undefined}
         />
         &nbsp;
         <button onClick={() => setValue(null)} type="button">

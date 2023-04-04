@@ -200,6 +200,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/parser@npm:^7.1.0":
+  version: 7.21.4
+  resolution: "@babel/parser@npm:7.21.4"
+  bin:
+    parser: ./bin/babel-parser.js
+  checksum: de610ecd1bff331766d0c058023ca11a4f242bfafefc42caf926becccfb6756637d167c001987ca830dd4b34b93c629a4cef63f8c8c864a8564cdfde1989ac77
+  languageName: node
+  linkType: hard
+
 "@babel/parser@npm:^7.20.7, @babel/parser@npm:^7.21.3":
   version: 7.21.3
   resolution: "@babel/parser@npm:7.21.3"
@@ -257,6 +266,17 @@ __metadata:
     debug: ^4.1.0
     globals: ^11.1.0
   checksum: 0af5bcd47a2fc501592b90ac1feae9d449afb9ab0772a4f6e68230f4cd3a475795d538c1de3f880fe3414b6c2820bac84d02c6549eea796f39d74a603717447b
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.3.0":
+  version: 7.21.4
+  resolution: "@babel/types@npm:7.21.4"
+  dependencies:
+    "@babel/helper-string-parser": ^7.19.4
+    "@babel/helper-validator-identifier": ^7.19.1
+    to-fast-properties: ^2.0.0
+  checksum: 587bc55a91ce003b0f8aa10d70070f8006560d7dc0360dc0406d306a2cb2a10154e2f9080b9c37abec76907a90b330a536406cb75e6bdc905484f37b75c73219
   languageName: node
   linkType: hard
 
@@ -511,6 +531,47 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/babel__core@npm:^7.20.0":
+  version: 7.20.0
+  resolution: "@types/babel__core@npm:7.20.0"
+  dependencies:
+    "@babel/parser": ^7.20.7
+    "@babel/types": ^7.20.7
+    "@types/babel__generator": "*"
+    "@types/babel__template": "*"
+    "@types/babel__traverse": "*"
+  checksum: 49b601a0a7637f1f387442c8156bd086cfd10ff4b82b0e1994e73a6396643b5435366fb33d6b604eade8467cca594ef97adcbc412aede90bb112ebe88d0ad6df
+  languageName: node
+  linkType: hard
+
+"@types/babel__generator@npm:*":
+  version: 7.6.4
+  resolution: "@types/babel__generator@npm:7.6.4"
+  dependencies:
+    "@babel/types": ^7.0.0
+  checksum: 20effbbb5f8a3a0211e95959d06ae70c097fb6191011b73b38fe86deebefad8e09ee014605e0fd3cdaedc73d158be555866810e9166e1f09e4cfd880b874dcb0
+  languageName: node
+  linkType: hard
+
+"@types/babel__template@npm:*":
+  version: 7.4.1
+  resolution: "@types/babel__template@npm:7.4.1"
+  dependencies:
+    "@babel/parser": ^7.1.0
+    "@babel/types": ^7.0.0
+  checksum: 649fe8b42c2876be1fd28c6ed9b276f78152d5904ec290b6c861d9ef324206e0a5c242e8305c421ac52ecf6358fa7e32ab7a692f55370484825c1df29b1596ee
+  languageName: node
+  linkType: hard
+
+"@types/babel__traverse@npm:*":
+  version: 7.18.3
+  resolution: "@types/babel__traverse@npm:7.18.3"
+  dependencies:
+    "@babel/types": ^7.3.0
+  checksum: d20953338b2f012ab7750932ece0a78e7d1645b0a6ff42d49be90f55e9998085da1374a9786a7da252df89555c6586695ba4d1d4b4e88ab2b9f306bcd35e00d3
+  languageName: node
+  linkType: hard
+
 "@types/lodash.memoize@npm:^4.1.7":
   version: 4.1.7
   resolution: "@types/lodash.memoize@npm:4.1.7"
@@ -531,15 +592,6 @@ __metadata:
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
   checksum: 5b43b8b15415e1f298243165f1d44390403bb2bd42e662bca3b5b5633fdd39c938e91b7fce3a9483699db0f7a715d08cef220c121f723a634972fdf596aec980
-  languageName: node
-  linkType: hard
-
-"@types/react-calendar@npm:^3.0.0":
-  version: 3.9.0
-  resolution: "@types/react-calendar@npm:3.9.0"
-  dependencies:
-    "@types/react": "*"
-  checksum: cddb6951c29c9adf96c38db2631d7b9d157aa65f5e4a45ba5bfc5657413839dfd7045a2e06b98e890b2285013a4777ca1e8317f6ee52c28284f1e47e58e0f8dd
   languageName: node
   linkType: hard
 
@@ -585,7 +637,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wojtekmaj/date-utils@npm:^1.0.0, @wojtekmaj/date-utils@npm:^1.0.3, @wojtekmaj/date-utils@npm:^1.1.2, @wojtekmaj/date-utils@npm:^1.1.3":
+"@wojtekmaj/date-utils@npm:^1.1.2, @wojtekmaj/date-utils@npm:^1.1.3":
   version: 1.1.3
   resolution: "@wojtekmaj/date-utils@npm:1.1.3"
   checksum: 4ae0eba0876b8c156720c249ddd665efd8da0c42a02bbf037475b8a30554e02fa642e6f1d81d1fffdc02c6d816fb73590ee03c003ac976d91380745533dbf327
@@ -1046,16 +1098,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-user-locale@npm:^1.2.0":
-  version: 1.5.1
-  resolution: "get-user-locale@npm:1.5.1"
-  dependencies:
-    lodash.memoize: ^4.1.1
-  checksum: 4ab9ae83264c8b4f376b7690578ee3b332808d40f49e500469d476b832d4fddcf8477b7a01b60a242fd232b5a2ae8f6b7620f731d67350e89fd17ddd91fc8a0e
-  languageName: node
-  linkType: hard
-
-"get-user-locale@npm:^2.0.0, get-user-locale@npm:^2.1.3, get-user-locale@npm:^2.2.1":
+"get-user-locale@npm:^2.2.1":
   version: 2.2.1
   resolution: "get-user-locale@npm:2.2.1"
   dependencies:
@@ -1327,7 +1370,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"make-event-props@npm:^1.1.0, make-event-props@npm:^1.4.2":
+"make-event-props@npm:^1.4.2":
   version: 1.4.2
   resolution: "make-event-props@npm:1.4.2"
   checksum: 3da247c14a6a2974db96e53058842dd781db2b68daab8a99cd6d988795579481f6ec032696ebf59f500d2848f3c8496e4896dabdf9b172081b593d0064486b9e
@@ -1627,55 +1670,54 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-calendar@npm:^4.0.0":
-  version: 4.1.0
-  resolution: "react-calendar@npm:4.1.0"
+"react-calendar@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "react-calendar@npm:4.2.1"
   dependencies:
     "@types/react": "*"
     "@wojtekmaj/date-utils": ^1.1.3
     clsx: ^1.2.1
-    get-user-locale: ^2.1.3
+    get-user-locale: ^2.2.1
     prop-types: ^15.6.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 9ec265dd927797fcb2370f8b2ca520e2c7ac6716f53b0ba7bc68578b247b8a67950ae2a20a1dbc6579a5c38cb25ae2fa6a55afc02bd1589de23868c5d336421a
+  checksum: a14ce00249b867d44ace3c1766f2af41347883c5e594fa10aeeb0eaf4034da9b9a2434df0b666ff736efa7d25c029b65a4008482df9b61a4b7f81e1751a1da27
   languageName: node
   linkType: hard
 
-"react-clock@npm:^4.0.0":
-  version: 4.1.0
-  resolution: "react-clock@npm:4.1.0"
+"react-clock@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "react-clock@npm:4.2.0"
   dependencies:
     "@types/react": "*"
     "@wojtekmaj/date-utils": ^1.1.2
     clsx: ^1.2.1
-    get-user-locale: ^2.0.0
+    get-user-locale: ^2.2.1
     prop-types: ^15.6.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 30a4de446fe7fcee36f155d9faafa73ca3df0faead9415b02859fcd7676f3e337325fe3b2330cc42988463fe40f45e3360d3f3d59b678d2a5ea584cc30334f4a
+  checksum: 82897d1393594c63fb0ae9d408e4ce4fab6e96b5287483a8cf07a94de74f7e1a8d2eb04852cef0aa867207fac41a8d94f7c9f4a8f4af8503b1ead0ec9e2bd739
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^9.2.0":
-  version: 9.2.0
-  resolution: "react-date-picker@npm:9.2.0"
+"react-date-picker@npm:^10.0.0":
+  version: 10.0.1
+  resolution: "react-date-picker@npm:10.0.1"
   dependencies:
-    "@types/react-calendar": ^3.0.0
-    "@wojtekmaj/date-utils": ^1.0.3
+    "@wojtekmaj/date-utils": ^1.1.3
     clsx: ^1.2.1
-    get-user-locale: ^1.2.0
-    make-event-props: ^1.1.0
+    get-user-locale: ^2.2.1
+    make-event-props: ^1.4.2
     prop-types: ^15.6.0
-    react-calendar: ^4.0.0
-    react-fit: ^1.4.0
-    update-input-width: ^1.2.2
+    react-calendar: ^4.2.1
+    react-fit: ^1.5.1
+    update-input-width: ^1.3.1
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 2573a71ef4b36adbb627f63ea835ade436ad04e827f488572da899ac66a9f85b8db2fa7c007fbdf6a505ab014d520514f6bcf4bcc771bd57976a7c901644ebd6
+  checksum: eb2fdc9b8d843ec49a87e9776367c8952f4fd941d52dae069551c13f9752498fa71daa0f204aae82e759586e2c51d2b4ef48b1b915ca2f1ddb7be73fc4ea20fa
   languageName: node
   linkType: hard
 
@@ -1683,12 +1725,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-datetime-picker-test-page@workspace:."
   dependencies:
+    "@types/babel__core": ^7.20.0
     "@vitejs/plugin-react": ^3.0.0
     "@wojtekmaj/date-utils": ^1.1.3
     prop-types: ^15.6.2
     react: ^18.2.0
     react-datetime-picker: "portal:../"
     react-dom: ^18.2.0
+    typescript: ^5.0.3
     vite: ^4.0.0
   languageName: unknown
   linkType: soft
@@ -1702,11 +1746,11 @@ __metadata:
     get-user-locale: ^2.2.1
     make-event-props: ^1.4.2
     prop-types: ^15.6.0
-    react-calendar: ^4.0.0
-    react-clock: ^4.0.0
-    react-date-picker: ^9.2.0
+    react-calendar: ^4.2.1
+    react-clock: ^4.2.0
+    react-date-picker: ^10.0.0
     react-fit: ^1.5.1
-    react-time-picker: ^5.2.0
+    react-time-picker: ^6.0.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -1725,7 +1769,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fit@npm:^1.4.0, react-fit@npm:^1.5.1":
+"react-fit@npm:^1.5.1":
   version: 1.5.1
   resolution: "react-fit@npm:1.5.1"
   dependencies:
@@ -1755,22 +1799,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "react-time-picker@npm:5.2.0"
+"react-time-picker@npm:^6.0.0":
+  version: 6.0.2
+  resolution: "react-time-picker@npm:6.0.2"
   dependencies:
-    "@wojtekmaj/date-utils": ^1.0.0
+    "@wojtekmaj/date-utils": ^1.1.3
     clsx: ^1.2.1
-    get-user-locale: ^1.2.0
-    make-event-props: ^1.1.0
+    get-user-locale: ^2.2.1
+    make-event-props: ^1.4.2
     prop-types: ^15.6.0
-    react-clock: ^4.0.0
-    react-fit: ^1.4.0
-    update-input-width: ^1.2.2
+    react-clock: ^4.2.0
+    react-fit: ^1.5.1
+    update-input-width: ^1.3.1
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 24ae145f954927a1a131eb63d215174ca7253aa19d19da00acd799bb4856e3b63d8e84071cf031781e78ce35ba7707cdaf9664ff2e57a8b53e00b03e0f2549a7
+  checksum: d5bd6e28113a371e2aae26138eef5c3fc6d10b69e25b9b4e6ae222fd6830989e6c6b96e46d79250b6826a1d4fe85f871bbd2d7885ae1ad4246af0fbff5821833
   languageName: node
   linkType: hard
 
@@ -2026,6 +2070,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "typescript@npm:5.0.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 3cce0576d218cb4277ff8b6adfef1a706e9114a98b4261a38ad658a7642f1b274a8396394f6cbff8c0ba852996d7ed2e233e9b8431d5d55ac7c2f6fea645af02
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^5.0.3#~builtin<compat/typescript>":
+  version: 5.0.3
+  resolution: "typescript@patch:typescript@npm%3A5.0.3#~builtin<compat/typescript>::version=5.0.3&hash=ddd1e8"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 9ec0a8eed38d46cc2c8794555b7674e413604c56c159f71b8ff21ce7f17334a44127a68724cb2ef8221ff3b19369f8f05654e8a5266621d7d962aeed889bd630
+  languageName: node
+  linkType: hard
+
 "unique-filename@npm:^2.0.0":
   version: 2.0.1
   resolution: "unique-filename@npm:2.0.1"
@@ -2058,7 +2122,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"update-input-width@npm:^1.2.2":
+"update-input-width@npm:^1.3.1":
   version: 1.3.1
   resolution: "update-input-width@npm:1.3.1"
   checksum: 1e648fcb99b5da1f8e165dc0ceea7a82ddbdc20b75cdfa0b735a3c261eb62d0476662834dea38ac39985e1693c921e45489149afbb105eddd5e2b4b564846bc5
