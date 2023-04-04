@@ -23,7 +23,7 @@ export function getFormatter(options) {
 const numberFormatterCache = new Map();
 
 export function getNumberFormatter(options) {
-  return (locale, date) => {
+  return (locale, number) => {
     const localeWithDefault = locale || getUserLocale();
 
     if (!numberFormatterCache.has(localeWithDefault)) {
@@ -39,7 +39,7 @@ export function getNumberFormatter(options) {
       );
     }
 
-    return numberFormatterCacheLocale.get(options)(date);
+    return numberFormatterCacheLocale.get(options)(number);
   };
 }
 
