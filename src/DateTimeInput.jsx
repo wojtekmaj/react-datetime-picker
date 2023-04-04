@@ -144,8 +144,6 @@ function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstance
   }, []);
 }
 
-const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
-
 const formatNumber = getNumberFormatter({ useGrouping: false });
 
 export default function DateTimeInput({
@@ -792,6 +790,8 @@ export default function DateTimeInput({
     </div>
   );
 }
+
+const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
 
 DateTimeInput.propTypes = {
   amPmAriaLabel: PropTypes.string,
