@@ -27,7 +27,7 @@ import { convert12to24, convert24to12 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 import { between, getAmPmLabels } from './shared/utils';
 
-import type { AmPmType, Detail } from './shared/types';
+import type { AmPmType, Detail, LooseValuePiece } from './shared/types';
 
 const getFormatterOptionsCache: Record<string, Intl.DateTimeFormatOptions> = {};
 
@@ -73,7 +73,7 @@ function getValue(
 }
 
 type DetailArgs = {
-  value?: string | Date | null;
+  value?: LooseValuePiece;
   minDate?: Date;
   maxDate?: Date;
 };

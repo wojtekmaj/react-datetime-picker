@@ -11,7 +11,7 @@ import DateTimeInput from './DateTimeInput';
 
 import { isMaxDate, isMinDate } from './shared/propTypes';
 
-import type { ClassName, Detail, LooseValue } from './shared/types';
+import type { ClassName, Detail, LooseValue, Value } from './shared/types';
 
 const baseClassName = 'react-datetime-picker';
 const outsideActionEvents = ['mousedown', 'focusin', 'touchstart'];
@@ -221,7 +221,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
     }
   }
 
-  function onDateChange(nextValue: Date | null | (Date | null)[], shouldCloseWidgets?: boolean) {
+  function onDateChange(nextValue: Value, shouldCloseWidgets?: boolean) {
     const [nextValueFrom] = Array.isArray(nextValue) ? nextValue : [nextValue];
     const [valueFrom] = Array.isArray(value) ? value : [value];
 
