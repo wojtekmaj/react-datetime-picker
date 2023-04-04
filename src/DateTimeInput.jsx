@@ -379,7 +379,7 @@ export default function DateTimeInput({
   function onKeyUp(event) {
     const { key, target: input } = event;
 
-    const isNumberKey = !isNaN(parseInt(key, 10));
+    const isNumberKey = !isNaN(Number(key));
 
     if (!isNumberKey) {
       return;
@@ -435,7 +435,7 @@ export default function DateTimeInput({
         formElement.type === 'number'
           ? 'valueAsNumber' in formElement
             ? formElement.valueAsNumber
-            : parseInt(formElement.value, 10)
+            : Number(formElement.value)
           : formElement.value;
     });
 
@@ -444,12 +444,12 @@ export default function DateTimeInput({
     } else if (
       formElements.every((formElement) => formElement.value && formElement.validity.valid)
     ) {
-      const year = values.year || new Date().getFullYear();
-      const monthIndex = (values.month || 1) - 1;
-      const day = values.day || 1;
-      const hour = values.hour24 || convert12to24(values.hour12, values.amPm) || 0;
-      const minute = values.minute || 0;
-      const second = values.second || 0;
+      const year = Number(values.year || new Date().getFullYear());
+      const monthIndex = Number(values.month || 1) - 1;
+      const day = Number(values.day || 1);
+      const hour = Number(values.hour24 || convert12to24(values.hour12, values.amPm) || 0);
+      const minute = Number(values.minute || 0);
+      const second = Number(values.second || 0);
 
       const proposedValue = new Date();
       proposedValue.setFullYear(year, monthIndex, day);
@@ -479,7 +479,7 @@ export default function DateTimeInput({
         setDay(value);
         break;
       case 'hour12':
-        setHour(value ? convert12to24(parseInt(value, 10), amPm).toString() : '');
+        setHour(value ? convert12to24(Number(value), amPm).toString() : '');
         break;
       case 'hour24':
         setHour(value);
@@ -513,14 +513,14 @@ export default function DateTimeInput({
       const [valueDate, valueTime] = value.split('T');
 
       const [yearString, monthString, dayString] = valueDate.split('-');
-      const year = parseInt(yearString, 10);
-      const monthIndex = parseInt(monthString, 10) - 1 || 0;
-      const day = parseInt(dayString, 10) || 1;
+      const year = Number(yearString);
+      const monthIndex = Number(monthString) - 1 || 0;
+      const day = Number(dayString) || 1;
 
       const [hourString, minuteString, secondString] = valueTime.split(':');
-      const hour = parseInt(hourString, 10) || 0;
-      const minute = parseInt(minuteString, 10) || 0;
-      const second = parseInt(secondString, 10) || 0;
+      const hour = Number(hourString) || 0;
+      const minute = Number(minuteString) || 0;
+      const second = Number(secondString) || 0;
 
       const proposedValue = new Date();
       proposedValue.setFullYear(year, monthIndex, day);
@@ -541,7 +541,7 @@ export default function DateTimeInput({
     onKeyDown,
     onKeyUp,
     // This is only for showing validity when editing
-    required: required || isWidgetOpen,
+    required: Boolean(required || isWidgetOpen),
   };
 
   const commonTimeInputProps = {

@@ -1,5 +1,5 @@
 export function convert12to24(hour12, amPm) {
-  let hour24 = parseInt(hour12, 10);
+  let hour24 = Number(hour12);
 
   if (amPm === 'am' && hour24 === 12) {
     hour24 = 0;
