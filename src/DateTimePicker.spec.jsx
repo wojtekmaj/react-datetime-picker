@@ -466,10 +466,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Calendar component when clicked outside', async () => {
-    const root = document.createElement('div');
-    document.body.appendChild(root);
-
-    const { container } = render(<DateTimePicker isCalendarOpen />, { attachTo: root });
+    const { container } = render(<DateTimePicker isCalendarOpen />);
 
     userEvent.click(document.body);
 
@@ -479,10 +476,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Calendar component when focused outside', async () => {
-    const root = document.createElement('div');
-    document.body.appendChild(root);
-
-    const { container } = render(<DateTimePicker isCalendarOpen />, { attachTo: root });
+    const { container } = render(<DateTimePicker isCalendarOpen />);
 
     fireEvent.focusIn(document.body);
 
@@ -492,10 +486,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Calendar component when tapped outside', async () => {
-    const root = document.createElement('div');
-    document.body.appendChild(root);
-
-    const { container } = render(<DateTimePicker isCalendarOpen />, { attachTo: root });
+    const { container } = render(<DateTimePicker isCalendarOpen />);
 
     fireEvent.touchStart(document.body);
 
@@ -505,10 +496,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Clock component when clicked outside', async () => {
-    const root = document.createElement('div');
-    document.body.appendChild(root);
-
-    const { container } = render(<DateTimePicker isClockOpen />, { attachTo: root });
+    const { container } = render(<DateTimePicker isClockOpen />);
 
     userEvent.click(document.body);
 
@@ -518,10 +506,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Clock component when focused outside', async () => {
-    const root = document.createElement('div');
-    document.body.appendChild(root);
-
-    const { container } = render(<DateTimePicker isClockOpen />, { attachTo: root });
+    const { container } = render(<DateTimePicker isClockOpen />);
 
     fireEvent.focusIn(document.body);
 
@@ -531,10 +516,7 @@ describe('DateTimePicker', () => {
   });
 
   it('closes Clock component when tapped outside', async () => {
-    const root = document.createElement('div');
-    document.body.appendChild(root);
-
-    const { container } = render(<DateTimePicker isClockOpen />, { attachTo: root });
+    const { container } = render(<DateTimePicker isClockOpen />);
 
     fireEvent.touchStart(document.body);
 
