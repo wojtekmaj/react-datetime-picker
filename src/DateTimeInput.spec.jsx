@@ -277,7 +277,7 @@ describe('DateTimeInput', () => {
       const componentSelect = container.querySelector('select[name="month"]');
       const customInputs = container.querySelectorAll('select');
 
-      expect(componentSelect).toBeInTheDocument(1);
+      expect(componentSelect).toBeInTheDocument();
       expect(customInputs).toHaveLength(1);
     });
 
@@ -287,7 +287,7 @@ describe('DateTimeInput', () => {
       const componentSelect = container.querySelector('select[name="month"]');
       const customInputs = container.querySelectorAll('select');
 
-      expect(componentSelect).toBeInTheDocument(1);
+      expect(componentSelect).toBeInTheDocument();
       expect(customInputs).toHaveLength(1);
     });
 
