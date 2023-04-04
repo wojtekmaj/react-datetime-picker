@@ -91,7 +91,7 @@ type DateTimePickerProps = {
   onClockOpen?: () => void;
   onFocus?: (event: React.FocusEvent<HTMLDivElement>) => void;
   openWidgetsOnFocus?: boolean;
-  portalContainer?: HTMLElement;
+  portalContainer?: HTMLElement | null;
   required?: boolean;
   secondAriaLabel?: string;
   secondPlaceholder?: string;
