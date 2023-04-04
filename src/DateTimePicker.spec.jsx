@@ -264,6 +264,46 @@ describe('DateTimePicker', () => {
 
       expect(calendarButton).toBeInTheDocument();
     });
+
+    it('renders calendar icon by default when calendarIcon is not given', () => {
+      const { container } = render(<DateTimePicker />);
+
+      const calendarButton = container.querySelector(
+        'button.react-datetime-picker__calendar-button',
+      );
+
+      const calendarIcon = calendarButton.querySelector('svg');
+
+      expect(calendarIcon).toBeInTheDocument();
+    });
+
+    it('renders calendar icon when given calendarIcon as a React element', () => {
+      function CalendarIcon() {
+        return '📅';
+      }
+
+      const { container } = render(<DateTimePicker calendarIcon={<CalendarIcon />} />);
+
+      const calendarButton = container.querySelector(
+        'button.react-datetime-picker__calendar-button',
+      );
+
+      expect(calendarButton).toHaveTextContent('📅');
+    });
+
+    it('renders calendar icon when given calendarIcon as a function', () => {
+      function CalendarIcon() {
+        return '📅';
+      }
+
+      const { container } = render(<DateTimePicker calendarIcon={CalendarIcon} />);
+
+      const calendarButton = container.querySelector(
+        'button.react-datetime-picker__calendar-button',
+      );
+
+      expect(calendarButton).toHaveTextContent('📅');
+    });
   });
 
   it('renders Calendar component when given isCalendarOpen flag', () => {
