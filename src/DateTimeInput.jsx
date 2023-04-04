@@ -11,10 +11,10 @@ import {
 } from '@wojtekmaj/date-utils';
 
 import Divider from './Divider';
-import DayInput from 'react-date-picker/dist/DateInput/DayInput';
-import MonthInput from 'react-date-picker/dist/DateInput/MonthInput';
-import MonthSelect from 'react-date-picker/dist/DateInput/MonthSelect';
-import YearInput from 'react-date-picker/dist/DateInput/YearInput';
+import DayInput from 'react-date-picker/dist/cjs/DateInput/DayInput';
+import MonthInput from 'react-date-picker/dist/cjs/DateInput/MonthInput';
+import MonthSelect from 'react-date-picker/dist/cjs/DateInput/MonthSelect';
+import YearInput from 'react-date-picker/dist/cjs/DateInput/YearInput';
 import Hour12Input from 'react-time-picker/dist/TimeInput/Hour12Input';
 import Hour24Input from 'react-time-picker/dist/TimeInput/Hour24Input';
 import MinuteInput from 'react-time-picker/dist/TimeInput/MinuteInput';
