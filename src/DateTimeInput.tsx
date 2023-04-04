@@ -27,15 +27,17 @@ import { convert12to24, convert24to12 } from './shared/dates';
 import { isMaxDate, isMinDate } from './shared/propTypes';
 import { between, getAmPmLabels } from './shared/utils';
 
-const getFormatterOptionsCache = {};
+import type { AmPmType, Detail } from './shared/types';
+
+const getFormatterOptionsCache: Record<string, Intl.DateTimeFormatOptions> = {};
 
 const defaultMinDate = new Date();
 defaultMinDate.setFullYear(1, 0, 1);
 defaultMinDate.setHours(0, 0, 0, 0);
 const defaultMaxDate = new Date(8.64e15);
-const allViews = ['hour', 'minute', 'second'];
+const allViews = ['hour', 'minute', 'second'] as const;
 
-function toDate(value) {
+function toDate(value: Date | string): Date {
   if (value instanceof Date) {
     return value;
   }
@@ -43,7 +45,7 @@ function toDate(value) {
   return new Date(value);
 }
 
-function isSameDate(date, year, month, day) {
+function isSameDate(date: Date, year: string | null, month: string | null, day: string | null) {
   return (
     year === getYear(date).toString() &&
     month === getMonthHuman(date).toString() &&
@@ -51,12 +53,11 @@ function isSameDate(date, year, month, day) {
   );
 }
 
-function getValue(value, index) {
-  if (!value) {
-    return null;
-  }
-
-  const rawValue = Array.isArray(value) && value.length === 2 ? value[index] : value;
+function getValue(
+  value: string | Date | null | undefined | (string | Date | null | undefined)[],
+  index: 0 | 1,
+): Date | null {
+  const rawValue = Array.isArray(value) ? value[index] : value;
 
   if (!rawValue) {
     return null;
@@ -71,7 +72,13 @@ function getValue(value, index) {
   return valueDate;
 }
 
-function getDetailValue({ value, minDate, maxDate }, index) {
+type DetailArgs = {
+  value?: string | Date | null;
+  minDate?: Date;
+  maxDate?: Date;
+};
+
+function getDetailValue({ value, minDate, maxDate }: DetailArgs, index: 0 | 1) {
   const valuePiece = getValue(value, index);
 
   if (!valuePiece) {
@@ -81,28 +88,37 @@ function getDetailValue({ value, minDate, maxDate }, index) {
   return between(valuePiece, minDate, maxDate);
 }
 
-const getDetailValueFrom = (args) => getDetailValue(args, 0);
+const getDetailValueFrom = (args: DetailArgs) => getDetailValue(args, 0);
 
-function isInternalInput(element) {
+function isInternalInput(element: HTMLElement) {
   return element.dataset.input === 'true';
 }
 
-function findInput(element, property) {
-  let nextElement = element;
+function findInput(
+  element: HTMLElement,
+  property: 'previousElementSibling' | 'nextElementSibling',
+) {
+  let nextElement: HTMLElement | null = element;
   do {
-    nextElement = nextElement[property];
+    nextElement = nextElement[property] as HTMLElement | null;
   } while (nextElement && !isInternalInput(nextElement));
   return nextElement;
 }
 
-function focus(element) {
+function focus(element?: HTMLElement | null) {
   if (element) {
     element.focus();
   }
 }
 
-function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstances) {
-  const usedFunctions = [];
+type RenderFunction = (match: string, index: number) => React.ReactNode;
+
+function renderCustomInputs(
+  placeholder: string,
+  elementFunctions: Record<string, RenderFunction>,
+  allowMultipleInstances: boolean,
+) {
+  const usedFunctions: RenderFunction[] = [];
   const pattern = new RegExp(
     Object.keys(elementFunctions)
       .map((el) => `${el}+`)
@@ -111,7 +127,7 @@ function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstance
   );
   const matches = placeholder.match(pattern);
 
-  return placeholder.split(pattern).reduce((arr, element, index) => {
+  return placeholder.split(pattern).reduce<React.ReactNode[]>((arr, element, index) => {
     const divider = element && (
       // eslint-disable-next-line react/no-array-index-key
       <Divider key={`separator_${index}`}>{element}</Divider>
@@ -125,7 +141,7 @@ function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstance
         elementFunctions[
           Object.keys(elementFunctions).find((elementFunction) =>
             currentMatch.match(elementFunction),
-          )
+          ) as string
         ];
 
       if (!renderFunction) {
@@ -145,6 +161,37 @@ function renderCustomInputs(placeholder, elementFunctions, allowMultipleInstance
 }
 
 const formatNumber = getNumberFormatter({ useGrouping: false });
+
+type DateTimeInputProps = {
+  amPmAriaLabel?: string;
+  autoFocus?: boolean;
+  className: string;
+  dayAriaLabel?: string;
+  dayPlaceholder?: string;
+  disabled?: boolean;
+  format?: string;
+  hourAriaLabel?: string;
+  hourPlaceholder?: string;
+  isWidgetOpen?: boolean | null;
+  locale?: string;
+  maxDate?: Date;
+  maxDetail?: Detail;
+  minDate?: Date;
+  minuteAriaLabel?: string;
+  minutePlaceholder?: string;
+  monthAriaLabel?: string;
+  monthPlaceholder?: string;
+  name?: string;
+  nativeInputAriaLabel?: string;
+  onChange?: (value: Date | null, shouldCloseWidgets: boolean) => void;
+  required?: boolean;
+  secondAriaLabel?: string;
+  secondPlaceholder?: string;
+  showLeadingZeros?: boolean;
+  value?: string | Date | null;
+  yearAriaLabel?: string;
+  yearPlaceholder?: string;
+};
 
 export default function DateTimeInput({
   amPmAriaLabel,
@@ -175,24 +222,24 @@ export default function DateTimeInput({
   value: valueProps,
   yearAriaLabel,
   yearPlaceholder,
-}) {
-  const [amPm, setAmPm] = useState(null);
-  const [year, setYear] = useState(null);
-  const [month, setMonth] = useState(null);
-  const [day, setDay] = useState(null);
-  const [hour, setHour] = useState(null);
-  const [minute, setMinute] = useState(null);
-  const [second, setSecond] = useState(null);
-  const [value, setValue] = useState(null);
-  const amPmInput = useRef();
-  const yearInput = useRef();
-  const monthInput = useRef();
-  const monthSelect = useRef();
-  const dayInput = useRef();
-  const hour12Input = useRef();
-  const hour24Input = useRef();
-  const minuteInput = useRef();
-  const secondInput = useRef();
+}: DateTimeInputProps) {
+  const [amPm, setAmPm] = useState<AmPmType | null>(null);
+  const [year, setYear] = useState<string | null>(null);
+  const [month, setMonth] = useState<string | null>(null);
+  const [day, setDay] = useState<string | null>(null);
+  const [hour, setHour] = useState<string | null>(null);
+  const [minute, setMinute] = useState<string | null>(null);
+  const [second, setSecond] = useState<string | null>(null);
+  const [value, setValue] = useState<Date | null>(null);
+  const amPmInput = useRef<HTMLSelectElement>(null);
+  const yearInput = useRef<HTMLInputElement>(null);
+  const monthInput = useRef<HTMLInputElement>(null);
+  const monthSelect = useRef<HTMLSelectElement>(null);
+  const dayInput = useRef<HTMLInputElement>(null);
+  const hour12Input = useRef<HTMLInputElement>(null);
+  const hour24Input = useRef<HTMLInputElement>(null);
+  const minuteInput = useRef<HTMLInputElement>(null);
+  const secondInput = useRef<HTMLInputElement>(null);
   const [isWidgetOpen, setIsWidgetOpenOpen] = useState(isWidgetOpenProps);
 
   useEffect(() => {
@@ -214,6 +261,7 @@ export default function DateTimeInput({
       setHour(getHours(nextValue).toString());
       setMinute(getMinutes(nextValue).toString());
       setSecond(getSeconds(nextValue).toString());
+      setValue(toDate(nextValue));
     } else {
       setAmPm(null);
       setYear(null);
@@ -222,8 +270,8 @@ export default function DateTimeInput({
       setHour(null);
       setMinute(null);
       setSecond(null);
+      setValue(null);
     }
-    setValue(nextValue);
   }, [
     valueProps,
     minDate,
@@ -239,7 +287,7 @@ export default function DateTimeInput({
     const formatterOptions =
       getFormatterOptionsCache[level] ||
       (() => {
-        const options = { hour: 'numeric' };
+        const options: Intl.DateTimeFormatOptions = { hour: 'numeric' };
         if (level >= 1) {
           options.minute = 'numeric';
         }
@@ -263,10 +311,10 @@ export default function DateTimeInput({
     const date = new Date(year, monthIndex, day);
     const formattedDate = formatDate(locale, date);
 
-    const datePieces = ['year', 'month', 'day'];
+    const datePieces = ['year', 'month', 'day'] as const;
     const datePieceReplacements = ['y', 'M', 'd'];
 
-    function formatDatePiece(name, dateToFormat) {
+    function formatDatePiece(name: keyof Intl.DateTimeFormatOptions, dateToFormat: Date) {
       const formatterOptions =
         getFormatterOptionsCache[name] ||
         (() => {
@@ -286,7 +334,7 @@ export default function DateTimeInput({
 
       if (match) {
         const formattedDatePiece = match[0];
-        const datePieceReplacement = datePieceReplacements[index];
+        const datePieceReplacement = datePieceReplacements[index] as string;
         placeholder = placeholder.replace(formattedDatePiece, datePieceReplacement);
       }
     });
@@ -325,11 +373,11 @@ export default function DateTimeInput({
 
   const maxTime = (() => {
     if (!maxDate) {
-      return null;
+      return undefined;
     }
 
     if (!isSameDate(maxDate, year, month, day)) {
-      return null;
+      return undefined;
     }
 
     return getHoursMinutesSeconds(maxDate || defaultMaxDate);
@@ -337,25 +385,29 @@ export default function DateTimeInput({
 
   const minTime = (() => {
     if (!minDate) {
-      return null;
+      return undefined;
     }
 
     if (!isSameDate(minDate, year, month, day)) {
-      return null;
+      return undefined;
     }
 
     return getHoursMinutesSeconds(minDate || defaultMinDate);
   })();
 
-  function onClick(event) {
+  function onClick(event: React.MouseEvent<HTMLDivElement> & { target: HTMLDivElement }) {
     if (event.target === event.currentTarget) {
       // Wrapper was directly clicked
-      const firstInput = event.target.children[1];
+      const firstInput = event.target.children[1] as HTMLInputElement;
       focus(firstInput);
     }
   }
 
-  function onKeyDown(event) {
+  function onKeyDown(
+    event:
+      | (React.KeyboardEvent<HTMLInputElement> & { target: HTMLInputElement })
+      | (React.KeyboardEvent<HTMLSelectElement> & { target: HTMLSelectElement }),
+  ) {
     switch (event.key) {
       case 'ArrowLeft':
       case 'ArrowRight':
@@ -374,7 +426,7 @@ export default function DateTimeInput({
     }
   }
 
-  function onKeyUp(event) {
+  function onKeyUp(event: React.KeyboardEvent<HTMLInputElement> & { target: HTMLInputElement }) {
     const { key, target: input } = event;
 
     const isNumberKey = !isNaN(Number(key));
@@ -413,6 +465,12 @@ export default function DateTimeInput({
       return;
     }
 
+    type NonFalsy<T> = T extends false | 0 | '' | null | undefined | 0n ? never : T;
+
+    function filterBoolean<T>(value: T): value is NonFalsy<typeof value> {
+      return Boolean(value);
+    }
+
     const formElements = [
       amPmInput.current,
       dayInput.current,
@@ -423,11 +481,13 @@ export default function DateTimeInput({
       hour24Input.current,
       minuteInput.current,
       secondInput.current,
-    ].filter(Boolean);
+    ].filter(filterBoolean);
 
     const formElementsWithoutSelect = formElements.slice(1);
 
-    const values = {};
+    const values: Record<string, string | number> & {
+      amPm?: AmPmType;
+    } = {};
     formElements.forEach((formElement) => {
       values[formElement.name] =
         formElement.type === 'number'
@@ -445,7 +505,11 @@ export default function DateTimeInput({
       const year = Number(values.year || new Date().getFullYear());
       const monthIndex = Number(values.month || 1) - 1;
       const day = Number(values.day || 1);
-      const hour = Number(values.hour24 || convert12to24(values.hour12, values.amPm) || 0);
+      const hour = Number(
+        values.hour24 ||
+          (values.hour12 && values.amPm && convert12to24(values.hour12, values.amPm)) ||
+          0,
+      );
       const minute = Number(values.minute || 0);
       const second = Number(values.second || 0);
 
@@ -460,12 +524,12 @@ export default function DateTimeInput({
   /**
    * Called when non-native date input is changed.
    */
-  function onChange(event) {
+  function onChange(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value } = event.target;
 
     switch (name) {
       case 'amPm':
-        setAmPm(value);
+        setAmPm(value as AmPmType);
         break;
       case 'year':
         setYear(value);
@@ -477,7 +541,7 @@ export default function DateTimeInput({
         setDay(value);
         break;
       case 'hour12':
-        setHour(value ? convert12to24(Number(value), amPm).toString() : '');
+        setHour(value ? convert12to24(value, amPm || 'am').toString() : '');
         break;
       case 'hour24':
         setHour(value);
@@ -496,7 +560,7 @@ export default function DateTimeInput({
   /**
    * Called when native date input is changed.
    */
-  function onChangeNative(event) {
+  function onChangeNative(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
 
     if (!onChangeProps) {
@@ -508,14 +572,18 @@ export default function DateTimeInput({
         return null;
       }
 
-      const [valueDate, valueTime] = value.split('T');
+      const [valueDate, valueTime] = value.split('T') as [string, string];
 
-      const [yearString, monthString, dayString] = valueDate.split('-');
+      const [yearString, monthString, dayString] = valueDate.split('-') as [string, string, string];
       const year = Number(yearString);
       const monthIndex = Number(monthString) - 1 || 0;
       const day = Number(dayString) || 1;
 
-      const [hourString, minuteString, secondString] = valueTime.split(':');
+      const [hourString, minuteString, secondString] = valueTime.split(':') as [
+        string,
+        string,
+        string,
+      ];
       const hour = Number(hourString) || 0;
       const minute = Number(minuteString) || 0;
       const second = Number(secondString) || 0;
@@ -547,7 +615,7 @@ export default function DateTimeInput({
     minTime,
   };
 
-  function renderDay(currentMatch, index) {
+  function renderDay(currentMatch: string, index: number) {
     if (currentMatch && currentMatch.length > 2) {
       throw new Error(`Unsupported token: ${currentMatch}`);
     }
@@ -571,7 +639,7 @@ export default function DateTimeInput({
     );
   }
 
-  function renderMonth(currentMatch, index) {
+  function renderMonth(currentMatch: string, index: number) {
     if (currentMatch && currentMatch.length > 4) {
       throw new Error(`Unsupported token: ${currentMatch}`);
     }
@@ -612,7 +680,7 @@ export default function DateTimeInput({
     );
   }
 
-  function renderYear(currentMatch, index) {
+  function renderYear(currentMatch: string, index: number) {
     return (
       <YearInput
         key="year"
@@ -628,12 +696,12 @@ export default function DateTimeInput({
     );
   }
 
-  function renderHour12(currentMatch, index) {
+  function renderHour12(currentMatch: string, index: number) {
     if (currentMatch && currentMatch.length > 2) {
       throw new Error(`Unsupported token: ${currentMatch}`);
     }
 
-    const showLeadingZeros = currentMatch && currentMatch.length === 2;
+    const showLeadingZeros = currentMatch ? currentMatch.length === 2 : false;
 
     return (
       <Hour12Input
@@ -652,12 +720,12 @@ export default function DateTimeInput({
     );
   }
 
-  function renderHour24(currentMatch, index) {
+  function renderHour24(currentMatch: string, index: number) {
     if (currentMatch && currentMatch.length > 2) {
       throw new Error(`Unsupported token: ${currentMatch}`);
     }
 
-    const showLeadingZeros = currentMatch && currentMatch.length === 2;
+    const showLeadingZeros = currentMatch ? currentMatch.length === 2 : false;
 
     return (
       <Hour24Input
@@ -675,7 +743,7 @@ export default function DateTimeInput({
     );
   }
 
-  function renderHour(currentMatch, index) {
+  function renderHour(currentMatch: string, index: number) {
     if (/h/.test(currentMatch)) {
       return renderHour12(currentMatch, index);
     }
@@ -683,12 +751,12 @@ export default function DateTimeInput({
     return renderHour24(currentMatch, index);
   }
 
-  function renderMinute(currentMatch, index) {
+  function renderMinute(currentMatch: string, index: number) {
     if (currentMatch && currentMatch.length > 2) {
       throw new Error(`Unsupported token: ${currentMatch}`);
     }
 
-    const showLeadingZeros = currentMatch && currentMatch.length === 2;
+    const showLeadingZeros = currentMatch ? currentMatch.length === 2 : false;
 
     return (
       <MinuteInput
@@ -707,7 +775,7 @@ export default function DateTimeInput({
     );
   }
 
-  function renderSecond(currentMatch, index) {
+  function renderSecond(currentMatch: string, index: number) {
     if (currentMatch && currentMatch.length > 2) {
       throw new Error(`Unsupported token: ${currentMatch}`);
     }
@@ -732,7 +800,7 @@ export default function DateTimeInput({
     );
   }
 
-  function renderAmPm(currentMatch, index) {
+  function renderAmPm(currentMatch: string, index: number) {
     return (
       <AmPm
         key="ampm"

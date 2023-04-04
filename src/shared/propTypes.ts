@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const allViews = ['hour', 'minute', 'second'];
 const allValueTypes = [...allViews];
 
-export function isMinDate(props, propName, componentName) {
+export function isMinDate(props: Record<string, unknown>, propName: string, componentName: string) {
   const { [propName]: minDate } = props;
 
   if (!minDate) {
@@ -27,7 +27,7 @@ export function isMinDate(props, propName, componentName) {
   return null;
 }
 
-export function isMaxDate(props, propName, componentName) {
+export function isMaxDate(props: Record<string, unknown>, propName: string, componentName: string) {
   const { [propName]: maxDate } = props;
 
   if (!maxDate) {
