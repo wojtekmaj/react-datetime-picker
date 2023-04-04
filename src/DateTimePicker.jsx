@@ -94,8 +94,8 @@ export default function DateTimePicker(props) {
     ...otherProps
   } = props;
 
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [isClockOpen, setIsClockOpen] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(isCalendarOpenProps);
+  const [isClockOpen, setIsClockOpen] = useState(isClockOpenProps);
   const wrapper = useRef();
   const calendarWrapper = useRef();
   const clockWrapper = useRef();
