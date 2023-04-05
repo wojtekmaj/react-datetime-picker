@@ -3,8 +3,12 @@ import DateTimePicker from 'react-datetime-picker';
 
 import './Sample.css';
 
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 export default function Sample() {
-  const [value, onChange] = useState(new Date());
+  const [value, onChange] = useState<Value>(new Date());
 
   return (
     <div className="Sample">
