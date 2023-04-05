@@ -86,7 +86,7 @@ type DateTimePickerProps = {
   nativeInputAriaLabel?: string;
   onCalendarClose?: () => void;
   onCalendarOpen?: () => void;
-  onChange?: (value: Date | null) => void;
+  onChange?: (value: Value) => void;
   onClockClose?: () => void;
   onClockOpen?: () => void;
   onFocus?: (event: React.FocusEvent<HTMLDivElement>) => void;
@@ -212,7 +212,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
     closeClock();
   }, [closeCalendar, closeClock]);
 
-  function onChange(value: Date | null, shouldCloseWidgets: boolean = shouldCloseWidgetsProps) {
+  function onChange(value: Value, shouldCloseWidgets: boolean = shouldCloseWidgetsProps) {
     if (shouldCloseWidgets) {
       closeWidgets();
     }
@@ -222,7 +222,13 @@ export default function DateTimePicker(props: DateTimePickerProps) {
     }
   }
 
-  function onDateChange(nextValue: Value, shouldCloseWidgets?: boolean) {
+  type DatePiece = Date | null;
+
+  function onDateChange(
+    nextValue: DatePiece | [DatePiece, DatePiece],
+    shouldCloseWidgets?: boolean,
+  ) {
+    // React-Calendar passes an array of values when selectRange is enabled
     const [nextValueFrom] = Array.isArray(nextValue) ? nextValue : [nextValue];
     const [valueFrom] = Array.isArray(value) ? value : [value];
 
