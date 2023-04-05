@@ -244,7 +244,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
 
       onChange(nextValueFromWithHour, shouldCloseWidgets);
     } else {
-      onChange(nextValueFrom || null, shouldCloseWidgets);
+      onChange(nextValueFrom, shouldCloseWidgets);
     }
   }
 
