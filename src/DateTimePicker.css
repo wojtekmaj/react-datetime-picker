@@ -47,6 +47,7 @@
   padding: 1px;
   border: 0;
   background: none;
+  color: currentColor;
   font: inherit;
   box-sizing: content-box;
   -webkit-appearance: textfield;
