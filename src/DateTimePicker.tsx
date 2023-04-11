@@ -56,10 +56,10 @@ type DateTimePickerProps = {
   autoFocus?: boolean;
   calendarAriaLabel?: string;
   calendarClassName?: ClassName;
-  calendarIcon?: IconOrRenderFunction;
+  calendarIcon?: IconOrRenderFunction | null;
   className?: ClassName;
   clearAriaLabel?: string;
-  clearIcon?: IconOrRenderFunction;
+  clearIcon?: IconOrRenderFunction | null;
   clockClassName?: ClassName;
   closeWidgets?: boolean;
   'data-testid'?: string;
