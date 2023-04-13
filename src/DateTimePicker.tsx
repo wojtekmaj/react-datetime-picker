@@ -309,6 +309,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
       ) as HTMLElement;
 
       if (
+        !(event instanceof FocusEvent) &&
         target &&
         wrapperEl &&
         !wrapperEl.contains(target) &&
