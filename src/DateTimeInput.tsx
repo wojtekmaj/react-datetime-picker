@@ -241,6 +241,7 @@ export default function DateTimeInput({
   const minuteInput = useRef<HTMLInputElement>(null);
   const secondInput = useRef<HTMLInputElement>(null);
   const [isWidgetOpen, setIsWidgetOpenOpen] = useState(isWidgetOpenProps);
+  const lastPressedKey = useRef<KeyboardEvent['key']>();
 
   useEffect(() => {
     setIsWidgetOpenOpen(isWidgetOpenProps);
@@ -408,6 +409,8 @@ export default function DateTimeInput({
       | (React.KeyboardEvent<HTMLInputElement> & { target: HTMLInputElement })
       | (React.KeyboardEvent<HTMLSelectElement> & { target: HTMLSelectElement }),
   ) {
+    lastPressedKey.current = event.key;
+
     switch (event.key) {
       case 'ArrowLeft':
       case 'ArrowRight':
@@ -428,6 +431,12 @@ export default function DateTimeInput({
 
   function onKeyUp(event: React.KeyboardEvent<HTMLInputElement> & { target: HTMLInputElement }) {
     const { key, target: input } = event;
+
+    const isLastPressedKey = lastPressedKey.current === key;
+
+    if (!isLastPressedKey) {
+      return;
+    }
 
     const isNumberKey = !isNaN(Number(key));
 
