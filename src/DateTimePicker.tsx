@@ -60,7 +60,7 @@ type ClockProps = Omit<React.ComponentPropsWithoutRef<typeof Clock>, 'value'>;
 
 type EventProps = ReturnType<typeof makeEventProps>;
 
-type DateTimePickerProps = {
+export type DateTimePickerProps = {
   amPmAriaLabel?: string;
   autoFocus?: boolean;
   calendarAriaLabel?: string;
