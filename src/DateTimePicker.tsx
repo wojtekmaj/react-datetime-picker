@@ -112,7 +112,7 @@ export type DateTimePickerProps = {
   yearPlaceholder?: string;
 } & CalendarProps &
   ClockProps &
-  EventProps;
+  Omit<EventProps, 'onChange' | 'onFocus'>;
 
 export default function DateTimePicker(props: DateTimePickerProps) {
   const {
