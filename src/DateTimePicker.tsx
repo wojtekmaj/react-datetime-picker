@@ -99,6 +99,7 @@ export type DateTimePickerProps = {
   onClockClose?: () => void;
   onClockOpen?: () => void;
   onFocus?: (event: React.FocusEvent<HTMLDivElement>) => void;
+  onInvalidChange?: () => void;
   openWidgetsOnFocus?: boolean;
   portalContainer?: HTMLElement | null;
   required?: boolean;
@@ -152,6 +153,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
     onClockClose,
     onClockOpen,
     onFocus: onFocusProps,
+    onInvalidChange,
     openWidgetsOnFocus = true,
     required,
     secondAriaLabel,
@@ -435,6 +437,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
           minDate={minDate}
           name={name}
           onChange={onChange}
+          onInvalidChange={onInvalidChange}
           required={required}
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}

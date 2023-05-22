@@ -845,6 +845,23 @@ describe('DateTimePicker', () => {
     expect(onChange).toHaveBeenCalledWith(nextValue);
   });
 
+  it('calls onInvalidChange callback when changing value to an invalid one', () => {
+    const value = new Date(2023, 0, 31, 21, 40, 11);
+    const onInvalidChange = vi.fn();
+
+    const { container } = render(
+      <DateTimePicker maxDetail="second" onInvalidChange={onInvalidChange} value={value} />,
+    );
+
+    const dayInput = container.querySelector('input[name="day"]') as HTMLInputElement;
+
+    act(() => {
+      fireEvent.change(dayInput, { target: { value: '32' } });
+    });
+
+    expect(onInvalidChange).toHaveBeenCalled();
+  });
+
   it('clears the value when clicking on a button', () => {
     const onChange = vi.fn();
 

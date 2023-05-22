@@ -184,6 +184,7 @@ type DateTimeInputProps = {
   name?: string;
   nativeInputAriaLabel?: string;
   onChange?: (value: Date | null, shouldCloseWidgets: boolean) => void;
+  onInvalidChange?: () => void;
   required?: boolean;
   secondAriaLabel?: string;
   secondPlaceholder?: string;
@@ -215,6 +216,7 @@ export default function DateTimeInput({
   name = 'datetime',
   nativeInputAriaLabel,
   onChange: onChangeProps,
+  onInvalidChange,
   required,
   secondAriaLabel,
   secondPlaceholder,
@@ -535,6 +537,12 @@ export default function DateTimeInput({
       onChangeProps(proposedValue, false);
       return;
     }
+
+    if (!onInvalidChange) {
+      return;
+    }
+
+    onInvalidChange();
   }
 
   /**
