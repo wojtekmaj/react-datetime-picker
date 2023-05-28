@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
-import type { Validator } from 'prop-types';
+import type { Requireable, Validator } from 'prop-types';
+import type { Range } from './types';
 
 const allViews = ['hour', 'minute', 'second'];
 const allValueTypes = [...allViews];
@@ -62,3 +63,7 @@ export const isMaxDate: Validator<Date | null | undefined> = function isMaxDate(
 };
 
 export const isValueType = PropTypes.oneOf(allValueTypes);
+
+export const rangeOf = <T>(type: Requireable<T>): Requireable<Range<T>> => {
+  return PropTypes.arrayOf(type) as Requireable<Range<T>>;
+};

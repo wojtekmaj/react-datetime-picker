@@ -9,7 +9,7 @@ import Fit from 'react-fit';
 
 import DateTimeInput from './DateTimeInput';
 
-import { isMaxDate, isMinDate } from './shared/propTypes';
+import { isMaxDate, isMinDate, rangeOf } from './shared/propTypes';
 
 import type { ClassName, CloseReason, Detail, LooseValue, OpenReason, Value } from './shared/types';
 
@@ -600,7 +600,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
 
 const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
 
-const isValueOrValueArray = PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]);
+const isValueOrValueArray = PropTypes.oneOfType([isValue, rangeOf(isValue)]);
 
 DateTimePicker.propTypes = {
   amPmAriaLabel: PropTypes.string,

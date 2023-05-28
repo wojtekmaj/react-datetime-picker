@@ -1,4 +1,4 @@
-type Range<T> = [T, T];
+export type Range<T> = [T, T];
 
 export type AmPmType = 'am' | 'pm';
 
