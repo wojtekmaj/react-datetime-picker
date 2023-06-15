@@ -434,6 +434,32 @@ describe('DateTimePicker', () => {
       expect(calendar2).toBeInTheDocument();
     });
 
+    it('opens Calendar component, followed by Clock component, when focusing on inputs inside given openWidgetsOnFocus = true', () => {
+      const { container } = render(<DateTimePicker openWidgetsOnFocus />);
+
+      const calendar = container.querySelector('.react-datetime-picker__calendar--open');
+      const dayInput = container.querySelector('input[name="day"]') as HTMLInputElement;
+
+      expect(calendar).toBeFalsy();
+
+      fireEvent.focus(dayInput);
+
+      const calendar2 = container.querySelector('.react-datetime-picker__calendar--open');
+      const clock = container.querySelector('.react-datetime-picker__clock--open');
+
+      expect(calendar2).toBeInTheDocument();
+      expect(clock).toBeFalsy();
+
+      const minuteInput = container.querySelector('input[name="minute"]') as HTMLInputElement;
+
+      fireEvent.focus(minuteInput);
+      const clock2 = container.querySelector('.react-datetime-picker__clock--open');
+      const calendar3 = container.querySelector('.react-datetime-picker__calendar--open');
+
+      expect(clock2).toBeInTheDocument();
+      expect(calendar3).toBeFalsy();
+    });
+
     it('does not open Calendar component when focusing on an input inside given openWidgetsOnFocus = false', () => {
       const { container } = render(<DateTimePicker openWidgetsOnFocus={false} />);
 

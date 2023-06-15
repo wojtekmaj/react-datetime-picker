@@ -305,27 +305,30 @@ export default function DateTimePicker(props: DateTimePickerProps) {
     if (
       // Internet Explorer still fires onFocus on disabled elements
       disabled ||
-      isCalendarOpen ||
-      isClockOpen ||
       !openWidgetsOnFocus ||
       event.target.dataset.select === 'true'
     ) {
       return;
     }
 
+    let openFn: (({ reason }: { reason: OpenReason }) => void) | null = null;
     switch (event.target.name) {
       case 'day':
       case 'month':
       case 'year':
-        openCalendar({ reason: 'focus' });
+        openFn = openCalendar;
         break;
       case 'hour12':
       case 'hour24':
       case 'minute':
       case 'second':
-        openClock({ reason: 'focus' });
+        openFn = openClock;
         break;
       default:
+    }
+
+    if ((openFn == openCalendar && !isCalendarOpen) || (openFn === openClock && !isClockOpen)) {
+      openFn({ reason: 'focus' });
     }
   }
 
