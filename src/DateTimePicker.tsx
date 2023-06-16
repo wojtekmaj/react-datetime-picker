@@ -311,24 +311,29 @@ export default function DateTimePicker(props: DateTimePickerProps) {
       return;
     }
 
-    let openFn: (({ reason }: { reason: OpenReason }) => void) | null = null;
     switch (event.target.name) {
       case 'day':
       case 'month':
-      case 'year':
-        openFn = openCalendar;
+      case 'year': {
+        if (isCalendarOpen) {
+          return;
+        }
+
+        openCalendar({ reason: 'focus' });
         break;
+      }
       case 'hour12':
       case 'hour24':
       case 'minute':
-      case 'second':
-        openFn = openClock;
-        break;
-      default:
-    }
+      case 'second': {
+        if (isClockOpen) {
+          return;
+        }
 
-    if ((openFn == openCalendar && !isCalendarOpen) || (openFn === openClock && !isClockOpen)) {
-      openFn({ reason: 'focus' });
+        openClock({ reason: 'focus' });
+        break;
+      }
+      default:
     }
   }
 
