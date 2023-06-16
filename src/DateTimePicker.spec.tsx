@@ -878,6 +878,7 @@ describe('DateTimePicker', () => {
 
     expect(onChange).toHaveBeenCalledWith(null);
   });
+
   it('calls onClick callback when clicked a page (sample of mouse events family)', () => {
     const onClick = vi.fn();
 
