@@ -188,7 +188,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
       }
     }
 
-    setIsClockOpen(false);
+    setIsClockOpen(isClockOpen ? false : isClockOpen);
     setIsCalendarOpen(true);
 
     if (onCalendarOpen) {
@@ -228,7 +228,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
       }
     }
 
-    setIsCalendarOpen(false);
+    setIsCalendarOpen(isCalendarOpen ? false : isCalendarOpen);
     setIsClockOpen(true);
 
     if (onClockOpen) {
