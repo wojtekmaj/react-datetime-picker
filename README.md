@@ -48,12 +48,16 @@ Add React-DateTime-Picker to your project by executing `npm install react-dateti
 
 Here's an example of basic usage:
 
-```js
-import React, { useState } from 'react';
+```tsx
+import { useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 function MyApp() {
-  const [value, onChange] = useState(new Date());
+  const [value, onChange] = useState<Value>(new Date());
 
   return (
     <div>
@@ -67,7 +71,7 @@ function MyApp() {
 
 If you want to use default React-DateTime-Picker, React-Calendar and React-Clock styling to build upon it, you can import them by using:
 
-```js
+```ts
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
