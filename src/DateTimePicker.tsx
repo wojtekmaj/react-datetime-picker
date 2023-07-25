@@ -13,6 +13,7 @@ import DateTimeInput from './DateTimeInput';
 
 import { isMaxDate, isMinDate, rangeOf } from './shared/propTypes';
 
+import type { ReactNodeArray } from 'prop-types';
 import type { ClassName, CloseReason, Detail, LooseValue, OpenReason, Value } from './shared/types';
 
 const baseClassName = 'react-datetime-picker';
@@ -49,7 +50,7 @@ const ClearIcon = (
   </svg>
 );
 
-type Icon = React.ReactElement | string;
+type Icon = React.ReactElement | ReactNodeArray | null | string | number | boolean;
 
 type IconOrRenderFunction = Icon | React.ComponentType | React.ReactElement;
 
