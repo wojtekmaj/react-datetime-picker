@@ -17,7 +17,7 @@ import type { ReactNodeArray } from 'prop-types';
 import type { ClassName, CloseReason, Detail, LooseValue, OpenReason, Value } from './shared/types';
 
 const baseClassName = 'react-datetime-picker';
-const outsideActionEvents = ['mousedown', 'focusin', 'touchstart'];
+const outsideActionEvents = ['mousedown', 'focusin', 'touchstart'] as const;
 const allViews = ['hour', 'minute', 'second'] as const;
 
 const iconProps = {
