@@ -118,7 +118,7 @@ export type DateTimePickerProps = {
   ClockProps &
   Omit<EventProps, 'onChange' | 'onFocus'>;
 
-export default function DateTimePicker(props: DateTimePickerProps) {
+const DateTimePicker: React.FC<DateTimePickerProps> = function DateTimePicker(props) {
   const {
     amPmAriaLabel,
     autoFocus,
@@ -607,7 +607,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
       {renderClock()}
     </div>
   );
-}
+};
 
 const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
 
@@ -662,3 +662,5 @@ DateTimePicker.propTypes = {
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
 };
+
+export default DateTimePicker;
