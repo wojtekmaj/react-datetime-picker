@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   getYear,
   getMonthHuman,
@@ -26,7 +25,6 @@ import NativeInput from './DateTimeInput/NativeInput';
 
 import { getFormatter, getNumberFormatter, formatDate } from './shared/dateFormatter';
 import { convert12to24, convert24to12 } from './shared/dates';
-import { isMaxDate, isMinDate } from './shared/propTypes';
 import { between, getAmPmLabels } from './shared/utils';
 
 import type { AmPmType, Detail, LooseValuePiece } from './shared/types';
@@ -884,36 +882,3 @@ export default function DateTimeInput({
     </div>
   );
 }
-
-const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
-
-DateTimeInput.propTypes = {
-  amPmAriaLabel: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  className: PropTypes.string.isRequired,
-  dayAriaLabel: PropTypes.string,
-  dayPlaceholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  format: PropTypes.string,
-  hourAriaLabel: PropTypes.string,
-  hourPlaceholder: PropTypes.string,
-  isWidgetOpen: PropTypes.bool,
-  locale: PropTypes.string,
-  maxDate: isMaxDate,
-  maxDetail: PropTypes.oneOf(allViews),
-  minDate: isMinDate,
-  minuteAriaLabel: PropTypes.string,
-  minutePlaceholder: PropTypes.string,
-  monthAriaLabel: PropTypes.string,
-  monthPlaceholder: PropTypes.string,
-  name: PropTypes.string,
-  nativeInputAriaLabel: PropTypes.string,
-  onChange: PropTypes.func,
-  required: PropTypes.bool,
-  secondAriaLabel: PropTypes.string,
-  secondPlaceholder: PropTypes.string,
-  showLeadingZeros: PropTypes.bool,
-  value: isValue,
-  yearAriaLabel: PropTypes.string,
-  yearPlaceholder: PropTypes.string,
-};

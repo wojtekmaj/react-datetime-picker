@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import type { Detail } from './shared/types';
 
@@ -41,8 +40,3 @@ export default function MaxDetailOptions({ maxDetail, setMaxDetail }: MaxDetailO
     </fieldset>
   );
 }
-
-MaxDetailOptions.propTypes = {
-  maxDetail: PropTypes.oneOf(allViews).isRequired,
-  setMaxDetail: PropTypes.func.isRequired,
-};
