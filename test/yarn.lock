@@ -1284,7 +1284,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"make-event-props@npm:^1.4.2, make-event-props@npm:^1.6.0":
+"make-event-props@npm:^1.6.0":
   version: 1.6.1
   resolution: "make-event-props@npm:1.6.1"
   checksum: 0457abdaf0c5edea1a284ec58ca5afed0e3de96efd3754dca02fbe767b6d17607eb28862802bc769656e06bb6374cd0b568e960d23996798dc872d09de537f71
@@ -1597,7 +1597,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-clock@npm:^4.3.0, react-clock@npm:^4.5.0":
+"react-clock@npm:^4.5.0":
   version: 4.5.0
   resolution: "react-clock@npm:4.5.0"
   dependencies:
@@ -1667,7 +1667,7 @@ __metadata:
     react-clock: ^4.5.0
     react-date-picker: ^10.4.1
     react-fit: ^1.7.0
-    react-time-picker: ^6.2.1
+    react-time-picker: ^6.4.1
   peerDependencies:
     "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -1690,7 +1690,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fit@npm:^1.5.1, react-fit@npm:^1.7.0":
+"react-fit@npm:^1.7.0":
   version: 1.7.0
   resolution: "react-fit@npm:1.7.0"
   dependencies:
@@ -1725,22 +1725,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^6.2.1":
-  version: 6.2.1
-  resolution: "react-time-picker@npm:6.2.1"
+"react-time-picker@npm:^6.4.1":
+  version: 6.4.1
+  resolution: "react-time-picker@npm:6.4.1"
   dependencies:
     "@wojtekmaj/date-utils": ^1.1.3
     clsx: ^2.0.0
     get-user-locale: ^2.2.1
-    make-event-props: ^1.4.2
+    make-event-props: ^1.6.0
     prop-types: ^15.6.0
-    react-clock: ^4.3.0
-    react-fit: ^1.5.1
-    update-input-width: ^1.3.1
+    react-clock: ^4.5.0
+    react-fit: ^1.7.0
+    update-input-width: ^1.4.0
   peerDependencies:
+    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 014eb223d63b8e48fc86eb19fbd3e0d23b9e1e34be0e557112afdc7dd419e25db4db64db8826c266c360e362fe06379fc3bae7e80c911277aac10beff896bb93
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 1bfd53edfa63fbcec6ca13f1beb5bc8c89c88fb69c8f216aea1636e0272ce79d228f36fe855d8e0ea6ecf65e00447e58fc1c9187a0162eb79dac4a5835cabd4f
   languageName: node
   linkType: hard
 
@@ -2015,7 +2019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"update-input-width@npm:^1.3.1, update-input-width@npm:^1.4.0":
+"update-input-width@npm:^1.4.0":
   version: 1.4.1
   resolution: "update-input-width@npm:1.4.1"
   checksum: 3a85212866b8002638d9dec237690b4157a8416617ea5331c0af8d33dac757828a8f0b85d1c2f2960a3420198a1d0cf7dde3872f5484d89534132e828a660466
