@@ -15,6 +15,14 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./dist/DateTimeInput": {
+      "import": "./dist/esm/DateTimeInput.js",
+      "require": "./dist/cjs/DateTimeInput.js"
+    },
+    "./dist/DateTimeInput.js": {
+      "import": "./dist/esm/DateTimeInput.js",
+      "require": "./dist/cjs/DateTimeInput.js"
+    },
     "./dist/cjs/DateTimeInput": "./dist/cjs/DateTimeInput.js",
     "./dist/cjs/DateTimeInput.js": "./dist/cjs/DateTimeInput.js",
     "./dist/esm/DateTimeInput": "./dist/esm/DateTimeInput.js",
