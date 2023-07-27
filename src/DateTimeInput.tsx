@@ -11,7 +11,7 @@ import {
   getHoursMinutesSeconds,
 } from '@wojtekmaj/date-utils';
 
-import Divider from './Divider';
+import Divider from './Divider.js';
 import DayInput from 'react-date-picker/dist/cjs/DateInput/DayInput';
 import MonthInput from 'react-date-picker/dist/cjs/DateInput/MonthInput';
 import MonthSelect from 'react-date-picker/dist/cjs/DateInput/MonthSelect';
@@ -21,13 +21,13 @@ import Hour24Input from 'react-time-picker/dist/cjs/TimeInput/Hour24Input';
 import MinuteInput from 'react-time-picker/dist/cjs/TimeInput/MinuteInput';
 import SecondInput from 'react-time-picker/dist/cjs/TimeInput/SecondInput';
 import AmPm from 'react-time-picker/dist/cjs/TimeInput/AmPm';
-import NativeInput from './DateTimeInput/NativeInput';
+import NativeInput from './DateTimeInput/NativeInput.js';
 
-import { getFormatter, getNumberFormatter, formatDate } from './shared/dateFormatter';
-import { convert12to24, convert24to12 } from './shared/dates';
-import { between, getAmPmLabels } from './shared/utils';
+import { getFormatter, getNumberFormatter, formatDate } from './shared/dateFormatter.js';
+import { convert12to24, convert24to12 } from './shared/dates.js';
+import { between, getAmPmLabels } from './shared/utils.js';
 
-import type { AmPmType, Detail, LooseValuePiece } from './shared/types';
+import type { AmPmType, Detail, LooseValuePiece } from './shared/types.js';
 
 const getFormatterOptionsCache: Record<string, Intl.DateTimeFormatOptions> = {};
 

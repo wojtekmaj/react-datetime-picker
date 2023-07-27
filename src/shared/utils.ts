@@ -1,4 +1,4 @@
-import { getFormatter } from './dateFormatter';
+import { getFormatter } from './dateFormatter.js';
 
 /**
  * Returns a value no smaller than min and no larger than max.

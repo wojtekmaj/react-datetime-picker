@@ -1,4 +1,4 @@
-import type { AmPmType } from './types';
+import type { AmPmType } from './types.js';
 
 export function convert12to24(hour12: string | number, amPm: AmPmType): number {
   let hour24 = Number(hour12);

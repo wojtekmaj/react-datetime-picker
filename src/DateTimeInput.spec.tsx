@@ -3,9 +3,9 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import DateTimeInput from './DateTimeInput';
+import DateTimeInput from './DateTimeInput.js';
 
-import { muteConsole, restoreConsole } from '../test-utils';
+import { muteConsole, restoreConsole } from '../test-utils.js';
 
 vi.useFakeTimers();
 
