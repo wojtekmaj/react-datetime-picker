@@ -9,12 +9,19 @@ import Calendar from 'react-calendar';
 import Clock from 'react-clock';
 import Fit from 'react-fit';
 
-import DateTimeInput from './DateTimeInput';
+import DateTimeInput from './DateTimeInput.js';
 
-import { isMaxDate, isMinDate, rangeOf } from './shared/propTypes';
+import { isMaxDate, isMinDate, rangeOf } from './shared/propTypes.js';
 
 import type { ReactNodeArray } from 'prop-types';
-import type { ClassName, CloseReason, Detail, LooseValue, OpenReason, Value } from './shared/types';
+import type {
+  ClassName,
+  CloseReason,
+  Detail,
+  LooseValue,
+  OpenReason,
+  Value,
+} from './shared/types.js';
 
 const baseClassName = 'react-datetime-picker';
 const outsideActionEvents = ['mousedown', 'focusin', 'touchstart'] as const;

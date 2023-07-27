@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatDate } from './dateFormatter';
+import { formatDate } from './dateFormatter.js';
 
 describe('formatDate', () => {
   it('returns proper full numeric date', () => {

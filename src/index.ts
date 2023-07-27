@@ -1,6 +1,6 @@
-import DateTimePicker from './DateTimePicker';
+import DateTimePicker from './DateTimePicker.js';
 
-export type { DateTimePickerProps } from './DateTimePicker';
+export type { DateTimePickerProps } from './DateTimePicker.js';
 
 export { DateTimePicker };
 

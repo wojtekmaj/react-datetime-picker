@@ -3,7 +3,7 @@ import React from 'react';
 import { act, fireEvent, render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import DateTimePicker from './DateTimePicker';
+import DateTimePicker from './DateTimePicker.js';
 
 async function waitForElementToBeRemovedOrHidden(callback: () => HTMLElement | null) {
   const element = callback();

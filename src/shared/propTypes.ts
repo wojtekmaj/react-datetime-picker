@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import type { Requireable, Validator } from 'prop-types';
-import type { Range } from './types';
+import type { Range } from './types.js';
 
 const allViews = ['hour', 'minute', 'second'];
 const allValueTypes = [...allViews];

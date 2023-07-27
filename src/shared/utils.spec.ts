@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { between } from './utils';
+import { between } from './utils.js';
 
 describe('between', () => {
   it('returns value when value is within set boundaries', () => {

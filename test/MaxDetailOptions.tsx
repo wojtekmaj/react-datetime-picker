@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Detail } from './shared/types';
+import type { Detail } from './shared/types.js';
 
 const allViews = ['hour', 'minute', 'second'] as const;
 
