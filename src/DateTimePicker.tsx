@@ -662,7 +662,6 @@ DateTimePicker.propTypes = {
   onClockOpen: PropTypes.func,
   onFocus: PropTypes.func,
   openWidgetsOnFocus: PropTypes.bool,
-  portalContainer: isBrowser ? PropTypes.instanceOf(HTMLElement) : undefined,
   required: PropTypes.bool,
   secondAriaLabel: PropTypes.string,
   secondPlaceholder: PropTypes.string,
@@ -671,5 +670,9 @@ DateTimePicker.propTypes = {
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
 };
+
+if (isBrowser) {
+  DateTimePicker.propTypes.portalContainer = PropTypes.instanceOf(HTMLElement);
+}
 
 export default DateTimePicker;
