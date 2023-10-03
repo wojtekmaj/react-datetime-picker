@@ -86,7 +86,7 @@ describe('DateTimeInput', () => {
   });
 
   it('shows a given date in all inputs correctly given Date (12-hour format)', () => {
-    const date = new Date(2017, 8, 30, 22, 17, 0);
+    const date = new Date(2017, 8, 30, 22, 17, 3);
 
     const { container } = render(
       <DateTimeInput {...defaultProps} maxDetail="second" value={date} />,
@@ -95,17 +95,17 @@ describe('DateTimeInput', () => {
     const nativeInput = container.querySelector('input[type="datetime-local"]');
     const customInputs = container.querySelectorAll('input[data-input]');
 
-    expect(nativeInput).toHaveValue('2017-09-30T22:17');
+    expect(nativeInput).toHaveValue('2017-09-30T22:17:03.000');
     expect(customInputs[0]).toHaveValue(9);
     expect(customInputs[1]).toHaveValue(30);
     expect(customInputs[2]).toHaveValue(2017);
     expect(customInputs[3]).toHaveValue(10);
     expect(customInputs[4]).toHaveValue(17);
-    expect(customInputs[5]).toHaveValue(0);
+    expect(customInputs[5]).toHaveValue(3);
   });
 
   it('shows a given date in all inputs correctly given ISO string (12-hour format)', () => {
-    const date = '2017-09-30T22:17:00.000';
+    const date = '2017-09-30T22:17:03.000';
 
     const { container } = render(
       <DateTimeInput {...defaultProps} maxDetail="second" value={date} />,
@@ -114,17 +114,17 @@ describe('DateTimeInput', () => {
     const nativeInput = container.querySelector('input[type="datetime-local"]');
     const customInputs = container.querySelectorAll('input[data-input]');
 
-    expect(nativeInput).toHaveValue('2017-09-30T22:17');
+    expect(nativeInput).toHaveValue('2017-09-30T22:17:03.000');
     expect(customInputs[0]).toHaveValue(9);
     expect(customInputs[1]).toHaveValue(30);
     expect(customInputs[2]).toHaveValue(2017);
     expect(customInputs[3]).toHaveValue(10);
     expect(customInputs[4]).toHaveValue(17);
-    expect(customInputs[5]).toHaveValue(0);
+    expect(customInputs[5]).toHaveValue(3);
   });
 
   itIfFullICU('shows a given date in all inputs correctly given Date (24-hour format)', () => {
-    const date = new Date(2017, 8, 30, 22, 17, 0);
+    const date = new Date(2017, 8, 30, 22, 17, 3);
 
     const { container } = render(
       <DateTimeInput {...defaultProps} locale="de-DE" maxDetail="second" value={date} />,
@@ -133,19 +133,19 @@ describe('DateTimeInput', () => {
     const nativeInput = container.querySelector('input[type="datetime-local"]');
     const customInputs = container.querySelectorAll('input[data-input]');
 
-    expect(nativeInput).toHaveValue('2017-09-30T22:17');
+    expect(nativeInput).toHaveValue('2017-09-30T22:17:03.000');
     expect(customInputs[0]).toHaveValue(30);
     expect(customInputs[1]).toHaveValue(9);
     expect(customInputs[2]).toHaveValue(2017);
     expect(customInputs[3]).toHaveValue(22);
     expect(customInputs[4]).toHaveValue(17);
-    expect(customInputs[5]).toHaveValue(0);
+    expect(customInputs[5]).toHaveValue(3);
   });
 
   itIfFullICU(
     'shows a given date in all inputs correctly given ISO string (24-hour format)',
     () => {
-      const date = '2017-09-30T22:17:00.000';
+      const date = '2017-09-30T22:17:03.000';
 
       const { container } = render(
         <DateTimeInput {...defaultProps} locale="de-DE" maxDetail="second" value={date} />,
@@ -154,13 +154,13 @@ describe('DateTimeInput', () => {
       const nativeInput = container.querySelector('input[type="datetime-local"]');
       const customInputs = container.querySelectorAll('input[data-input]');
 
-      expect(nativeInput).toHaveValue('2017-09-30T22:17');
+      expect(nativeInput).toHaveValue('2017-09-30T22:17:03.000');
       expect(customInputs[0]).toHaveValue(30);
       expect(customInputs[1]).toHaveValue(9);
       expect(customInputs[2]).toHaveValue(2017);
       expect(customInputs[3]).toHaveValue(22);
       expect(customInputs[4]).toHaveValue(17);
-      expect(customInputs[5]).toHaveValue(0);
+      expect(customInputs[5]).toHaveValue(3);
     },
   );
 
@@ -182,7 +182,7 @@ describe('DateTimeInput', () => {
   });
 
   it('clears the value correctly', () => {
-    const date = new Date(2017, 8, 30, 22, 17, 0);
+    const date = new Date(2017, 8, 30, 22, 17, 3);
 
     const { container, rerender } = render(
       <DateTimeInput {...defaultProps} maxDetail="second" value={date} />,
@@ -704,7 +704,7 @@ describe('DateTimeInput', () => {
 
   it('triggers onChange correctly when cleared custom inputs', () => {
     const onChange = vi.fn();
-    const date = new Date(2017, 8, 30, 22, 17, 0);
+    const date = new Date(2017, 8, 30, 22, 17, 3);
 
     const { container } = render(
       <DateTimeInput {...defaultProps} maxDetail="second" onChange={onChange} value={date} />,
@@ -722,7 +722,7 @@ describe('DateTimeInput', () => {
 
   it('triggers onChange correctly when changed native input', () => {
     const onChange = vi.fn();
-    const date = new Date(2017, 8, 30, 22, 17, 0);
+    const date = new Date(2017, 8, 30, 22, 17, 3);
 
     const { container } = render(
       <DateTimeInput {...defaultProps} onChange={onChange} value={date} />,
@@ -730,17 +730,17 @@ describe('DateTimeInput', () => {
 
     const nativeInput = container.querySelector('input[type="datetime-local"]') as HTMLInputElement;
 
-    fireEvent.change(nativeInput, { target: { value: '2017-09-30T20:17:00' } });
+    fireEvent.change(nativeInput, { target: { value: '2017-09-30T20:17:03' } });
 
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 0), false);
+    expect(onChange).toHaveBeenCalledWith(new Date(2017, 8, 30, 20, 17, 3), false);
   });
 
   it('triggers onChange correctly when changed native input with year < 100', () => {
     const onChange = vi.fn();
     const date = new Date();
     date.setFullYear(19, 8, 20);
-    date.setHours(22, 17, 0, 0);
+    date.setHours(22, 17, 3, 0);
 
     const { container } = render(
       <DateTimeInput {...defaultProps} onChange={onChange} value={date} />,
@@ -748,11 +748,11 @@ describe('DateTimeInput', () => {
 
     const nativeInput = container.querySelector('input[type="datetime-local"]') as HTMLInputElement;
 
-    fireEvent.change(nativeInput, { target: { value: '0019-09-20T20:17:00' } });
+    fireEvent.change(nativeInput, { target: { value: '0019-09-20T20:17:03' } });
 
     const nextDate = new Date();
     nextDate.setFullYear(19, 8, 20);
-    nextDate.setHours(20, 17, 0, 0);
+    nextDate.setHours(20, 17, 3, 0);
 
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(nextDate, false);
@@ -760,7 +760,7 @@ describe('DateTimeInput', () => {
 
   it('triggers onChange correctly when cleared native input', () => {
     const onChange = vi.fn();
-    const date = new Date(2017, 8, 30, 22, 17, 0);
+    const date = new Date(2017, 8, 30, 22, 17, 3);
 
     const { container } = render(
       <DateTimeInput {...defaultProps} onChange={onChange} value={date} />,
