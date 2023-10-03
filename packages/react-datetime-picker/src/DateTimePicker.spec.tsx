@@ -38,14 +38,13 @@ describe('DateTimePicker', () => {
     expect(nativeInput).toHaveAttribute('name', name);
   });
 
-  // See https://github.com/jsdom/jsdom/issues/3041
-  it.skip('passes autoFocus flag to DateTimeInput', () => {
+  it('passes autoFocus flag to DateTimeInput', () => {
     // eslint-disable-next-line jsx-a11y/no-autofocus
     const { container } = render(<DateTimePicker autoFocus />);
 
     const customInputs = container.querySelectorAll('input[data-input]');
 
-    expect(customInputs[0]).toHaveAttribute('autofocus');
+    expect(customInputs[0]).toHaveFocus();
   });
 
   it('passes disabled flag to DateTimeInput', () => {
