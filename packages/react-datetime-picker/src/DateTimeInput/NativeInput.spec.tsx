@@ -45,7 +45,7 @@ describe('NativeInput', () => {
   // TODO: Investigate why ".000" is added here
   it.each`
     valueType   | parsedValue
-    ${'second'} | ${'2017-09-30T22:17:41.000'}
+    ${'second'} | ${'2017-09-30T22:17:41'}
     ${'minute'} | ${'2017-09-30T22:17'}
     ${'hour'}   | ${'2017-09-30T22:00'}
   `('displays given value properly if valueType is $valueType', ({ valueType, parsedValue }) => {

@@ -95,7 +95,7 @@ describe('DateTimeInput', () => {
     const nativeInput = container.querySelector('input[type="datetime-local"]');
     const customInputs = container.querySelectorAll('input[data-input]');
 
-    expect(nativeInput).toHaveValue('2017-09-30T22:17:03.000');
+    expect(nativeInput).toHaveValue('2017-09-30T22:17:03');
     expect(customInputs[0]).toHaveValue(9);
     expect(customInputs[1]).toHaveValue(30);
     expect(customInputs[2]).toHaveValue(2017);
@@ -105,7 +105,7 @@ describe('DateTimeInput', () => {
   });
 
   it('shows a given date in all inputs correctly given ISO string (12-hour format)', () => {
-    const date = '2017-09-30T22:17:03.000';
+    const date = '2017-09-30T22:17:03';
 
     const { container } = render(
       <DateTimeInput {...defaultProps} maxDetail="second" value={date} />,
@@ -114,7 +114,7 @@ describe('DateTimeInput', () => {
     const nativeInput = container.querySelector('input[type="datetime-local"]');
     const customInputs = container.querySelectorAll('input[data-input]');
 
-    expect(nativeInput).toHaveValue('2017-09-30T22:17:03.000');
+    expect(nativeInput).toHaveValue('2017-09-30T22:17:03');
     expect(customInputs[0]).toHaveValue(9);
     expect(customInputs[1]).toHaveValue(30);
     expect(customInputs[2]).toHaveValue(2017);
@@ -133,7 +133,7 @@ describe('DateTimeInput', () => {
     const nativeInput = container.querySelector('input[type="datetime-local"]');
     const customInputs = container.querySelectorAll('input[data-input]');
 
-    expect(nativeInput).toHaveValue('2017-09-30T22:17:03.000');
+    expect(nativeInput).toHaveValue('2017-09-30T22:17:03');
     expect(customInputs[0]).toHaveValue(30);
     expect(customInputs[1]).toHaveValue(9);
     expect(customInputs[2]).toHaveValue(2017);
@@ -145,7 +145,7 @@ describe('DateTimeInput', () => {
   itIfFullICU(
     'shows a given date in all inputs correctly given ISO string (24-hour format)',
     () => {
-      const date = '2017-09-30T22:17:03.000';
+      const date = '2017-09-30T22:17:03';
 
       const { container } = render(
         <DateTimeInput {...defaultProps} locale="de-DE" maxDetail="second" value={date} />,
@@ -154,7 +154,7 @@ describe('DateTimeInput', () => {
       const nativeInput = container.querySelector('input[type="datetime-local"]');
       const customInputs = container.querySelectorAll('input[data-input]');
 
-      expect(nativeInput).toHaveValue('2017-09-30T22:17:03.000');
+      expect(nativeInput).toHaveValue('2017-09-30T22:17:03');
       expect(customInputs[0]).toHaveValue(30);
       expect(customInputs[1]).toHaveValue(9);
       expect(customInputs[2]).toHaveValue(2017);
