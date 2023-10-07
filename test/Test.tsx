@@ -12,7 +12,7 @@ import ViewOptions from './ViewOptions.js';
 
 import './Test.css';
 
-import { Detail, LooseValue } from './shared/types.js';
+import type { Detail, LooseValue } from './shared/types.js';
 
 const now = new Date();
 
