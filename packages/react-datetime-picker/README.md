@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/react-datetime-picker.svg)](https://www.npmjs.com/package/react-datetime-picker) ![downloads](https://img.shields.io/npm/dt/react-datetime-picker.svg) [![CI](https://github.com/wojtekmaj/react-datetime-picker/workflows/CI/badge.svg)](https://github.com/wojtekmaj/react-datetime-picker/actions)
+[![npm](https://img.shields.io/npm/v/react-datetime-picker.svg)](https://www.npmjs.com/package/react-datetime-picker) ![downloads](https://img.shields.io/npm/dt/react-datetime-picker.svg) [![CI](https://github.com/wojtekmaj/react-datetime-picker/actions/workflows/ci.yml/badge.svg)](https://github.com/wojtekmaj/react-datetime-picker/actions)
 
 # React-DateTime-Picker
 
