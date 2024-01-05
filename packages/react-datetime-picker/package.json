@@ -33,7 +33,7 @@
     "build": "yarn build-js && yarn copy-styles",
     "build-js": "yarn build-js-esm && yarn build-js-cjs && yarn build-js-cjs-package && yarn build-js-cjs-replace",
     "build-js-esm": "tsc --project tsconfig.build.json --outDir dist/esm",
-    "build-js-cjs": "tsc --project tsconfig.build.json --outDir dist/cjs --module commonjs --verbatimModuleSyntax false",
+    "build-js-cjs": "tsc --project tsconfig.build.json --outDir dist/cjs --module commonjs --moduleResolution node --verbatimModuleSyntax false",
     "build-js-cjs-package": "echo '{\n  \"type\": \"commonjs\"\n}' > dist/cjs/package.json",
     "build-js-cjs-replace": "replace-in-files --string='/dist/esm/'  --replacement='/dist/cjs/' dist/cjs/**/*",
     "clean": "rimraf dist",
