@@ -759,6 +759,7 @@ const DateTimePicker: React.FC<DateTimePickerProps> = function DateTimePicker(pr
         )}
         {calendarIcon !== null && !disableCalendar && (
           <button
+            aria-expanded={isCalendarOpen || false}
             aria-label={calendarAriaLabel}
             className={`${baseClassName}__calendar-button ${baseClassName}__button`}
             disabled={disabled}
