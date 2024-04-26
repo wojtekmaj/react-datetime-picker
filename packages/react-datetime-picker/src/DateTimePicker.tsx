@@ -406,7 +406,7 @@ export type DateTimePickerProps = {
   ClockProps &
   Omit<EventProps, 'onChange' | 'onFocus'>;
 
-const DateTimePicker: React.FC<DateTimePickerProps> = function DateTimePicker(props) {
+export default function DateTimePicker(props: DateTimePickerProps) {
   const {
     amPmAriaLabel,
     autoFocus,
@@ -896,6 +896,4 @@ const DateTimePicker: React.FC<DateTimePickerProps> = function DateTimePicker(pr
       {renderClock()}
     </div>
   );
-};
-
-export default DateTimePicker;
+}
