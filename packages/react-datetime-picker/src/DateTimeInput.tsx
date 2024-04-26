@@ -243,7 +243,7 @@ export default function DateTimeInput({
   const minuteInput = useRef<HTMLInputElement>(null);
   const secondInput = useRef<HTMLInputElement>(null);
   const [isWidgetOpen, setIsWidgetOpenOpen] = useState(isWidgetOpenProps);
-  const lastPressedKey = useRef<KeyboardEvent['key']>();
+  const lastPressedKey = useRef<KeyboardEvent['key'] | undefined>(undefined);
 
   useEffect(() => {
     setIsWidgetOpenOpen(isWidgetOpenProps);
