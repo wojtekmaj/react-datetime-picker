@@ -2,7 +2,6 @@
 
 import { createElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes from 'prop-types';
 import makeEventProps from 'make-event-props';
 import clsx from 'clsx';
 import Calendar from 'react-calendar';
@@ -11,9 +10,6 @@ import Fit from 'react-fit';
 
 import DateTimeInput from './DateTimeInput.js';
 
-import { isMaxDate, isMinDate, rangeOf } from './shared/propTypes.js';
-
-import type { ReactNodeArray } from 'prop-types';
 import type {
   ClassName,
   CloseReason,
@@ -22,8 +18,6 @@ import type {
   OpenReason,
   Value,
 } from './shared/types.js';
-
-const isBrowser = typeof document !== 'undefined';
 
 const baseClassName = 'react-datetime-picker';
 const outsideActionEvents = ['mousedown', 'focusin', 'touchstart'] as const;
@@ -59,7 +53,9 @@ const ClearIcon = (
   </svg>
 );
 
-type Icon = React.ReactElement | ReactNodeArray | null | string | number | boolean;
+type ReactNodeLike = React.ReactNode | string | number | boolean | null | undefined;
+
+type Icon = ReactNodeLike | ReactNodeLike[];
 
 type IconOrRenderFunction = Icon | React.ComponentType | React.ReactElement;
 
@@ -901,62 +897,5 @@ const DateTimePicker: React.FC<DateTimePickerProps> = function DateTimePicker(pr
     </div>
   );
 };
-
-const isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
-
-const isValueOrValueArray = PropTypes.oneOfType([isValue, rangeOf(isValue)]);
-
-DateTimePicker.propTypes = {
-  amPmAriaLabel: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  calendarAriaLabel: PropTypes.string,
-  calendarClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  calendarIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  clearAriaLabel: PropTypes.string,
-  clearIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  clockClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  closeWidgets: PropTypes.bool,
-  'data-testid': PropTypes.string,
-  dayAriaLabel: PropTypes.string,
-  dayPlaceholder: PropTypes.string,
-  disableCalendar: PropTypes.bool,
-  disableClock: PropTypes.bool,
-  disabled: PropTypes.bool,
-  format: PropTypes.string,
-  hourAriaLabel: PropTypes.string,
-  hourPlaceholder: PropTypes.string,
-  id: PropTypes.string,
-  isCalendarOpen: PropTypes.bool,
-  isClockOpen: PropTypes.bool,
-  locale: PropTypes.string,
-  maxDate: isMaxDate,
-  maxDetail: PropTypes.oneOf(allViews),
-  minDate: isMinDate,
-  minuteAriaLabel: PropTypes.string,
-  minutePlaceholder: PropTypes.string,
-  monthAriaLabel: PropTypes.string,
-  monthPlaceholder: PropTypes.string,
-  name: PropTypes.string,
-  nativeInputAriaLabel: PropTypes.string,
-  onCalendarClose: PropTypes.func,
-  onCalendarOpen: PropTypes.func,
-  onChange: PropTypes.func,
-  onClockClose: PropTypes.func,
-  onClockOpen: PropTypes.func,
-  onFocus: PropTypes.func,
-  openWidgetsOnFocus: PropTypes.bool,
-  required: PropTypes.bool,
-  secondAriaLabel: PropTypes.string,
-  secondPlaceholder: PropTypes.string,
-  showLeadingZeros: PropTypes.bool,
-  value: isValueOrValueArray,
-  yearAriaLabel: PropTypes.string,
-  yearPlaceholder: PropTypes.string,
-};
-
-if (isBrowser) {
-  DateTimePicker.propTypes.portalContainer = PropTypes.instanceOf(HTMLElement);
-}
 
 export default DateTimePicker;
