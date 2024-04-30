@@ -66,11 +66,11 @@
     "clsx": "^2.0.0",
     "get-user-locale": "^2.2.1",
     "make-event-props": "^1.6.0",
-    "react-calendar": "^4.6.0",
-    "react-clock": "^4.5.0",
-    "react-date-picker": "^10.5.0",
-    "react-fit": "^1.7.0",
-    "react-time-picker": "^6.5.0"
+    "react-calendar": "^5.0.0",
+    "react-clock": "^5.0.0",
+    "react-date-picker": "^11.0.0",
+    "react-fit": "^2.0.0",
+    "react-time-picker": "^7.0.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.0.0",
