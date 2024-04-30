@@ -38,6 +38,7 @@
 .react-datetime-picker__inputGroup__divider,
 .react-datetime-picker__inputGroup__leadingZero {
   display: inline-block;
+  font: inherit;
 }
 
 .react-datetime-picker__inputGroup__input {
