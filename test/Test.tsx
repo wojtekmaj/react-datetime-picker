@@ -100,9 +100,13 @@ export default function Test() {
             <DateTimePicker
               {...ariaLabelProps}
               {...placeholderProps}
-              calendarClassName="myCustomCalendarClassName"
+              calendarProps={{
+                className: 'myCustomCalendarClassName',
+                showNeighboringMonth,
+                showWeekNumbers,
+              }}
               className="myCustomTimePickerClassName"
-              clockClassName="myCustomClockClassName"
+              clockProps={{ className: 'myCustomClockClassName' }}
               data-testid="myCustomDateTimePicker"
               disabled={disabled}
               locale={locale}
@@ -118,8 +122,6 @@ export default function Test() {
               portalContainer={renderInPortal ? portalContainer.current : undefined}
               required={required}
               showLeadingZeros={showLeadingZeros}
-              showNeighboringMonth={showNeighboringMonth}
-              showWeekNumbers={showWeekNumbers}
               value={value}
             />
             <div ref={portalContainer} />

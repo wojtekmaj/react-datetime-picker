@@ -61,7 +61,7 @@ type IconOrRenderFunction = Icon | React.ComponentType | React.ReactElement;
 
 type CalendarProps = Omit<
   React.ComponentPropsWithoutRef<typeof Calendar>,
-  'className' | 'maxDetail' | 'onChange'
+  'onChange' | 'selectRange' | 'value'
 >;
 
 type ClockProps = Omit<React.ComponentPropsWithoutRef<typeof Clock>, 'value'>;
@@ -88,13 +88,6 @@ export type DateTimePickerProps = {
    */
   calendarAriaLabel?: string;
   /**
-   * Class name(s) that will be added along with `"react-calendar"` to the main React-Calendar `<div>` element.
-   *
-   * @example 'class1 class2'
-   * @example ['class1', 'class2 class3']
-   */
-  calendarClassName?: ClassName;
-  /**
    * Content of the calendar button. Setting the value explicitly to `null` will hide the icon.
    *
    * @example 'Calendar'
@@ -102,6 +95,10 @@ export type DateTimePickerProps = {
    * @example CalendarIcon
    */
   calendarIcon?: IconOrRenderFunction | null;
+  /**
+   * Props to pass to React-Calendar component.
+   */
+  calendarProps?: CalendarProps;
   /**
    * Class name(s) that will be added along with `"react-datetime-picker"` to the main React-DateTime-Picker `<div>` element.
    *
@@ -124,12 +121,9 @@ export type DateTimePickerProps = {
    */
   clearIcon?: IconOrRenderFunction | null;
   /**
-   * Class name(s) that will be added along with `"react-clock"` to the main React-Calendar `<div>` element.
-   *
-   * @example 'class1 class2'
-   * @example ['class1', 'class2 class3']
+   * Props to pass to React-Clock component.
    */
-  clockClassName?: ClassName;
+  clockProps?: ClockProps;
   /**
    * Whether to close the widgets on value selection. **Note**: It's recommended to use `shouldCloseWidgets` function instead.
    *
@@ -402,9 +396,7 @@ export type DateTimePickerProps = {
    * @example 'yyyy'
    */
   yearPlaceholder?: string;
-} & CalendarProps &
-  ClockProps &
-  Omit<EventProps, 'onChange' | 'onFocus'>;
+} & Omit<EventProps, 'onChange' | 'onFocus'>;
 
 export default function DateTimePicker(props: DateTimePickerProps) {
   const {
@@ -775,22 +767,16 @@ export default function DateTimePicker(props: DateTimePickerProps) {
       return null;
     }
 
-    const {
-      calendarClassName,
-      className: dateTimePickerClassName, // Unused, here to exclude it from calendarProps
-      maxDetail: dateTimePickerMaxDetail, // Unused, here to exclude it from calendarProps
-      onChange: onChangeProps, // Unused, here to exclude it from calendarProps
-      portalContainer,
-      value,
-      ...calendarProps
-    } = props;
+    const { calendarProps, portalContainer, value } = props;
 
     const className = `${baseClassName}__calendar`;
     const classNames = clsx(className, `${className}--${isCalendarOpen ? 'open' : 'closed'}`);
 
     const calendar = (
       <Calendar
-        className={calendarClassName}
+        locale={locale}
+        maxDate={maxDate}
+        minDate={minDate}
         onChange={(value) => onDateChange(value)}
         value={value}
         {...calendarProps}
@@ -825,15 +811,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
       return null;
     }
 
-    const {
-      clockClassName,
-      className: dateTimePickerClassName, // Unused, here to exclude it from clockProps
-      maxDetail = 'minute',
-      onChange,
-      portalContainer,
-      value,
-      ...clockProps
-    } = props;
+    const { clockProps, maxDetail = 'minute', portalContainer, value } = props;
 
     const className = `${baseClassName}__clock`;
     const classNames = clsx(className, `${className}--${isClockOpen ? 'open' : 'closed'}`);
@@ -844,7 +822,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
 
     const clock = (
       <Clock
-        className={clockClassName}
+        locale={locale}
         renderMinuteHand={maxDetailIndex > 0}
         renderSecondHand={maxDetailIndex > 1}
         value={valueFrom}

@@ -178,11 +178,11 @@ describe('DateTimePicker', () => {
     expect(wrapper).toHaveClass('react-datetime-picker--open');
   });
 
-  it('applies calendarClassName to the calendar when given a string', () => {
+  it('applies calendar className to the calendar when given a string', () => {
     const calendarClassName = 'testClassName';
 
     const { container } = render(
-      <DateTimePicker calendarClassName={calendarClassName} isCalendarOpen />,
+      <DateTimePicker calendarProps={{ className: calendarClassName }} isCalendarOpen />,
     );
 
     const calendar = container.querySelector('.react-calendar');
@@ -190,10 +190,12 @@ describe('DateTimePicker', () => {
     expect(calendar).toHaveClass(calendarClassName);
   });
 
-  it('applies clockClassName to the clock when given a string', () => {
+  it('applies clock className to the clock when given a string', () => {
     const clockClassName = 'testClassName';
 
-    const { container } = render(<DateTimePicker clockClassName={clockClassName} isClockOpen />);
+    const { container } = render(
+      <DateTimePicker clockProps={{ className: clockClassName }} isClockOpen />,
+    );
 
     const clock = container.querySelector('.react-clock');
 
