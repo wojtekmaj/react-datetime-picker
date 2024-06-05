@@ -65,7 +65,7 @@ function getValue(
 
   const valueDate = toDate(rawValue);
 
-  if (isNaN(valueDate.getTime())) {
+  if (Number.isNaN(valueDate.getTime())) {
     throw new Error(`Invalid date: ${value}`);
   }
 
@@ -129,11 +129,11 @@ function renderCustomInputs(
 
   return placeholder.split(pattern).reduce<React.ReactNode[]>((arr, element, index) => {
     const divider = element && (
-      // eslint-disable-next-line react/no-array-index-key
+      // biome-ignore lint/suspicious/noArrayIndexKey: index is stable here
       <Divider key={`separator_${index}`}>{element}</Divider>
     );
     arr.push(divider);
-    const currentMatch = matches && matches[index];
+    const currentMatch = matches?.[index];
 
     if (currentMatch) {
       const renderFunction =
@@ -249,6 +249,7 @@ export default function DateTimeInput({
     setIsWidgetOpenOpen(isWidgetOpenProps);
   }, [isWidgetOpenProps]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: useEffect intentionally triggered on props change
   useEffect(() => {
     const nextValue = getDetailValueFrom({
       value: valueProps,
@@ -440,7 +441,7 @@ export default function DateTimeInput({
       return;
     }
 
-    const isNumberKey = !isNaN(Number(key));
+    const isNumberKey = !Number.isNaN(Number(key));
 
     if (!isNumberKey) {
       return;
@@ -499,14 +500,14 @@ export default function DateTimeInput({
     const values: Record<string, string | number> & {
       amPm?: AmPmType;
     } = {};
-    formElements.forEach((formElement) => {
+    for (const formElement of formElements) {
       values[formElement.name] =
         formElement.type === 'number'
           ? 'valueAsNumber' in formElement
             ? formElement.valueAsNumber
             : Number(formElement.value)
           : formElement.value;
-    });
+    }
 
     const isEveryValueEmpty = formElementsWithoutSelect.every((formElement) => !formElement.value);
 
@@ -651,7 +652,6 @@ export default function DateTimeInput({
         key="day"
         {...commonInputProps}
         ariaLabel={dayAriaLabel}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={dayInput}
         month={month}
@@ -674,7 +674,6 @@ export default function DateTimeInput({
           key="month"
           {...commonInputProps}
           ariaLabel={monthAriaLabel}
-          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={index === 0 && autoFocus}
           inputRef={monthSelect}
           locale={locale}
@@ -693,7 +692,6 @@ export default function DateTimeInput({
         key="month"
         {...commonInputProps}
         ariaLabel={monthAriaLabel}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={monthInput}
         placeholder={monthPlaceholder}
@@ -710,7 +708,6 @@ export default function DateTimeInput({
         key="year"
         {...commonInputProps}
         ariaLabel={yearAriaLabel}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={yearInput}
         placeholder={yearPlaceholder}
@@ -734,7 +731,6 @@ export default function DateTimeInput({
         {...commonTimeInputProps}
         amPm={amPm}
         ariaLabel={hourAriaLabel}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={hour12Input}
         placeholder={hourPlaceholder}
@@ -757,7 +753,6 @@ export default function DateTimeInput({
         {...commonInputProps}
         {...commonTimeInputProps}
         ariaLabel={hourAriaLabel}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={hour24Input}
         placeholder={hourPlaceholder}
@@ -788,7 +783,6 @@ export default function DateTimeInput({
         {...commonInputProps}
         {...commonTimeInputProps}
         ariaLabel={minuteAriaLabel}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         hour={hour}
         inputRef={minuteInput}
@@ -812,7 +806,6 @@ export default function DateTimeInput({
         {...commonInputProps}
         {...commonTimeInputProps}
         ariaLabel={secondAriaLabel}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         hour={hour}
         inputRef={secondInput}
@@ -831,7 +824,6 @@ export default function DateTimeInput({
         {...commonInputProps}
         {...commonTimeInputProps}
         ariaLabel={amPmAriaLabel}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0 && autoFocus}
         inputRef={amPmInput}
         locale={locale}
@@ -875,7 +867,7 @@ export default function DateTimeInput({
   }
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    // biome-ignore lint/a11y/useKeyWithClickEvents: This interaction is designed for mouse users only
     <div className={className} onClick={onClick}>
       {renderNativeInput()}
       {renderCustomInputsInternal()}

@@ -38,7 +38,6 @@ describe('DateTimePicker', () => {
   });
 
   it('passes autoFocus flag to DateTimeInput', () => {
-    // eslint-disable-next-line jsx-a11y/no-autofocus
     const { container } = render(<DateTimePicker autoFocus />);
 
     const customInputs = container.querySelectorAll('input[data-input]');

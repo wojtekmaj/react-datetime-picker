@@ -33,6 +33,7 @@ const iconProps = {
 };
 
 const CalendarIcon = (
+  // biome-ignore lint/a11y/noSvgWithoutTitle: Purely decorative icon
   <svg
     {...iconProps}
     className={`${baseClassName}__calendar-button__icon ${baseClassName}__button__icon`}
@@ -44,6 +45,7 @@ const CalendarIcon = (
 );
 
 const ClearIcon = (
+  // biome-ignore lint/a11y/noSvgWithoutTitle: Purely decorative icon
   <svg
     {...iconProps}
     className={`${baseClassName}__clear-button__icon ${baseClassName}__button__icon`}
@@ -658,18 +660,18 @@ export default function DateTimePicker(props: DateTimePickerProps) {
         closeWidgets({ reason: 'outsideAction' });
       }
     },
-    [calendarWrapper, clockWrapper, closeWidgets, wrapper],
+    [closeWidgets],
   );
 
   const handleOutsideActionListeners = useCallback(
     (shouldListen = isCalendarOpen || isClockOpen) => {
-      outsideActionEvents.forEach((event) => {
+      for (const event of outsideActionEvents) {
         if (shouldListen) {
           document.addEventListener(event, onOutsideAction);
         } else {
           document.removeEventListener(event, onOutsideAction);
         }
-      });
+      }
 
       if (shouldListen) {
         document.addEventListener('keydown', onKeyDown);
@@ -716,7 +718,6 @@ export default function DateTimePicker(props: DateTimePickerProps) {
         <DateTimeInput
           {...ariaLabelProps}
           {...placeholderProps}
-          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={autoFocus}
           className={`${baseClassName}__inputGroup`}
           disabled={disabled}
@@ -853,7 +854,11 @@ export default function DateTimePicker(props: DateTimePickerProps) {
     );
   }
 
-  const eventProps = useMemo(() => makeEventProps(otherProps), [otherProps]);
+  const eventProps = useMemo(
+    () => makeEventProps(otherProps),
+    // biome-ignore lint/correctness/useExhaustiveDependencies: FIXME
+    [otherProps],
+  );
 
   return (
     <div
