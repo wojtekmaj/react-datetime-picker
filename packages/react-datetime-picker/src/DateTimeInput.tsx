@@ -65,7 +65,7 @@ function getValue(
 
   const valueDate = toDate(rawValue);
 
-  if (isNaN(valueDate.getTime())) {
+  if (Number.isNaN(valueDate.getTime())) {
     throw new Error(`Invalid date: ${value}`);
   }
 
@@ -133,7 +133,7 @@ function renderCustomInputs(
       <Divider key={`separator_${index}`}>{element}</Divider>
     );
     arr.push(divider);
-    const currentMatch = matches && matches[index];
+    const currentMatch = matches?.[index];
 
     if (currentMatch) {
       const renderFunction =
@@ -440,7 +440,7 @@ export default function DateTimeInput({
       return;
     }
 
-    const isNumberKey = !isNaN(Number(key));
+    const isNumberKey = !Number.isNaN(Number(key));
 
     if (!isNumberKey) {
       return;
@@ -499,14 +499,14 @@ export default function DateTimeInput({
     const values: Record<string, string | number> & {
       amPm?: AmPmType;
     } = {};
-    formElements.forEach((formElement) => {
+    for (const formElement of formElements) {
       values[formElement.name] =
         formElement.type === 'number'
           ? 'valueAsNumber' in formElement
             ? formElement.valueAsNumber
             : Number(formElement.value)
           : formElement.value;
-    });
+    }
 
     const isEveryValueEmpty = formElementsWithoutSelect.every((formElement) => !formElement.value);
 

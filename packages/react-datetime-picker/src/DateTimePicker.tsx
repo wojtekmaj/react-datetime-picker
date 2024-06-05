@@ -658,18 +658,18 @@ export default function DateTimePicker(props: DateTimePickerProps) {
         closeWidgets({ reason: 'outsideAction' });
       }
     },
-    [calendarWrapper, clockWrapper, closeWidgets, wrapper],
+    [closeWidgets],
   );
 
   const handleOutsideActionListeners = useCallback(
     (shouldListen = isCalendarOpen || isClockOpen) => {
-      outsideActionEvents.forEach((event) => {
+      for (const event of outsideActionEvents) {
         if (shouldListen) {
           document.addEventListener(event, onOutsideAction);
         } else {
           document.removeEventListener(event, onOutsideAction);
         }
-      });
+      }
 
       if (shouldListen) {
         document.addEventListener('keydown', onKeyDown);
