@@ -342,7 +342,7 @@ export default function DateTimeInput({
         placeholder = placeholder.replace(formattedDatePiece, datePieceReplacement);
       }
     });
-    // See: https://github.com/wojtekmaj/react-date-picker/issues/396
+    // See https://github.com/wojtekmaj/react-date-picker/issues/396
     placeholder = placeholder.replace('17', 'y');
 
     return placeholder;
