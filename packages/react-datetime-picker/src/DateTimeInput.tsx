@@ -502,11 +502,7 @@ export default function DateTimeInput({
     } = {};
     for (const formElement of formElements) {
       values[formElement.name] =
-        formElement.type === 'number'
-          ? 'valueAsNumber' in formElement
-            ? formElement.valueAsNumber
-            : Number(formElement.value)
-          : formElement.value;
+        formElement.type === 'number' ? formElement.valueAsNumber : formElement.value;
     }
 
     const isEveryValueEmpty = formElementsWithoutSelect.every((formElement) => !formElement.value);
