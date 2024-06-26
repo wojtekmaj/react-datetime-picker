@@ -27,8 +27,10 @@ export function getFormatter(
 
 const numberFormatterCache = new Map();
 
-export function getNumberFormatter(options: Intl.NumberFormatOptions) {
-  return (locale: string | undefined, number: number) => {
+export function getNumberFormatter(
+  options: Intl.NumberFormatOptions,
+): (locale: string | undefined, number: number) => string {
+  return (locale: string | undefined, number: number): string => {
     const localeWithDefault = locale || getUserLocale();
 
     if (!numberFormatterCache.has(localeWithDefault)) {
@@ -54,4 +56,5 @@ const formatDateOptions = {
   year: 'numeric',
 } satisfies Intl.DateTimeFormatOptions;
 
-export const formatDate = getFormatter(formatDateOptions);
+export const formatDate: (locale: string | undefined, date: Date) => string =
+  getFormatter(formatDateOptions);

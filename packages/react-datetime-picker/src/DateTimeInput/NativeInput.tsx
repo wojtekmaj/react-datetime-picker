@@ -27,7 +27,7 @@ export default function NativeInput({
   required,
   value,
   valueType,
-}: NativeInputProps) {
+}: NativeInputProps): React.ReactElement {
   const nativeValueParser = (() => {
     switch (valueType) {
       case 'hour':

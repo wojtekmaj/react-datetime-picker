@@ -400,7 +400,7 @@ export type DateTimePickerProps = {
   yearPlaceholder?: string;
 } & Omit<EventProps, 'onChange' | 'onFocus'>;
 
-export default function DateTimePicker(props: DateTimePickerProps) {
+export default function DateTimePicker(props: DateTimePickerProps): React.ReactElement {
   const {
     amPmAriaLabel,
     autoFocus,
