@@ -698,7 +698,7 @@ export default function DateTimeInput({
     );
   }
 
-  function renderYear(currentMatch: string, index: number) {
+  function renderYear(_currentMatch: string, index: number) {
     return (
       <YearInput
         key="year"
@@ -813,7 +813,7 @@ export default function DateTimeInput({
     );
   }
 
-  function renderAmPm(currentMatch: string, index: number) {
+  function renderAmPm(_currentMatch: string, index: number) {
     return (
       <AmPm
         key="ampm"
