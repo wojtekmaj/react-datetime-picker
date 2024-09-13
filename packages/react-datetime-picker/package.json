@@ -24,10 +24,8 @@
       "require": "./dist/cjs/DateTimeInput.js"
     },
     "./dist/cjs/DateTimeInput": "./dist/cjs/DateTimeInput.js",
-    "./dist/cjs/DateTimeInput.js": "./dist/cjs/DateTimeInput.js",
     "./dist/esm/DateTimeInput": "./dist/esm/DateTimeInput.js",
-    "./dist/esm/DateTimeInput.js": "./dist/esm/DateTimeInput.js",
-    "./dist/DateTimePicker.css": "./dist/DateTimePicker.css"
+    "./*": "./*"
   },
   "scripts": {
     "build": "yarn build-js && yarn copy-styles",
