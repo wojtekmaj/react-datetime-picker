@@ -537,7 +537,8 @@ describe('DateTimeInput', () => {
     expect(dayInput).toHaveFocus();
   });
 
-  it('does not jump to the next field when right arrow is pressed when the last input is focused', async () => {
+  // See https://github.com/capricorn86/happy-dom/issues/1592
+  it.skip('does not jump to the next field when right arrow is pressed when the last input is focused', async () => {
     const { container } = render(<DateTimeInput {...defaultProps} />);
 
     const select = container.querySelector('select') as HTMLSelectElement;
