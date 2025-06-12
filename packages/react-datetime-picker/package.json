@@ -85,7 +85,7 @@
     "react-dom": "^18.2.0",
     "replace-in-files-cli": "^3.0.0",
     "typescript": "^5.5.2",
-    "vitest": "^3.0.5",
+    "vitest": "^3.2.3",
     "vitest-canvas-mock": "^0.2.2"
   },
   "peerDependencies": {
