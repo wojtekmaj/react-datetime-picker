@@ -861,6 +861,7 @@ export default function DateTimePicker(props: DateTimePickerProps): React.ReactE
   );
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: False positive caused by non interactive wrapper listening for bubbling events
     <div
       className={clsx(
         baseClassName,
