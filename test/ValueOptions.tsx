@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { getISOLocalDateTime } from '@wojtekmaj/date-utils';
 
 import type { LooseValue } from './shared/types.js';
@@ -8,6 +9,8 @@ type ValueOptionsProps = {
 };
 
 export default function ValueOptions({ setValue, value }: ValueOptionsProps) {
+  const datetimeId = useId();
+
   const [date] = Array.isArray(value) ? value : [value];
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -21,9 +24,9 @@ export default function ValueOptions({ setValue, value }: ValueOptionsProps) {
       <legend>Set date and time externally</legend>
 
       <div>
-        <label htmlFor="datetime">Date and time</label>
+        <label htmlFor={datetimeId}>Date and time</label>
         <input
-          id="datetime"
+          id={datetimeId}
           onChange={onChange}
           type="datetime-local"
           value={date && date instanceof Date ? getISOLocalDateTime(date) : date || undefined}
