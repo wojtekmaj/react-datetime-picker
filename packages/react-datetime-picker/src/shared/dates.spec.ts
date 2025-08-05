@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { convert12to24, convert24to12 } from './dates.js';
 
 describe('convert12to24', () => {
