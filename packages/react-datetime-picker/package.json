@@ -6,34 +6,18 @@
   "sideEffects": [
     "*.css"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "./dist/index.js",
   "source": "./src/index.ts",
-  "types": "./dist/cjs/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
-    },
-    "./dist/DateTimeInput": {
-      "import": "./dist/esm/DateTimeInput.js",
-      "require": "./dist/cjs/DateTimeInput.js"
-    },
-    "./dist/DateTimeInput.js": {
-      "import": "./dist/esm/DateTimeInput.js",
-      "require": "./dist/cjs/DateTimeInput.js"
-    },
-    "./dist/cjs/DateTimeInput": "./dist/cjs/DateTimeInput.js",
-    "./dist/esm/DateTimeInput": "./dist/esm/DateTimeInput.js",
+    ".": "./dist/index.js",
+    "./dist/DateTimeInput": "./dist/DateTimeInput.js",
+    "./dist/DateTimeInput.js": "./dist/DateTimeInput.js",
     "./*": "./*"
   },
   "scripts": {
     "build": "yarn build-js && yarn copy-styles",
-    "build-js": "yarn build-js-esm && yarn build-js-cjs && yarn build-js-cjs-package && yarn build-js-cjs-replace",
-    "build-js-esm": "tsc --project tsconfig.build.json --outDir dist/esm",
-    "build-js-cjs": "tsc --project tsconfig.build.json --outDir dist/cjs --module commonjs --moduleResolution node --verbatimModuleSyntax false",
-    "build-js-cjs-package": "echo '{\n  \"type\": \"commonjs\"\n}' > dist/cjs/package.json",
-    "build-js-cjs-replace": "replace-in-files --string='/dist/esm/'  --replacement='/dist/cjs/' dist/cjs/**/*",
+    "build-js": "tsc --project tsconfig.build.json",
     "clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true })\"",
     "copy-styles": "cpy 'src/**/*.css' dist",
     "format": "biome format",
@@ -42,7 +26,7 @@
     "test": "yarn lint && yarn tsc && yarn format && yarn unit",
     "tsc": "tsc",
     "unit": "vitest",
-    "watch": "yarn build-js-esm --watch & yarn build-js-cjs --watch & node --eval \"fs.watch('src', () => child_process.exec('yarn copy-styles'))\""
+    "watch": "yarn build-js --watch & node --eval \"fs.watch('src', () => child_process.exec('yarn copy-styles'))\""
   },
   "keywords": [
     "calendar",
@@ -83,7 +67,6 @@
     "playwright": "^1.51.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "replace-in-files-cli": "^3.0.0",
     "typescript": "^5.5.2",
     "vitest": "^3.2.3",
     "vitest-browser-react": "^1.0.1"
