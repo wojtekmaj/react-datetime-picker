@@ -913,22 +913,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.memoize@npm:^4.1.7":
-  version: 4.1.7
-  resolution: "@types/lodash.memoize@npm:4.1.7"
-  dependencies:
-    "@types/lodash": "npm:*"
-  checksum: 10c0/979a59dbbae968a03834fdb544dc5ddd34620a2912d5030c997a1aa919326425a900c93bc69554b2a873cf54f09b4dd2752b3a1c29ab4bffac5983113c58b1b5
-  languageName: node
-  linkType: hard
-
-"@types/lodash@npm:*":
-  version: 4.14.192
-  resolution: "@types/lodash@npm:4.14.192"
-  checksum: 10c0/6807402e293cb943808a444d1ef514ce13de4f870b3b382fe729f8235ea280c4d037b9514443723afd3d04b2cf9e8f1b3fc0075d947edfeb1078347dc2b471b0
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:*":
   version: 22.15.33
   resolution: "@types/node@npm:22.15.33"
@@ -1068,13 +1052,6 @@ __metadata:
     loupe: "npm:^3.1.3"
     tinyrainbow: "npm:^2.0.0"
   checksum: 10c0/c7a785a73bc0d7c0202ced0d9912639b9deb6f05dd6c25700a13d97e13320ccec57660f11ad1f9225419ac485339fdf7af28c8d77456bcb9558e6c7d73ad538a
-  languageName: node
-  linkType: hard
-
-"@wojtekmaj/date-utils@npm:^1.1.3, @wojtekmaj/date-utils@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "@wojtekmaj/date-utils@npm:1.5.0"
-  checksum: 10c0/30baed99099d8a85861aa293191533833925a9edcc12e5969a012e14fd600213978553e40eefb6f9ef9b62f53d6072b4c34b3d60d6387dab28a62cc5dc5b3a14
   languageName: node
   linkType: hard
 
@@ -1425,13 +1402,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-element-overflow@npm:^1.4.0":
-  version: 1.4.1
-  resolution: "detect-element-overflow@npm:1.4.1"
-  checksum: 10c0/7e8a83a6f3311f3ed433b3e1bf90ee98fe44084d8e309b887456bb9c843381958eb864be982e7fb0fe9ca9412420a860dfa979b7cdce9fb7c0924a3f649749c1
-  languageName: node
-  linkType: hard
-
 "detect-element-overflow@npm:^2.0.0":
   version: 2.0.0
   resolution: "detect-element-overflow@npm:2.0.0"
@@ -1731,16 +1701,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-user-locale@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "get-user-locale@npm:2.2.1"
-  dependencies:
-    "@types/lodash.memoize": "npm:^4.1.7"
-    lodash.memoize: "npm:^4.1.1"
-  checksum: 10c0/c820c890aed5fa661435f0364cde6ec90ed9f497a5451528123571f1a77db45a6e2b92462808648499573cb3f2924f90f629ce4f82a60dc1d55047932a3abe71
-  languageName: node
-  linkType: hard
-
 "get-user-locale@npm:^3.0.0":
   version: 3.0.0
   resolution: "get-user-locale@npm:3.0.0"
@@ -2029,13 +1989,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.memoize@npm:^4.1.1":
-  version: 4.1.2
-  resolution: "lodash.memoize@npm:4.1.2"
-  checksum: 10c0/c8713e51eccc650422716a14cece1809cfe34bc5ab5e242b7f8b4e2241c2483697b971a604252807689b9dd69bfe3a98852e19a5b89d506b000b4187a1285df8
-  languageName: node
-  linkType: hard
-
 "lodash@npm:^4.17.15":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
@@ -2092,13 +2045,6 @@ __metadata:
   dependencies:
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
   checksum: 10c0/16826e415d04b88378f200fe022b53e638e3838b9e496edda6c0e086d7753a44a6ed187adc72d19f3623810589bf139af1a315541cd6a26ae0771a0193eaf7b8
-  languageName: node
-  linkType: hard
-
-"make-event-props@npm:^1.6.0":
-  version: 1.6.1
-  resolution: "make-event-props@npm:1.6.1"
-  checksum: 10c0/ae36b066cbaf948a03cb91bb1dc67f10f89f5ca391724a467ec67d26d0bbb6f8bd7bc58facefc0673f714ffe46dc89a55a4f71e008da1b8b1945c754b8966da7
   languageName: node
   linkType: hard
 
@@ -2539,24 +2485,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-clock@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "react-clock@npm:5.0.0"
-  dependencies:
-    "@wojtekmaj/date-utils": "npm:^1.5.0"
-    clsx: "npm:^2.0.0"
-    get-user-locale: "npm:^2.2.1"
-  peerDependencies:
-    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/f96492d12c936a7e15a83efa077afe45e1c18e3f447d7605313fe5a31886390906a69a8a426bd502fb0dfe38a2913cb221a2efc8fc786396be9709a46c13caed
-  languageName: node
-  linkType: hard
-
 "react-clock@npm:^6.0.0":
   version: 6.0.0
   resolution: "react-clock@npm:6.0.0"
@@ -2629,7 +2557,7 @@ __metadata:
     react-date-picker: "npm:^12.0.0"
     react-dom: "npm:^18.2.0"
     react-fit: "npm:^3.0.0"
-    react-time-picker: "npm:^7.0.0"
+    react-time-picker: "npm:^8.0.0"
     replace-in-files-cli: "npm:^3.0.0"
     typescript: "npm:^5.5.2"
     vitest: "npm:^3.2.3"
@@ -2653,25 +2581,6 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 10c0/66dfc5f93e13d0674e78ef41f92ed21dfb80f9c4ac4ac25a4b51046d41d4d2186abc915b897f69d3d0ebbffe6184e7c5876f2af26bfa956f179225d921be713a
-  languageName: node
-  linkType: hard
-
-"react-fit@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "react-fit@npm:2.0.1"
-  dependencies:
-    detect-element-overflow: "npm:^1.4.0"
-    warning: "npm:^4.0.0"
-  peerDependencies:
-    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-dom":
-      optional: true
-  checksum: 10c0/0202f4e3241bd2e967ec3728c97ab57842353ae48f218ca56d28be14737a7a759e40c3cd05700d9e328ab88e377eccb296f1e33530e6775d3acc05df97084018
   languageName: node
   linkType: hard
 
@@ -2706,16 +2615,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "react-time-picker@npm:7.0.0"
+"react-time-picker@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "react-time-picker@npm:8.0.0"
   dependencies:
-    "@wojtekmaj/date-utils": "npm:^1.1.3"
+    "@wojtekmaj/date-utils": "npm:^2.0.2"
     clsx: "npm:^2.0.0"
-    get-user-locale: "npm:^2.2.1"
-    make-event-props: "npm:^1.6.0"
-    react-clock: "npm:^5.0.0"
-    react-fit: "npm:^2.0.0"
+    get-user-locale: "npm:^3.0.0"
+    make-event-props: "npm:^2.0.0"
+    react-clock: "npm:^6.0.0"
+    react-fit: "npm:^3.0.0"
     update-input-width: "npm:^1.4.0"
   peerDependencies:
     "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2724,7 +2633,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/538a1964de1ef9021b195f856efedc207019b6da1b9bbdcb6899c876ec6b4eeb02f4f16b77677dc0edb704099ed7f204dde0821573b7a1f1f24909e02ea2aee6
+  checksum: 10c0/24a2ed0dcf600dbbef263f5acc3c43fb9f531a0058063929653d1deadeb87527c413b70a2d60bc9d11b43a9d7fc2e457351ce577b0eb270af91ec85cea018d82
   languageName: node
   linkType: hard
 
