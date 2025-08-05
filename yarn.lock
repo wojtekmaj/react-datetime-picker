@@ -2532,6 +2532,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-calendar@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "react-calendar@npm:6.0.0"
+  dependencies:
+    "@wojtekmaj/date-utils": "npm:^2.0.2"
+    clsx: "npm:^2.0.0"
+    get-user-locale: "npm:^3.0.0"
+    warning: "npm:^4.0.0"
+  peerDependencies:
+    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/4c79d7a7d757eb35fb85c3c8f48ce36f2565d9889c1c67392ecb8cb031e46894fb320c5771d9e7293333230d2776b9b5250a5828833c3c1cb67eb41394fb3bc2
+  languageName: node
+  linkType: hard
+
 "react-clock@npm:^5.0.0":
   version: 5.0.0
   resolution: "react-clock@npm:5.0.0"
@@ -2599,7 +2618,7 @@ __metadata:
     happy-dom: "npm:^15.10.2"
     make-event-props: "npm:^2.0.0"
     react: "npm:^18.2.0"
-    react-calendar: "npm:^5.0.0"
+    react-calendar: "npm:^6.0.0"
     react-clock: "npm:^5.0.0"
     react-date-picker: "npm:^11.0.0"
     react-dom: "npm:^18.2.0"
