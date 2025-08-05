@@ -2520,25 +2520,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-calendar@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "react-calendar@npm:5.0.0"
-  dependencies:
-    "@wojtekmaj/date-utils": "npm:^1.1.3"
-    clsx: "npm:^2.0.0"
-    get-user-locale: "npm:^2.2.1"
-    warning: "npm:^4.0.0"
-  peerDependencies:
-    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/d0b393b22fb1607dd2a7743f104f6d7fe2f3dba39bfbce301b5100d35bed239f51a7b08eec2a7fea77d88af60aecc0b36c2435f36d0e07b88f4a826a67c5a91e
-  languageName: node
-  linkType: hard
-
 "react-calendar@npm:^6.0.0":
   version: 6.0.0
   resolution: "react-calendar@npm:6.0.0"
@@ -2594,16 +2575,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-date-picker@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "react-date-picker@npm:11.0.0"
+"react-date-picker@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "react-date-picker@npm:12.0.0"
   dependencies:
-    "@wojtekmaj/date-utils": "npm:^1.1.3"
+    "@wojtekmaj/date-utils": "npm:^2.0.2"
     clsx: "npm:^2.0.0"
-    get-user-locale: "npm:^2.2.1"
-    make-event-props: "npm:^1.6.0"
-    react-calendar: "npm:^5.0.0"
-    react-fit: "npm:^2.0.0"
+    get-user-locale: "npm:^3.0.0"
+    make-event-props: "npm:^2.0.0"
+    react-calendar: "npm:^6.0.0"
+    react-fit: "npm:^3.0.0"
     update-input-width: "npm:^1.4.0"
   peerDependencies:
     "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2612,7 +2593,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/de51915831d16ebcf0f1bb5ff67d41792848c2b36a9a3c8e6e2f652b3a5f2e6751d866095fb234f92e3790ffc1d2557b5f92e839b03b11acead1ecc7d50e2dde
+  checksum: 10c0/4bfe4de31fe31d6d748b9eef63c1c963449446e9326012993c46e673044d0adad69fbfd5a0d29fc148fb3d45504f4c5e3cde59842d70028b96fdf959e4503d16
   languageName: node
   linkType: hard
 
@@ -2645,7 +2626,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-calendar: "npm:^6.0.0"
     react-clock: "npm:^6.0.0"
-    react-date-picker: "npm:^11.0.0"
+    react-date-picker: "npm:^12.0.0"
     react-dom: "npm:^18.2.0"
     react-fit: "npm:^3.0.0"
     react-time-picker: "npm:^7.0.0"
