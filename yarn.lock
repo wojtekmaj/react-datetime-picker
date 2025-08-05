@@ -2569,6 +2569,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-clock@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "react-clock@npm:6.0.0"
+  dependencies:
+    "@wojtekmaj/date-utils": "npm:^2.0.2"
+    clsx: "npm:^2.0.0"
+    get-user-locale: "npm:^3.0.0"
+  peerDependencies:
+    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/7d6c67896b78942375433e417dd9dbd2de8ab3b2885084f5ed038cd0db96c449c52b2c1d09a1a990f98417a51b52baca01f897b586c6fc05eae580644700d21c
+  languageName: node
+  linkType: hard
+
 "react-date-picker@npm:^11.0.0":
   version: 11.0.0
   resolution: "react-date-picker@npm:11.0.0"
@@ -2619,7 +2637,7 @@ __metadata:
     make-event-props: "npm:^2.0.0"
     react: "npm:^18.2.0"
     react-calendar: "npm:^6.0.0"
-    react-clock: "npm:^5.0.0"
+    react-clock: "npm:^6.0.0"
     react-date-picker: "npm:^11.0.0"
     react-dom: "npm:^18.2.0"
     react-fit: "npm:^2.0.0"
