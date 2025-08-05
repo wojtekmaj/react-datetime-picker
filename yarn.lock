@@ -2587,7 +2587,7 @@ __metadata:
     react-date-picker: "npm:^12.0.1"
     react-dom: "npm:^18.2.0"
     react-fit: "npm:^3.0.0"
-    react-time-picker: "npm:^8.0.0"
+    react-time-picker: "npm:^8.0.2"
     replace-in-files-cli: "npm:^3.0.0"
     typescript: "npm:^5.5.2"
     vitest: "npm:^3.2.3"
@@ -2645,9 +2645,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "react-time-picker@npm:8.0.0"
+"react-time-picker@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "react-time-picker@npm:8.0.2"
   dependencies:
     "@wojtekmaj/date-utils": "npm:^2.0.2"
     clsx: "npm:^2.0.0"
@@ -2663,7 +2663,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/24a2ed0dcf600dbbef263f5acc3c43fb9f531a0058063929653d1deadeb87527c413b70a2d60bc9d11b43a9d7fc2e457351ce577b0eb270af91ec85cea018d82
+  checksum: 10c0/ce4067335157a1237f7331503c13fdfd2b4c8019486fffb1bbfea18b8f67669254c7722007ae7625b1dd207c92241bbce0b51c48fb62ce39f297ccd1615a47d7
   languageName: node
   linkType: hard
 

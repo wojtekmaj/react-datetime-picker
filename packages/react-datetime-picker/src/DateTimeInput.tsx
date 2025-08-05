@@ -14,11 +14,11 @@ import DayInput from 'react-date-picker/dist/DateInput/DayInput';
 import MonthInput from 'react-date-picker/dist/DateInput/MonthInput';
 import MonthSelect from 'react-date-picker/dist/DateInput/MonthSelect';
 import YearInput from 'react-date-picker/dist/DateInput/YearInput';
-import AmPm from 'react-time-picker/dist/esm/TimeInput/AmPm';
-import Hour12Input from 'react-time-picker/dist/esm/TimeInput/Hour12Input';
-import Hour24Input from 'react-time-picker/dist/esm/TimeInput/Hour24Input';
-import MinuteInput from 'react-time-picker/dist/esm/TimeInput/MinuteInput';
-import SecondInput from 'react-time-picker/dist/esm/TimeInput/SecondInput';
+import AmPm from 'react-time-picker/dist/TimeInput/AmPm';
+import Hour12Input from 'react-time-picker/dist/TimeInput/Hour12Input';
+import Hour24Input from 'react-time-picker/dist/TimeInput/Hour24Input';
+import MinuteInput from 'react-time-picker/dist/TimeInput/MinuteInput';
+import SecondInput from 'react-time-picker/dist/TimeInput/SecondInput';
 
 import NativeInput from './DateTimeInput/NativeInput.js';
 import Divider from './Divider.js';
