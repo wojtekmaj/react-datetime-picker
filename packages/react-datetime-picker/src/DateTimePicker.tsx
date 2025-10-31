@@ -738,6 +738,7 @@ export default function DateTimePicker(props: DateTimePickerProps): React.ReactE
           <button
             aria-label={clearAriaLabel}
             className={`${baseClassName}__clear-button ${baseClassName}__button`}
+            data-testid="clear-button"
             disabled={disabled}
             onClick={clear}
             onFocus={stopPropagation}
@@ -751,6 +752,7 @@ export default function DateTimePicker(props: DateTimePickerProps): React.ReactE
             aria-expanded={isCalendarOpen || false}
             aria-label={calendarAriaLabel}
             className={`${baseClassName}__calendar-button ${baseClassName}__button`}
+            data-testid="calendar-button"
             disabled={disabled}
             onClick={toggleCalendar}
             onFocus={stopPropagation}
