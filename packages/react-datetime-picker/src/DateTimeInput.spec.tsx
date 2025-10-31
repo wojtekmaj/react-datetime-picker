@@ -711,7 +711,7 @@ describe('DateTimeInput', () => {
     const customInputs = Array.from(container.querySelectorAll('input[data-input]'));
 
     for (const customInput of customInputs) {
-      await userEvent.fill(customInput, '');
+      await userEvent.clear(customInput);
     }
 
     expect(onChange).toHaveBeenCalledTimes(1);
