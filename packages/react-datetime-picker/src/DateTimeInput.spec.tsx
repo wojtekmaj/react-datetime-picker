@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { userEvent } from 'vitest/browser';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from 'vitest-browser-react';
+import { fireEvent } from '@testing-library/react';
 
 import DateTimeInput from './DateTimeInput.js';
 
@@ -311,7 +312,7 @@ describe('DateTimeInput', () => {
 
       const renderComponent = () => render(<DateTimeInput {...defaultProps} format="ddd" />);
 
-      expect(renderComponent).toThrow('Unsupported token: ddd');
+      await expect(renderComponent).rejects.toThrowError('Unsupported token: ddd');
 
       restoreConsole();
     });
@@ -356,7 +357,7 @@ describe('DateTimeInput', () => {
 
       const renderComponent = () => render(<DateTimeInput {...defaultProps} format="hhh" />);
 
-      expect(renderComponent).toThrow('Unsupported token: hhh');
+      await expect(renderComponent).rejects.toThrowError('Unsupported token: hhh');
 
       restoreConsole();
     });
@@ -386,7 +387,7 @@ describe('DateTimeInput', () => {
 
       const renderComponent = () => render(<DateTimeInput {...defaultProps} format="HHH" />);
 
-      expect(renderComponent).toThrow('Unsupported token: HHH');
+      await expect(renderComponent).rejects.toThrowError('Unsupported token: HHH');
 
       restoreConsole();
     });
@@ -416,7 +417,7 @@ describe('DateTimeInput', () => {
 
       const renderComponent = () => render(<DateTimeInput {...defaultProps} format="mmm" />);
 
-      expect(renderComponent).toThrow('Unsupported token: mmm');
+      await expect(renderComponent).rejects.toThrowError('Unsupported token: mmm');
 
       restoreConsole();
     });
@@ -446,7 +447,7 @@ describe('DateTimeInput', () => {
 
       const renderComponent = () => render(<DateTimeInput {...defaultProps} format="sss" />);
 
-      expect(renderComponent).toThrow('Unsupported token: sss');
+      await expect(renderComponent).rejects.toThrowError('Unsupported token: sss');
 
       restoreConsole();
     });

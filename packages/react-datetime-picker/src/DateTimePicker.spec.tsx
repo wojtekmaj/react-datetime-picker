@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { userEvent } from 'vitest/browser';
-import { act, fireEvent, render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { render } from 'vitest-browser-react';
+import { act, fireEvent, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 
 import DateTimePicker from './DateTimePicker.js';
 
@@ -815,15 +816,15 @@ describe('DateTimePicker', () => {
 
     // Click year 2019
     const twentyNineteenButton = getByRole('button', { name: '2019' });
-    fireEvent.click(twentyNineteenButton);
+    await userEvent.click(twentyNineteenButton);
 
     // Click January
     const januaryButton = getByRole('button', { name: 'January 2019' });
-    fireEvent.click(januaryButton);
+    await userEvent.click(januaryButton);
 
     // Click 1st
     const firstButton = getByRole('button', { name: 'January 1, 2019' });
-    fireEvent.click(firstButton);
+    await userEvent.click(firstButton);
 
     expect(onChange).toHaveBeenCalledWith(nextValue);
   });
@@ -851,15 +852,15 @@ describe('DateTimePicker', () => {
 
     // Click year 2019
     const twentyNineteenButton = getByRole('button', { name: '2019' });
-    fireEvent.click(twentyNineteenButton);
+    await userEvent.click(twentyNineteenButton);
 
     // Click January
     const januaryButton = getByRole('button', { name: 'January 2019' });
-    fireEvent.click(januaryButton);
+    await userEvent.click(januaryButton);
 
     // Click 1st
     const firstButton = getByRole('button', { name: 'January 1, 2019' });
-    fireEvent.click(firstButton);
+    await userEvent.click(firstButton);
 
     expect(onChange).toHaveBeenCalledWith(nextValue);
   });
