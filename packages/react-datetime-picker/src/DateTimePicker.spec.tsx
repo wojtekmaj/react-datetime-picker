@@ -399,10 +399,15 @@ describe('DateTimePicker', () => {
     expect(calendar2).toBeInTheDocument();
   });
 
-  function triggerFocusEvent(element: HTMLElement) {
+  function triggerFocusInEvent(element: HTMLElement) {
     element.dispatchEvent(
       new FocusEvent('focusin', { bubbles: true, cancelable: false, composed: true }),
     );
+  }
+
+  function triggerFocusEvent(element: HTMLElement) {
+    triggerFocusInEvent(element);
+
     element.dispatchEvent(
       new FocusEvent('focus', { bubbles: false, cancelable: false, composed: true }),
     );
@@ -599,7 +604,7 @@ describe('DateTimePicker', () => {
   it('closes Calendar component when focused outside', async () => {
     const { container } = await render(<DateTimePicker isCalendarOpen />);
 
-    fireEvent.focusIn(document.body);
+    triggerFocusInEvent(document.body);
 
     await waitForElementToBeRemovedOrHidden(() =>
       container.querySelector('.react-datetime-picker__calendar'),
@@ -633,7 +638,7 @@ describe('DateTimePicker', () => {
   it('closes Clock component when focused outside', async () => {
     const { container } = await render(<DateTimePicker isClockOpen />);
 
-    fireEvent.focusIn(document.body);
+    triggerFocusInEvent(document.body);
 
     await waitForElementToBeRemovedOrHidden(() =>
       container.querySelector('.react-datetime-picker__clock'),
