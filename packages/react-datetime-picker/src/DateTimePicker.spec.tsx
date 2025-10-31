@@ -753,8 +753,8 @@ describe('DateTimePicker', () => {
 
     const dayInput = container.querySelector('input[name="day"]') as HTMLInputElement;
 
-    act(() => {
-      fireEvent.change(dayInput, { target: { value: '1' } });
+    await act(async () => {
+      await userEvent.fill(dayInput, '1');
     });
 
     const calendar = container.querySelector('.react-calendar');
@@ -767,8 +767,8 @@ describe('DateTimePicker', () => {
 
     const hourInput = container.querySelector('input[name="hour12"]') as HTMLInputElement;
 
-    act(() => {
-      fireEvent.change(hourInput, { target: { value: '9' } });
+    await act(async () => {
+      await userEvent.fill(hourInput, '9');
     });
 
     const clock = container.querySelector('.react-clock');
@@ -786,8 +786,8 @@ describe('DateTimePicker', () => {
 
     const dayInput = container.querySelector('input[name="day"]') as HTMLInputElement;
 
-    act(() => {
-      fireEvent.change(dayInput, { target: { value: '1' } });
+    await act(async () => {
+      await userEvent.fill(dayInput, '1');
     });
 
     expect(onChange).toHaveBeenCalledWith(new Date(2023, 0, 1, 21, 40, 11));
@@ -875,8 +875,8 @@ describe('DateTimePicker', () => {
 
     const dayInput = container.querySelector('input[name="day"]') as HTMLInputElement;
 
-    act(() => {
-      fireEvent.change(dayInput, { target: { value: '32' } });
+    await act(async () => {
+      await userEvent.fill(dayInput, '32');
     });
 
     expect(onInvalidChange).toHaveBeenCalled();
