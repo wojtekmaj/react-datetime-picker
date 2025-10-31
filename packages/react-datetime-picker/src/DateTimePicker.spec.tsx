@@ -577,10 +577,14 @@ describe('DateTimePicker', () => {
     );
   });
 
+  function triggerTouchStart(element: HTMLElement) {
+    element.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, cancelable: true }));
+  }
+
   it('closes Calendar component when tapped outside', async () => {
     const { container } = await render(<DateTimePicker isCalendarOpen />);
 
-    fireEvent.touchStart(document.body);
+    triggerTouchStart(document.body);
 
     await waitForElementToBeRemovedOrHidden(() =>
       container.querySelector('.react-datetime-picker__calendar'),
@@ -610,7 +614,7 @@ describe('DateTimePicker', () => {
   it('closes Clock component when tapped outside', async () => {
     const { container } = await render(<DateTimePicker isClockOpen />);
 
-    fireEvent.touchStart(document.body);
+    triggerTouchStart(document.body);
 
     await waitForElementToBeRemovedOrHidden(() =>
       container.querySelector('.react-datetime-picker__clock'),
@@ -912,7 +916,8 @@ describe('DateTimePicker', () => {
     const { container } = await render(<DateTimePicker onTouchStart={onTouchStart} />);
 
     const wrapper = container.firstElementChild as HTMLDivElement;
-    fireEvent.touchStart(wrapper);
+
+    triggerTouchStart(wrapper);
 
     expect(onTouchStart).toHaveBeenCalled();
   });
