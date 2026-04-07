@@ -15,10 +15,9 @@ export function getFormatter(
     const formatterCacheLocale = formatterCache.get(localeWithDefault);
 
     if (!formatterCacheLocale.has(options)) {
-      formatterCacheLocale.set(
-        options,
-        new Intl.DateTimeFormat(localeWithDefault || undefined, options).format,
-      );
+      const formatter = new Intl.DateTimeFormat(localeWithDefault || undefined, options);
+
+      formatterCacheLocale.set(options, formatter.format.bind(formatter));
     }
 
     return formatterCacheLocale.get(options)(date);
@@ -40,10 +39,9 @@ export function getNumberFormatter(
     const numberFormatterCacheLocale = numberFormatterCache.get(localeWithDefault);
 
     if (!numberFormatterCacheLocale.has(options)) {
-      numberFormatterCacheLocale.set(
-        options,
-        new Intl.NumberFormat(localeWithDefault || undefined, options).format,
-      );
+      const formatter = new Intl.NumberFormat(localeWithDefault || undefined, options);
+
+      numberFormatterCacheLocale.set(options, formatter.format.bind(formatter));
     }
 
     return numberFormatterCacheLocale.get(options)(number);
