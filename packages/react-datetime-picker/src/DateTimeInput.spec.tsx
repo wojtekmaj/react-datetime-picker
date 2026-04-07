@@ -190,7 +190,7 @@ describe('DateTimeInput', () => {
       <DateTimeInput {...defaultProps} maxDetail="second" value={date} />,
     );
 
-    rerender(<DateTimeInput {...defaultProps} maxDetail="second" value={null} />);
+    await rerender(<DateTimeInput {...defaultProps} maxDetail="second" value={null} />);
 
     const nativeInput = container.querySelector('input[type="datetime-local"]');
     const customInputs = page.getByRole('spinbutton');

@@ -371,7 +371,7 @@ describe('DateTimePicker', () => {
 
     expect(calendar).not.toBeInTheDocument();
 
-    rerender(<DateTimePicker {...defaultProps} isCalendarOpen />);
+    await rerender(<DateTimePicker {...defaultProps} isCalendarOpen />);
 
     const calendar2 = container.querySelector('.react-calendar');
 
@@ -385,7 +385,7 @@ describe('DateTimePicker', () => {
 
     expect(clock).not.toBeInTheDocument();
 
-    rerender(<DateTimePicker {...defaultProps} isClockOpen />);
+    await rerender(<DateTimePicker {...defaultProps} isClockOpen />);
 
     const clock2 = container.querySelector('.react-clock');
 
