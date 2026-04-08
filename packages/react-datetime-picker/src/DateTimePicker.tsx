@@ -654,8 +654,8 @@ export default function DateTimePicker(props: DateTimePickerProps): React.ReactE
         target &&
         wrapperEl &&
         !wrapperEl.contains(target) &&
-        (!calendarWrapperEl || !calendarWrapperEl.contains(target)) &&
-        (!clockWrapperEl || !clockWrapperEl.contains(target))
+        !calendarWrapperEl?.contains(target) &&
+        !clockWrapperEl?.contains(target)
       ) {
         closeWidgets({ reason: 'outsideAction' });
       }
