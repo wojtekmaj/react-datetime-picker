@@ -244,6 +244,7 @@ export default function DateTimeInput({
   const secondInput = useRef<HTMLInputElement>(null);
   const [isWidgetOpen, setIsWidgetOpenOpen] = useState(isWidgetOpenProps);
   const lastPressedKey = useRef<KeyboardEvent['key'] | undefined>(undefined);
+  const previousValueProps = useRef(valueProps);
 
   useEffect(() => {
     setIsWidgetOpenOpen(isWidgetOpenProps);
@@ -266,7 +267,7 @@ export default function DateTimeInput({
       setMinute(getMinutes(nextValue).toString());
       setSecond(getSeconds(nextValue).toString());
       setValue(toDate(nextValue));
-    } else {
+    } else if (valueProps !== previousValueProps.current || valueProps != null) {
       setAmPm(null);
       setYear(null);
       setMonth(null);
@@ -276,6 +277,8 @@ export default function DateTimeInput({
       setSecond(null);
       setValue(null);
     }
+
+    previousValueProps.current = valueProps;
   }, [
     valueProps,
     minDate,

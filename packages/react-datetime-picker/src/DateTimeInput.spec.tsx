@@ -204,6 +204,38 @@ describe('DateTimeInput', () => {
     expect(customInputs.nth(5)).toHaveAttribute('value', '');
   });
 
+  it('does not clear partial value when reopened with updated min/max props', async () => {
+    const { rerender } = await render(
+      <DateTimeInput
+        {...defaultProps}
+        isWidgetOpen={false}
+        maxDate={new Date(3000, 11, 31)}
+        value={null}
+      />,
+    );
+
+    const monthInput = page.getByRole('spinbutton', { name: 'month' });
+    const yearInput = page.getByRole('spinbutton', { name: 'year' });
+    const hourInput = page.getByRole('spinbutton', { name: 'hour' });
+
+    await userEvent.fill(monthInput, '9');
+    await userEvent.fill(yearInput, '2025');
+    await userEvent.fill(hourInput, '8');
+
+    await rerender(
+      <DateTimeInput
+        {...defaultProps}
+        isWidgetOpen
+        maxDate={new Date(3000, 11, 31)}
+        value={null}
+      />,
+    );
+
+    expect(monthInput).toHaveValue(9);
+    expect(yearInput).toHaveValue(2025);
+    expect(hourInput).toHaveValue(8);
+  });
+
   it('renders custom inputs in a proper order (12-hour format)', async () => {
     await render(<DateTimeInput {...defaultProps} maxDetail="second" />);
 
