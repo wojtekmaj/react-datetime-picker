@@ -93,5 +93,9 @@
     "url": "git+https://github.com/wojtekmaj/react-datetime-picker.git",
     "directory": "packages/react-datetime-picker"
   },
+  "homepage": "https://github.com/wojtekmaj/react-datetime-picker/tree/main/packages/react-datetime-picker#readme",
+  "bugs": {
+    "url": "https://github.com/wojtekmaj/react-datetime-picker/issues"
+  },
   "funding": "https://github.com/wojtekmaj/react-datetime-picker?sponsor=1"
 }
