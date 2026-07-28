@@ -873,6 +873,38 @@ describe('DateTimePicker', () => {
     expect(onChange).toHaveBeenCalledWith(new Date(2023, 0, 1, 21, 40, 11));
   });
 
+  it('does not call onChange for leap day until yyyy year is complete', async () => {
+    const onChange = vi.fn();
+
+    await render(
+      <DateTimePicker
+        {...defaultProps}
+        format="MM/dd/yyyy"
+        onChange={onChange}
+        openWidgetsOnFocus={false}
+      />,
+    );
+
+    const monthInput = page.getByRole('spinbutton', { name: 'month' });
+    const dayInput = page.getByRole('spinbutton', { name: 'day' });
+    const yearInput = page.getByRole('spinbutton', { name: 'year' });
+
+    await act(async () => {
+      await userEvent.fill(monthInput, '02');
+      await userEvent.fill(dayInput, '29');
+      await userEvent.type(yearInput, '200');
+    });
+
+    expect(onChange).not.toHaveBeenCalled();
+
+    await act(async () => {
+      await userEvent.type(yearInput, '0');
+    });
+
+    await vi.waitFor(() => expect(onChange).toHaveBeenCalledTimes(1));
+    expect(onChange).toHaveBeenCalledWith(new Date(2000, 1, 29));
+  });
+
   it('calls onChange callback with merged new date & old time when calling internal onDateChange given Date', async () => {
     const hours = 21;
     const minutes = 40;

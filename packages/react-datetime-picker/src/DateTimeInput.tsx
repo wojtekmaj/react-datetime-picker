@@ -244,6 +244,7 @@ export default function DateTimeInput({
   const secondInput = useRef<HTMLInputElement>(null);
   const [isWidgetOpen, setIsWidgetOpenOpen] = useState(isWidgetOpenProps);
   const lastPressedKey = useRef<KeyboardEvent['key'] | undefined>(undefined);
+  const hasPendingInternalChange = useRef(false);
   const previousValueProps = useRef(valueProps);
 
   useEffect(() => {
@@ -376,6 +377,16 @@ export default function DateTimeInput({
   const timeDivider = (() => {
     const dividers = timePlaceholder.match(/[^0-9a-z]/i);
     return dividers ? dividers[0] : null;
+  })();
+
+  const yearMinLength = (() => {
+    const yearMatch = format?.match(/y+/);
+
+    if (!yearMatch || yearMatch[0].length <= 1) {
+      return null;
+    }
+
+    return yearMatch[0].length;
   })();
 
   const maxTime = (() => {
@@ -515,6 +526,15 @@ export default function DateTimeInput({
       return;
     }
 
+    const isIncompleteYear =
+      yearMinLength !== null &&
+      yearInput.current?.value &&
+      yearInput.current.value.length < yearMinLength;
+
+    if (isIncompleteYear) {
+      return;
+    }
+
     const isEveryValueFilled = formElements.every((formElement) => formElement.value);
     const isEveryValueValid = formElements.every((formElement) => formElement.validity.valid);
 
@@ -551,6 +571,8 @@ export default function DateTimeInput({
   function onChange(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value } = event.target;
 
+    hasPendingInternalChange.current = true;
+
     switch (name) {
       case 'amPm':
         setAmPm(value as AmPmType);
@@ -577,9 +599,17 @@ export default function DateTimeInput({
         setSecond(value);
         break;
     }
-
-    onChangeExternal();
   }
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: onChangeExternal must run after internal value state updates
+  useEffect(() => {
+    if (!hasPendingInternalChange.current) {
+      return;
+    }
+
+    hasPendingInternalChange.current = false;
+    onChangeExternal();
+  }, [amPm, day, hour, minute, month, second, year]);
 
   /**
    * Called when native date input is changed.
