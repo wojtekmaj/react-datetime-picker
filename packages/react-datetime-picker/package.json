@@ -52,7 +52,7 @@
     "react-clock": "^6.0.0",
     "react-date-picker": "^12.1.0",
     "react-fit": "^3.0.0",
-    "react-time-picker": "^8.0.2"
+    "react-time-picker": "^8.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.10",

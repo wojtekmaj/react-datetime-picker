@@ -1411,7 +1411,7 @@ __metadata:
     react-date-picker: "npm:^12.1.0"
     react-dom: "npm:^19.2.0"
     react-fit: "npm:^3.0.0"
-    react-time-picker: "npm:^8.0.2"
+    react-time-picker: "npm:^8.1.0"
     typescript: "npm:^7.0.2"
     vitest: "npm:^4.1.10"
     vitest-browser-react: "npm:^2.2.0"
@@ -1453,9 +1453,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-time-picker@npm:^8.0.2":
-  version: 8.0.2
-  resolution: "react-time-picker@npm:8.0.2"
+"react-time-picker@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "react-time-picker@npm:8.1.0"
   dependencies:
     "@wojtekmaj/date-utils": "npm:^2.0.2"
     clsx: "npm:^2.0.0"
@@ -1463,7 +1463,7 @@ __metadata:
     make-event-props: "npm:^2.0.0"
     react-clock: "npm:^6.0.0"
     react-fit: "npm:^3.0.0"
-    update-input-width: "npm:^1.4.0"
+    update-input-width: "npm:^2.0.0"
   peerDependencies:
     "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -1471,7 +1471,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/ce4067335157a1237f7331503c13fdfd2b4c8019486fffb1bbfea18b8f67669254c7722007ae7625b1dd207c92241bbce0b51c48fb62ce39f297ccd1615a47d7
+  checksum: 10c0/8a83de00bff08ac8e6d09adfc7fac2ad5384ebf60efcf9ca0277faff3e35dbab20576eab40931998a350a97bc86e8d1f49712338bcb5906fcc7b49f7e3f8a6ea
   languageName: node
   linkType: hard
 
@@ -1825,13 +1825,6 @@ __metadata:
   version: 6.21.0
   resolution: "undici-types@npm:6.21.0"
   checksum: 10c0/c01ed51829b10aa72fc3ce64b747f8e74ae9b60eafa19a7b46ef624403508a54c526ffab06a14a26b3120d055e1104d7abe7c9017e83ced038ea5cf52f8d5e04
-  languageName: node
-  linkType: hard
-
-"update-input-width@npm:^1.4.0":
-  version: 1.4.1
-  resolution: "update-input-width@npm:1.4.1"
-  checksum: 10c0/eb7b3242cfabccfcb1c8a506c4462bc015dbcabe330deb24c5cf895a8d20dd808be6885cdc04a09c6a90f1a7ef474ae2038e460c572954f5cd7cb27231c05231
   languageName: node
   linkType: hard
 
