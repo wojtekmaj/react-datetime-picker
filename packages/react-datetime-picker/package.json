@@ -50,7 +50,7 @@
     "make-event-props": "^2.0.0",
     "react-calendar": "^6.0.0",
     "react-clock": "^6.0.0",
-    "react-date-picker": "^12.0.1",
+    "react-date-picker": "^12.1.0",
     "react-fit": "^3.0.0",
     "react-time-picker": "^8.0.2"
   },
