@@ -134,6 +134,12 @@ export type DateTimePickerProps = {
    */
   closeWidgets?: boolean;
   /**
+   * `form` attribute for the custom day, month, year, hour, minute, second, and AM/PM inputs.
+   *
+   * @example 'my-form'
+   */
+  customInputsForm?: string;
+  /**
    * `data-testid` attribute for the main React-DateTime-Picker `<div>` element.
    *
    * @example 'datetime-picker'
@@ -410,6 +416,7 @@ export default function DateTimePicker(props: DateTimePickerProps): React.ReactE
     clearAriaLabel,
     clearIcon = ClearIcon,
     closeWidgets: shouldCloseWidgetsOnSelect = true,
+    customInputsForm,
     'data-testid': dataTestid,
     dayAriaLabel,
     dayPlaceholder,
@@ -720,6 +727,7 @@ export default function DateTimePicker(props: DateTimePickerProps): React.ReactE
           {...placeholderProps}
           autoFocus={autoFocus}
           className={`${baseClassName}__inputGroup`}
+          customInputsForm={customInputsForm}
           disabled={disabled}
           format={format}
           isWidgetOpen={isCalendarOpen || isClockOpen}

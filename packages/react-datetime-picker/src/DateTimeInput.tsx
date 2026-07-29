@@ -166,6 +166,7 @@ type DateTimeInputProps = {
   amPmAriaLabel?: string;
   autoFocus?: boolean;
   className: string;
+  customInputsForm?: string;
   dayAriaLabel?: string;
   dayPlaceholder?: string;
   disabled?: boolean;
@@ -198,6 +199,7 @@ export default function DateTimeInput({
   amPmAriaLabel,
   autoFocus,
   className,
+  customInputsForm,
   dayAriaLabel,
   dayPlaceholder,
   disabled,
@@ -655,6 +657,7 @@ export default function DateTimeInput({
   const commonInputProps = {
     className,
     disabled,
+    form: customInputsForm,
     maxDate: maxDate || defaultMaxDate,
     minDate: minDate || defaultMinDate,
     onChange,

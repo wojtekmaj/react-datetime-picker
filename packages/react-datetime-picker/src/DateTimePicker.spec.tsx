@@ -46,6 +46,34 @@ describe('DateTimePicker', () => {
     expect(nativeInput).toHaveAttribute('name', name);
   });
 
+  it('passes customInputsForm to custom inputs only', async () => {
+    const { container } = await render(
+      <form>
+        <DateTimePicker
+          {...defaultProps}
+          customInputsForm=""
+          format="MMMM d, y h:mm:ss a"
+          maxDetail="second"
+          name="appointment"
+          value={new Date(2020, 10, 11, 22, 15, 30)}
+        />
+      </form>,
+    );
+
+    const form = container.querySelector('form') as HTMLFormElement;
+    const customInputs = container.querySelectorAll('[data-input="true"]');
+
+    expect(customInputs).toHaveLength(7);
+
+    for (const customInput of customInputs) {
+      expect(customInput).toHaveAttribute('form', '');
+    }
+
+    expect(Array.from(new FormData(form).entries())).toEqual([
+      ['appointment', '2020-11-11T22:15:30'],
+    ]);
+  });
+
   it('passes autoFocus flag to DateTimeInput', async () => {
     await render(<DateTimePicker {...defaultProps} autoFocus />);
 
