@@ -741,6 +741,21 @@ describe('DateTimePicker', () => {
     );
   });
 
+  it('closes Calendar component when Escape key is pressed', async () => {
+    const { container } = await render(<DateTimePicker {...defaultProps} isCalendarOpen />);
+
+    const event = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true });
+
+    document.body.dispatchEvent(event);
+
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__calendar'),
+    );
+
+    // Mark Escape as handled so surrounding dialogs can stay open
+    expect(event.defaultPrevented).toBe(true);
+  });
+
   it('closes Clock component when clicked outside', async () => {
     const { container } = await render(<DateTimePicker {...defaultProps} isClockOpen />);
 
@@ -769,6 +784,21 @@ describe('DateTimePicker', () => {
     await waitForElementToBeRemovedOrHidden(() =>
       container.querySelector('.react-datetime-picker__clock'),
     );
+  });
+
+  it('closes Clock component when Escape key is pressed', async () => {
+    const { container } = await render(<DateTimePicker {...defaultProps} isClockOpen />);
+
+    const event = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true });
+
+    document.body.dispatchEvent(event);
+
+    await waitForElementToBeRemovedOrHidden(() =>
+      container.querySelector('.react-datetime-picker__clock'),
+    );
+
+    // Mark Escape as handled so surrounding dialogs can stay open
+    expect(event.defaultPrevented).toBe(true);
   });
 
   function triggerFocusOutEvent(locator: Locator) {
