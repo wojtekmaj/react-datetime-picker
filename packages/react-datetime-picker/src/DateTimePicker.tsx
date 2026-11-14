@@ -459,8 +459,10 @@ export default function DateTimePicker(props: DateTimePickerProps): React.ReactE
     ...otherProps
   } = props;
 
-  const [isCalendarOpen, setIsCalendarOpen] = useState<boolean | null>(isCalendarOpenProps);
-  const [isClockOpen, setIsClockOpen] = useState<boolean | null>(isClockOpenProps);
+  const [isCalendarOpenState, setIsCalendarOpen] = useState<boolean | null>(isCalendarOpenProps);
+  const [isClockOpenState, setIsClockOpen] = useState<boolean | null>(isClockOpenProps);
+  const isCalendarOpen = disabled ? null : isCalendarOpenState;
+  const isClockOpen = disabled ? null : isClockOpenState;
   const wrapper = useRef<HTMLDivElement>(null);
   const calendarWrapper = useRef<HTMLDivElement>(null);
   const clockWrapper = useRef<HTMLDivElement>(null);
